@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+  <!-- CRITICAL: Load fonts in HEAD before any component loads -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <title>BNB Enterprises - Global Trading Excellence | Premium Solutions</title>
+
+  <style>
+    /* ========== COLOR SYSTEM ========== */
+    :root {
+      --primary-blue: #2673B8;
+      --pure-black: #000000;
+      --pure-white: #FFFFFF;
+      --off-white: #F8F9FA;
+      --text-dark: #0A0A0A;
+      --light-gray: #E8EBF0;
+      --whatsapp-green: #25D366;
+    }
+
+    /* ========== GLOBAL RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ========== OPTIMIZED TYPOGRAPHY CAPS ========== */
+    /* Prevent font sizes from going too large or too small */
+    h1, .hero-title, .section-title {
+      font-size: clamp(2rem, 5vw, 5.5rem) !important;
+      line-height: 1.1 !important;
+    }
+
+    h2, .section-subtitle {
+      font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
+      line-height: 1.2 !important;
+    }
+
+    h3, .card-title {
+      font-size: clamp(1.1rem, 2vw, 1.6rem) !important;
+      line-height: 1.3 !important;
+    }
+
+    h4 {
+      font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+    }
+
+    p, .body-text {
+      font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
+      line-height: 1.7 !important;
+    }
+
+    .small-text, .caption {
+      font-size: clamp(0.7rem, 1vw, 0.85rem) !important;
+    }
+
+    .label-text {
+      font-size: clamp(0.65rem, 0.9vw, 0.75rem) !important;
+      letter-spacing: clamp(2px, 0.3vw, 5px) !important;
+    }
+
+    /* ========== PAGE LOADER ========== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--pure-white);
+      z-index: 9999;
+      gap: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader-logo {
+      width: clamp(80px, 15vw, 120px);
+      height: clamp(80px, 15vw, 120px);
+      object-fit: contain;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .loader-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 800;
+      letter-spacing: clamp(4px, 1vw, 8px);
+      color: var(--text-dark);
+    }
+
+    .loader-subtext {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+      font-weight: 600;
+      letter-spacing: clamp(2px, 0.5vw, 4px);
+      color: var(--primary-blue);
+      text-transform: uppercase;
+    }
+
+    body.loaded .page-loader {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ========== SITE WRAPPER ========== */
+    .site-wrapper {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.loaded .site-wrapper {
+      opacity: 1;
+    }
+
+    /* ========== WHATSAPP FLOATING BUTTON - MINIMALIST ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--whatsapp-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+      z-index: 9998;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float:active {
+      transform: scale(0.95);
+    }
+
+    .whatsapp-float i {
+      color: white;
+      font-size: 32px;
+    }
+
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid var(--whatsapp-green);
+      border-radius: 50%;
+      opacity: 0;
+      animation: whatsapp-pulse 2s infinite;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    /* ========== COMPONENT CONTAINERS ========== */
+    #navbarComponent,
+    #heroComponent,
+    #aboutComponent,
+    #categoriesComponent,
+    #galleryComponent,
+    #contactComponent,
+    #footerComponent {
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+    }
+
+    /* Remove extra spacing between components */
+    #aboutComponent + #categoriesComponent,
+    #categoriesComponent + #galleryComponent {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    /* ========== RESPONSIVE BREAKPOINTS ========== */
+    @media (max-width: 1400px) {
+      html {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      html {
+        font-size: 14px;
+      }
+      
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 25px;
+        right: 25px;
+      }
+      
+      .whatsapp-float i {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      html {
+        font-size: 13px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .whatsapp-float i {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html {
+        font-size: 13px;
+      }
+    }
+
+    /* ========== PERFORMANCE OPTIMIZATIONS ========== */
+    /* Force GPU acceleration for animations */
+    .page-loader,
+    .whatsapp-float,
+    .loader-logo {
+      transform: translateZ(0);
+      will-change: transform, opacity;
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ========== SMOOTH SCROLL OFFSET ========== */
+    section {
+      scroll-margin-top: 100px;
+    }
+
+    /* ========== ACCESSIBILITY ========== */
+    :focus-visible {
+      outline: 3px solid var(--primary-blue);
+      outline-offset: 3px;
+    }
+
+    /* Hide focus outline for mouse users */
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ========== PRINT STYLES ========== */
+    @media print {
+      .page-loader,
+      .whatsapp-float {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+  <!-- Page Loader -->
+  <div class="page-loader" role="status" aria-live="polite" aria-label="Loading BNB Enterprises">
+    <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo" />
+    <div class="loader-text" aria-hidden="true">BNB ENTERPRISES</div>
+    <div class="loader-subtext" aria-hidden="true">Global Traders</div>
+  </div>
+
+  <!-- Site Wrapper -->
+  <div class="site-wrapper">
+    <!-- Navbar Component -->
+    <nav id="navbarComponent" role="navigation" aria-label="Main Navigation"></nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Component -->
+      <header id="heroComponent"></header>
+
+      <!-- About Component -->
+      <section id="aboutComponent" aria-label="About BNB Enterprises"></section>
+
+      <!-- Categories Component 
+      <section id="categoriesComponent" aria-label="Product Collections"></section>
+
+      <!-- Gallery Component 
+      <section id="galleryComponent" aria-label="Product Gallery"></section>
+
+      <!-- Contact Component
+      <section id="contactComponent" aria-label="Contact Information"></section>
+    </main>
+-->
+    <!-- Footer Component -->
+    <footer id="footerComponent" role="contentinfo"></footer>
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20your%20products."
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    aria-label="Contact us on WhatsApp"
+    title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script>
+    // ========== PERFORMANCE MONITORING ==========
+    const performanceMetrics = {
+      startTime: performance.now(),
+      fontsLoaded: false,
+      componentsLoaded: 0
+    };
+
+    // ========== FONT LOADING ==========
+    document.fonts.ready.then(function () {
+      performanceMetrics.fontsLoaded = true;
+      console.log('✅ Fonts loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+    });
+
+    // ========== PAGE INITIALIZATION ==========
+    document.addEventListener("DOMContentLoaded", () => {
+      // Minimum loading time for smooth experience
+      const minLoadTime = 1500;
+      const elapsedTime = performance.now() - performanceMetrics.startTime;
+      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+        loadComponents();
+      }, remainingTime);
+    });
+
+    // ========== COMPONENT LOADING SYSTEM ==========
+    async function loadComponents() {
+      const components = [
+        { name: "navbar", target: "navbarComponent" },
+        { name: "hero", target: "heroComponent" },
+        { name: "about", target: "aboutComponent" },
+        { name: "categories", target: "categoriesComponent" },
+        { name: "gallery", target: "galleryComponent" },
+        { name: "contact", target: "contactComponent" },
+        { name: "footer", target: "footerComponent" }
+      ];
+
+      for (const comp of components) {
+        await loadComponent(comp.name, comp.target);
+        performanceMetrics.componentsLoaded++;
+      }
+
+      console.log('✅ All components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+      
+      // Initialize any global interactions after all components are loaded
+      initializeGlobalInteractions();
+    }
+
+    // ========== ENHANCED COMPONENT LOADER ==========
+    async function loadComponent(name, targetId) {
+      try {
+        const startTime = performance.now();
+        
+        // Fetch HTML
+        const htmlResp = await fetch(`${name}.html`);
+        const htmlText = await htmlResp.text();
+
+        // Parse HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlText;
+
+        // Get target element
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) {
+          console.error(`❌ Target element #${targetId} not found`);
+          return;
+        }
+
+        // Extract and insert CSS styles with font inheritance
+        const styles = tempDiv.querySelectorAll('style');
+        styles.forEach(style => {
+          const styleElement = document.createElement('style');
+          styleElement.innerHTML = style.innerHTML;
+          styleElement.setAttribute('data-component', name);
+
+          // Ensure component styles inherit font family
+          styleElement.innerHTML = styleElement.innerHTML.replace(
+            /font-family:\s*'Montserrat'/gi,
+            "font-family: 'Montserrat', sans-serif"
+          ).replace(
+            /font-family:\s*'Raleway'/gi,
+            "font-family: 'Raleway', sans-serif"
+          );
+
+          document.head.appendChild(styleElement);
+        });
+
+        // Extract scripts before removing them
+        const scripts = tempDiv.querySelectorAll('script');
+        const scriptContents = Array.from(scripts).map(script => script.innerHTML);
+
+        // Clean up parsed HTML
+        scripts.forEach(script => script.remove());
+        styles.forEach(style => style.remove());
+        
+        // Remove duplicate font links
+        const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
+        fontLinks.forEach(link => link.remove());
+
+        // Insert HTML content
+        targetElement.innerHTML = tempDiv.innerHTML;
+
+        // Wait for DOM to settle
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Execute component scripts
+        scriptContents.forEach(scriptContent => {
+          if (scriptContent.trim()) {
+            try {
+              const scriptElement = document.createElement('script');
+              scriptElement.innerHTML = scriptContent;
+              scriptElement.setAttribute('data-component', name);
+              document.body.appendChild(scriptElement);
+
+              // Clean up after execution
+              setTimeout(() => {
+                if (scriptElement.parentNode) {
+                  scriptElement.parentNode.removeChild(scriptElement);
+                }
+              }, 500);
+            } catch (scriptError) {
+              console.error(`❌ Error executing script in ${name}:`, scriptError);
+            }
+          }
+        });
+
+        const loadTime = Math.round(performance.now() - startTime);
+        console.log(`✅ ${name} loaded in ${loadTime}ms`);
+
+      } catch (err) {
+        console.error(`❌ Error loading ${name}:`, err);
+      }
+    }
+
+    // ========== GLOBAL INTERACTIONS ==========
+    function initializeGlobalInteractions() {
+      // Smooth scroll for all internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerHeight = 100;
+            const targetPosition = targetElement.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Lazy load images
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+              }
+            }
+          });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      console.log('✅ Global interactions initialized');
+    }
+
+    // ========== CROSS-COMPONENT MESSAGING ==========
+    window.addEventListener('message', function (event) {
+      if (event.data.type === 'scrollToSection') {
+        const sectionId = event.data.sectionId;
+        const targetElement = document.getElementById(sectionId);
+
+        if (targetElement) {
+          const headerHeight = 100;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+
+    // ========== ERROR HANDLING ==========
+    window.addEventListener('error', function(e) {
+      console.error('❌ Global error:', e.error);
+    });
+
+    window.addEventListener('unhandledrejection', function(e) {
+      console.error('❌ Unhandled promise rejection:', e.reason);
+    });
+
+    // ========== PERFORMANCE LOGGING ==========
+    window.addEventListener('load', function() {
+      const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
+      console.log(`
+🚀 BNB ENTERPRISES - PERFORMANCE METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Total Load Time: ${loadTime}ms
+✅ Fonts Loaded: ${performanceMetrics.fontsLoaded ? 'Yes' : 'No'}
+✅ Components Loaded: ${performanceMetrics.componentsLoaded}/7
+✅ DOM Interactive: ${Math.round(performance.timing.domInteractive - performance.timing.navigationStart)}ms
+✅ DOM Complete: ${Math.round(performance.timing.domComplete - performance.timing.navigationStart)}ms
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `);
+    });
+  </script>
+</body>
+
+</html>

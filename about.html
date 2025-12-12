@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BNB Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2673B8;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #0A0A0A;
+            --light-gray: #E8EBF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* MINIMALIST TOP BAR */
+        .top-bar {
+            background: var(--pure-black);
+            padding: 1rem 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            will-change: transform;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            padding: 0 3rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* HERO SPLIT LAYOUT */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            background: var(--off-white);
+        }
+
+        /* LEFT SIDE - CONTENT */
+        .content-side {
+            padding: 8rem 6rem 6rem 8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--pure-black);
+            line-height: 0.95;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 550px;
+        }
+
+        .description-block {
+            margin-bottom: 4rem;
+            max-width: 550px;
+        }
+
+        .description-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            color: var(--text-dark);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+
+        .highlight {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* VERTICAL STATS TIMELINE */
+        .stats-timeline {
+            margin-top: 3rem;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .stat-row::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 45px;
+            width: 2px;
+            height: calc(100% + 2.5rem);
+            background: var(--light-gray);
+        }
+
+        .stat-row:last-child::before {
+            display: none;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 2rem;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-row:hover .stat-icon {
+            transform: scale(1.1);
+        }
+
+        .stat-number-circle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--pure-white);
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--pure-black);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+
+        /* RIGHT SIDE - IMAGE */
+        .image-side {
+            position: relative;
+            background: var(--pure-white);
+            border-left: 1px solid var(--light-gray);
+        }
+
+        .image-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .image-container:hover .hero-image {
+            transform: scale(1.05);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: 4rem;
+            left: 4rem;
+            background: var(--pure-white);
+            padding: 2.5rem 3rem;
+            border: 1px solid var(--light-gray);
+            z-index: 10;
+        }
+
+        .badge-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .badge-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        /* SECONDARY SECTION */
+        .secondary-section {
+            background: var(--pure-white);
+            padding: 5rem 6rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            padding: 2.5rem 2.5rem;
+            border-right: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--off-white);
+        }
+
+        .feature-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .feature-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: var(--pure-black);
+            margin-bottom: 0.7rem;
+        }
+
+        .feature-desc {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .content-side {
+                padding: 6rem 4rem 4rem 6rem;
+            }
+
+            .main-title {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+
+            .content-side {
+                padding: 6rem 4rem;
+            }
+
+            .image-side {
+                border-left: none;
+                border-top: 1px solid var(--light-gray);
+            }
+
+            .image-container {
+                position: relative;
+                height: 600px;
+            }
+
+            .floating-badge {
+                bottom: 3rem;
+                left: 3rem;
+            }
+
+            .secondary-section {
+                padding: 4rem 4rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                border-right: none;
+                padding: 2rem 2rem;
+            }
+
+            .feature-item:nth-child(3n) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-side {
+                padding: 5rem 3rem;
+            }
+
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .intro-text {
+                font-size: 1.05rem;
+            }
+
+            .stat-row {
+                margin-bottom: 2rem;
+            }
+
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                margin-right: 1.5rem;
+            }
+
+            .stat-number-circle {
+                font-size: 1.1rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .image-container {
+                height: 500px;
+            }
+
+            .floating-badge {
+                padding: 2rem 2.5rem;
+                bottom: 2rem;
+                left: 2rem;
+            }
+
+            .badge-number {
+                font-size: 3rem;
+            }
+
+            .secondary-section {
+                padding: 3.5rem 3rem;
+            }
+
+            .feature-item {
+                padding: 2rem 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content-side {
+                padding: 4rem 2rem;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .description-text {
+                font-size: 0.9rem;
+            }
+
+            .stat-row::before {
+                left: 25px;
+            }
+
+            .stat-icon {
+                width: 45px;
+                height: 45px;
+                margin-right: 1.2rem;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            .stat-label-text {
+                font-size: 0.75rem;
+            }
+
+            .image-container {
+                height: 400px;
+            }
+
+            .floating-badge {
+                padding: 1.5rem 2rem;
+                bottom: 1.5rem;
+                left: 1.5rem;
+            }
+
+            .badge-number {
+                font-size: 2.5rem;
+            }
+
+            .badge-text {
+                font-size: 0.7rem;
+            }
+
+            .secondary-section {
+                padding: 3rem 2rem;
+            }
+
+            .feature-item {
+                padding: 1.8rem 1.5rem;
+            }
+
+            .marquee-item {
+                padding: 0 2rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="marquee">
+            <span class="marquee-item">Premium Quality</span>
+            <span class="marquee-item">Global Standards</span>
+            <span class="marquee-item">Trusted Partner</span>
+            <span class="marquee-item">Expert Solutions</span>
+            <span class="marquee-item">Innovation First</span>
+            <span class="marquee-item">Premium Quality</span>
+            <span class="marquee-item">Global Standards</span>
+            <span class="marquee-item">Trusted Partner</span>
+            <span class="marquee-item">Expert Solutions</span>
+            <span class="marquee-item">Innovation First</span>
+        </div>
+    </div>
+
+    <!-- HERO SPLIT SECTION -->
+    <section class="hero-section">
+        <!-- LEFT SIDE - CONTENT -->
+        <div class="content-side">
+            <div class="label">About Us</div>
+            
+            <h1 class="main-title">BNB<br>Enterprises</h1>
+            
+            <p class="intro-text">
+                A beacon of <span class="highlight">excellence</span> in the global trading landscape, delivering premium solutions across diverse industries.
+            </p>
+
+            <div class="description-block">
+                <p class="description-text">
+                    Founded on principles of quality, reliability, and innovation, we connect quality manufacturers with discerning clients worldwide through strategic operations and robust supply chain networks.
+                </p>
+                <p class="description-text">
+                    From boutique enterprises to large-scale corporations, our client-centric approach and commitment to excellence have earned us recognition as industry leaders.
+                </p>
+            </div>
+
+            <!-- VERTICAL STATS TIMELINE -->
+            <div class="stats-timeline">
+                <div class="stat-row">
+                    <div class="stat-icon">
+                        <span class="stat-number-circle">01</span>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">25+</div>
+                        <div class="stat-label-text">Years Experience</div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon">
+                        <span class="stat-number-circle">02</span>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label-text">Projects Completed</div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon">
+                        <span class="stat-number-circle">03</span>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label-text">Global Partners</div>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-icon">
+                        <span class="stat-number-circle">04</span>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label-text">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - IMAGE -->
+        <div class="image-side">
+            <div class="image-container">
+                <img src="assets/current.png" alt="BNB Enterprises" class="hero-image">
+                <div class="floating-badge">
+                    <div class="badge-number">25</div>
+                    <div class="badge-text">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats on scroll
+            const statRows = document.querySelectorAll('.stat-row');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            statRows.forEach(row => observer.observe(row));
+
+            console.log('✅ Reimagined About section initialized');
+        });
+    </script>
+</body>
+</html>
