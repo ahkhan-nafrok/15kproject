@@ -11,923 +11,874 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
- /* ========== COLOR SYSTEM ========== */
-    :root {
-      --primary-blue: #2673B8;
-      --pure-black: #000000;
-      --pure-white: #F2F4F7;
-      --off-white: #EDF0F4;
-      --text-dark: #0A0A0A;
-      --light-gray: #E8EBF0;
-      --whatsapp-green: #25D366;
+/* ========== REFINED COLOR SYSTEM ========== */
+:root {
+  --primary-blue: #2673B8;
+  --background-base: #eeeeee;
+  --surface-light: #F0F3F7;
+  --accent-white: #F7F9FC;
+  --text-primary: #1A2332;
+  --text-body: #5A6B7F;
+  --text-muted: #7A8A9E;
+  --border-color: #D4DCE6;
+  --border-light: #E3E9F0;
+  --whatsapp-green: #25D366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-base);
+    color: var(--text-body);
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* MARBLES SECTION - OPTIMIZED */
+.marbles-section {
+    background: var(--background-base);
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 2.5rem);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+/* HEADER - COMPACT */
+.page-header {
+    margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    gap: 2rem;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.breadcrumb {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    opacity: 0.8;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    opacity: 0.7;
+}
+
+/* BACK BUTTON */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: 1rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-body);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.back-button i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background: var(--text-primary);
+    color: var(--accent-white);
+    border-color: var(--text-primary);
+    transform: translateX(-3px);
+}
+
+.back-button:hover i {
+    transform: translateX(-3px);
+}
+
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+}
+
+.page-description {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: var(--text-body);
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* FILTER BAR - COMPACT */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.filter-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-body);
+    opacity: 0.7;
+}
+
+.filter-select {
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-body);
+    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(2rem, 2.5vw, 2.2rem) clamp(0.6rem, 0.8vw, 0.7rem) clamp(0.9rem, 1.2vw, 1rem);
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232673B8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    min-width: 140px;
+    border-radius: 4px;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
+}
+
+/* RESULTS BAR */
+.results-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: clamp(0.9rem, 1.2vw, 1.2rem) 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+.results-count {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--text-body);
+    opacity: 0.8;
+}
+
+.results-count span {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* PRODUCTS GRID - OPTIMIZED */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: clamp(1.3rem, 2vw, 1.6rem);
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* PRODUCT CARD - OPTIMIZED WITH RADIUS */
+.product-card {
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card.hidden {
+    display: none;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    border-radius: 8px 8px 0 0;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.12);
+    border-color: var(--primary-blue);
+}
+
+.product-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* IMAGE CONTAINER */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 110%;
+    overflow: hidden;
+    background: var(--border-light);
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.06);
+}
+
+/* QUICK VIEW BUTTON */
+.quick-view {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    right: 0.8rem;
+    background: var(--text-primary);
+    color: var(--accent-white);
+    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(1rem, 1.3vw, 1.2rem);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.product-card:hover .quick-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quick-view:hover {
+    background: var(--primary-blue);
+}
+
+/* BATCH BADGE */
+.batch-badge {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: var(--accent-white);
+    padding: clamp(0.35rem, 0.5vw, 0.4rem) clamp(0.7rem, 1vw, 0.9rem);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.55rem, 0.7vw, 0.6rem);
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: var(--primary-blue);
+    z-index: 5;
+    box-shadow: 0 3px 12px rgba(26, 35, 50, 0.1);
+    border-radius: 4px;
+}
+
+/* PRODUCT INFO - COMPACT */
+.product-info {
+    padding: clamp(1.1rem, 1.5vw, 1.3rem);
+}
+
+.product-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .product-name {
+    color: var(--primary-blue);
+}
+
+.product-material {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-bottom: 0.7rem;
+}
+
+/* PRODUCT DESCRIPTION - NEW */
+.product-description {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-body);
+    opacity: 0.85;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* SPECIFICATIONS - SIZE REMOVED, 3 COLUMN LAYOUT */
+.product-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.7rem, 1vw, 0.9rem);
+    padding-top: clamp(0.9rem, 1.2vw, 1.1rem);
+    border-top: 1px solid var(--border-color);
+    margin-bottom: clamp(0.9rem, 1.2vw, 1.1rem);
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.spec-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.55rem, 0.7vw, 0.6rem);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.spec-value {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: var(--text-body);
+}
+
+/* ACTION BUTTONS */
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.6rem, 0.9vw, 0.8rem);
+}
+
+.action-btn {
+    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(0.9rem, 1.2vw, 1rem);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.action-btn i {
+    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+}
+
+.call-btn {
+    background: var(--surface-light);
+    color: var(--text-body);
+}
+
+.call-btn:hover {
+    background: var(--text-primary);
+    color: var(--accent-white);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.whatsapp-btn {
+    background: var(--whatsapp-green);
+    color: var(--accent-white);
+    border-color: var(--whatsapp-green);
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    border-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* LOAD MORE BUTTON */
+.load-more-section {
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem 0 2rem;
+}
+
+.load-more-btn {
+    background: var(--text-primary);
+    color: var(--accent-white);
+    border: 2px solid var(--text-primary);
+    border-radius: 4px;
+    padding: clamp(0.9rem, 1.2vw, 1rem) clamp(2rem, 3vw, 2.5rem);
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+
+.load-more-btn.show {
+    display: block;
+}
+
+.load-more-btn:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(38, 115, 184, 0.3);
+}
+
+/* QUICK VIEW MODAL - OPTIMIZED */
+.quick-view-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-view-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: 90vw;
+    height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.modal-image-container.zoomed {
+    cursor: grab;
+}
+
+.modal-image-container.zoomed.dragging {
+    cursor: grabbing;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: none;
+    will-change: transform;
+    transform-origin: center center;
+}
+
+.modal-image.zoom-transition {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* MODAL CONTROLS */
+.modal-controls {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 0.8rem;
+    z-index: 10001;
+}
+
+.modal-control-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-control-btn:hover {
+    background: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(38, 115, 184, 0.3);
+}
+
+.modal-control-btn i {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.modal-control-btn:hover i {
+    color: var(--accent-white);
+}
+
+.modal-control-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--border-light);
+}
+
+.modal-control-btn:disabled:hover {
+    transform: none;
+    background: var(--border-light);
+}
+
+.modal-control-btn:disabled i {
+    color: var(--text-muted);
+}
+
+.modal-close:hover {
+    background: #dc3545;
+    transform: rotate(90deg) translateY(-2px);
+}
+
+.modal-close:hover i {
+    color: var(--accent-white);
+}
+
+/* ZOOM LEVEL INDICATOR */
+.zoom-indicator {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    background: var(--accent-white);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.zoom-indicator.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.zoom-indicator i {
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+}
+
+/* MODAL INFO BAR */
+.modal-info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface-light);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -5px 30px rgba(26, 35, 50, 0.2);
+    z-index: 10001;
+}
+
+.modal-product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.modal-product-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.modal-product-batch {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
+    font-weight: 600;
+    color: var(--primary-blue);
+    letter-spacing: 1px;
+}
+
+.modal-zoom-hint {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    font-weight: 600;
+    color: var(--text-body);
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+/* NO RESULTS MESSAGE */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    display: none;
+}
+
+.no-results.show {
+    display: block;
+}
+
+.no-results-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+.no-results-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    color: var(--text-body);
+    opacity: 0.8;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 991px) {
+    .header-top {
+        flex-direction: column;
     }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--off-white);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        /* MARBLES SECTION - OPTIMIZED */
-        .marbles-section {
-            background: var(--off-white);
-            padding: 4rem 0 3rem;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        /* HEADER - COMPACT */
-        .page-header {
-            margin-bottom: 2.5rem;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            gap: 2rem;
-        }
-
-        .header-content {
-            flex: 1;
-        }
-
-        .breadcrumb {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-dark);
-            opacity: 0.6;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .breadcrumb a {
-            color: var(--primary-blue);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 0.7;
-        }
-
-        /* BACK BUTTON */
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.7rem 1.2rem;
-            margin-bottom: 1rem;
-            background: var(--pure-white);
-            border: 1px solid var(--light-gray);
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .back-button i {
-            font-size: 0.75rem;
-            transition: transform 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border-color: var(--pure-black);
-            transform: translateX(-3px);
-        }
-
-        .back-button:hover i {
-            transform: translateX(-3px);
-        }
-
-        .back-button:active {
-            transform: translateX(-1px);
-        }
-
-        .page-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            color: var(--pure-black);
-            line-height: 0.95;
-            margin-bottom: 0.8rem;
-        }
-
-        .page-description {
-            font-family: 'Raleway', sans-serif;
-            font-size: clamp(0.9rem, 1.5vw, 1rem);
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            color: var(--text-dark);
-            opacity: 0.8;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        /* FILTER BAR - COMPACT */
-        .filter-bar {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .filter-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-
-        .filter-select {
-            background: var(--pure-white);
-            border: 1px solid var(--light-gray);
-            color: var(--text-dark);
-            padding: 0.7rem 2.2rem 0.7rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            font-family: 'Raleway', sans-serif;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232673B8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.8rem center;
-            min-width: 160px;
-        }
-
-        .filter-select:hover,
-        .filter-select:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
-        }
-
-        /* RESULTS BAR */
-        .results-bar {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 1.2rem 0;
-            border-bottom: 1px solid var(--light-gray);
-            margin-bottom: 2rem;
-        }
-
-        .results-count {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-
-        .results-count span {
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
-
-        /* PRODUCTS GRID - OPTIMIZED */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.8rem;
-            margin-bottom: 3rem;
-        }
-
-        /* PRODUCT CARD - OPTIMIZED */
-        .product-card {
-            background: var(--pure-white);
-            border: 1px solid var(--light-gray);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card.hidden {
-            display: none;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--primary-blue);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 10;
-        }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-            border-color: var(--primary-blue);
-        }
-
-        .product-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* IMAGE CONTAINER */
-        .product-image-container {
-            position: relative;
-            width: 100%;
-            padding-top: 125%;
-            overflow: hidden;
-            background: var(--light-gray);
-            cursor: pointer;
-        }
-
-        .product-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.06);
-        }
-
-        /* QUICK VIEW BUTTON */
-        .quick-view {
-            position: absolute;
-            bottom: 0.8rem;
-            left: 0.8rem;
-            right: 0.8rem;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            padding: 0.75rem 1.2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
-            border: none;
-            cursor: pointer;
-        }
-
-        .product-card:hover .quick-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .quick-view:hover {
-            background: var(--primary-blue);
-        }
-
-        /* BATCH BADGE */
-        .batch-badge {
-            position: absolute;
-            top: 0.8rem;
-            right: 0.8rem;
-            background: var(--pure-white);
-            padding: 0.4rem 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            color: var(--primary-blue);
-            z-index: 5;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* PRODUCT INFO - COMPACT */
-        .product-info {
-            padding: 1.5rem 1.4rem;
-        }
-
-        .product-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            font-weight: 800;
-            letter-spacing: 0.3px;
-            color: var(--pure-black);
-            margin-bottom: 0.4rem;
-            line-height: 1.2;
-            transition: color 0.3s ease;
-        }
-
-        .product-card:hover .product-name {
-            color: var(--primary-blue);
-        }
-
-        .product-material {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            opacity: 0.5;
-            margin-bottom: 1.2rem;
-        }
-
-        /* SPECIFICATIONS */
-        .product-specs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.9rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--light-gray);
-            margin-bottom: 1.2rem;
-        }
-
-        .spec-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .spec-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            opacity: 0.5;
-        }
-
-        .spec-value {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-            color: var(--text-dark);
-        }
-
-        /* ACTION BUTTONS */
-        .product-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        .action-btn {
-            padding: 0.7rem 1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1px solid var(--light-gray);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .action-btn i {
-            font-size: 0.85rem;
-        }
-
-        .call-btn {
-            background: var(--pure-white);
-            color: var(--text-dark);
-        }
-
-        .call-btn:hover {
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border-color: var(--pure-black);
-            transform: translateY(-2px);
-        }
-
-        .whatsapp-btn {
-            background: var(--whatsapp-green);
-            color: var(--pure-white);
-            border-color: var(--whatsapp-green);
-        }
-
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            border-color: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        /* LOAD MORE BUTTON */
-        .load-more-section {
-            display: flex;
-            justify-content: center;
-            padding: 2.5rem 0 2rem;
-        }
-
-        .load-more-btn {
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: 2px solid var(--pure-black);
-            padding: 1rem 2.5rem;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: 'Montserrat', sans-serif;
-            display: none;
-        }
-
-        .load-more-btn.show {
-            display: block;
-        }
-
-        .load-more-btn:hover {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(38, 115, 184, 0.3);
-        }
-
-        /* QUICK VIEW MODAL - OPTIMIZED */
-        .quick-view-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .quick-view-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: relative;
-            width: 90vw;
-            height: calc(100vh - 180px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .modal-image-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: zoom-in;
-            overflow: hidden;
-            touch-action: none;
-        }
-
-        .modal-image-container.zoomed {
-            cursor: grab;
-        }
-
-        .modal-image-container.zoomed.dragging {
-            cursor: grabbing;
-        }
-
-        .modal-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            display: block;
-            transition: none;
-            will-change: transform;
-            transform-origin: center center;
-        }
-
-        /* Smooth zoom transitions */
-        .modal-image.zoom-transition {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* MODAL CLOSE BUTTON */
-        .modal-close {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--pure-white);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10001;
-        }
-
-        .modal-close:hover {
-            background: var(--primary-blue);
-            transform: rotate(90deg);
-        }
-
-        .modal-close i {
-            font-size: 1.2rem;
-            color: var(--pure-black);
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover i {
-            color: var(--pure-white);
-        }
-
-        /* MODAL INFO BAR */
-        .modal-info {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--pure-white);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.2);
-            z-index: 10001;
-        }
-
-        .modal-product-details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .modal-product-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--pure-black);
-            letter-spacing: 0.3px;
-        }
-
-        .modal-product-batch {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            letter-spacing: 1px;
-        }
-
-        .modal-zoom-hint {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            opacity: 0.6;
-            letter-spacing: 0.5px;
-        }
-
-        /* NO RESULTS MESSAGE */
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 4rem 2rem;
-            display: none;
-        }
-
-        .no-results.show {
-            display: block;
-        }
-
-        .no-results-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--pure-black);
-            margin-bottom: 0.8rem;
-        }
-
-        .no-results-text {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1rem;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 2.5rem;
-            }
-
-            .products-grid {
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .marbles-section {
-                padding: 3rem 0 2.5rem;
-            }
-
-            .container {
-                padding: 0 2rem;
-            }
-
-            .page-header {
-                margin-bottom: 2rem;
-            }
-
-            .header-top {
-                flex-direction: column;
-                margin-bottom: 1.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .filter-select {
-                min-width: 140px;
-            }
-
-            .modal-close {
-                width: 45px;
-                height: 45px;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
-
-            .modal-info {
-                padding: 1.2rem 1.5rem;
-            }
-
-            .modal-product-name {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .marbles-section {
-                padding: 2.5rem 0 2rem;
-            }
-
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .page-header {
-                margin-bottom: 1.8rem;
-            }
-
-            .page-description {
-                margin-bottom: 1.2rem;
-            }
-
-            .filter-bar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-            }
-
-            .filter-group {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .filter-select {
-                width: 100%;
-                min-width: auto;
-                flex: 1;
-            }
-
-            .results-bar {
-                padding: 1rem 0;
-                margin-bottom: 1.5rem;
-            }
-
-            .product-info {
-                padding: 1.3rem 1.2rem;
-            }
-
-            .product-image-container {
-                padding-top: 125%;
-            }
-
-            .modal-close {
-                width: 40px;
-                height: 40px;
-                top: 1rem;
-                right: 1rem;
-            }
-
-            .modal-close i {
-                font-size: 1rem;
-            }
-
-            .modal-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
-                padding: 1rem 1.2rem;
-            }
-
-            .modal-product-name {
-                font-size: 1.2rem;
-            }
-
-            .modal-product-batch {
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .marbles-section {
-                padding: 2rem 0 1.5rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .page-header {
-                margin-bottom: 1.5rem;
-            }
-
-            .breadcrumb {
-                font-size: 0.65rem;
-                margin-bottom: 0.6rem;
-            }
-
-            .back-button {
-                padding: 0.6rem 1rem;
-                font-size: 0.65rem;
-                gap: 0.5rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .back-button i {
-                font-size: 0.7rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .product-image-container {
-                padding-top: 115%;
-            }
-
-            .product-info {
-                padding: 1.2rem 1rem;
-            }
-
-            .product-specs {
-                gap: 0.8rem;
-                padding-top: 1rem;
-            }
-
-            .action-btn {
-                padding: 0.65rem 0.9rem;
-                font-size: 0.6rem;
-            }
-
-            .action-btn i {
-                font-size: 0.8rem;
-            }
-
-            .load-more-btn {
-                width: 100%;
-                padding: 0.9rem 2rem;
-                font-size: 0.75rem;
-            }
-
-            .modal-content {
-                max-width: 95vw;
-                height: calc(100vh - 150px);
-            }
-
-            .modal-close {
-                width: 36px;
-                height: 36px;
-                top: 0.8rem;
-                right: 0.8rem;
-            }
-
-            .modal-info {
-                padding: 0.9rem 1rem;
-            }
-
-            .modal-product-name {
-                font-size: 1.1rem;
-            }
-
-            .modal-zoom-hint {
-                font-size: 0.7rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .container {
-                padding: 0 0.8rem;
-            }
-
-            .product-image-container {
-                padding-top: 120%;
-            }
-
-            .filter-label {
-                font-size: 0.6rem;
-            }
-
-            .filter-select {
-                font-size: 0.75rem;
-                padding: 0.6rem 2rem 0.6rem 0.9rem;
-            }
-
-            .product-actions {
-                gap: 0.6rem;
-            }
-
-            .action-btn {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.58rem;
-                gap: 0.4rem;
-            }
-
-            .action-btn i {
-                font-size: 0.75rem;
-            }
-        }
-
-        /* SCROLL ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-    </style>
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .filter-select {
+        width: 100%;
+        min-width: auto;
+        flex: 1;
+    }
+
+    .product-image-container {
+        padding-top: 115%;
+    }
+
+    .modal-controls {
+        top: 1.5rem;
+        right: 1.5rem;
+        gap: 0.6rem;
+    }
+
+    .modal-control-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .modal-control-btn i {
+        font-size: 1rem;
+    }
+
+    .zoom-indicator {
+        top: 1.5rem;
+        left: 1.5rem;
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .modal-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image-container {
+        padding-top: 110%;
+    }
+
+    .product-specs {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+    }
+
+    .modal-controls {
+        top: 1rem;
+        right: 1rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .modal-control-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal-control-btn i {
+        font-size: 0.9rem;
+    }
+
+    .zoom-indicator {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.75rem;
+    }
+
+    .zoom-indicator i {
+        font-size: 0.8rem;
+    }
+}
+
+/* SCROLL ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+</style>
 </head>
 <body>
     <section class="marbles-section">
@@ -987,7 +938,7 @@
                 <!-- RESULTS BAR -->
                 <div class="results-bar">
                     <div class="results-count">
-                        Showing <span id="currentCount">9</span> of <span id="totalCount">9</span> products
+                        Showing <span id="currentCount">12</span> of <span id="totalCount">12</span> products
                     </div>
                 </div>
             </div>
@@ -1000,8 +951,8 @@
                     <p class="no-results-text">Try adjusting your filters to see more options</p>
                 </div>
 
-             <!-- PRODUCT CARD 1 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Bash Paradiso" data-size="3220 x 2010" data-thickness="20mm" data-batch="1673B-1G" data-material="Premium Granite">
+                <!-- PRODUCT CARD 1 -->
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Bash Paradiso" data-thickness="20mm" data-batch="1673B-1G" data-material="Premium Granite">
                     <div class="product-image-container">
                         <img src="Marbles/bash-pardisco.webp" alt="Bash Paradiso Marble" class="product-image">
                         <div class="batch-badge">1673B-1G</div>
@@ -1010,14 +961,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Bash Paradiso</h3>
                         <p class="product-material">Premium Granite</p>
+                        <p class="product-description">Rich brown tones with golden veins create a warm, luxurious aesthetic perfect for premium countertops and feature walls.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3220 x 2010</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1040,7 +988,9 @@
                         </div>
                     </div>
                 </div>
-  <div class="product-card" data-color="black" data-finish="polished" data-name="Black Forest" data-size="3210 x 1980" data-thickness="20mm" data-batch="1679B-2L" data-material="Premium Granite">
+
+                <!-- PRODUCT CARD 2 -->
+                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Forest" data-thickness="20mm" data-batch="1679B-2L" data-material="Premium Granite">
                     <div class="product-image-container">
                         <img src="Marbles/042-Black-Forest.webp" alt="Black Forest Marble" class="product-image">
                         <div class="batch-badge">1679B-2L</div>
@@ -1049,14 +999,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Black Forest</h3>
                         <p class="product-material">Premium Granite</p>
+                        <p class="product-description">Deep black base with dramatic white and grey veining, offering a bold statement for modern interiors and dramatic spaces.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3210 x 1980</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1081,7 +1028,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 3 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Galaxy Granite" data-size="3120 x 2010" data-thickness="20mm" data-batch="1673B-4G" data-material="Premium Granite">
+                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Galaxy Granite" data-thickness="20mm" data-batch="1673B-4G" data-material="Premium Granite">
                     <div class="product-image-container">
                         <img src="Marbles/Black-Galaxy-Granite.png.webp" alt="Black Galaxy Granite Marble" class="product-image">
                         <div class="batch-badge">1673B-4G</div>
@@ -1090,14 +1037,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Black Galaxy Granite</h3>
                         <p class="product-material">Premium Granite</p>
+                        <p class="product-description">Stunning black granite with sparkling golden flecks resembling a starry night sky, perfect for elegant kitchen and bathroom designs.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3120 x 2010</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1122,7 +1066,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 4 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Brown Fantasy" data-size="3220 x 1780" data-thickness="20mm" data-batch="1689L-5B" data-material="Fantasy Granite">
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Brown Fantasy" data-thickness="20mm" data-batch="1689L-5B" data-material="Fantasy Granite">
                     <div class="product-image-container">
                         <img src="Marbles/BROWN FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
                         <div class="batch-badge">1689L-5B</div>
@@ -1131,14 +1075,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Brown Fantasy</h3>
                         <p class="product-material">Fantasy Granite</p>
+                        <p class="product-description">Exotic blend of brown, cream, and gold tones with unique patterns, creating a warm and inviting ambiance in any setting.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3220 x 1780</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1163,7 +1104,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 5 -->
-                <div class="product-card" data-color="grey" data-finish="honed" data-name="Chambord Grey Limestone" data-size="3200 x 2050" data-thickness="20mm" data-batch="1695W-8C" data-material="Honed Limestone">
+                <div class="product-card" data-color="grey" data-finish="honed" data-name="Chambord Grey Limestone" data-thickness="20mm" data-batch="1695W-8C" data-material="Honed Limestone">
                     <div class="product-image-container">
                         <img src="Marbles/chamboard.webp" alt="Chambord Grey Limestone" class="product-image">
                         <div class="batch-badge">1695W-8C</div>
@@ -1172,14 +1113,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Chambord Grey Limestone</h3>
                         <p class="product-material">Honed Limestone</p>
+                        <p class="product-description">Sophisticated grey limestone with subtle veining and matte finish, ideal for contemporary flooring and wall applications.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3200 x 2050</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1204,7 +1142,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 6 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Coffee Brown" data-size="3180 x 2100" data-thickness="20mm" data-batch="1702G-3M" data-material="Premium Granite">
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Coffee Brown" data-thickness="20mm" data-batch="1702G-3M" data-material="Premium Granite">
                     <div class="product-image-container">
                         <img src="Marbles/Coffee-Brown_2.webp" alt="Coffee Brown Marble" class="product-image">
                         <div class="batch-badge">1702G-3M</div>
@@ -1213,14 +1151,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Coffee Brown</h3>
                         <p class="product-material">Premium Granite</p>
+                        <p class="product-description">Rich coffee brown granite with flowing cream veins, offering warmth and elegance to kitchens, bathrooms, and living spaces.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3180 x 2100</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1245,7 +1180,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 7 -->
-                <div class="product-card" data-color="beige" data-finish="polished" data-name="Crystal Yellow Granite" data-size="3150 x 1950" data-thickness="20mm" data-batch="1708E-9D" data-material="Yellow Granite">
+                <div class="product-card" data-color="beige" data-finish="polished" data-name="Crystal Yellow Granite" data-thickness="20mm" data-batch="1708E-9D" data-material="Yellow Granite">
                     <div class="product-image-container">
                         <img src="Marbles/crystal-yellow-granite-polished.webp" alt="Crystal Yellow Granite" class="product-image">
                         <div class="batch-badge">1708E-9D</div>
@@ -1254,14 +1189,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Crystal Yellow Granite</h3>
                         <p class="product-material">Yellow Granite</p>
+                        <p class="product-description">Vibrant yellow granite with crystalline sparkle and gold undertones, bringing brightness and energy to any interior design.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Beige/Yellow</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3150 x 1950</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1286,7 +1218,7 @@
                 </div>
 
                 <!-- PRODUCT CARD 8 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Fantasy Brown Dark" data-size="3100 x 2020" data-thickness="20mm" data-batch="1715T-2B" data-material="Fantasy Marble">
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Fantasy Brown Dark" data-thickness="20mm" data-batch="1715T-2B" data-material="Fantasy Marble">
                     <div class="product-image-container">
                         <img src="Marbles/Fantasy Brown Dark.webp" alt="Fantasy Brown Dark" class="product-image">
                         <div class="batch-badge">1715T-2B</div>
@@ -1295,14 +1227,11 @@
                     <div class="product-info">
                         <h3 class="product-name">Fantasy Brown Dark</h3>
                         <p class="product-material">Fantasy Marble</p>
+                        <p class="product-description">Deep brown fantasy marble with intricate patterns and cream veining, adding depth and character to countertops and backsplashes.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3100 x 2020</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1325,8 +1254,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- PRODUCT CARD 10 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="River White" data-size="3280 x 2040" data-thickness="20mm" data-batch="1725R-4W" data-material="Premium Granite">
+
+                <!-- PRODUCT CARD 9 -->
+                <div class="product-card" data-color="white" data-finish="polished" data-name="River White" data-thickness="20mm" data-batch="1725R-4W" data-material="Premium Granite">
                     <div class="product-image-container">
                         <img src="Marbles/RIVER WHITE.webp" alt="River White Marble" class="product-image">
                         <div class="batch-badge">1725R-4W</div>
@@ -1335,14 +1265,49 @@
                     <div class="product-info">
                         <h3 class="product-name">River White</h3>
                         <p class="product-material">Premium Granite</p>
+                        <p class="product-description">Clean white granite with grey and burgundy veining, offering a timeless and elegant look for classic and contemporary spaces.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
                                 <span class="spec-value">White</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3280 x 2040</span>
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 10 -->
+                <div class="product-card" data-color="grey" data-finish="polished" data-name="Steel Grey Granite" data-thickness="20mm" data-batch="1730S-8G" data-material="Steel Granite">
+                    <div class="product-image-container">
+                        <img src="Marbles/steel-grey-granite-polished.webp" alt="Steel Grey Granite" class="product-image">
+                        <div class="batch-badge">1730S-8G</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Steel Grey Granite</h3>
+                        <p class="product-material">Steel Granite</p>
+                        <p class="product-description">Industrial-chic grey granite with steel-like finish and subtle patterns, perfect for modern minimalist and urban design aesthetics.</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Grey</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1367,23 +1332,20 @@
                 </div>
 
                 <!-- PRODUCT CARD 11 -->
-                <div class="product-card" data-color="grey" data-finish="polished" data-name="Steel Grey Granite" data-size="3190 x 1990" data-thickness="20mm" data-batch="1730S-8G" data-material="Steel Granite">
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Tan Brown" data-thickness="20mm" data-batch="1735T-6B" data-material="Indian Granite">
                     <div class="product-image-container">
-                        <img src="Marbles/steel-grey-granite-polished.webp" alt="Steel Grey Granite" class="product-image">
-                        <div class="batch-badge">1730S-8G</div>
+                        <img src="Marbles/tan-brown-.webp" alt="Tan Brown Marble" class="product-image">
+                        <div class="batch-badge">1735T-6B</div>
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Steel Grey Granite</h3>
-                        <p class="product-material">Steel Granite</p>
+                        <h3 class="product-name">Tan Brown</h3>
+                        <p class="product-material">Indian Granite</p>
+                        <p class="product-description">Classic tan and brown granite with black flecks, providing durability and warmth for high-traffic areas and kitchen installations.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3190 x 1990</span>
+                                <span class="spec-value">Brown</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
@@ -1406,47 +1368,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- PRODUCT CARD 12 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Tan Brown" data-size="3170 x 2030" data-thickness="20mm" data-batch="1735T-6B" data-material="Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/tan-brown-.webp" alt="Tan Brown Marble" class="product-image">
-                        <div class="batch-badge">1735T-6B</div>
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Tan Brown</h3>
-                        <p class="product-material">Indian Granite</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Size</span>
-                                <span class="spec-value">3170 x 2030</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                              </button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- LOAD MORE (Hidden until needed) -->
@@ -1460,9 +1381,28 @@
 
     <!-- QUICK VIEW MODAL -->
     <div class="quick-view-modal" id="quickViewModal">
-        <button class="modal-close" id="modalClose">
-            <i class="fas fa-times"></i>
-        </button>
+        <!-- ZOOM LEVEL INDICATOR -->
+        <div class="zoom-indicator" id="zoomIndicator">
+            <i class="fas fa-search-plus"></i>
+            <span id="zoomLevel">100%</span>
+        </div>
+
+        <!-- MODAL CONTROLS -->
+        <div class="modal-controls">
+            <button class="modal-control-btn" id="zoomInBtn" title="Zoom In">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button class="modal-control-btn" id="zoomOutBtn" title="Zoom Out" disabled>
+                <i class="fas fa-minus"></i>
+            </button>
+            <button class="modal-control-btn" id="resetZoomBtn" title="Reset Zoom" disabled>
+                <i class="fas fa-compress-arrows-alt"></i>
+            </button>
+            <button class="modal-control-btn modal-close" id="modalClose" title="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
         <div class="modal-content">
             <div class="modal-image-container" id="modalImageContainer">
                 <img src="" alt="" class="modal-image" id="modalImage">
@@ -1474,7 +1414,7 @@
                 <div class="modal-product-batch" id="modalProductBatch"></div>
             </div>
             <div class="modal-zoom-hint">
-                Click to zoom • Drag to pan
+                Double-click or scroll to zoom • Drag to pan • ESC to close
             </div>
         </div>
     </div>
@@ -1566,12 +1506,11 @@
                     const card = this.closest('.product-card');
                     const productName = card.dataset.name;
                     const material = card.dataset.material;
-                    const size = card.dataset.size;
                     const thickness = card.dataset.thickness;
                     const batch = card.dataset.batch;
                     const finish = card.dataset.finish;
 
-                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Size:* ${size}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A*Batch No:* ${batch}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A*Batch No:* ${batch}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
 
                     const whatsappURL = `https://wa.me/919876543210?text=${message}`;
                     window.open(whatsappURL, '_blank');
@@ -1604,11 +1543,13 @@
                 modalProductBatch.textContent = `Batch: ${batchNumber}`;
 
                 // Reset zoom state
-                currentScale = 1;
+                currentScale = MIN_SCALE;
                 translateX = 0;
                 translateY = 0;
                 modalImage.style.transform = 'translate(0, 0) scale(1)';
+                modalImage.classList.remove('zoom-transition');
                 modalImageContainer.classList.remove('zoomed', 'dragging');
+                updateZoomButtons();
 
                 quickViewModal.classList.add('active');
                 document.body.classList.add('modal-open');
@@ -1636,11 +1577,13 @@
             function closeModal() {
                 quickViewModal.classList.remove('active');
                 document.body.classList.remove('modal-open');
-                currentScale = 1;
+                currentScale = MIN_SCALE;
                 translateX = 0;
                 translateY = 0;
                 modalImage.style.transform = 'translate(0, 0) scale(1)';
+                modalImage.classList.remove('zoom-transition');
                 modalImageContainer.classList.remove('zoomed', 'dragging');
+                zoomIndicator.classList.remove('show');
             }
 
             modalClose.addEventListener('click', closeModal);
@@ -1657,90 +1600,262 @@
                 }
             });
 
-            // ===== IMPROVED ZOOM FUNCTIONALITY =====
-            modalImageContainer.addEventListener('click', function(e) {
-                if (isPanning) return;
+            // ===== IMPROVED ZOOM FUNCTIONALITY WITH SMOOTH CONTROLS =====
+            const zoomInBtn = document.getElementById('zoomInBtn');
+            const zoomOutBtn = document.getElementById('zoomOutBtn');
+            const resetZoomBtn = document.getElementById('resetZoomBtn');
+            const zoomIndicator = document.getElementById('zoomIndicator');
+            const zoomLevelSpan = document.getElementById('zoomLevel');
 
-                if (currentScale === 1) {
-                    // Zoom in
-                    currentScale = 2.5;
+            const MIN_SCALE = 1;
+            const MAX_SCALE = 4;
+            const ZOOM_STEP = 0.3;
+            let zoomIndicatorTimeout;
+
+            // Show zoom indicator
+            function showZoomIndicator() {
+                clearTimeout(zoomIndicatorTimeout);
+                zoomIndicator.classList.add('show');
+                zoomLevelSpan.textContent = Math.round(currentScale * 100) + '%';
+                
+                zoomIndicatorTimeout = setTimeout(() => {
+                    zoomIndicator.classList.remove('show');
+                }, 1500);
+            }
+
+            // Update button states
+            function updateZoomButtons() {
+                zoomOutBtn.disabled = currentScale <= MIN_SCALE;
+                zoomInBtn.disabled = currentScale >= MAX_SCALE;
+                resetZoomBtn.disabled = currentScale === MIN_SCALE;
+                
+                if (currentScale > MIN_SCALE) {
                     modalImageContainer.classList.add('zoomed');
-                    
-                    // Zoom to click point
-                    const rect = modalImageContainer.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    translateX = (centerX - x) * (currentScale - 1);
-                    translateY = (centerY - y) * (currentScale - 1);
                 } else {
-                    // Zoom out
-                    currentScale = 1;
-                    translateX = 0;
-                    translateY = 0;
                     modalImageContainer.classList.remove('zoomed');
                 }
+            }
 
-                modalImage.classList.add('zoom-transition');
+            // Apply zoom with smooth transition
+            function applyZoom(animate = true) {
+                if (animate) {
+                    modalImage.classList.add('zoom-transition');
+                }
+                
+                // Constrain translation to prevent image from going off-screen too much
+                const maxTranslate = 500 * currentScale;
+                translateX = Math.max(-maxTranslate, Math.min(maxTranslate, translateX));
+                translateY = Math.max(-maxTranslate, Math.min(maxTranslate, translateY));
+                
                 modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
                 
-                setTimeout(() => {
-                    modalImage.classList.remove('zoom-transition');
-                }, 300);
+                updateZoomButtons();
+                showZoomIndicator();
+                
+                if (animate) {
+                    setTimeout(() => {
+                        modalImage.classList.remove('zoom-transition');
+                    }, 300);
+                }
+            }
+
+            // Zoom to specific point
+            function zoomToPoint(newScale, clientX, clientY) {
+                const rect = modalImageContainer.getBoundingClientRect();
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate new position to zoom towards the point
+                const scaleChange = newScale / currentScale;
+                translateX = centerX - (x - centerX) * scaleChange - (x - centerX);
+                translateY = centerY - (y - centerY) * scaleChange - (y - centerY);
+                
+                currentScale = newScale;
+                applyZoom(true);
+            }
+
+            // Zoom In
+            function zoomIn(clientX = null, clientY = null) {
+                const newScale = Math.min(currentScale + ZOOM_STEP, MAX_SCALE);
+                if (newScale === currentScale) return;
+                
+                if (clientX !== null && clientY !== null) {
+                    zoomToPoint(newScale, clientX, clientY);
+                } else {
+                    // Zoom to center
+                    const rect = modalImageContainer.getBoundingClientRect();
+                    zoomToPoint(newScale, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                }
+            }
+
+            // Zoom Out
+            function zoomOut() {
+                const newScale = Math.max(currentScale - ZOOM_STEP, MIN_SCALE);
+                if (newScale === currentScale) return;
+                
+                // Zoom out towards center
+                const scaleChange = newScale / currentScale;
+                translateX *= scaleChange;
+                translateY *= scaleChange;
+                
+                currentScale = newScale;
+                applyZoom(true);
+            }
+
+            // Reset Zoom
+            function resetZoom() {
+                currentScale = MIN_SCALE;
+                translateX = 0;
+                translateY = 0;
+                applyZoom(true);
+            }
+
+            // Zoom button controls
+            zoomInBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                zoomIn();
             });
 
-            // Pan when zoomed - Mouse
-            modalImageContainer.addEventListener('mousedown', function(e) {
-                if (currentScale <= 1) return;
+            zoomOutBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                zoomOut();
+            });
+
+            resetZoomBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resetZoom();
+            });
+
+            // Double-click to toggle zoom
+            let lastClickTime = 0;
+            modalImageContainer.addEventListener('click', function(e) {
+                const now = Date.now();
+                const timeSinceLastClick = now - lastClickTime;
+                lastClickTime = now;
+
+                // Double-click detected
+                if (timeSinceLastClick < 300 && !isPanning) {
+                    e.preventDefault();
+                    
+                    if (currentScale === MIN_SCALE) {
+                        zoomToPoint(2.5, e.clientX, e.clientY);
+                    } else {
+                        resetZoom();
+                    }
+                }
+            });
+
+            // Mouse wheel zoom
+            modalImageContainer.addEventListener('wheel', function(e) {
+                e.preventDefault();
                 
-                isPanning = true;
+                if (e.deltaY < 0) {
+                    // Scroll up - zoom in
+                    zoomIn(e.clientX, e.clientY);
+                } else {
+                    // Scroll down - zoom out
+                    zoomOut();
+                }
+            }, { passive: false });
+
+            // Pan when zoomed - Mouse
+            let isDragging = false;
+            let dragStartX = 0;
+            let dragStartY = 0;
+
+            modalImageContainer.addEventListener('mousedown', function(e) {
+                if (currentScale <= MIN_SCALE) return;
+                
+                isDragging = true;
+                isPanning = false;
                 modalImageContainer.classList.add('dragging');
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
+                dragStartX = e.clientX - translateX;
+                dragStartY = e.clientY - translateY;
                 e.preventDefault();
             });
 
             document.addEventListener('mousemove', function(e) {
-                if (!isPanning) return;
+                if (!isDragging) return;
                 
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
+                isPanning = true;
+                translateX = e.clientX - dragStartX;
+                translateY = e.clientY - dragStartY;
+                
+                modalImage.classList.remove('zoom-transition');
                 modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
             });
 
             document.addEventListener('mouseup', function() {
-                if (isPanning) {
-                    isPanning = false;
+                if (isDragging) {
+                    isDragging = false;
                     modalImageContainer.classList.remove('dragging');
+                    setTimeout(() => { isPanning = false; }, 100);
                 }
             });
 
-            // Pan when zoomed - Touch
-            let touchStartX = 0;
-            let touchStartY = 0;
+            // Touch zoom and pan
+            let touchStartDistance = 0;
+            let touchStartScale = 1;
+            let touches = [];
 
             modalImageContainer.addEventListener('touchstart', function(e) {
-                if (currentScale <= 1 || e.touches.length !== 1) return;
+                touches = Array.from(e.touches);
                 
-                isPanning = true;
-                touchStartX = e.touches[0].clientX - translateX;
-                touchStartY = e.touches[0].clientY - translateY;
-                e.preventDefault();
+                if (touches.length === 2) {
+                    // Pinch zoom start
+                    e.preventDefault();
+                    const touch1 = touches[0];
+                    const touch2 = touches[1];
+                    touchStartDistance = Math.hypot(
+                        touch2.clientX - touch1.clientX,
+                        touch2.clientY - touch1.clientY
+                    );
+                    touchStartScale = currentScale;
+                } else if (touches.length === 1 && currentScale > MIN_SCALE) {
+                    // Pan start
+                    isPanning = true;
+                    dragStartX = touches[0].clientX - translateX;
+                    dragStartY = touches[0].clientY - translateY;
+                }
             }, { passive: false });
 
             modalImageContainer.addEventListener('touchmove', function(e) {
-                if (!isPanning || e.touches.length !== 1) return;
+                touches = Array.from(e.touches);
                 
-                translateX = e.touches[0].clientX - touchStartX;
-                translateY = e.touches[0].clientY - touchStartY;
-                modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-                e.preventDefault();
+                if (touches.length === 2) {
+                    // Pinch zoom
+                    e.preventDefault();
+                    const touch1 = touches[0];
+                    const touch2 = touches[1];
+                    const currentDistance = Math.hypot(
+                        touch2.clientX - touch1.clientX,
+                        touch2.clientY - touch1.clientY
+                    );
+                    
+                    const scale = (currentDistance / touchStartDistance) * touchStartScale;
+                    currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
+                    
+                    modalImage.classList.remove('zoom-transition');
+                    applyZoom(false);
+                } else if (touches.length === 1 && isPanning) {
+                    // Pan
+                    e.preventDefault();
+                    translateX = touches[0].clientX - dragStartX;
+                    translateY = touches[0].clientY - dragStartY;
+                    
+                    modalImage.classList.remove('zoom-transition');
+                    modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+                }
             }, { passive: false });
 
-            modalImageContainer.addEventListener('touchend', function() {
-                isPanning = false;
+            modalImageContainer.addEventListener('touchend', function(e) {
+                if (e.touches.length === 0) {
+                    isPanning = false;
+                    updateZoomButtons();
+                    showZoomIndicator();
+                }
             });
 
             // Prevent default drag behavior
@@ -1784,7 +1899,7 @@
                 observer.observe(card);
             });
 
-            console.log('✅ BNB Premium Marbles - Fully Optimized with Call/WhatsApp & Improved Zoom');
+            console.log('✅ BNB Premium Marbles - Fully Optimized with Smooth Zoom Controls');
         });
     </script>
 </body>

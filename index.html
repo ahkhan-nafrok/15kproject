@@ -24,316 +24,318 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
   <title>BNB Enterprises - Global Trading Excellence | Premium Solutions</title>
+<style>
+/* ========== REFINED COLOR SYSTEM ========== */
+:root {
+  --primary-blue: #2673B8;           /* KEEP */
+  --background-base: #eeeeee;        /* NEW - softer main background */
+  --surface-light: #F0F3F7;          /* NEW - cards/panels */
+  --accent-white: #F7F9FC;           /* NEW - bright highlights */
+  --text-primary: #1A2332;           /* NEW - headings */
+  --text-body: #5A6B7F;              /* NEW - body text */
+  --text-muted: #7A8A9E;             /* NEW - subtle text */
+  --border-color: #D4DCE6;           /* NEW - borders */
+  --border-light: #E3E9F0;           /* NEW - subtle borders */
+  --whatsapp-green: #25D366;         /* KEEP */
+}
 
-  <style>
-/* ========== COLOR SYSTEM ========== */
-    :root {
-      --primary-blue: #2673B8;
-      --pure-black: #000000;
-      --pure-white: #F2F4F7;
-      --off-white: #EDF0F4;
-      --text-dark: #0A0A0A;
-      --light-gray: #E8EBF0;
-      --whatsapp-green: #25D366;
-    }
+/* ========== GLOBAL RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* ========== GLOBAL RESET & BASE ========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--background-base);
+  color: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--off-white);
-      color: var(--text-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+/* ========== OPTIMIZED TYPOGRAPHY CAPS ========== */
+/* Prevent font sizes from going too large or too small */
+h1, .hero-title, .section-title {
+  font-size: clamp(2rem, 5vw, 5.5rem) !important;
+  line-height: 1.1 !important;
+}
 
-    /* ========== OPTIMIZED TYPOGRAPHY CAPS ========== */
-    /* Prevent font sizes from going too large or too small */
-    h1, .hero-title, .section-title {
-      font-size: clamp(2rem, 5vw, 5.5rem) !important;
-      line-height: 1.1 !important;
-    }
+h2, .section-subtitle {
+  font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
+  line-height: 1.2 !important;
+}
 
-    h2, .section-subtitle {
-      font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
-      line-height: 1.2 !important;
-    }
+h3, .card-title {
+  font-size: clamp(1.1rem, 2vw, 1.6rem) !important;
+  line-height: 1.3 !important;
+}
 
-    h3, .card-title {
-      font-size: clamp(1.1rem, 2vw, 1.6rem) !important;
-      line-height: 1.3 !important;
-    }
+h4 {
+  font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+}
 
-    h4 {
-      font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
-    }
+p, .body-text {
+  font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
+  line-height: 1.7 !important;
+}
 
-    p, .body-text {
-      font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
-      line-height: 1.7 !important;
-    }
+.small-text, .caption {
+  font-size: clamp(0.7rem, 1vw, 0.85rem) !important;
+}
 
-    .small-text, .caption {
-      font-size: clamp(0.7rem, 1vw, 0.85rem) !important;
-    }
+.label-text {
+  font-size: clamp(0.65rem, 0.9vw, 0.75rem) !important;
+  letter-spacing: clamp(2px, 0.3vw, 5px) !important;
+}
 
-    .label-text {
-      font-size: clamp(0.65rem, 0.9vw, 0.75rem) !important;
-      letter-spacing: clamp(2px, 0.3vw, 5px) !important;
-    }
+/* ========== PAGE LOADER ========== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-light);
+  z-index: 9999;
+  gap: 20px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
 
-    /* ========== PAGE LOADER ========== */
-    .page-loader {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--pure-white);
-      z-index: 9999;
-      gap: 20px;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
+.loader-logo {
+  width: clamp(80px, 15vw, 120px);
+  height: clamp(80px, 15vw, 120px);
+  object-fit: contain;
+  animation: pulse 2s ease-in-out infinite;
+}
 
-    .loader-logo {
-      width: clamp(80px, 15vw, 120px);
-      height: clamp(80px, 15vw, 120px);
-      object-fit: contain;
-      animation: pulse 2s ease-in-out infinite;
-    }
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-      }
-    }
+.loader-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: clamp(4px, 1vw, 8px);
+  color: var(--text-primary);
+}
 
-    .loader-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      font-weight: 800;
-      letter-spacing: clamp(4px, 1vw, 8px);
-      color: var(--text-dark);
-    }
+.loader-subtext {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: clamp(2px, 0.5vw, 4px);
+  color: var(--primary-blue);
+  text-transform: uppercase;
+}
 
-    .loader-subtext {
-      font-family: 'Raleway', sans-serif;
-      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-      font-weight: 600;
-      letter-spacing: clamp(2px, 0.5vw, 4px);
-      color: var(--primary-blue);
-      text-transform: uppercase;
-    }
+body.loaded .page-loader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-    body.loaded .page-loader {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+/* ========== SITE WRAPPER ========== */
+.site-wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
-    /* ========== SITE WRAPPER ========== */
-    .site-wrapper {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
+body.loaded .site-wrapper {
+  opacity: 1;
+}
 
-    body.loaded .site-wrapper {
-      opacity: 1;
-    }
+/* ========== WHATSAPP FLOATING BUTTON - MINIMALIST ========== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--whatsapp-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  z-index: 9998;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
 
-    /* ========== WHATSAPP FLOATING BUTTON - MINIMALIST ========== */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      background: var(--whatsapp-green);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-      z-index: 9998;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-    }
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+}
 
-    .whatsapp-float:hover {
-      transform: scale(1.1) translateY(-3px);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
-    }
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
 
-    .whatsapp-float:active {
-      transform: scale(0.95);
-    }
+.whatsapp-float i {
+  color: white;
+  font-size: 32px;
+}
 
-    .whatsapp-float i {
-      color: white;
-      font-size: 32px;
-    }
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid var(--whatsapp-green);
+  border-radius: 50%;
+  opacity: 0;
+  animation: whatsapp-pulse 2s infinite;
+}
 
-    .whatsapp-float::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border: 2px solid var(--whatsapp-green);
-      border-radius: 50%;
-      opacity: 0;
-      animation: whatsapp-pulse 2s infinite;
-    }
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
 
-    @keyframes whatsapp-pulse {
-      0% {
-        transform: scale(0.8);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1.4);
-        opacity: 0;
-      }
-    }
+/* ========== COMPONENT CONTAINERS ========== */
+#navbarComponent,
+#heroComponent,
+#aboutComponent,
+#categoriesComponent,
+#galleryComponent,
+#contactComponent,
+#footerComponent {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+}
 
-    /* ========== COMPONENT CONTAINERS ========== */
-    #navbarComponent,
-    #heroComponent,
-    #aboutComponent,
-    #categoriesComponent,
-    #galleryComponent,
-    #contactComponent,
-    #footerComponent {
-      font-family: 'Montserrat', sans-serif;
-      width: 100%;
-    }
+/* Remove extra spacing between components */
+#aboutComponent + #categoriesComponent,
+#categoriesComponent + #galleryComponent {
+  margin-top: 0;
+  padding-top: 0;
+}
 
-    /* Remove extra spacing between components */
-    #aboutComponent + #categoriesComponent,
-    #categoriesComponent + #galleryComponent {
-      margin-top: 0;
-      padding-top: 0;
-    }
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+@media (max-width: 1400px) {
+  html {
+    font-size: 15px;
+  }
+}
 
-    /* ========== RESPONSIVE BREAKPOINTS ========== */
-    @media (max-width: 1400px) {
-      html {
-        font-size: 15px;
-      }
-    }
+@media (max-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+}
 
-    @media (max-width: 1200px) {
-      html {
-        font-size: 14px;
-      }
-    }
+@media (max-width: 991px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .whatsapp-float i {
+    font-size: 28px;
+  }
+}
 
-    @media (max-width: 991px) {
-      html {
-        font-size: 14px;
-      }
-      
-      .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 25px;
-        right: 25px;
-      }
-      
-      .whatsapp-float i {
-        font-size: 28px;
-      }
-    }
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
 
-    @media (max-width: 768px) {
-      html {
-        font-size: 14px;
-      }
-    }
+@media (max-width: 576px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .whatsapp-float i {
+    font-size: 26px;
+  }
+}
 
-    @media (max-width: 576px) {
-      html {
-        font-size: 13px;
-      }
-      
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-      }
-      
-      .whatsapp-float i {
-        font-size: 26px;
-      }
-    }
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
 
-    @media (max-width: 480px) {
-      html {
-        font-size: 13px;
-      }
-    }
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+/* Force GPU acceleration for animations */
+.page-loader,
+.whatsapp-float,
+.loader-logo {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
 
-    /* ========== PERFORMANCE OPTIMIZATIONS ========== */
-    /* Force GPU acceleration for animations */
-    .page-loader,
-    .whatsapp-float,
-    .loader-logo {
-      transform: translateZ(0);
-      will-change: transform, opacity;
-    }
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
-    /* Reduce motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
+/* ========== SMOOTH SCROLL OFFSET ========== */
+section {
+  scroll-margin-top: 100px;
+}
 
-    /* ========== SMOOTH SCROLL OFFSET ========== */
-    section {
-      scroll-margin-top: 100px;
-    }
+/* ========== ACCESSIBILITY ========== */
+:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+}
 
-    /* ========== ACCESSIBILITY ========== */
-    :focus-visible {
-      outline: 3px solid var(--primary-blue);
-      outline-offset: 3px;
-    }
+/* Hide focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
 
-    /* Hide focus outline for mouse users */
-    :focus:not(:focus-visible) {
-      outline: none;
-    }
-
-    /* ========== PRINT STYLES ========== */
-    @media print {
-      .page-loader,
-      .whatsapp-float {
-        display: none !important;
-      }
-    }
-  </style>
+/* ========== PRINT STYLES ========== */
+@media print {
+  .page-loader,
+  .whatsapp-float {
+    display: none !important;
+  }
+}
+</style>
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage">
@@ -360,8 +362,8 @@
       <!-- Categories Component -->
       <section id="categoriesComponent" aria-label="Product Collections"></section>
 
-      <!-- Gallery Component -->
-      <section id="galleryComponent" aria-label="Product Gallery"></section>
+      <!-- Gallery Component 
+      <section id="galleryComponent" aria-label="Product Gallery"></section>-->
 
       <!-- Contact Component-->
       <section id="contactComponent" aria-label="Contact Information"></section>
