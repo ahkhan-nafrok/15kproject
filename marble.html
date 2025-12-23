@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Marbles - BNB Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2673B8;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #0A0A0A;
+            --light-gray: #E8EBF0;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* MARBLES SECTION - OPTIMIZED */
+        .marbles-section {
+            background: var(--off-white);
+            padding: 4rem 0 3rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* HEADER - COMPACT */
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            gap: 2rem;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .breadcrumb {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.7;
+        }
+
+        /* BACK BUTTON */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.2rem;
+            margin-bottom: 1rem;
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border-color: var(--pure-black);
+            transform: translateX(-3px);
+        }
+
+        .back-button:hover i {
+            transform: translateX(-3px);
+        }
+
+        .back-button:active {
+            transform: translateX(-1px);
+        }
+
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--pure-black);
+            line-height: 0.95;
+            margin-bottom: 0.8rem;
+        }
+
+        .page-description {
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* FILTER BAR - COMPACT */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .filter-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        .filter-select {
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            color: var(--text-dark);
+            padding: 0.7rem 2.2rem 0.7rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Raleway', sans-serif;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232673B8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.8rem center;
+            min-width: 160px;
+        }
+
+        .filter-select:hover,
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
+        }
+
+        /* RESULTS BAR */
+        .results-bar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .results-count {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        .results-count span {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* PRODUCTS GRID - OPTIMIZED */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        /* PRODUCT CARD - OPTIMIZED */
+        .product-card {
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card.hidden {
+            display: none;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-blue);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* IMAGE CONTAINER */
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 125%;
+            overflow: hidden;
+            background: var(--light-gray);
+            cursor: pointer;
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+
+        /* QUICK VIEW BUTTON */
+        .quick-view {
+            position: absolute;
+            bottom: 0.8rem;
+            left: 0.8rem;
+            right: 0.8rem;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 0.75rem 1.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+            border: none;
+            cursor: pointer;
+        }
+
+        .product-card:hover .quick-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quick-view:hover {
+            background: var(--primary-blue);
+        }
+
+        /* BATCH BADGE */
+        .batch-badge {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            background: var(--pure-white);
+            padding: 0.4rem 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--primary-blue);
+            z-index: 5;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* PRODUCT INFO - COMPACT */
+        .product-info {
+            padding: 1.5rem 1.4rem;
+        }
+
+        .product-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: var(--pure-black);
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .product-name {
+            color: var(--primary-blue);
+        }
+
+        .product-material {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.5;
+            margin-bottom: 1.2rem;
+        }
+
+        /* SPECIFICATIONS */
+        .product-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.9rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--light-gray);
+            margin-bottom: 1.2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .spec-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.5;
+        }
+
+        .spec-value {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: var(--text-dark);
+        }
+
+        /* ACTION BUTTONS */
+        .product-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .action-btn {
+            padding: 0.7rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .action-btn i {
+            font-size: 0.85rem;
+        }
+
+        .call-btn {
+            background: var(--pure-white);
+            color: var(--text-dark);
+        }
+
+        .call-btn:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border-color: var(--pure-black);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn {
+            background: var(--whatsapp-green);
+            color: var(--pure-white);
+            border-color: var(--whatsapp-green);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            border-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* LOAD MORE BUTTON */
+        .load-more-section {
+            display: flex;
+            justify-content: center;
+            padding: 2.5rem 0 2rem;
+        }
+
+        .load-more-btn {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: 2px solid var(--pure-black);
+            padding: 1rem 2.5rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Montserrat', sans-serif;
+            display: none;
+        }
+
+        .load-more-btn.show {
+            display: block;
+        }
+
+        .load-more-btn:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(38, 115, 184, 0.3);
+        }
+
+        /* QUICK VIEW MODAL - OPTIMIZED */
+        .quick-view-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quick-view-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90vw;
+            height: calc(100vh - 180px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-in;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .modal-image-container.zoomed {
+            cursor: grab;
+        }
+
+        .modal-image-container.zoomed.dragging {
+            cursor: grabbing;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: none;
+            will-change: transform;
+            transform-origin: center center;
+        }
+
+        /* Smooth zoom transitions */
+        .modal-image.zoom-transition {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* MODAL CLOSE BUTTON */
+        .modal-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--pure-white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-blue);
+            transform: rotate(90deg);
+        }
+
+        .modal-close i {
+            font-size: 1.2rem;
+            color: var(--pure-black);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover i {
+            color: var(--pure-white);
+        }
+
+        /* MODAL INFO BAR */
+        .modal-info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--pure-white);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10001;
+        }
+
+        .modal-product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .modal-product-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--pure-black);
+            letter-spacing: 0.3px;
+        }
+
+        .modal-product-batch {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            letter-spacing: 1px;
+        }
+
+        .modal-zoom-hint {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            opacity: 0.6;
+            letter-spacing: 0.5px;
+        }
+
+        /* NO RESULTS MESSAGE */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--pure-black);
+            margin-bottom: 0.8rem;
+        }
+
+        .no-results-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 2.5rem;
+            }
+
+            .products-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .marbles-section {
+                padding: 3rem 0 2.5rem;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .page-header {
+                margin-bottom: 2rem;
+            }
+
+            .header-top {
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .filter-select {
+                min-width: 140px;
+            }
+
+            .modal-close {
+                width: 45px;
+                height: 45px;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .modal-info {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .modal-product-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .marbles-section {
+                padding: 2.5rem 0 2rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .page-header {
+                margin-bottom: 1.8rem;
+            }
+
+            .page-description {
+                margin-bottom: 1.2rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+
+            .filter-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .filter-select {
+                width: 100%;
+                min-width: auto;
+                flex: 1;
+            }
+
+            .results-bar {
+                padding: 1rem 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .product-info {
+                padding: 1.3rem 1.2rem;
+            }
+
+            .product-image-container {
+                padding-top: 125%;
+            }
+
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .modal-close i {
+                font-size: 1rem;
+            }
+
+            .modal-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1rem 1.2rem;
+            }
+
+            .modal-product-name {
+                font-size: 1.2rem;
+            }
+
+            .modal-product-batch {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .marbles-section {
+                padding: 2rem 0 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .page-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.65rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .back-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.65rem;
+                gap: 0.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .back-button i {
+                font-size: 0.7rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .product-image-container {
+                padding-top: 115%;
+            }
+
+            .product-info {
+                padding: 1.2rem 1rem;
+            }
+
+            .product-specs {
+                gap: 0.8rem;
+                padding-top: 1rem;
+            }
+
+            .action-btn {
+                padding: 0.65rem 0.9rem;
+                font-size: 0.6rem;
+            }
+
+            .action-btn i {
+                font-size: 0.8rem;
+            }
+
+            .load-more-btn {
+                width: 100%;
+                padding: 0.9rem 2rem;
+                font-size: 0.75rem;
+            }
+
+            .modal-content {
+                max-width: 95vw;
+                height: calc(100vh - 150px);
+            }
+
+            .modal-close {
+                width: 36px;
+                height: 36px;
+                top: 0.8rem;
+                right: 0.8rem;
+            }
+
+            .modal-info {
+                padding: 0.9rem 1rem;
+            }
+
+            .modal-product-name {
+                font-size: 1.1rem;
+            }
+
+            .modal-zoom-hint {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 0.8rem;
+            }
+
+            .product-image-container {
+                padding-top: 120%;
+            }
+
+            .filter-label {
+                font-size: 0.6rem;
+            }
+
+            .filter-select {
+                font-size: 0.75rem;
+                padding: 0.6rem 2rem 0.6rem 0.9rem;
+            }
+
+            .product-actions {
+                gap: 0.6rem;
+            }
+
+            .action-btn {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.58rem;
+                gap: 0.4rem;
+            }
+
+            .action-btn i {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* SCROLL ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="marbles-section">
+        <div class="container">
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <div class="header-top">
+                    <div class="header-content">
+                        <div class="breadcrumb">
+                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Marbles</span>
+                        </div>
+                        <button class="back-button" id="backButton">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <h1 class="page-title">Premium Marbles</h1>
+                        <p class="page-description">
+                            Discover our curated collection of premium marble slabs, sourced globally and crafted to elevate any space with timeless elegance.
+                        </p>
+                    </div>
+
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label class="filter-label">Color</label>
+                            <select class="filter-select" id="colorFilter">
+                                <option value="all">All Colors</option>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                                <option value="grey">Grey</option>
+                                <option value="beige">Beige</option>
+                                <option value="brown">Brown</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Finish</label>
+                            <select class="filter-select" id="finishFilter">
+                                <option value="all">All Finishes</option>
+                                <option value="polished">Polished</option>
+                                <option value="honed">Honed</option>
+                                <option value="pepper">Pepper</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Sort By</label>
+                            <select class="filter-select" id="sortFilter">
+                                <option value="newest">Newest First</option>
+                                <option value="popular">Most Popular</option>
+                                <option value="name-asc">Name A-Z</option>
+                                <option value="name-desc">Name Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESULTS BAR -->
+                <div class="results-bar">
+                    <div class="results-count">
+                        Showing <span id="currentCount">9</span> of <span id="totalCount">9</span> products
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCTS GRID -->
+            <div class="products-grid" id="productsGrid">
+                <!-- NO RESULTS MESSAGE -->
+                <div class="no-results" id="noResults">
+                    <h3 class="no-results-title">No Products Found</h3>
+                    <p class="no-results-text">Try adjusting your filters to see more options</p>
+                </div>
+
+                <!-- PRODUCT CARD 1 -->
+                <div class="product-card" data-color="black" data-finish="pepper" data-name="Pepper Black" data-size="3220 x 2010" data-thickness="20mm" data-batch="1673B-1G" data-material="Granite Marble">
+                    <div class="product-image-container">
+                        <img src="Marbles/BASH PARADISO.jpg" alt="Pepper Black Marble" class="product-image">
+                        <div class="batch-badge">1673B-1G</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pepper Black</h3>
+                        <p class="product-material">Granite Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Black</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3220 x 2010</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Pepper</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 2 -->
+                <div class="product-card" data-color="black" data-finish="polished" data-name="Universe Black" data-size="3210 x 1980" data-thickness="20mm" data-batch="1679B-2L" data-material="Premium Marble">
+                    <div class="product-image-container">
+                        <img src="Marbles/Black Forest pic 2.JPG" alt="Universe Black Marble" class="product-image">
+                        <div class="batch-badge">1679B-2L</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Universe Black</h3>
+                        <p class="product-material">Premium Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Black</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3210 x 1980</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 3 -->
+                <div class="product-card" data-color="grey" data-finish="pepper" data-name="Satin Grey" data-size="3120 x 2010" data-thickness="20mm" data-batch="1673B-4G" data-material="Steel Grey Marble">
+                    <div class="product-image-container">
+                        <img src="Marbles/BLACK GALAXY.JPG" alt="Satin Grey Marble" class="product-image">
+                        <div class="batch-badge">1673B-4G</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Satin Grey</h3>
+                        <p class="product-material">Steel Grey Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Grey</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3120 x 2010</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Pepper</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 4 -->
+                <div class="product-card" data-color="black" data-finish="honed" data-name="Lunar Black" data-size="3220 x 1780" data-thickness="20mm" data-batch="1689L-5B" data-material="Premium Granite">
+                    <div class="product-image-container">
+                        <img src="Marbles/RIVER WHITE.JPG" alt="Lunar Black Marble" class="product-image">
+                        <div class="batch-badge">1689L-5B</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lunar Black</h3>
+                        <p class="product-material">Premium Granite</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Black</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3220 x 1780</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Honed</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 5 -->
+                <div class="product-card" data-color="white" data-finish="polished" data-name="Carrara White" data-size="3200 x 2050" data-thickness="20mm" data-batch="1695W-8C" data-material="Italian Marble">
+                    <div class="product-image-container">
+                        <img src="Marbles/RIVER WHITE.JPG" alt="Carrara White Marble" class="product-image">
+                        <div class="batch-badge">1695W-8C</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Carrara White</h3>
+                        <p class="product-material">Italian Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">White</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3200 x 2050</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 6 -->
+                <div class="product-card" data-color="white" data-finish="polished" data-name="Calacatta Gold" data-size="3180 x 2100" data-thickness="20mm" data-batch="1702G-3M" data-material="Premium Marble">
+                    <div class="product-image-container">
+                        <img src="assets/marble6.jpg" alt="Calacatta Gold Marble" class="product-image">
+                        <div class="batch-badge">1702G-3M</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Calacatta Gold</h3>
+                        <p class="product-material">Premium Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">White/Gold</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3180 x 2100</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 7 -->
+                <div class="product-card" data-color="brown" data-finish="polished" data-name="Emperador Dark" data-size="3150 x 1950" data-thickness="20mm" data-batch="1708E-9D" data-material="Spanish Marble">
+                    <div class="product-image-container">
+                        <img src="assets/marble7.jpg" alt="Emperador Dark Marble" class="product-image">
+                        <div class="batch-badge">1708E-9D</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Emperador Dark</h3>
+                        <p class="product-material">Spanish Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Brown</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3150 x 1950</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 8 -->
+                <div class="product-card" data-color="beige" data-finish="honed" data-name="Travertine Beige" data-size="3100 x 2020" data-thickness="20mm" data-batch="1715T-2B" data-material="Travertine Marble">
+                    <div class="product-image-container">
+                        <img src="assets/marble8.jpg" alt="Travertine Beige Marble" class="product-image">
+                        <div class="batch-badge">1715T-2B</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Travertine Beige</h3>
+                        <p class="product-material">Travertine Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Beige</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3100 x 2020</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Honed</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 9 -->
+                <div class="product-card" data-color="white" data-finish="polished" data-name="Statuario" data-size="3250 x 2080" data-thickness="20mm" data-batch="1720S-7W" data-material="Italian Marble">
+                    <div class="product-image-container">
+                        <img src="assets/marble9.jpg" alt="Statuario Marble" class="product-image">
+                        <div class="batch-badge">1720S-7W</div>
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Statuario</h3>
+                        <p class="product-material">Italian Marble</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">White</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">3250 x 2080</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">20mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Finish</span>
+                                <span class="spec-value">Polished</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOAD MORE (Hidden until needed) -->
+            <div class="load-more-section">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK VIEW MODAL -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <button class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content">
+            <div class="modal-image-container" id="modalImageContainer">
+                <img src="" alt="" class="modal-image" id="modalImage">
+            </div>
+        </div>
+        <div class="modal-info">
+            <div class="modal-product-details">
+                <div class="modal-product-name" id="modalProductName"></div>
+                <div class="modal-product-batch" id="modalProductBatch"></div>
+            </div>
+            <div class="modal-zoom-hint">
+                Click to zoom • Drag to pan
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== FILTER SYSTEM =====
+            const colorFilter = document.getElementById('colorFilter');
+            const finishFilter = document.getElementById('finishFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            const productsGrid = document.getElementById('productsGrid');
+            const productCards = Array.from(document.querySelectorAll('.product-card:not(.no-results)'));
+            const currentCountSpan = document.getElementById('currentCount');
+            const totalCountSpan = document.getElementById('totalCount');
+            const noResults = document.getElementById('noResults');
+
+            let filteredProducts = [...productCards];
+
+            function filterProducts() {
+                const colorValue = colorFilter.value;
+                const finishValue = finishFilter.value;
+
+                filteredProducts = productCards.filter(card => {
+                    const cardColor = card.dataset.color;
+                    const cardFinish = card.dataset.finish;
+
+                    const colorMatch = colorValue === 'all' || cardColor === colorValue;
+                    const finishMatch = finishValue === 'all' || cardFinish === finishValue;
+
+                    return colorMatch && finishMatch;
+                });
+
+                sortProducts();
+                updateDisplay();
+            }
+
+            function sortProducts() {
+                const sortValue = sortFilter.value;
+
+                filteredProducts.sort((a, b) => {
+                    const nameA = a.dataset.name.toUpperCase();
+                    const nameB = b.dataset.name.toUpperCase();
+
+                    switch(sortValue) {
+                        case 'name-asc':
+                            return nameA.localeCompare(nameB);
+                        case 'name-desc':
+                            return nameB.localeCompare(nameA);
+                        case 'newest':
+                        case 'popular':
+                        default:
+                            return 0;
+                    }
+                });
+            }
+
+            function updateDisplay() {
+                productCards.forEach(card => {
+                    card.classList.add('hidden');
+                    card.style.order = '';
+                });
+
+                if (filteredProducts.length === 0) {
+                    noResults.classList.add('show');
+                    currentCountSpan.textContent = '0';
+                } else {
+                    noResults.classList.remove('show');
+                    filteredProducts.forEach((card, index) => {
+                        card.classList.remove('hidden');
+                        card.style.order = index;
+                    });
+                    currentCountSpan.textContent = filteredProducts.length;
+                }
+
+                totalCountSpan.textContent = productCards.length;
+            }
+
+            colorFilter.addEventListener('change', filterProducts);
+            finishFilter.addEventListener('change', filterProducts);
+            sortFilter.addEventListener('change', () => { sortProducts(); updateDisplay(); });
+
+            updateDisplay();
+
+            // ===== WHATSAPP FUNCTIONALITY =====
+            document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const card = this.closest('.product-card');
+                    const productName = card.dataset.name;
+                    const material = card.dataset.material;
+                    const size = card.dataset.size;
+                    const thickness = card.dataset.thickness;
+                    const batch = card.dataset.batch;
+                    const finish = card.dataset.finish;
+
+                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Size:* ${size}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A*Batch No:* ${batch}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+
+                    const whatsappURL = `https://wa.me/919876543210?text=${message}`;
+                    window.open(whatsappURL, '_blank');
+                });
+            });
+
+            // ===== QUICK VIEW MODAL - IMPROVED =====
+            const quickViewModal = document.getElementById('quickViewModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImage = document.getElementById('modalImage');
+            const modalImageContainer = document.getElementById('modalImageContainer');
+            const modalProductName = document.getElementById('modalProductName');
+            const modalProductBatch = document.getElementById('modalProductBatch');
+
+            let currentScale = 1;
+            let isPanning = false;
+            let startX = 0;
+            let startY = 0;
+            let translateX = 0;
+            let translateY = 0;
+
+            function openModal(card) {
+                const imgSrc = card.querySelector('.product-image').src;
+                const productName = card.querySelector('.product-name').textContent;
+                const batchNumber = card.querySelector('.batch-badge').textContent;
+
+                modalImage.src = imgSrc;
+                modalImage.alt = productName;
+                modalProductName.textContent = productName;
+                modalProductBatch.textContent = `Batch: ${batchNumber}`;
+
+                // Reset zoom state
+                currentScale = 1;
+                translateX = 0;
+                translateY = 0;
+                modalImage.style.transform = 'translate(0, 0) scale(1)';
+                modalImageContainer.classList.remove('zoomed', 'dragging');
+
+                quickViewModal.classList.add('active');
+                document.body.classList.add('modal-open');
+            }
+
+            // Open modal from Quick View button
+            document.querySelectorAll('.quick-view').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.product-card');
+                    openModal(card);
+                });
+            });
+
+            // Open modal from product image
+            document.querySelectorAll('.product-image').forEach(img => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.product-card');
+                    openModal(card);
+                });
+            });
+
+            // Close Modal
+            function closeModal() {
+                quickViewModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+                currentScale = 1;
+                translateX = 0;
+                translateY = 0;
+                modalImage.style.transform = 'translate(0, 0) scale(1)';
+                modalImageContainer.classList.remove('zoomed', 'dragging');
+            }
+
+            modalClose.addEventListener('click', closeModal);
+
+            quickViewModal.addEventListener('click', function(e) {
+                if (e.target === quickViewModal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && quickViewModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ===== IMPROVED ZOOM FUNCTIONALITY =====
+            modalImageContainer.addEventListener('click', function(e) {
+                if (isPanning) return;
+
+                if (currentScale === 1) {
+                    // Zoom in
+                    currentScale = 2.5;
+                    modalImageContainer.classList.add('zoomed');
+                    
+                    // Zoom to click point
+                    const rect = modalImageContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    translateX = (centerX - x) * (currentScale - 1);
+                    translateY = (centerY - y) * (currentScale - 1);
+                } else {
+                    // Zoom out
+                    currentScale = 1;
+                    translateX = 0;
+                    translateY = 0;
+                    modalImageContainer.classList.remove('zoomed');
+                }
+
+                modalImage.classList.add('zoom-transition');
+                modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+                
+                setTimeout(() => {
+                    modalImage.classList.remove('zoom-transition');
+                }, 300);
+            });
+
+            // Pan when zoomed - Mouse
+            modalImageContainer.addEventListener('mousedown', function(e) {
+                if (currentScale <= 1) return;
+                
+                isPanning = true;
+                modalImageContainer.classList.add('dragging');
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isPanning) return;
+                
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+            });
+
+            document.addEventListener('mouseup', function() {
+                if (isPanning) {
+                    isPanning = false;
+                    modalImageContainer.classList.remove('dragging');
+                }
+            });
+
+            // Pan when zoomed - Touch
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            modalImageContainer.addEventListener('touchstart', function(e) {
+                if (currentScale <= 1 || e.touches.length !== 1) return;
+                
+                isPanning = true;
+                touchStartX = e.touches[0].clientX - translateX;
+                touchStartY = e.touches[0].clientY - translateY;
+                e.preventDefault();
+            }, { passive: false });
+
+            modalImageContainer.addEventListener('touchmove', function(e) {
+                if (!isPanning || e.touches.length !== 1) return;
+                
+                translateX = e.touches[0].clientX - touchStartX;
+                translateY = e.touches[0].clientY - touchStartY;
+                modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+                e.preventDefault();
+            }, { passive: false });
+
+            modalImageContainer.addEventListener('touchend', function() {
+                isPanning = false;
+            });
+
+            // Prevent default drag behavior
+            modalImage.addEventListener('dragstart', e => e.preventDefault());
+
+            // ===== BACK BUTTON FUNCTIONALITY =====
+            const backButton = document.getElementById('backButton');
+            
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    // Check if there's history to go back to
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        // If no history, go to homepage
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+
+            // ===== SCROLL ANIMATIONS =====
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const header = document.querySelector('.page-header');
+            if (header) observer.observe(header);
+
+            productCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            console.log('✅ BNB Premium Marbles - Fully Optimized with Call/WhatsApp & Improved Zoom');
+        });
+    </script>
+</body>
+</html>
