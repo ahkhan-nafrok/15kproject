@@ -1,0 +1,576 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - BNB Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2673B8;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #0A0A0A;
+            --light-gray: #E8EBF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* CATEGORIES SECTION */
+        .categories-section {
+            background: var(--off-white);
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        /* MINIMAL SECTION HEADER */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--pure-black);
+            line-height: 0.95;
+        }
+
+        /* CATEGORIES GRID - 3 COLUMNS */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* FULL IMAGE CARD - PREMIUM MINIMAL */
+        .category-card {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(38, 115, 184, 0.3);
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* PREMIUM BLUE GRADIENT ACCENT - TOP LEFT */
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at top left,
+                rgba(38, 115, 184, 0.25) 0%,
+                rgba(38, 115, 184, 0.12) 25%,
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        /* SUBTLE CORNER ACCENT */
+        .category-corner-accent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(
+                circle at top right,
+                rgba(38, 115, 184, 0.15) 0%,
+                transparent 70%
+            );
+            opacity: 0.6;
+            z-index: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .category-card:hover .category-corner-accent {
+            opacity: 1;
+        }
+
+        /* FULL IMAGE */
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.05);
+        }
+
+        /* PREMIUM GRADIENT OVERLAY SYSTEM */
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: 
+                linear-gradient(
+                    to right,
+                    rgba(38, 115, 184, 0.08) 0%,
+                    transparent 20%,
+                    transparent 80%,
+                    rgba(38, 115, 184, 0.08) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.95) 0%,
+                    rgba(0, 0, 0, 0.7) 40%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-overlay {
+            height: 45%;
+            background: 
+                linear-gradient(
+                    to right,
+                    rgba(38, 115, 184, 0.15) 0%,
+                    transparent 15%,
+                    transparent 85%,
+                    rgba(38, 115, 184, 0.15) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.98) 0%,
+                    rgba(0, 0, 0, 0.75) 50%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+        }
+
+        /* PREMIUM BLUE GRADIENT ACCENT - TOP LEFT */
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at top left,
+                rgba(38, 115, 184, 0.25) 0%,
+                rgba(38, 115, 184, 0.12) 25%,
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        /* GRADIENT BORDER EFFECT */
+        .category-card {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(38, 115, 184, 0.3);
+        }
+
+        /* TEXT CONTENT */
+        .category-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 0.8rem;
+            line-height: 1.1;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-title {
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .category-description {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 90%;
+        }
+
+        /* MINIMAL CTA */
+        .category-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-cta {
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .category-cta i {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-cta i {
+            transform: translateX(5px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 3rem;
+            }
+
+            .section-title {
+                font-size: 4rem;
+            }
+
+            .category-card {
+                height: 550px;
+            }
+
+            .categories-grid {
+                gap: 1.8rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .categories-section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .category-card {
+                height: 500px;
+            }
+
+            .category-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .category-card {
+                height: 450px;
+            }
+
+            .category-overlay {
+                padding: 2rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .category-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section-label {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .categories-grid {
+                gap: 1.5rem;
+            }
+
+            .category-card {
+                height: 400px;
+            }
+
+            .category-overlay {
+                padding: 1.8rem 1.5rem;
+                height: 45%;
+            }
+
+            .category-card:hover .category-overlay {
+                height: 50%;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+            }
+
+            .category-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .category-cta {
+                font-size: 0.75rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .category-card {
+                height: 350px;
+            }
+
+            .category-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* SCROLL ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="categories-section" id="collections">
+        <div class="container">
+            <!-- MINIMAL HEADER -->
+            <div class="section-header">
+                <p class="section-label">Our Collections</p>
+                <h2 class="section-title">Categories</h2>
+            </div>
+
+            <!-- 3 CATEGORIES GRID -->
+            <div class="categories-grid">
+                <!-- CATEGORY 1: RESIDENTIAL -->
+                <a href="#residential" class="category-card">
+                    <div class="category-corner-accent"></div>
+                    <img src="HandiCrafts/hand1.png" alt="Residential Solutions" class="category-image">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3 class="category-title">Residential</h3>
+                            <p class="category-description">
+                                Premium solutions for homes and living spaces.
+                            </p>
+                            <span class="category-cta">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CATEGORY 2: COMMERCIAL -->
+                <a href="#commercial" class="category-card">
+                    <div class="category-corner-accent"></div>
+                    <img src="assets/floor22.png" alt="Commercial Projects" class="category-image">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3 class="category-title">Commercial</h3>
+                            <p class="category-description">
+                                Large-scale projects for businesses and enterprises.
+                            </p>
+                            <span class="category-cta">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CATEGORY 3: CUSTOM -->
+                <a href="#custom" class="category-card">
+                    <div class="category-corner-accent"></div>
+                    <img src="assets/hand8.png" alt="Custom Solutions" class="category-image">
+                    <div class="category-overlay">
+                        <div class="category-content">
+                            <h3 class="category-title">Custom</h3>
+                            <p class="category-description">
+                                Bespoke designs tailored to your unique vision.
+                            </p>
+                            <span class="category-cta">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const header = document.querySelector('.section-header');
+            if (header) observer.observe(header);
+
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+                observer.observe(card);
+            });
+
+            console.log('✅ Premium categories with gradient effects - Blue radial overlay + gradient border + corner accents');
+        });
+    </script>
+</body>
+</html>
+

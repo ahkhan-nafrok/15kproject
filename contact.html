@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BNB Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2673B8;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --text-dark: #0A0A0A;
+            --light-gray: #E8EBF0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: var(--off-white);
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        /* MINIMAL SECTION HEADER */
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--pure-black);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* SPLIT LAYOUT - INFO + FORM */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* INFO CARDS - MINIMAL CLEAN */
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(38, 115, 184, 0.12);
+            border-color: var(--primary-blue);
+        }
+
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .info-card:hover .info-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--pure-black);
+        }
+
+        .info-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--pure-black);
+        }
+
+        .info-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            color: var(--text-dark);
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .info-item i {
+            color: var(--primary-blue);
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            min-width: 12px;
+        }
+
+        .info-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* FORM SECTION - CLEAN WHITE */
+        .contact-form-section {
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            padding: 3rem 2.5rem;
+            position: relative;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-blue);
+        }
+
+        .form-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--pure-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            opacity: 0.7;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .form-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: var(--off-white);
+            border: 1px solid var(--light-gray);
+            color: var(--text-dark);
+            padding: 1rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-dark);
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            background: var(--pure-white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-submit {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: 2px solid var(--pure-black);
+            padding: 1.2rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Montserrat', sans-serif;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(38, 115, 184, 0.3);
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        /* SUCCESS MESSAGE */
+        .form-message {
+            padding: 1rem 1.2rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            display: none;
+            margin-top: 0.5rem;
+            border: 1px solid;
+        }
+
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: #10b981;
+            color: #059669;
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: #ef4444;
+            color: #dc2626;
+            display: block;
+        }
+
+        /* GOOGLE MAP - MINIMAL */
+        .map-section {
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .map-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-blue);
+            z-index: 2;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(30%) contrast(1.1);
+            transition: filter 0.4s ease;
+        }
+
+        .map-container:hover iframe {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 3rem;
+            }
+
+            .section-title {
+                font-size: 4rem;
+            }
+
+            .contact-content {
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .contact-section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .section-header {
+                margin-bottom: 4rem;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .info-card {
+                padding: 2.2rem 1.8rem;
+            }
+
+            .contact-form-section {
+                padding: 2.5rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 3rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .section-label {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .info-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .info-title {
+                font-size: 1.2rem;
+            }
+
+            .info-item {
+                font-size: 0.9rem;
+            }
+
+            .contact-form-section {
+                padding: 2.2rem 1.8rem;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .form-submit {
+                width: 100%;
+            }
+
+            .map-section {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .section-description {
+                font-size: 0.95rem;
+            }
+
+            .info-card {
+                padding: 1.8rem 1.3rem;
+            }
+
+            .info-header {
+                gap: 1rem;
+            }
+
+            .info-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
+            }
+
+            .info-title {
+                font-size: 1.1rem;
+            }
+
+            .info-item {
+                font-size: 0.88rem;
+            }
+
+            .contact-form-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-title {
+                font-size: 1.6rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .form-input,
+            .form-textarea {
+                padding: 0.9rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .form-submit {
+                padding: 1rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            .map-section {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .map-section {
+                height: 300px;
+            }
+        }
+
+        /* SCROLL ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <!-- MINIMAL SECTION HEADER -->
+            <div class="section-header">
+                <p class="section-label">Get In Touch</p>
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-description">
+                    Have a project in mind? Reach out and let's discuss how we can bring your vision to life with premium solutions.
+                </p>
+            </div>
+
+            <!-- SPLIT LAYOUT: INFO + FORM -->
+            <div class="contact-content">
+                <!-- INFO CARDS -->
+                <div class="contact-info-section">
+                    <!-- PHONE CARD -->
+                    <div class="info-card">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h3 class="info-title">Call Us</h3>
+                        </div>
+                        <div class="info-details">
+                            <div class="info-item">
+                                <i class="fas fa-circle"></i>
+                                <a href="tel:+919876543210">+91 98765 43210</a>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-circle"></i>
+                                <a href="tel:+919876543211">+91 98765 43211</a>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-circle"></i>
+                                <a href="tel:+919876543212">+91 98765 43212</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMAIL CARD -->
+                    <div class="info-card">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 class="info-title">Email Us</h3>
+                        </div>
+                        <div class="info-details">
+                            <div class="info-item">
+                                <i class="fas fa-circle"></i>
+                                <a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Response within 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADDRESS CARD -->
+                    <div class="info-card">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 class="info-title">Visit Us</h3>
+                        </div>
+                        <div class="info-details">
+                            <div class="info-item">
+                                <i class="fas fa-circle"></i>
+                                <span>123 Business Street<br>Mumbai, Maharashtra 400001</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Mon - Sat: 9 AM - 7 PM<br>Sunday: Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT FORM -->
+                <div class="contact-form-section">
+                    <div class="form-header">
+                        <h3 class="form-title">Send Message</h3>
+                        <p class="form-subtitle">Fill out the form and we'll get back to you shortly.</p>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Your Name *</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    class="form-input" 
+                                    placeholder="John Doe"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number *</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    class="form-input" 
+                                    placeholder="+91 98765 43210"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="john@example.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <input 
+                                type="text" 
+                                id="subject" 
+                                name="subject" 
+                                class="form-input" 
+                                placeholder="What's this about?"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message *</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                class="form-textarea" 
+                                placeholder="Tell us about your project..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit">
+                            Send Message
+                        </button>
+
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- GOOGLE MAP -->
+            <div class="map-section">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.1!2d72.8777!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3MsKwNTInMzkuNyJF!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="BNB Enterprises Location - Mumbai"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handler
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form data
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        phone: document.getElementById('phone').value,
+                        email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value
+                    };
+
+                    // Show success message
+                    formMessage.textContent = 'Thank you for contacting us! We will get back to you shortly.';
+                    formMessage.className = 'form-message success';
+
+                    // Reset form
+                    contactForm.reset();
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.className = 'form-message';
+                    }, 5000);
+
+                    console.log('✅ Form submitted:', formData);
+                });
+            }
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            const elementsToAnimate = document.querySelectorAll(
+                '.section-header, .info-card, .contact-form-section, .map-section'
+            );
+            
+            elementsToAnimate.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+
+            // Phone number formatting
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 10) {
+                        value = value.slice(0, 10);
+                    }
+                    e.target.value = value;
+                });
+            }
+
+            console.log('✅ BNB Contact section initialized - Premium minimalist design');
+        });
+    </script>
+</body>
+</html>
