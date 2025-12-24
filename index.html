@@ -362,8 +362,8 @@ section {
       <!-- Categories Component -->
       <section id="categoriesComponent" aria-label="Product Collections"></section>
 
-      <!-- Gallery Component 
-      <section id="galleryComponent" aria-label="Product Gallery"></section>-->
+      <!-- Gallery Component -->
+      <section id="galleryComponent" aria-label="Product Gallery"></section>
 
       <!-- Contact Component-->
       <section id="contactComponent" aria-label="Contact Information"></section>
@@ -382,8 +382,7 @@ section {
     title="Chat with us on WhatsApp">
     <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
-
-  <script>
+<script>
     // ========== PERFORMANCE MONITORING ==========
     const performanceMetrics = {
       startTime: performance.now(),
@@ -433,7 +432,7 @@ section {
       initializeGlobalInteractions();
     }
 
-    // ========== ENHANCED COMPONENT LOADER ==========
+    // ========== ENHANCED COMPONENT LOADER WITH DYNAMIC SUPPORT ==========
     async function loadComponent(name, targetId) {
       try {
         const startTime = performance.now();
@@ -487,8 +486,8 @@ section {
         // Insert HTML content
         targetElement.innerHTML = tempDiv.innerHTML;
 
-        // Wait for DOM to settle
-        await new Promise(resolve => setTimeout(resolve, 100));
+        // ========== CRITICAL FIX: Extended DOM settling time ==========
+        await new Promise(resolve => setTimeout(resolve, 200));
 
         // Execute component scripts
         scriptContents.forEach(scriptContent => {
@@ -499,17 +498,30 @@ section {
               scriptElement.setAttribute('data-component', name);
               document.body.appendChild(scriptElement);
 
-              // Clean up after execution
+              // ========== EXTENDED CLEANUP DELAY FOR INTERACTIVE COMPONENTS ==========
               setTimeout(() => {
                 if (scriptElement.parentNode) {
                   scriptElement.parentNode.removeChild(scriptElement);
                 }
-              }, 500);
+              }, 2000); // Increased from 500ms to 2000ms
             } catch (scriptError) {
               console.error(`❌ Error executing script in ${name}:`, scriptError);
             }
           }
         });
+
+        // ========== SPECIAL HANDLING FOR GALLERY COMPONENT ==========
+        if (name === 'gallery') {
+          // Give gallery extra time to settle, then manually initialize
+          setTimeout(() => {
+            if (typeof window.initializeGallery === 'function') {
+              window.initializeGallery();
+              console.log('✅ Gallery manually re-initialized after dynamic loading');
+            } else {
+              console.warn('⚠️ Gallery initialization function not found');
+            }
+          }, 300);
+        }
 
         const loadTime = Math.round(performance.now() - startTime);
         console.log(`✅ ${name} loaded in ${loadTime}ms`);

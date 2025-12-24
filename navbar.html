@@ -8,7 +8,7 @@
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Raleway:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Raleway:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   
   <style>
@@ -44,13 +44,13 @@
       background: transparent;
       z-index: 1000;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 2rem 0 1.5rem 0;
+      padding: 1.2rem 0;
     }
     
     .header.scrolled {
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(25px) saturate(180%);
-      padding: 1.2rem 0 1rem 0;
+      padding: 0.8rem 0;
       box-shadow: 0 2px 20px rgba(38, 115, 184, 0.08);
     }
 
@@ -79,18 +79,18 @@
       display: block;
     }
     
-    /* Vertical Nav Layout - Logo Top, Links Bottom */
+    /* Optimized Nav Layout */
     .nav {
-      max-width: 1800px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 0 4rem;
+      padding: 0 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
     }
     
-    /* Premium Centered Logo */
+    /* Premium Centered Logo - OPTIMIZED SIZE */
     .logo {
       display: flex;
       align-items: center;
@@ -102,8 +102,8 @@
     }
 
     .logo-img-wrapper {
-      width: 190px;
-      height: 190px;
+      width: 150px;
+      height: 150px;
       position: relative;
       overflow: visible;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -114,8 +114,8 @@
     }
 
     .header.scrolled .logo-img-wrapper {
-      width: 150px;
-      height: 150px;
+      width: 105px;
+      height: 105px;
     }
 
     .logo-img {
@@ -127,13 +127,13 @@
     }
 
     .logo:hover .logo-img {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     /* Minimal Nav Links - Centered Below Logo */
     .nav-links {
       display: flex;
-      gap: 3.5rem;
+      gap: 2.5rem;
       list-style: none;
       align-items: center;
       margin: 0;
@@ -143,12 +143,13 @@
       text-decoration: none;
       color: var(--pure-white);
       font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
+      font-size: 0.85rem;
+      letter-spacing: 0.8px;
       position: relative;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-transform: uppercase;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
+      font-family: 'Raleway', sans-serif;
     }
     
     .nav-link::before {
@@ -176,8 +177,8 @@
       cursor: pointer;
       background: none;
       border: none;
-      width: 26px;
-      height: 20px;
+      width: 28px;
+      height: 22px;
       position: absolute;
       top: 50%;
       right: 2rem;
@@ -189,12 +190,12 @@
     .menu-toggle span {
       display: block;
       width: 100%;
-      height: 2px;
+      height: 2.5px;
       background: var(--pure-white);
       position: absolute;
       left: 0;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 2px;
+      border-radius: 3px;
     }
 
     .menu-toggle span:nth-child(1) {
@@ -241,18 +242,40 @@
       text-align: center;
     }
 
+    /* Mobile Menu Footer - Hidden on Desktop */
+    .mobile-menu-footer {
+      display: none;
+    }
+
     /* Responsive */
-    @media (max-width: 1024px) {
+    @media (max-width: 1200px) {
       .nav {
-        padding: 0 3rem;
+        padding: 0 2.5rem;
       }
 
       .nav-links {
-        gap: 2.5rem;
+        gap: 2rem;
       }
 
       .nav-link {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .header {
+        padding: 1rem 0;
+      }
+
+      .header.scrolled {
+        padding: 0.7rem 0;
+      }
+
+      .nav {
+        padding: 0 2rem;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
       }
 
       .logo-img-wrapper {
@@ -264,39 +287,12 @@
         width: 90px;
         height: 90px;
       }
-    }
-
-    @media (max-width: 991px) {
-      .header {
-        padding: 1rem 0;
-      }
-
-      .header.scrolled {
-        padding: 0.8rem 0;
-      }
-
-      .nav {
-        padding: 0 2rem;
-        flex-direction: row;
-        justify-content: center;
-        gap: 0;
-      }
-
-      .logo-img-wrapper {
-        width: 125px;
-        height: 125px;
-      }
-
-      .header.scrolled .logo-img-wrapper {
-        width: 75px;
-        height: 75px;
-      }
       
       .menu-toggle {
         display: block;
       }
       
-      /* Premium White Mobile Menu */
+      /* Premium White Mobile Menu - OPTIMIZED STRUCTURE */
       .nav-links {
         position: fixed;
         top: 0;
@@ -309,7 +305,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         gap: 0;
-        padding: 8rem 3rem 3rem 3rem;
+        padding: 7rem 2.5rem 2.5rem 2.5rem;
         transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         overflow-y: auto;
       }
@@ -318,12 +314,14 @@
         right: 0;
       }
 
+      /* Navigation Items */
       .nav-links li {
         width: 100%;
         text-align: left;
         opacity: 0;
         transform: translateX(-30px);
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid rgba(38, 115, 184, 0.1);
       }
 
       .nav-links.active li {
@@ -339,13 +337,14 @@
 
       .nav-link {
         font-family: 'Raleway', sans-serif;
-        font-size: 1.6rem;
-        padding: 0.8rem 0;
+        font-size: 1.4rem;
+        padding: 1.2rem 0;
         width: 100%;
         color: var(--text-dark) !important;
         font-weight: 800;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
+        display: block;
       }
 
       .nav-link::before {
@@ -354,15 +353,16 @@
 
       .nav-link:hover {
         color: var(--primary-blue) !important;
-        transform: translateX(10px);
+        transform: translateX(8px);
       }
 
-      /* Mobile Menu Footer */
+      /* Mobile Menu Footer - SHOW ON MOBILE */
       .mobile-menu-footer {
         display: block;
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(38, 115, 184, 0.15);
+        width: 100%;
+        margin-top: auto;
+        padding-top: 2.5rem;
+        border-top: 2px solid rgba(38, 115, 184, 0.15);
         opacity: 0;
         transform: translateX(-30px);
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -375,103 +375,181 @@
       }
 
       .menu-contact-item {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .menu-contact-item:last-child {
+        margin-bottom: 0;
       }
 
       .menu-contact-item h4 {
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 700;
+        font-size: 0.7rem;
+        font-weight: 800;
         color: var(--primary-blue);
         text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 0.5rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.6rem;
       }
 
       .menu-contact-item p {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-family: 'Raleway', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
         color: var(--text-dark);
-        line-height: 1.6;
+        line-height: 1.7;
         margin: 0;
+        margin-bottom: 0.3rem;
       }
 
       .menu-contact-item a {
         color: var(--text-dark);
         text-decoration: none;
         transition: color 0.3s ease;
+        display: inline-block;
       }
 
       .menu-contact-item a:hover {
         color: var(--primary-blue);
       }
+
+      /* Social Links in Footer */
+      .menu-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .social-link:hover {
+        background: var(--text-dark);
+        transform: translateY(-3px);
+      }
     }
 
     @media (max-width: 768px) {
       .logo-img-wrapper {
-        width: 125px;
-        height:125px;
+        width: 110px;
+        height: 110px;
       }
 
       .header.scrolled .logo-img-wrapper {
-        width: 65px;
-        height: 65px;
+        width: 82px;
+        height: 82px;
       }
 
       .nav-link {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        padding: 1.1rem 0;
+      }
+
+      .nav-links {
+        padding: 6rem 2rem 2rem 2rem;
       }
 
       .menu-contact-item h4 {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+      }
+
+      .menu-contact-item p {
+        font-size: 0.9rem;
+      }
+
+      .menu-toggle {
+        right: 1.5rem;
+        width: 26px;
+        height: 20px;
+      }
+
+      .menu-toggle span {
+        height: 2.5px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .nav {
+        padding: 0 1.5rem;
+      }
+
+      .logo-img-wrapper {
+        width: 105px;
+        height: 105px;
+      }
+
+      .header.scrolled .logo-img-wrapper {
+        width: 78px;
+        height: 78px;
+      }
+
+      .menu-toggle {
+        width: 24px;
+        height: 18px;
+        right: 1.2rem;
+      }
+
+      .menu-toggle span {
+        height: 2px;
+      }
+
+      .nav-link {
+        font-size: 1.2rem;
+        padding: 1rem 0;
+      }
+
+      .nav-links {
+        padding: 5.5rem 1.8rem 1.8rem 1.8rem;
+      }
+
+      .mobile-menu-footer {
+        padding-top: 2rem;
+      }
+
+      .menu-contact-item {
+        margin-bottom: 1.5rem;
+      }
+
+      .menu-contact-item h4 {
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
       }
 
       .menu-contact-item p {
         font-size: 0.85rem;
       }
 
-      .menu-toggle {
-        right: 1.5rem;
+      .social-link {
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
       }
     }
-    
-    @media (max-width: 480px) {
-      .nav {
-        padding: 0 1.5rem;
-      }
 
+    @media (max-width: 400px) {
       .logo-img-wrapper {
-        width: 95px;
-        height: 95px;
+        width: 100px;
+        height: 100px;
       }
 
       .header.scrolled .logo-img-wrapper {
-        width: 85px;
-        height: 85px;
-      }
-
-      .menu-toggle {
-        width: 24px;
-        height: 18px;
-        right: 1.5rem;
+        width: 75px;
+        height: 75px;
       }
 
       .nav-link {
-        font-size: 1.3rem;
-        padding: 0.7rem 0;
-      }
-
-      .nav-links {
-        padding: 7rem 2rem 2rem 2rem;
-      }
-
-      .menu-contact-item {
-        margin-bottom: 1.2rem;
-      }
-
-      .menu-contact-item h4 {
-        font-size: 0.65rem;
+        font-size: 1.1rem;
       }
 
       .menu-contact-item p {
@@ -486,28 +564,17 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       opacity: 0;
       visibility: hidden;
       transition: all 0.4s ease;
       z-index: 999;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .menu-overlay.active {
       opacity: 1;
       visibility: visible;
-    }
-
-    /* Hide mobile footer on desktop */
-    .mobile-menu-footer {
-      display: none;
-    }
-
-    @media (max-width: 991px) {
-      .mobile-menu-footer {
-        display: block;
-      }
     }
   </style>
 </head>
@@ -533,20 +600,40 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a class="nav-link" href="#home">Home</a></li>
-        <li><a class="nav-link" href="#">About</a></li>
-        <li><a class="nav-link" href="#">Collections</a></li>
-        <li><a class="nav-link" href="#">Gallery</a></li>
-        <li><a class="nav-link" href="#">Contact</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#collections">Collections</a></li>
+        <li><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
         
+        <!-- Mobile Menu Footer -->
         <div class="mobile-menu-footer">
           <div class="menu-contact-item">
-            <h4>Address</h4>
-            <p>123 Business Street,<br>Mumbai, Maharashtra 400001</p>
-          </div>
-          <div class="menu-contact-item">
-            <h4>Contact</h4>
+            <h4>Get in Touch</h4>
             <p><a href="tel:+919876543210">+91 98765 43210</a></p>
             <p><a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a></p>
+          </div>
+          
+          <div class="menu-contact-item">
+            <h4>Our Location</h4>
+            <p>123 Business Street,<br>Mumbai, Maharashtra 400001<br>India</p>
+          </div>
+          
+          <div class="menu-contact-item">
+            <h4>Connect With Us</h4>
+            <div class="menu-social">
+              <a href="#" class="social-link" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
           </div>
         </div>
       </ul>
@@ -554,6 +641,7 @@
   </header>
 
   <div class="menu-overlay" id="menuOverlay"></div>
+
 
   <script>
   (function() {
@@ -568,7 +656,7 @@
         return;
       }
 
-      console.log('✅ Premium Minimalist Navbar initialized');
+      console.log('✅ Optimized Responsive Navbar initialized');
 
       // Mobile menu toggle
       menuToggle.addEventListener('click', (e) => {
@@ -620,13 +708,23 @@
       window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
         
-        if (currentScroll > window.innerHeight * 0.3) {
+        if (currentScroll > 100) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
         }
         
         lastScroll = currentScroll;
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
       });
     }
 
