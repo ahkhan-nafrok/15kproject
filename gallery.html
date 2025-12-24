@@ -11,7 +11,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-/* ========== COLOR SYSTEM ========== */
 :root {
   --primary-blue: #2673B8;
   --background-base: #eeeeee;
@@ -41,48 +40,48 @@ body.modal-open {
     overflow: hidden;
 }
 
-/* ========== GALLERY SECTION ========== */
+/* COMPACT GALLERY SECTION */
 .gallery-section {
     background: var(--background-base);
-    padding: clamp(3rem, 5vw, 4rem) 0;
+    padding: clamp(2.5rem, 4vw, 3rem) 0;
     min-height: 100vh;
 }
 
 .container {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    padding: 0 clamp(1.2rem, 3vw, 2.5rem);
 }
 
-/* ========== SECTION HEADER ========== */
+/* COMPACT HEADER */
 .section-header {
     text-align: center;
-    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: clamp(2rem, 3.5vw, 2.8rem);
 }
 
 .section-label {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.6rem, 0.8vw, 0.7rem);
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
     font-weight: 700;
-    letter-spacing: clamp(2px, 0.3vw, 3px);
+    letter-spacing: clamp(1.5px, 0.25vw, 2px);
     text-transform: uppercase;
     color: var(--primary-blue);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .section-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 2.5rem); /* Was 4.5rem, now max 2.5rem */
     font-weight: 900;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     color: var(--text-primary);
-    line-height: 0.95;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
 }
 
 .section-description {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
     font-weight: 500;
     color: var(--text-body);
     opacity: 0.9;
@@ -91,45 +90,45 @@ body.modal-open {
     line-height: 1.6;
 }
 
-/* ========== FILTER BAR ========== */
+/* COMPACT FILTER BAR */
 .filter-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: clamp(2rem, 3.5vw, 2.8rem);
 }
 
 .filter-card {
     background: var(--surface-light);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: clamp(1rem, 1.5vw, 1.2rem);
+    border-radius: 6px;
+    padding: clamp(0.9rem, 1.3vw, 1rem);
     display: flex;
-    gap: clamp(0.6rem, 1vw, 0.8rem);
+    gap: clamp(0.5rem, 0.9vw, 0.7rem);
     flex-wrap: wrap;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(26, 35, 50, 0.06);
+    box-shadow: 0 3px 15px rgba(26, 35, 50, 0.05);
     transition: all 0.3s ease;
 }
 
 .filter-card:hover {
-    box-shadow: 0 6px 30px rgba(26, 35, 50, 0.1);
+    box-shadow: 0 5px 25px rgba(26, 35, 50, 0.08);
 }
 
 .filter-btn {
     background: transparent;
     border: 2px solid var(--border-color);
     color: var(--text-body);
-    padding: clamp(0.65rem, 0.9vw, 0.75rem) clamp(1.5rem, 2vw, 2rem);
+    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1.3rem, 1.8vw, 1.7rem);
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 .filter-btn::before {
@@ -154,7 +153,7 @@ body.modal-open {
     background: var(--primary-blue);
     border-color: var(--primary-blue);
     color: var(--accent-white);
-    box-shadow: 0 5px 20px rgba(38, 115, 184, 0.3);
+    box-shadow: 0 4px 18px rgba(38, 115, 184, 0.25);
 }
 
 .filter-btn.active::before {
@@ -163,24 +162,24 @@ body.modal-open {
 
 .filter-btn .filter-count {
     display: inline-block;
-    margin-left: 0.4rem;
+    margin-left: 0.3rem;
     font-size: 0.85em;
     opacity: 0.8;
 }
 
-/* ========== RESULTS BAR ========== */
+/* RESULTS BAR */
 .results-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-    padding-bottom: clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+    padding-bottom: clamp(0.8rem, 1.2vw, 1rem);
     border-bottom: 1px solid var(--border-light);
 }
 
 .results-text {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
     font-weight: 600;
     color: var(--text-body);
     opacity: 0.8;
@@ -191,12 +190,12 @@ body.modal-open {
     font-weight: 700;
 }
 
-/* ========== GALLERY GRID ========== */
+/* GALLERY GRID */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: clamp(1.2rem, 2vw, 1.5rem);
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: clamp(1rem, 1.8vw, 1.3rem);
+    margin-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
@@ -211,12 +210,12 @@ body.modal-open {
     }
 }
 
-/* ========== GALLERY ITEM ========== */
+/* GALLERY ITEM */
 .gallery-item {
     position: relative;
     aspect-ratio: 4/3;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     background: var(--surface-light);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -240,12 +239,12 @@ body.modal-open {
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    border-radius: 8px 8px 0 0;
+    border-radius: 6px 6px 0 0;
 }
 
 .gallery-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(26, 35, 50, 0.12);
 }
 
 .gallery-item:hover::before {
@@ -260,10 +259,9 @@ body.modal-open {
 }
 
 .gallery-item:hover .gallery-image {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
-/* BLUE RADIAL OVERLAY ON HOVER */
 .gallery-overlay {
     position: absolute;
     inset: 0;
@@ -283,38 +281,36 @@ body.modal-open {
     opacity: 1;
 }
 
-/* CATEGORY BADGE */
 .category-badge {
     position: absolute;
-    top: 0.8rem;
-    right: 0.8rem;
+    top: 0.7rem;
+    right: 0.7rem;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    padding: clamp(0.35rem, 0.5vw, 0.4rem) clamp(0.8rem, 1.2vw, 1rem);
+    padding: clamp(0.3rem, 0.45vw, 0.35rem) clamp(0.7rem, 1.1vw, 0.9rem);
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.55rem, 0.7vw, 0.6rem);
+    font-size: clamp(0.5rem, 0.65vw, 0.55rem);
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     color: var(--primary-blue);
     border-radius: 4px;
     z-index: 10;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 12px rgba(26, 35, 50, 0.1);
+    box-shadow: 0 2px 10px rgba(26, 35, 50, 0.08);
 }
 
 .gallery-item:hover .category-badge {
     transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(38, 115, 184, 0.3);
+    box-shadow: 0 4px 18px rgba(38, 115, 184, 0.25);
 }
 
-/* ZOOM ICON */
 .zoom-icon {
     position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    width: 45px;
-    height: 45px;
+    bottom: 0.9rem;
+    right: 0.9rem;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 50%;
@@ -325,7 +321,7 @@ body.modal-open {
     transform: scale(0.8);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(26, 35, 50, 0.2);
+    box-shadow: 0 3px 12px rgba(26, 35, 50, 0.15);
 }
 
 .gallery-item:hover .zoom-icon {
@@ -335,14 +331,14 @@ body.modal-open {
 
 .zoom-icon i {
     color: var(--primary-blue);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
-/* ========== NO RESULTS ========== */
+/* NO RESULTS */
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 3.5rem 2rem;
     display: none;
 }
 
@@ -351,28 +347,28 @@ body.modal-open {
 }
 
 .no-results-icon {
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: var(--text-muted);
     opacity: 0.3;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .no-results-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+    font-size: clamp(1.2rem, 1.6vw, 1.4rem);
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
 }
 
 .no-results-text {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
     color: var(--text-body);
     opacity: 0.8;
 }
 
-/* ========== LIGHTBOX MODAL ========== */
+/* LIGHTBOX MODAL */
 .lightbox-modal {
     display: none;
     position: fixed;
@@ -415,21 +411,20 @@ body.modal-open {
     max-width: 100%;
     max-height: 90vh;
     object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* LIGHTBOX CONTROLS */
 .lightbox-controls {
     position: fixed;
-    top: 2rem;
-    right: 2rem;
+    top: 1.8rem;
+    right: 1.8rem;
     z-index: 10001;
 }
 
 .lightbox-close {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     background: var(--accent-white);
     border: none;
     border-radius: 50%;
@@ -438,17 +433,17 @@ body.modal-open {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 }
 
 .lightbox-close:hover {
     background: #dc3545;
-    transform: rotate(90deg) scale(1.1);
+    transform: rotate(90deg) scale(1.08);
 }
 
 .lightbox-close i {
     color: var(--text-primary);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: color 0.3s ease;
 }
 
@@ -456,13 +451,12 @@ body.modal-open {
     color: white;
 }
 
-/* NAVIGATION ARROWS */
 .lightbox-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border: none;
@@ -473,17 +467,17 @@ body.modal-open {
     justify-content: center;
     transition: all 0.3s ease;
     z-index: 10001;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 }
 
 .lightbox-nav:hover {
     background: var(--primary-blue);
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.08);
 }
 
 .lightbox-nav i {
     color: var(--text-primary);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: color 0.3s ease;
 }
 
@@ -492,11 +486,11 @@ body.modal-open {
 }
 
 .lightbox-prev {
-    left: 2rem;
+    left: 1.8rem;
 }
 
 .lightbox-next {
-    right: 2rem;
+    right: 1.8rem;
 }
 
 .lightbox-nav:disabled {
@@ -509,145 +503,55 @@ body.modal-open {
     transform: translateY(-50%);
 }
 
-/* LIGHTBOX INFO */
 .lightbox-info {
     position: fixed;
-    bottom: 2rem;
+    bottom: 1.8rem;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    border-radius: 50px;
+    padding: 0.9rem 1.8rem;
+    border-radius: 40px;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.3rem;
     z-index: 10001;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 18px rgba(0, 0, 0, 0.2);
 }
 
 .lightbox-category {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.8rem, 1vw, 0.9rem);
+    font-size: clamp(0.75rem, 0.95vw, 0.85rem);
     font-weight: 700;
     color: var(--primary-blue);
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
 }
 
 .lightbox-counter {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
     font-weight: 600;
     color: var(--text-body);
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 991px) {
-    .filter-card {
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .lightbox-nav {
-        width: 45px;
-        height: 45px;
-    }
-
-    .lightbox-prev {
-        left: 1rem;
-    }
-
-    .lightbox-next {
-        right: 1rem;
-    }
-
-    .lightbox-controls {
-        top: 1.5rem;
-        right: 1.5rem;
-    }
-
-    .lightbox-info {
-        bottom: 1.5rem;
-        padding: 0.8rem 1.5rem;
-        gap: 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .filter-card {
-        padding: 0.8rem;
-    }
-
-    .filter-btn {
-        flex: 1 1 calc(50% - 0.4rem);
-        min-width: auto;
-    }
-
-    .zoom-icon {
-        width: 40px;
-        height: 40px;
-        bottom: 0.8rem;
-        right: 0.8rem;
-    }
-
-    .zoom-icon i {
-        font-size: 0.9rem;
-    }
-
-    .lightbox-nav {
-        width: 40px;
-        height: 40px;
-    }
-
-    .lightbox-nav i {
-        font-size: 1rem;
-    }
-
-    .lightbox-close {
-        width: 45px;
-        height: 45px;
-    }
-
-    .lightbox-close i {
-        font-size: 1.1rem;
-    }
-
-    .load-more-btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-}
-
-/* ========== LOAD MORE BUTTON ========== */
+/* LOAD MORE */
 .load-more-section {
     display: flex;
     justify-content: center;
-    padding: 3rem 0 0;
-    margin-top: 2rem;
+    padding: 2.5rem 0 0;
+    margin-top: 1.5rem;
 }
 
 .load-more-btn {
     background: var(--text-primary);
     color: var(--accent-white);
     border: 2px solid var(--text-primary);
-    border-radius: 6px;
-    padding: clamp(0.9rem, 1.2vw, 1rem) clamp(2.5rem, 3.5vw, 3rem);
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    border-radius: 5px;
+    padding: clamp(0.85rem, 1.1vw, 0.95rem) clamp(2.2rem, 3.2vw, 2.8rem);
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -656,7 +560,7 @@ body.modal-open {
     overflow: hidden;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.7rem;
 }
 
 .load-more-btn::before {
@@ -674,7 +578,7 @@ body.modal-open {
 .load-more-btn:hover {
     border-color: var(--primary-blue);
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(38, 115, 184, 0.3);
+    box-shadow: 0 8px 25px rgba(38, 115, 184, 0.25);
 }
 
 .load-more-btn:hover::before {
@@ -686,7 +590,7 @@ body.modal-open {
 }
 
 .load-more-btn i {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: transform 0.3s ease;
 }
 
@@ -694,11 +598,90 @@ body.modal-open {
     transform: translateY(3px);
 }
 
-/* ========== ANIMATIONS ========== */
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 42px;
+        height: 42px;
+    }
+
+    .lightbox-prev {
+        left: 1rem;
+    }
+
+    .lightbox-next {
+        right: 1rem;
+    }
+
+    .lightbox-controls {
+        top: 1.3rem;
+        right: 1.3rem;
+    }
+
+    .lightbox-info {
+        bottom: 1.3rem;
+        padding: 0.7rem 1.5rem;
+        gap: 1rem;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-card {
+        padding: 0.7rem;
+    }
+
+    .filter-btn {
+        flex: 1 1 calc(50% - 0.35rem);
+        min-width: auto;
+    }
+
+    .zoom-icon {
+        width: 36px;
+        height: 36px;
+        bottom: 0.7rem;
+        right: 0.7rem;
+    }
+
+    .zoom-icon i {
+        font-size: 0.85rem;
+    }
+
+    .lightbox-nav {
+        width: 38px;
+        height: 38px;
+    }
+
+    .lightbox-nav i {
+        font-size: 1rem;
+    }
+
+    .lightbox-close {
+        width: 42px;
+        height: 42px;
+    }
+
+    .lightbox-close i {
+        font-size: 1rem;
+    }
+
+    .load-more-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+
+/* ANIMATIONS */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -715,7 +698,6 @@ body.modal-open {
     animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* ========== PERFORMANCE ========== */
 .gallery-item,
 .lightbox-modal {
     will-change: transform, opacity;
@@ -725,7 +707,6 @@ body.modal-open {
 <body>
     <section class="gallery-section">
         <div class="container">
-            <!-- SECTION HEADER -->
             <div class="section-header">
                 <p class="section-label">Our Work</p>
                 <h2 class="section-title">Gallery</h2>
@@ -734,7 +715,6 @@ body.modal-open {
                 </p>
             </div>
 
-            <!-- FILTER CARD -->
             <div class="filter-wrapper">
                 <div class="filter-card">
                     <button class="filter-btn active" data-filter="all">
@@ -752,16 +732,13 @@ body.modal-open {
                 </div>
             </div>
 
-            <!-- RESULTS BAR -->
             <div class="results-bar">
                 <p class="results-text">
                     Showing <span id="currentCount">24</span> of <span id="totalCount">24</span> images
                 </p>
             </div>
 
-            <!-- GALLERY GRID -->
             <div class="gallery-grid" id="galleryGrid">
-                <!-- NO RESULTS MESSAGE -->
                 <div class="no-results" id="noResults">
                     <div class="no-results-icon">
                         <i class="fas fa-images"></i>
@@ -933,7 +910,6 @@ body.modal-open {
                 </div>
             </div>
 
-            <!-- LOAD MORE BUTTON -->
             <div class="load-more-section">
                 <button class="load-more-btn" id="loadMoreBtn">
                     Load More Images
@@ -943,16 +919,14 @@ body.modal-open {
         </div>
     </section>
 
-    <!-- LIGHTBOX MODAL -->
+    <!-- LIGHTBOX -->
     <div class="lightbox-modal" id="lightboxModal">
-        <!-- CLOSE BUTTON -->
         <div class="lightbox-controls">
             <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
-        <!-- NAVIGATION -->
         <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
             <i class="fas fa-chevron-left"></i>
         </button>
@@ -960,14 +934,12 @@ body.modal-open {
             <i class="fas fa-chevron-right"></i>
         </button>
 
-        <!-- IMAGE CONTAINER -->
         <div class="lightbox-content">
             <div class="lightbox-image-container">
                 <img src="" alt="" class="lightbox-image" id="lightboxImage">
             </div>
         </div>
 
-        <!-- INFO BAR -->
         <div class="lightbox-info">
             <span class="lightbox-category" id="lightboxCategory"></span>
             <span class="lightbox-counter" id="lightboxCounter"></span>
@@ -975,13 +947,10 @@ body.modal-open {
     </div>
 
     <script>
-        // ========== WRAP IN INITIALIZATION FUNCTION FOR DYNAMIC LOADING ==========
         function initializeGallery() {
-            // ========== CONFIGURATION ==========
             const ITEMS_PER_LOAD = 6;
             let currentlyShown = ITEMS_PER_LOAD;
 
-            // ========== FILTER SYSTEM ==========
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryItems = Array.from(document.querySelectorAll('.gallery-item:not(.no-results)'));
             const currentCountSpan = document.getElementById('currentCount');
@@ -992,26 +961,17 @@ body.modal-open {
             let currentFilter = 'all';
             let filteredItems = [...galleryItems];
 
-            // Update total count
             totalCountSpan.textContent = galleryItems.length;
-
-            // Initial display - show only first 6
             updateDisplay();
 
-            // Filter functionality
             filterButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Update active state
                     filterButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Get filter value
                     currentFilter = this.dataset.filter;
-
-                    // Reset load more counter when filter changes
                     currentlyShown = ITEMS_PER_LOAD;
 
-                    // Filter items
                     if (currentFilter === 'all') {
                         filteredItems = galleryItems;
                     } else {
@@ -1020,10 +980,8 @@ body.modal-open {
                         );
                     }
 
-                    // Update display
                     updateDisplay();
 
-                    // Scroll to top of gallery smoothly
                     document.querySelector('.gallery-grid').scrollIntoView({ 
                         behavior: 'smooth', 
                         block: 'start' 
@@ -1032,13 +990,11 @@ body.modal-open {
             });
 
             function updateDisplay() {
-                // Hide all items first
                 galleryItems.forEach(item => {
                     item.classList.add('hidden');
                     item.classList.remove('load-more-animation');
                 });
 
-                // Show/hide based on filter and load more
                 if (filteredItems.length === 0) {
                     noResults.classList.add('show');
                     currentCountSpan.textContent = '0';
@@ -1046,7 +1002,6 @@ body.modal-open {
                 } else {
                     noResults.classList.remove('show');
                     
-                    // Show only up to currentlyShown items
                     const itemsToShow = filteredItems.slice(0, currentlyShown);
                     itemsToShow.forEach(item => {
                         item.classList.remove('hidden');
@@ -1054,7 +1009,6 @@ body.modal-open {
                     
                     currentCountSpan.textContent = Math.min(currentlyShown, filteredItems.length);
 
-                    // Show/hide load more button
                     if (currentlyShown >= filteredItems.length) {
                         loadMoreBtn.classList.add('hidden');
                     } else {
@@ -1063,15 +1017,12 @@ body.modal-open {
                 }
             }
 
-            // ========== LOAD MORE FUNCTIONALITY ==========
             loadMoreBtn.addEventListener('click', function() {
                 const previousCount = currentlyShown;
                 currentlyShown += ITEMS_PER_LOAD;
 
-                // Get newly revealed items
                 const newItems = filteredItems.slice(previousCount, currentlyShown);
                 
-                // Animate new items
                 newItems.forEach((item, index) => {
                     item.classList.remove('hidden');
                     setTimeout(() => {
@@ -1079,15 +1030,12 @@ body.modal-open {
                     }, index * 80);
                 });
 
-                // Update counter
                 currentCountSpan.textContent = Math.min(currentlyShown, filteredItems.length);
 
-                // Hide button if all items are shown
                 if (currentlyShown >= filteredItems.length) {
                     loadMoreBtn.classList.add('hidden');
                 }
 
-                // Smooth scroll to first new item
                 setTimeout(() => {
                     if (newItems[0]) {
                         newItems[0].scrollIntoView({ 
@@ -1098,7 +1046,7 @@ body.modal-open {
                 }, 100);
             });
 
-            // ========== LIGHTBOX SYSTEM ==========
+            // Lightbox
             const lightboxModal = document.getElementById('lightboxModal');
             const lightboxImage = document.getElementById('lightboxImage');
             const lightboxClose = document.getElementById('lightboxClose');
@@ -1110,13 +1058,10 @@ body.modal-open {
             let currentLightboxIndex = 0;
             let visibleItems = [];
 
-            // Open lightbox - only from visible items
-            galleryItems.forEach((item, index) => {
+            galleryItems.forEach((item) => {
                 item.addEventListener('click', function() {
-                    // Only open if item is currently visible (not hidden)
                     if (item.classList.contains('hidden')) return;
                     
-                    // Get currently visible items (both filtered AND shown via load more)
                     visibleItems = filteredItems.filter(item => !item.classList.contains('hidden'));
                     currentLightboxIndex = visibleItems.indexOf(item);
                     
@@ -1147,7 +1092,6 @@ body.modal-open {
                 lightboxNext.disabled = currentLightboxIndex === visibleItems.length - 1;
             }
 
-            // Close lightbox
             function closeLightbox() {
                 lightboxModal.classList.remove('active');
                 document.body.classList.remove('modal-open');
@@ -1161,7 +1105,6 @@ body.modal-open {
                 }
             });
 
-            // Navigation
             lightboxPrev.addEventListener('click', function() {
                 if (currentLightboxIndex > 0) {
                     currentLightboxIndex--;
@@ -1176,7 +1119,6 @@ body.modal-open {
                 }
             });
 
-            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (!lightboxModal.classList.contains('active')) return;
 
@@ -1199,7 +1141,7 @@ body.modal-open {
                 }
             });
 
-            // ========== SCROLL ANIMATIONS ==========
+            // Animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -80px 0px'
@@ -1220,27 +1162,21 @@ body.modal-open {
             const filterCard = document.querySelector('.filter-card');
             if (filterCard) observer.observe(filterCard);
 
-            // Only observe initially visible items
             const initialItems = galleryItems.slice(0, ITEMS_PER_LOAD);
             initialItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.05}s`;
                 observer.observe(item);
             });
 
-            console.log('✅ BNB Gallery Component - With Load More (6 items per load)');
+            console.log('✅ Minimalist Gallery initialized');
         }
 
-        // ========== SMART INITIALIZATION ==========
-        // Handle both standalone page load AND dynamic component loading
         if (document.readyState === 'loading') {
-            // DOM is still loading (standalone page)
             document.addEventListener('DOMContentLoaded', initializeGallery);
         } else {
-            // DOM is already ready (dynamic loading) - wait a bit for elements to settle
             setTimeout(initializeGallery, 150);
         }
 
-        // Also expose globally for manual initialization if needed
         window.initializeGallery = initializeGallery;
     </script>
 </body>

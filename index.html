@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,16 +25,16 @@
 <style>
 /* ========== REFINED COLOR SYSTEM ========== */
 :root {
-  --primary-blue: #2673B8;           /* KEEP */
-  --background-base: #eeeeee;        /* NEW - softer main background */
-  --surface-light: #F0F3F7;          /* NEW - cards/panels */
-  --accent-white: #F7F9FC;           /* NEW - bright highlights */
-  --text-primary: #1A2332;           /* NEW - headings */
-  --text-body: #5A6B7F;              /* NEW - body text */
-  --text-muted: #7A8A9E;             /* NEW - subtle text */
-  --border-color: #D4DCE6;           /* NEW - borders */
-  --border-light: #E3E9F0;           /* NEW - subtle borders */
-  --whatsapp-green: #25D366;         /* KEEP */
+  --primary-blue: #2673B8;
+  --background-base: #eeeeee;
+  --surface-light: #F0F3F7;
+  --accent-white: #F7F9FC;
+  --text-primary: #1A2332;
+  --text-body: #5A6B7F;
+  --text-muted: #7A8A9E;
+  --border-color: #D4DCE6;
+  --border-light: #E3E9F0;
+  --whatsapp-green: #25D366;
 }
 
 /* ========== GLOBAL RESET & BASE ========== */
@@ -61,42 +59,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========== OPTIMIZED TYPOGRAPHY CAPS ========== */
-/* Prevent font sizes from going too large or too small */
+/* ========== PROFESSIONAL MINIMALIST TYPOGRAPHY ========== */
 h1, .hero-title, .section-title {
-  font-size: clamp(2rem, 5vw, 5.5rem) !important;
-  line-height: 1.1 !important;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem) !important; /* 28-40px max */
+  line-height: 1.2 !important;
+  font-weight: 700;
 }
 
 h2, .section-subtitle {
-  font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
-  line-height: 1.2 !important;
+  font-size: clamp(1.5rem, 3vw, 2rem) !important; /* 24-32px max */
+  line-height: 1.3 !important;
+  font-weight: 600;
 }
 
 h3, .card-title {
-  font-size: clamp(1.1rem, 2vw, 1.6rem) !important;
-  line-height: 1.3 !important;
+  font-size: clamp(1.125rem, 2vw, 1.375rem) !important; /* 18-22px max */
+  line-height: 1.4 !important;
+  font-weight: 600;
 }
 
 h4 {
-  font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+  font-size: clamp(1rem, 1.5vw, 1.125rem) !important; /* 16-18px max */
+  font-weight: 600;
 }
 
 p, .body-text {
-  font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
-  line-height: 1.7 !important;
+  font-size: clamp(0.875rem, 1.2vw, 1rem) !important; /* 14-16px max */
+  line-height: 1.6 !important;
+  font-weight: 400;
 }
 
 .small-text, .caption {
-  font-size: clamp(0.7rem, 1vw, 0.85rem) !important;
+  font-size: clamp(0.75rem, 1vw, 0.875rem) !important; /* 12-14px max */
+  line-height: 1.5 !important;
 }
 
 .label-text {
-  font-size: clamp(0.65rem, 0.9vw, 0.75rem) !important;
-  letter-spacing: clamp(2px, 0.3vw, 5px) !important;
+  font-size: clamp(0.6875rem, 0.9vw, 0.75rem) !important; /* 11-12px max */
+  letter-spacing: clamp(1.5px, 0.2vw, 2px) !important;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-/* ========== PAGE LOADER ========== */
+/* ========== PAGE LOADER - COMPACT ========== */
 .page-loader {
   position: fixed;
   inset: 0;
@@ -106,13 +111,13 @@ p, .body-text {
   justify-content: center;
   background: var(--surface-light);
   z-index: 9999;
-  gap: 20px;
+  gap: 12px;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loader-logo {
-  width: clamp(80px, 15vw, 120px);
-  height: clamp(80px, 15vw, 120px);
+  width: clamp(60px, 10vw, 80px); /* Smaller logo */
+  height: clamp(60px, 10vw, 80px);
   object-fit: contain;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -123,24 +128,24 @@ p, .body-text {
     opacity: 1;
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.8;
+    transform: scale(1.05);
+    opacity: 0.85;
   }
 }
 
 .loader-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 800;
-  letter-spacing: clamp(4px, 1vw, 8px);
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem); /* Much smaller */
+  font-weight: 700;
+  letter-spacing: clamp(2px, 0.5vw, 3px);
   color: var(--text-primary);
 }
 
 .loader-subtext {
   font-family: 'Raleway', sans-serif;
-  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-  font-weight: 600;
-  letter-spacing: clamp(2px, 0.5vw, 4px);
+  font-size: clamp(0.625rem, 1vw, 0.75rem); /* Much smaller */
+  font-weight: 500;
+  letter-spacing: clamp(1px, 0.3vw, 2px);
   color: var(--primary-blue);
   text-transform: uppercase;
 }
@@ -161,19 +166,19 @@ body.loaded .site-wrapper {
   opacity: 1;
 }
 
-/* ========== WHATSAPP FLOATING BUTTON - MINIMALIST ========== */
+/* ========== WHATSAPP FLOATING BUTTON - COMPACT ========== */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
+  bottom: 24px;
+  right: 24px;
+  width: 52px; /* Smaller button */
+  height: 52px;
   background: var(--whatsapp-green);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
   z-index: 9998;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,23 +186,23 @@ body.loaded .site-wrapper {
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1) translateY(-3px);
-  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
 }
 
 .whatsapp-float:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 .whatsapp-float i {
   color: white;
-  font-size: 32px;
+  font-size: 26px; /* Smaller icon */
 }
 
 .whatsapp-float::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -6px;
   border: 2px solid var(--whatsapp-green);
   border-radius: 50%;
   opacity: 0;
@@ -206,11 +211,11 @@ body.loaded .site-wrapper {
 
 @keyframes whatsapp-pulse {
   0% {
-    transform: scale(0.8);
-    opacity: 1;
+    transform: scale(0.9);
+    opacity: 0.8;
   }
   100% {
-    transform: scale(1.4);
+    transform: scale(1.3);
     opacity: 0;
   }
 }
@@ -227,7 +232,6 @@ body.loaded .site-wrapper {
   width: 100%;
 }
 
-/* Remove extra spacing between components */
 #aboutComponent + #categoriesComponent,
 #categoriesComponent + #galleryComponent {
   margin-top: 0;
@@ -243,7 +247,7 @@ body.loaded .site-wrapper {
 
 @media (max-width: 1200px) {
   html {
-    font-size: 14px;
+    font-size: 14.5px;
   }
 }
 
@@ -253,14 +257,14 @@ body.loaded .site-wrapper {
   }
   
   .whatsapp-float {
-    width: 55px;
-    height: 55px;
-    bottom: 25px;
-    right: 25px;
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
   }
   
   .whatsapp-float i {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 
@@ -272,18 +276,18 @@ body.loaded .site-wrapper {
 
 @media (max-width: 576px) {
   html {
-    font-size: 13px;
+    font-size: 13.5px;
   }
   
   .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-    right: 20px;
+    width: 46px;
+    height: 46px;
+    bottom: 16px;
+    right: 16px;
   }
   
   .whatsapp-float i {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 
@@ -294,7 +298,6 @@ body.loaded .site-wrapper {
 }
 
 /* ========== PERFORMANCE OPTIMIZATIONS ========== */
-/* Force GPU acceleration for animations */
 .page-loader,
 .whatsapp-float,
 .loader-logo {
@@ -302,7 +305,6 @@ body.loaded .site-wrapper {
   will-change: transform, opacity;
 }
 
-/* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -312,23 +314,19 @@ body.loaded .site-wrapper {
   }
 }
 
-/* ========== SMOOTH SCROLL OFFSET ========== */
 section {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px; /* Reduced from 100px */
 }
 
-/* ========== ACCESSIBILITY ========== */
 :focus-visible {
-  outline: 3px solid var(--primary-blue);
-  outline-offset: 3px;
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
 }
 
-/* Hide focus outline for mouse users */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* ========== PRINT STYLES ========== */
 @media print {
   .page-loader,
   .whatsapp-float {
@@ -383,6 +381,9 @@ section {
     <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 <script>
+    // ========== GLOBAL COMPONENT INITIALIZATION STORAGE ==========
+    window.componentInitializers = {};
+
     // ========== PERFORMANCE MONITORING ==========
     const performanceMetrics = {
       startTime: performance.now(),
@@ -398,8 +399,7 @@ section {
 
     // ========== PAGE INITIALIZATION ==========
     document.addEventListener("DOMContentLoaded", () => {
-      // Minimum loading time for smooth experience
-      const minLoadTime = 1500;
+      const minLoadTime = 1200; // Reduced from 1500ms
       const elapsedTime = performance.now() - performanceMetrics.startTime;
       const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
@@ -428,38 +428,33 @@ section {
 
       console.log('✅ All components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
       
-      // Initialize any global interactions after all components are loaded
       initializeGlobalInteractions();
     }
 
-    // ========== ENHANCED COMPONENT LOADER WITH DYNAMIC SUPPORT ==========
+    // ========== ENHANCED COMPONENT LOADER - FIXED FOR INTERACTIVE COMPONENTS ==========
     async function loadComponent(name, targetId) {
       try {
         const startTime = performance.now();
         
-        // Fetch HTML
         const htmlResp = await fetch(`${name}.html`);
         const htmlText = await htmlResp.text();
 
-        // Parse HTML
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlText;
 
-        // Get target element
         const targetElement = document.getElementById(targetId);
         if (!targetElement) {
           console.error(`❌ Target element #${targetId} not found`);
           return;
         }
 
-        // Extract and insert CSS styles with font inheritance
+        // Extract and insert CSS
         const styles = tempDiv.querySelectorAll('style');
         styles.forEach(style => {
           const styleElement = document.createElement('style');
           styleElement.innerHTML = style.innerHTML;
           styleElement.setAttribute('data-component', name);
 
-          // Ensure component styles inherit font family
           styleElement.innerHTML = styleElement.innerHTML.replace(
             /font-family:\s*'Montserrat'/gi,
             "font-family: 'Montserrat', sans-serif"
@@ -471,54 +466,61 @@ section {
           document.head.appendChild(styleElement);
         });
 
-        // Extract scripts before removing them
+        // Extract scripts
         const scripts = tempDiv.querySelectorAll('script');
         const scriptContents = Array.from(scripts).map(script => script.innerHTML);
 
-        // Clean up parsed HTML
+        // Clean up
         scripts.forEach(script => script.remove());
         styles.forEach(style => style.remove());
         
-        // Remove duplicate font links
         const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
         fontLinks.forEach(link => link.remove());
 
-        // Insert HTML content
+        // Insert HTML
         targetElement.innerHTML = tempDiv.innerHTML;
 
-        // ========== CRITICAL FIX: Extended DOM settling time ==========
-        await new Promise(resolve => setTimeout(resolve, 200));
+        // ========== CRITICAL: Wait for DOM to settle ==========
+        await new Promise(resolve => setTimeout(resolve, 100));
 
-        // Execute component scripts
+        // ========== EXECUTE SCRIPTS PERSISTENTLY ==========
         scriptContents.forEach(scriptContent => {
           if (scriptContent.trim()) {
             try {
-              const scriptElement = document.createElement('script');
-              scriptElement.innerHTML = scriptContent;
-              scriptElement.setAttribute('data-component', name);
-              document.body.appendChild(scriptElement);
+              // Create a wrapper function to isolate component code
+              const wrappedCode = `
+                (function() {
+                  ${scriptContent}
+                })();
+              `;
+              
+              // Execute immediately
+              const func = new Function(wrappedCode);
+              func();
 
-              // ========== EXTENDED CLEANUP DELAY FOR INTERACTIVE COMPONENTS ==========
-              setTimeout(() => {
-                if (scriptElement.parentNode) {
-                  scriptElement.parentNode.removeChild(scriptElement);
-                }
-              }, 2000); // Increased from 500ms to 2000ms
+              console.log(`✅ ${name} script executed`);
             } catch (scriptError) {
               console.error(`❌ Error executing script in ${name}:`, scriptError);
             }
           }
         });
 
-        // ========== SPECIAL HANDLING FOR GALLERY COMPONENT ==========
+        // ========== COMPONENT-SPECIFIC INITIALIZATION ==========
+        if (name === 'categories') {
+          // Give categories extra time to initialize
+          setTimeout(() => {
+            if (typeof window.initializeCategories === 'function') {
+              window.initializeCategories();
+              console.log('✅ Categories manually initialized');
+            }
+          }, 200);
+        }
+
         if (name === 'gallery') {
-          // Give gallery extra time to settle, then manually initialize
           setTimeout(() => {
             if (typeof window.initializeGallery === 'function') {
               window.initializeGallery();
-              console.log('✅ Gallery manually re-initialized after dynamic loading');
-            } else {
-              console.warn('⚠️ Gallery initialization function not found');
+              console.log('✅ Gallery manually initialized');
             }
           }, 300);
         }
@@ -533,7 +535,7 @@ section {
 
     // ========== GLOBAL INTERACTIONS ==========
     function initializeGlobalInteractions() {
-      // Smooth scroll for all internal links
+      // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
@@ -544,7 +546,7 @@ section {
           const targetElement = document.getElementById(targetId);
           
           if (targetElement) {
-            const headerHeight = 100;
+            const headerHeight = 80; // Reduced from 100px
             const targetPosition = targetElement.offsetTop - headerHeight;
             
             window.scrollTo({
@@ -585,7 +587,7 @@ section {
         const targetElement = document.getElementById(sectionId);
 
         if (targetElement) {
-          const headerHeight = 100;
+          const headerHeight = 80; // Reduced from 100px
           const targetPosition = targetElement.offsetTop - headerHeight;
 
           window.scrollTo({
@@ -614,8 +616,6 @@ section {
 ✅ Total Load Time: ${loadTime}ms
 ✅ Fonts Loaded: ${performanceMetrics.fontsLoaded ? 'Yes' : 'No'}
 ✅ Components Loaded: ${performanceMetrics.componentsLoaded}/7
-✅ DOM Interactive: ${Math.round(performance.timing.domInteractive - performance.timing.navigationStart)}ms
-✅ DOM Complete: ${Math.round(performance.timing.domComplete - performance.timing.navigationStart)}ms
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       `);
     });
@@ -623,4 +623,3 @@ section {
 </body>
 
 </html>
-

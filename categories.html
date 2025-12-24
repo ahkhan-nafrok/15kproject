@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,532 +11,690 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
- /* ========== COLOR SYSTEM ========== */
-    :root {
-      --primary-blue: #2673B8;
-      --pure-black: #000000;
-      --pure-white: #F2F4F7;
-      --off-white: #EDF0F4;
-      --text-dark: #0A0A0A;
-      --light-gray: #E8EBF0;
-      --whatsapp-green: #25D366;
+:root {
+    --primary-blue: #2673B8;
+    --pure-black: #000000;
+    --pure-white: #F2F4F7;
+    --off-white: #EDF0F4;
+    --text-dark: #0A0A0A;
+    --light-gray: #E8EBF0;
+    --whatsapp-green: #25D366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* COMPACT CATEGORIES SECTION */
+.categories-section {
+    background: var(--off-white);
+    padding: 3rem 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+}
+
+/* COMPACT HEADER */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 0.8rem;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4vw, 2.5rem); /* Was 3.5rem, now max 2.5rem */
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--pure-black);
+    line-height: 1.1;
+}
+
+/* CATEGORIES GRID - 3 COLUMNS */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.3rem;
+}
+
+/* CARD WRAPPER */
+.category-card {
+    position: relative;
+    height: 400px; /* Was 450px */
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
+    cursor: pointer;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(38, 115, 184, 0.3);
+}
+
+.category-card:hover::before {
+    transform: scaleX(1);
+}
+
+.category-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at top left,
+        rgba(38, 115, 184, 0.25) 0%,
+        rgba(38, 115, 184, 0.12) 25%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.category-card:hover::after {
+    opacity: 1;
+}
+
+.category-corner-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(
+        circle at top right,
+        rgba(38, 115, 184, 0.15) 0%,
+        transparent 70%
+    );
+    opacity: 0.6;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.category-card:hover .category-corner-accent {
+    opacity: 1;
+}
+
+/* IMAGE LAYER */
+.category-image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+}
+
+.category-card.show-selection .category-image-layer {
+    transform: scale(1.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card:hover .category-image {
+    transform: scale(1.05);
+}
+
+/* GRADIENT OVERLAY */
+.category-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: 
+        linear-gradient(
+            to right,
+            rgba(38, 115, 184, 0.08) 0%,
+            transparent 20%,
+            transparent 80%,
+            rgba(38, 115, 184, 0.08) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.7) 40%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.8rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card:hover .category-overlay {
+    height: 45%;
+    background: 
+        linear-gradient(
+            to right,
+            rgba(38, 115, 184, 0.15) 0%,
+            transparent 15%,
+            transparent 85%,
+            rgba(38, 115, 184, 0.15) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.98) 0%,
+            rgba(0, 0, 0, 0.75) 50%,
+            rgba(0, 0, 0, 0) 100%
+        );
+}
+
+.category-content {
+    position: relative;
+    z-index: 5;
+}
+
+.category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* Was 2rem */
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: var(--pure-white);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-title {
+    color: var(--primary-blue);
+    transform: translateX(5px);
+}
+
+.category-description {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.875rem; /* Was 0.95rem */
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 90%;
+}
+
+.category-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pure-white);
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-cta {
+    color: var(--primary-blue);
+    transform: translateX(5px);
+}
+
+.category-cta i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-cta i {
+    transform: translateX(5px);
+}
+
+/* SELECTION OVERLAY */
+.selection-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--pure-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.8rem;
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 20;
+}
+
+.category-card.show-selection .selection-panel {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+.selection-panel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.selection-options {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.selection-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.3rem 1.8rem;
+    background: var(--off-white);
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.selection-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary-blue);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.selection-btn:hover {
+    background: var(--pure-white);
+    border-color: var(--primary-blue);
+    transform: translateX(8px);
+    box-shadow: 0 8px 30px rgba(38, 115, 184, 0.15);
+}
+
+.selection-btn:hover::before {
+    transform: scaleY(1);
+}
+
+.selection-btn-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.selection-btn:hover .selection-btn-text {
+    color: var(--primary-blue);
+}
+
+.selection-btn-icon {
+    font-size: 1rem;
+    color: var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+.selection-btn:hover .selection-btn-icon {
+    transform: translateX(5px);
+}
+
+/* BACK BUTTON */
+.back-btn {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.category-card.show-selection .back-btn {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+}
+
+.back-btn i {
+    font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 2rem;
     }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .category-card {
+        height: 380px;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--off-white);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+    .categories-grid {
+        gap: 1.2rem;
+    }
+}
 
-        /* CATEGORIES SECTION */
-        .categories-section {
-            background: var(--off-white);
-            padding: 6rem 0;
-        }
+@media (max-width: 991px) {
+    .categories-section {
+        padding: 2.5rem 0;
+    }
 
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 4rem;
-        }
+    .section-header {
+        margin-bottom: 2rem;
+    }
 
-        /* MINIMAL SECTION HEADER */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.3rem;
+    }
 
-        .section-label {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-        }
+    .category-card {
+        height: 380px;
+    }
 
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            color: var(--pure-black);
-            line-height: 0.95;
-        }
+    .category-title {
+        font-size: 1.4rem;
+    }
 
-        /* CATEGORIES GRID - 3 COLUMNS */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
+    .selection-panel {
+        padding: 2.2rem 1.8rem;
+    }
+}
 
-        /* FULL IMAGE CARD - PREMIUM MINIMAL */
-        .category-card {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-            text-decoration: none;
-            display: block;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
-        }
+@media (max-width: 768px) {
+    .categories-section {
+        padding: 2.5rem 0;
+    }
 
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--primary-blue);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 10;
-        }
+    .category-card {
+        height: 360px;
+    }
 
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.2),
-                inset 0 0 0 1px rgba(38, 115, 184, 0.3);
-        }
+    .category-overlay {
+        padding: 1.5rem;
+    }
 
-        .category-card:hover::before {
-            transform: scaleX(1);
-        }
+    .category-title {
+        font-size: 1.3rem;
+    }
 
-        /* PREMIUM BLUE GRADIENT ACCENT - TOP LEFT */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                circle at top left,
-                rgba(38, 115, 184, 0.25) 0%,
-                rgba(38, 115, 184, 0.12) 25%,
-                transparent 50%
-            );
-            opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            z-index: 2;
-        }
+    .category-description {
+        font-size: 0.85rem;
+    }
 
-        .category-card:hover::after {
-            opacity: 1;
-        }
+    .selection-btn {
+        padding: 1.2rem 1.5rem;
+    }
 
-        /* SUBTLE CORNER ACCENT */
-        .category-corner-accent {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(
-                circle at top right,
-                rgba(38, 115, 184, 0.15) 0%,
-                transparent 70%
-            );
-            opacity: 0.6;
-            z-index: 1;
-            transition: opacity 0.5s ease;
-        }
+    .selection-btn-text {
+        font-size: 1rem;
+    }
+}
 
-        .category-card:hover .category-corner-accent {
-            opacity: 1;
-        }
+@media (max-width: 576px) {
+    .container {
+        padding: 0 1.2rem;
+    }
 
-        /* FULL IMAGE */
-        .category-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    .section-label {
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+    }
 
-        .category-card:hover .category-image {
-            transform: scale(1.05);
-        }
+    .categories-grid {
+        gap: 1.1rem;
+    }
 
-        /* PREMIUM GRADIENT OVERLAY SYSTEM */
-        .category-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40%;
-            background: 
-                linear-gradient(
-                    to right,
-                    rgba(38, 115, 184, 0.08) 0%,
-                    transparent 20%,
-                    transparent 80%,
-                    rgba(38, 115, 184, 0.08) 100%
-                ),
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.95) 0%,
-                    rgba(0, 0, 0, 0.7) 40%,
-                    rgba(0, 0, 0, 0) 100%
-                );
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2.5rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    .category-card {
+        height: 340px;
+    }
 
-        .category-card:hover .category-overlay {
-            height: 45%;
-            background: 
-                linear-gradient(
-                    to right,
-                    rgba(38, 115, 184, 0.15) 0%,
-                    transparent 15%,
-                    transparent 85%,
-                    rgba(38, 115, 184, 0.15) 100%
-                ),
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.98) 0%,
-                    rgba(0, 0, 0, 0.75) 50%,
-                    rgba(0, 0, 0, 0) 100%
-                );
-        }
+    .category-overlay {
+        padding: 1.3rem;
+        height: 45%;
+    }
 
-        /* PREMIUM BLUE GRADIENT ACCENT - TOP LEFT */
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                circle at top left,
-                rgba(38, 115, 184, 0.25) 0%,
-                rgba(38, 115, 184, 0.12) 25%,
-                transparent 50%
-            );
-            opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            z-index: 2;
-        }
+    .category-title {
+        font-size: 1.2rem;
+    }
 
-        .category-card:hover::after {
-            opacity: 1;
-        }
+    .category-description {
+        font-size: 0.8rem;
+        margin-bottom: 0.9rem;
+    }
 
-        /* GRADIENT BORDER EFFECT */
-        .category-card {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-            text-decoration: none;
-            display: block;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
-        }
+    .category-cta {
+        font-size: 0.65rem;
+        letter-spacing: 1.2px;
+    }
 
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.2),
-                inset 0 0 0 1px rgba(38, 115, 184, 0.3);
-        }
+    .selection-panel {
+        padding: 1.8rem 1.3rem;
+    }
 
-        /* TEXT CONTENT */
-        .category-content {
-            position: relative;
-            z-index: 5;
-        }
+    .selection-panel-title {
+        font-size: 0.85rem;
+        margin-bottom: 1.8rem;
+    }
 
-        .category-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: var(--pure-white);
-            margin-bottom: 0.8rem;
-            line-height: 1.1;
-            transition: all 0.3s ease;
-        }
+    .selection-options {
+        gap: 0.9rem;
+    }
 
-        .category-card:hover .category-title {
-            color: var(--primary-blue);
-            transform: translateX(5px);
-        }
+    .selection-btn {
+        padding: 1.1rem 1.3rem;
+    }
 
-        .category-description {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            max-width: 90%;
-        }
+    .selection-btn-text {
+        font-size: 0.95rem;
+    }
 
-        /* MINIMAL CTA */
-        .category-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--pure-white);
-            transition: all 0.3s ease;
-        }
+    .selection-btn-icon {
+        font-size: 0.95rem;
+    }
 
-        .category-card:hover .category-cta {
-            color: var(--primary-blue);
-            transform: translateX(5px);
-        }
+    .back-btn {
+        top: 1.3rem;
+        left: 1.3rem;
+        font-size: 0.65rem;
+    }
+}
 
-        .category-cta i {
-            font-size: 0.85rem;
-            transition: transform 0.3s ease;
-        }
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .category-card:hover .category-cta i {
-            transform: translateX(5px);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 3rem;
-            }
-
-            .section-title {
-                font-size: 4rem;
-            }
-
-            .category-card {
-                height: 550px;
-            }
-
-            .categories-grid {
-                gap: 1.8rem;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .categories-section {
-                padding: 4rem 0;
-            }
-
-            .container {
-                padding: 0 2rem;
-            }
-
-            .section-header {
-                margin-bottom: 3rem;
-            }
-
-            .section-title {
-                font-size: 3.5rem;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .category-card {
-                height: 500px;
-            }
-
-            .category-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .categories-section {
-                padding: 3rem 0;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .category-card {
-                height: 450px;
-            }
-
-            .category-overlay {
-                padding: 2rem;
-            }
-
-            .category-title {
-                font-size: 2rem;
-            }
-
-            .category-description {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .section-label {
-                font-size: 0.65rem;
-                letter-spacing: 2px;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .categories-grid {
-                gap: 1.5rem;
-            }
-
-            .category-card {
-                height: 400px;
-            }
-
-            .category-overlay {
-                padding: 1.8rem 1.5rem;
-                height: 45%;
-            }
-
-            .category-card:hover .category-overlay {
-                height: 50%;
-            }
-
-            .category-title {
-                font-size: 1.8rem;
-            }
-
-            .category-description {
-                font-size: 0.9rem;
-                margin-bottom: 1.2rem;
-            }
-
-            .category-cta {
-                font-size: 0.75rem;
-                letter-spacing: 1.5px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .category-card {
-                height: 350px;
-            }
-
-            .category-title {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* SCROLL ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
+.animate-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
     </style>
 </head>
 <body>
     <section class="categories-section" id="collections">
         <div class="container">
-            <!-- MINIMAL HEADER -->
             <div class="section-header">
                 <p class="section-label">Our Collections</p>
                 <h2 class="section-title">Categories</h2>
             </div>
 
-            <!-- 3 CATEGORIES GRID -->
             <div class="categories-grid">
-                <!-- CATEGORY 1: -->
-                <a href="marble.html" class="category-card">
+                <!-- GRANITES -->
+                <div class="category-card" data-category="granites">
                     <div class="category-corner-accent"></div>
-                    <img src="assets/granites.webp" alt="Residential Solutions" class="category-image">
-                    <div class="category-overlay">
-                        <div class="category-content">
-                            <h3 class="category-title">Granites</h3>
-                            <p class="category-description">
-                                Premium solutions for homes and living spaces.
-                            </p>
-                            <span class="category-cta">
-                                Explore
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
+                    
+                    <div class="category-image-layer">
+                        <img src="assets/granites.webp" alt="Granites Collection" class="category-image">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="category-title">Granites</h3>
+                                <p class="category-description">
+                                    Premium solutions for homes and living spaces.
+                                </p>
+                                <span class="category-cta">
+                                    Select Region
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </a>
 
-                <!-- CATEGORY 2:  -->
-                <a href="#" class="category-card">
-                    <div class="category-corner-accent"></div>
-                    <img src="assets/marbles.webp" alt="Commercial Projects" class="category-image">
-                    <div class="category-overlay">
-                        <div class="category-content">
-                            <h3 class="category-title">Marbles</h3>
-                            <p class="category-description">
-                                Large-scale projects for businesses and enterprises.
-                            </p>
-                            <span class="category-cta">
-                                Explore
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
+                    <div class="selection-panel">
+                        <button class="back-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <h4 class="selection-panel-title">Select Region</h4>
+                        <div class="selection-options">
+                            <a href="north-indian-granites.html" class="selection-btn">
+                                <span class="selection-btn-text">North Indian Granites</span>
+                                <i class="fas fa-arrow-right selection-btn-icon"></i>
+                            </a>
+                            <a href="south-indian-granites.html" class="selection-btn">
+                                <span class="selection-btn-text">South Indian Granites</span>
+                                <i class="fas fa-arrow-right selection-btn-icon"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <!-- CATEGORY 3:  -->
-                <a href="#" class="category-card">
+                <!-- MARBLES -->
+                <div class="category-card" data-category="marbles">
                     <div class="category-corner-accent"></div>
-                    <img src="assets/limestone.webp" alt="Custom Solutions" class="category-image">
-                    <div class="category-overlay">
-                        <div class="category-content">
-                            <h3 class="category-title">LimeStones</h3>
-                            <p class="category-description">
-                                Bespoke designs tailored to your unique vision.
-                            </p>
-                            <span class="category-cta">
-                                Explore
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
+                    
+                    <div class="category-image-layer">
+                        <img src="assets/marbles.webp" alt="Marbles Collection" class="category-image">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="category-title">Marbles</h3>
+                                <p class="category-description">
+                                    Large-scale projects for businesses and enterprises.
+                                </p>
+                                <span class="category-cta">
+                                    Select Region
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selection-panel">
+                        <button class="back-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <h4 class="selection-panel-title">Select Region</h4>
+                        <div class="selection-options">
+                            <a href="north-indian-marbles.html" class="selection-btn">
+                                <span class="selection-btn-text">North Indian Marbles</span>
+                                <i class="fas fa-arrow-right selection-btn-icon"></i>
+                            </a>
+                            <a href="south-indian-marbles.html" class="selection-btn">
+                                <span class="selection-btn-text">South Indian Marbles</span>
+                                <i class="fas fa-arrow-right selection-btn-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIMESTONES -->
+                <a href="limestones.html" class="category-card">
+                    <div class="category-corner-accent"></div>
+                    <div class="category-image-layer">
+                        <img src="assets/limestone.webp" alt="Limestones Collection" class="category-image">
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h3 class="category-title">LimeStones</h3>
+                                <p class="category-description">
+                                    Bespoke designs tailored to your unique vision.
+                                </p>
+                                <span class="category-cta">
+                                    Explore
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -546,7 +703,9 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        window.initializeCategories = function() {
+            console.log('🔧 Initializing categories component...');
+
             const observerOptions = {
                 threshold: 0.15,
                 rootMargin: '0px 0px -80px 0px'
@@ -561,18 +720,55 @@
                 });
             }, observerOptions);
 
-            const header = document.querySelector('.section-header');
+            const header = document.querySelector('#categoriesComponent .section-header');
             if (header) observer.observe(header);
 
-            const cards = document.querySelectorAll('.category-card');
+            const cards = document.querySelectorAll('#categoriesComponent .category-card');
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.15}s`;
                 observer.observe(card);
             });
 
-            console.log('✅ Premium categories with gradient effects - Blue radial overlay + gradient border + corner accents');
-        });
+            const selectableCards = document.querySelectorAll('#categoriesComponent .category-card[data-category]');
+            
+            selectableCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (category === 'granites' || category === 'marbles') {
+                    const newCard = card.cloneNode(true);
+                    card.parentNode.replaceChild(newCard, card);
+
+                    newCard.addEventListener('click', function(e) {
+                        if (!e.target.closest('.back-btn') && !e.target.closest('.selection-btn')) {
+                            e.preventDefault();
+                            newCard.classList.add('show-selection');
+                        }
+                    });
+
+                    const newBackBtn = newCard.querySelector('.back-btn');
+                    if (newBackBtn) {
+                        newBackBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            newCard.classList.remove('show-selection');
+                        });
+                    }
+                }
+            });
+
+            console.log('✅ Minimalist Categories initialized');
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function() {
+                    window.initializeCategories();
+                }, 100);
+            });
+        } else {
+            setTimeout(function() {
+                window.initializeCategories();
+            }, 100);
+        }
     </script>
 </body>
 </html>
-
