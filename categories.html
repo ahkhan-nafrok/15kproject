@@ -64,7 +64,7 @@ body {
 
 .section-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 4vw, 2.5rem); /* Was 3.5rem, now max 2.5rem */
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 900;
     letter-spacing: -1px;
     color: var(--pure-black);
@@ -81,7 +81,7 @@ body {
 /* CARD WRAPPER */
 .category-card {
     position: relative;
-    height: 400px; /* Was 450px */
+    height: 400px;
     overflow: hidden;
     text-decoration: none;
     display: block;
@@ -238,7 +238,7 @@ body {
 
 .category-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem; /* Was 2rem */
+    font-size: 1.5rem;
     font-weight: 900;
     letter-spacing: -0.5px;
     text-transform: uppercase;
@@ -255,7 +255,7 @@ body {
 
 .category-description {
     font-family: 'Raleway', sans-serif;
-    font-size: 0.875rem; /* Was 0.95rem */
+    font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.2px;
     color: rgba(255, 255, 255, 0.95);
@@ -641,9 +641,8 @@ body {
                 </div>
 
                 <!-- MARBLES -->
-                <div class="category-card" data-category="marbles">
+                <a href="marbles.html" class="category-card">
                     <div class="category-corner-accent"></div>
-                    
                     <div class="category-image-layer">
                         <img src="assets/marbles.webp" alt="Marbles Collection" class="category-image">
                         <div class="category-overlay">
@@ -653,31 +652,13 @@ body {
                                     Large-scale projects for businesses and enterprises.
                                 </p>
                                 <span class="category-cta">
-                                    Select Region
+                                    Explore
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="selection-panel">
-                        <button class="back-btn">
-                            <i class="fas fa-arrow-left"></i>
-                            Back
-                        </button>
-                        <h4 class="selection-panel-title">Select Region</h4>
-                        <div class="selection-options">
-                            <a href="north-indian-marbles.html" class="selection-btn">
-                                <span class="selection-btn-text">North Indian Marbles</span>
-                                <i class="fas fa-arrow-right selection-btn-icon"></i>
-                            </a>
-                            <a href="south-indian-marbles.html" class="selection-btn">
-                                <span class="selection-btn-text">South Indian Marbles</span>
-                                <i class="fas fa-arrow-right selection-btn-icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </a>
 
                 <!-- LIMESTONES -->
                 <a href="limestones.html" class="category-card">
@@ -720,40 +701,34 @@ body {
                 });
             }, observerOptions);
 
-            const header = document.querySelector('#categoriesComponent .section-header');
+            const header = document.querySelector('#collections .section-header');
             if (header) observer.observe(header);
 
-            const cards = document.querySelectorAll('#categoriesComponent .category-card');
+            const cards = document.querySelectorAll('#collections .category-card');
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.15}s`;
                 observer.observe(card);
             });
 
-            const selectableCards = document.querySelectorAll('#categoriesComponent .category-card[data-category]');
+            const granitesCard = document.querySelector('#collections .category-card[data-category="granites"]');
             
-            selectableCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (category === 'granites' || category === 'marbles') {
-                    const newCard = card.cloneNode(true);
-                    card.parentNode.replaceChild(newCard, card);
-
-                    newCard.addEventListener('click', function(e) {
-                        if (!e.target.closest('.back-btn') && !e.target.closest('.selection-btn')) {
-                            e.preventDefault();
-                            newCard.classList.add('show-selection');
-                        }
-                    });
-
-                    const newBackBtn = newCard.querySelector('.back-btn');
-                    if (newBackBtn) {
-                        newBackBtn.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            newCard.classList.remove('show-selection');
-                        });
+            if (granitesCard) {
+                granitesCard.addEventListener('click', function(e) {
+                    if (!e.target.closest('.back-btn') && !e.target.closest('.selection-btn')) {
+                        e.preventDefault();
+                        granitesCard.classList.add('show-selection');
                     }
+                });
+
+                const backBtn = granitesCard.querySelector('.back-btn');
+                if (backBtn) {
+                    backBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        granitesCard.classList.remove('show-selection');
+                    });
                 }
-            });
+            }
 
             console.log('✅ Minimalist Categories initialized');
         };
