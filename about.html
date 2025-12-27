@@ -68,7 +68,7 @@ body {
     border-bottom: 1px solid var(--light-gray);
     padding: 1.2rem 0;
     position: sticky;
-    top: 0;
+    top: 80px;  /* Changed from top: 0 to top: 80px */
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
@@ -179,7 +179,7 @@ body {
 
 .main-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 4vw, 2.5rem); /* Was 3.5rem, now max 2.5rem */
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 900;
     letter-spacing: -1px;
     color: var(--pure-black);
@@ -352,6 +352,120 @@ body {
     opacity: 0.7;
 }
 
+/* cards Section */
+.cards-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.cards-card {
+    background: var(--pure-white);
+    border: 1px solid var(--light-gray);
+    padding: 3rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.cards-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards-card:hover::before {
+    transform: scaleX(1);
+}
+
+.cards-card:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(38, 115, 184, 0.15);
+}
+
+.cards-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--primary-blue);
+    fill: none;
+    stroke-width: 1.5;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards-card:hover .cards-icon {
+    transform: scale(1.1) rotateY(360deg);
+}
+
+.cards-card:hover .cards-icon svg {
+    stroke: var(--primary-blue);
+    filter: drop-shadow(0 4px 8px rgba(38, 115, 184, 0.2));
+}
+
+.cards-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.cards-card:hover .cards-name {
+    transform: translateY(-2px);
+    letter-spacing: 1px;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cards-card.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-row.animate {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .hero-section {
@@ -388,6 +502,16 @@ body {
 
     .hero-image {
         max-height: 450px;
+    }
+
+    /* Mobile: 2x2 Grid */
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+    
+    .cards-card {
+        padding: 2.5rem 1.5rem;
     }
 }
 
@@ -485,21 +609,27 @@ body {
     .hero-image {
         max-height: 350px;
     }
-}
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
+    .cards-section {
+        padding: 3rem 1.2rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .cards-grid {
+        gap: 1rem;
     }
-}
-
-.animate {
-    animation: fadeInUp 0.8s ease forwards;
+    
+    .cards-card {
+        padding: 2rem 1rem;
+    }
+    
+    .cards-icon {
+        width: 52px;
+        height: 52px;
+    }
+    
+    .cards-name {
+        font-size: 1rem;
+    }
 }
     </style>
 </head>
@@ -615,25 +745,135 @@ body {
         </div>
     </section>
 
+    <section class="cards-section">
+        <div class="cards-grid">
+            <div class="cards-card" data-cards="granites">
+                <div class="cards-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 8L8 20L32 32L56 20L32 8Z"/>
+                        <path d="M8 28L32 40L56 28"/>
+                        <path d="M8 36L32 48L56 36"/>
+                        <path d="M16 24L32 32L48 24"/>
+                    </svg>
+                </div>
+                <div class="cards-name">Granites</div>
+            </div>
+
+            <div class="cards-card" data-cards="leather">
+                <div class="cards-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16C12 16 16 12 24 12C32 12 36 16 40 16C44 16 48 12 52 12C52 12 56 16 56 24C56 32 52 40 48 44C44 48 40 52 32 52C24 52 20 48 16 44C12 40 8 32 8 24C8 16 12 16 12 16Z"/>
+                        <path d="M24 24C24 24 28 28 32 28C36 28 40 24 40 24"/>
+                        <path d="M20 32C20 32 24 36 32 36C40 36 44 32 44 32"/>
+                    </svg>
+                </div>
+                <div class="cards-name">Leather</div>
+            </div>
+
+            <div class="cards-card" data-cards="paper">
+                <div class="cards-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="14" y="8" width="36" height="48" rx="1"/>
+                        <line x1="20" y1="18" x2="44" y2="18"/>
+                        <line x1="20" y1="26" x2="44" y2="26"/>
+                        <line x1="20" y1="34" x2="44" y2="34"/>
+                        <line x1="20" y1="42" x2="36" y2="42"/>
+                    </svg>
+                </div>
+                <div class="cards-name">Paper</div>
+            </div>
+
+            <div class="cards-card" data-cards="aquaculture">
+                <div class="cards-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 16C24 16 18 22 18 28C18 32 20 36 24 38"/>
+                        <path d="M32 16C40 16 46 22 46 28C46 32 44 36 40 38"/>
+                        <ellipse cx="32" cy="32" rx="8" ry="6"/>
+                        <path d="M28 38C28 38 26 42 26 46C26 50 28 52 32 52C36 52 38 50 38 46C38 42 36 38 36 38"/>
+                        <path d="M24 28L20 26"/>
+                        <path d="M40 28L44 26"/>
+                        <line x1="32" y1="24" x2="32" y2="20"/>
+                    </svg>
+                </div>
+                <div class="cards-name">Aquaculture</div>
+            </div>
+        </div>
+    </section>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const statRows = document.querySelectorAll('.stat-row');
+        // ========== INITIALIZATION FUNCTION ==========
+        function initializeAboutComponent() {
+            console.log('🎨 Initializing About Component...');
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, index * 100);
-                        observer.unobserve(entry.target);
-                    }
+            // Initialize stat rows
+            const statRows = document.querySelectorAll('.stat-row');
+            if (statRows.length > 0) {
+                const statObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate');
+                            }, index * 100);
+                            statObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                statRows.forEach(row => statObserver.observe(row));
+                console.log('✅ Stat rows initialized:', statRows.length);
+            }
+
+            // Initialize cards cards
+            const cardsCards = document.querySelectorAll('.cards-card');
+            if (cardsCards.length > 0) {
+                const cardsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate');
+                            }, index * 100);
+                            cardsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { 
+                    threshold: 0.2,
+                    rootMargin: '0px 0px -50px 0px'
                 });
-            }, { threshold: 0.2 });
 
-            statRows.forEach(row => observer.observe(row));
+                cardsCards.forEach(card => {
+                    cardsObserver.observe(card);
+                    
+                    // Add click handler
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const cards = this.dataset.cards;
+                        console.log(`📦 cards clicked: ${cards}`);
+                        // Add your navigation logic here
+                    });
+                });
 
-            console.log('✅ Minimalist About section initialized');
-        });
+                console.log('✅ cards cards initialized:', cardsCards.length);
+            }
+
+            console.log('✅ About Component fully initialized');
+        }
+
+        // ========== SMART INITIALIZATION ==========
+        // This ensures the component works both standalone and when loaded dynamically
+        if (document.readyState === 'loading') {
+            // Document still loading - wait for DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', initializeAboutComponent);
+        } else {
+            // Document already loaded - initialize immediately
+            // Use setTimeout to ensure DOM is fully ready
+            setTimeout(initializeAboutComponent, 50);
+        }
+
+        // ========== EXPOSE GLOBAL FUNCTION FOR INDEX.HTML ==========
+        // Your index.html looks for this function
+        window.initializeAbout = initializeAboutComponent;
+        
+        console.log('📄 About.html script loaded');
     </script>
 </body>
 </html>
