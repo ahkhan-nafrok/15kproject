@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Marbles - BNB Enterprises</title>
+    <title>Luxury Limestone - BNB Enterprises</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@ body.modal-open {
     overflow: hidden;
 }
 
-/* MARBLES SECTION - OPTIMIZED */
+/* LIMESTONE SECTION - OPTIMIZED */
 .marbles-section {
     background: var(--background-base);
     padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 2.5rem);
@@ -151,7 +151,7 @@ body.modal-open {
     max-width: 600px;
 }
 
-/* FILTER BAR - COMPACT (REMOVED SORT) */
+/* FILTER BAR - COMPACT */
 .filter-bar {
     display: flex;
     align-items: center;
@@ -239,7 +239,7 @@ body.modal-open {
     }
 }
 
-/* PRODUCT CARD - OPTIMIZED (NO BATCH BADGE) */
+/* PRODUCT CARD - OPTIMIZED */
 .product-card {
     background: var(--surface-light);
     border: 1px solid var(--border-color);
@@ -818,15 +818,15 @@ body.modal-open {
                 <div class="header-top">
                     <div class="header-content">
                         <div class="breadcrumb">
-                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Marbles</span>
+                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Luxury Limestone</span>
                         </div>
                         <button class="back-button" id="backButton">
                             <i class="fas fa-arrow-left"></i>
                             Back
                         </button>
-                        <h1 class="page-title">Premium Marbles</h1>
+                        <h1 class="page-title">Luxury Limestone</h1>
                         <p class="page-description">
-                            Discover our curated collection of premium marble slabs, sourced globally and crafted to elevate any space with timeless elegance.
+                            Discover our premium collection of natural limestone slabs featuring exceptional durability, earthy tones, and versatile finishes perfect for elegant flooring, wall cladding, and architectural excellence.
                         </p>
                     </div>
 
@@ -835,21 +835,20 @@ body.modal-open {
                             <label class="filter-label">Color</label>
                             <select class="filter-select" id="colorFilter">
                                 <option value="all">All Colors</option>
-                                <option value="black">Black</option>
-                                <option value="white">White</option>
-                                <option value="grey">Grey</option>
-                                <option value="beige">Beige</option>
+                                <option value="yellow">Yellow/Beige</option>
+                                <option value="blue">Blue/Grey</option>
                                 <option value="brown">Brown</option>
+                                <option value="black">Black</option>
                             </select>
                         </div>
 
                         <div class="filter-group">
-                            <label class="filter-label">Finish</label>
-                            <select class="filter-select" id="finishFilter">
-                                <option value="all">All Finishes</option>
-                                <option value="polished">Polished</option>
-                                <option value="honed">Honed</option>
-                                <option value="pepper">Pepper</option>
+                            <label class="filter-label">Type</label>
+                            <select class="filter-select" id="typeFilter">
+                                <option value="all">All Types</option>
+                                <option value="tandur">Tandur</option>
+                                <option value="kota">Kota Stone</option>
+                                <option value="kadappa">Kadappa</option>
                             </select>
                         </div>
                     </div>
@@ -858,7 +857,7 @@ body.modal-open {
                 <!-- RESULTS BAR -->
                 <div class="results-bar">
                     <div class="results-count">
-                        Showing <span id="currentCount">11</span> of <span id="totalCount">11</span> products
+                        Showing <span id="currentCount">5</span> of <span id="totalCount">5</span> products
                     </div>
                 </div>
             </div>
@@ -871,28 +870,28 @@ body.modal-open {
                     <p class="no-results-text">Try adjusting your filters to see more options</p>
                 </div>
 
-                <!-- PRODUCT CARD 1 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Bash Paradiso" data-thickness="20mm" data-material="Premium Granite">
+                <!-- PRODUCT CARD 1 - TANDUR YELLOW -->
+                <div class="product-card" data-color="yellow" data-type="tandur" data-name="Tandur Yellow Limestone" data-thickness="18mm" data-material="Natural Tandur Stone">
                     <div class="product-image-container">
-                        <img src="Marbles/bash-pardisco.webp" alt="Bash Paradiso Marble" class="product-image">
+                        <img src="Limestone/Tandur-Yellow-Limestone-rotated.webp" alt="Tandur Yellow Limestone" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Bash Paradiso</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Rich brown tones with golden veins create a warm, luxurious aesthetic perfect for premium countertops and feature walls.</p>
+                        <h3 class="product-name">Tandur Yellow Limestone</h3>
+                        <p class="product-material">Natural Tandur Stone</p>
+                        <p class="product-description">Premium Tandur Yellow limestone featuring warm golden-beige tones and natural texture. Ideal for traditional flooring, exterior paving, heritage projects, and creating timeless Indian architectural aesthetics with exceptional durability and slip-resistant finish.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
+                                <span class="spec-value">Yellow/Beige</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Tandur</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -908,16 +907,127 @@ body.modal-open {
                     </div>
                 </div>
 
-                <!-- PRODUCT CARD 2 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Forest" data-thickness="20mm" data-material="Premium Granite">
+                <!-- PRODUCT CARD 2 - KOTA BLUE -->
+                <div class="product-card" data-color="blue" data-type="kota" data-name="Kota Blue Limestone" data-thickness="18mm" data-material="Premium Kota Stone">
                     <div class="product-image-container">
-                        <img src="Marbles/042-Black-Forest.webp" alt="Black Forest Marble" class="product-image">
+                        <img src="Limestone/Kota-Blue-Limestone-rotated.webp" alt="Kota Blue Limestone" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Black Forest</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Deep black base with dramatic white and grey veining, offering a bold statement for modern interiors and dramatic spaces.</p>
+                        <h3 class="product-name">Kota Blue Limestone</h3>
+                        <p class="product-material">Premium Kota Stone</p>
+                        <p class="product-description">Classic Kota Blue limestone with distinctive blue-grey tones and superior hardness. Perfect for heavy traffic commercial flooring, outdoor pathways, contemporary interiors, and creating elegant spaces with low maintenance requirements and natural anti-skid properties.</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Blue/Grey</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">18mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Kota Stone</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 3 - KOTA BROWN -->
+                <div class="product-card" data-color="brown" data-type="kota" data-name="Kota Brown Limestone" data-thickness="18mm" data-material="Classic Kota Stone">
+                    <div class="product-image-container">
+                        <img src="Limestone/Kota-Brown-Limestone-rotated.webp" alt="Kota Brown Limestone" class="product-image">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kota Brown Limestone</h3>
+                        <p class="product-material">Classic Kota Stone</p>
+                        <p class="product-description">Traditional Kota Brown limestone featuring rich earthy brown tones and excellent durability. Ideal for rustic interiors, farmhouse flooring, courtyard paving, and creating warm welcoming spaces with authentic Indian stone character and timeless natural beauty.</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Brown</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">18mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Kota Stone</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 4 - TANDUR BLUE -->
+                <div class="product-card" data-color="blue" data-type="tandur" data-name="Tandur Blue Limestone" data-thickness="18mm" data-material="Natural Tandur Stone">
+                    <div class="product-image-container">
+                        <img src="Limestone/Tandur-Blue-Limestone-rotated.webp" alt="Tandur Blue Limestone" class="product-image">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Tandur Blue Limestone</h3>
+                        <p class="product-material">Natural Tandur Stone</p>
+                        <p class="product-description">Elegant Tandur Blue limestone with cool blue-grey hues and natural stone texture. Perfect for modern architecture, pool surrounds, exterior cladding, and creating sophisticated contemporary spaces with weather-resistant properties and unique organic patterns.</p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Color</span>
+                                <span class="spec-value">Blue/Grey</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Thickness</span>
+                                <span class="spec-value">18mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Tandur</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="tel:+919876543210" class="action-btn call-btn">
+                                <i class="fas fa-phone-alt"></i>
+                                Call Us
+                            </a>
+                            <button class="action-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT CARD 5 - KADAPPA BLACK -->
+                <div class="product-card" data-color="black" data-type="kadappa" data-name="Kadappa Black Limestone" data-thickness="18mm" data-material="Premium Kadappa Stone">
+                    <div class="product-image-container">
+                        <img src="Limestone/Kadappa-Black-Limestone-rotated.webp" alt="Kadappa Black Limestone" class="product-image">
+                        <button class="quick-view">Quick View</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kadappa Black Limestone</h3>
+                        <p class="product-material">Premium Kadappa Stone</p>
+                        <p class="product-description">Luxurious Kadappa Black limestone featuring deep charcoal-black tones and premium quality finish. Exceptional for luxury residential flooring, commercial lobbies, feature walls, and creating dramatic sophisticated interiors with elegant polished or honed surface options.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
@@ -925,344 +1035,11 @@ body.modal-open {
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 3 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Galaxy Granite" data-thickness="20mm" data-material="Premium Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/Black-Galaxy-Granite.png.webp" alt="Black Galaxy Granite Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Black Galaxy Granite</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Stunning black granite with sparkling golden flecks resembling a starry night sky, perfect for elegant kitchen and bathroom designs.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 4 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Brown Fantasy" data-thickness="20mm" data-material="Fantasy Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/BROWN FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Brown Fantasy</h3>
-                        <p class="product-material">Fantasy Granite</p>
-                        <p class="product-description">Exotic blend of brown, cream, and gold tones with unique patterns, creating a warm and inviting ambiance in any setting.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 5 -->
-                <div class="product-card" data-color="grey" data-finish="honed" data-name="Chambord Grey Limestone" data-thickness="20mm" data-material="Honed Limestone">
-                    <div class="product-image-container">
-                        <img src="Marbles/chamboard.webp" alt="Chambord Grey Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Chambord Grey Limestone</h3>
-                        <p class="product-material">Honed Limestone</p>
-                        <p class="product-description">Sophisticated grey limestone with subtle veining and matte finish, ideal for contemporary flooring and wall applications.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Honed</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 6 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Coffee Brown" data-thickness="20mm" data-material="Premium Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/Coffee-Brown_2.webp" alt="Coffee Brown Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Coffee Brown</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Rich coffee brown granite with flowing cream veins, offering warmth and elegance to kitchens, bathrooms, and living spaces.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 7 -->
-                <div class="product-card" data-color="beige" data-finish="polished" data-name="Crystal Yellow Granite" data-thickness="20mm" data-material="Yellow Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/crystal-yellow-granite-polished.webp" alt="Crystal Yellow Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Crystal Yellow Granite</h3>
-                        <p class="product-material">Yellow Granite</p>
-                        <p class="product-description">Vibrant yellow granite with crystalline sparkle and gold undertones, bringing brightness and energy to any interior design.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Beige/Yellow</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 8 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Fantasy Brown Dark" data-thickness="20mm" data-material="Fantasy Marble">
-                    <div class="product-image-container">
-                        <img src="Marbles/Fantasy Brown Dark.webp" alt="Fantasy Brown Dark" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Fantasy Brown Dark</h3>
-                        <p class="product-material">Fantasy Marble</p>
-                        <p class="product-description">Deep brown fantasy marble with intricate patterns and cream veining, adding depth and character to countertops and backsplashes.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 9 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="River White" data-thickness="20mm" data-material="Premium Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/RIVER WHITE.webp" alt="River White Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">River White</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Clean white granite with grey and burgundy veining, offering a timeless and elegant look for classic and contemporary spaces.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">White</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 10 -->
-                <div class="product-card" data-color="grey" data-finish="polished" data-name="Steel Grey Granite" data-thickness="20mm" data-material="Steel Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/steel-grey-granite-polished.webp" alt="Steel Grey Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Steel Grey Granite</h3>
-                        <p class="product-material">Steel Granite</p>
-                        <p class="product-description">Industrial-chic grey granite with steel-like finish and subtle patterns, perfect for modern minimalist and urban design aesthetics.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 11 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Tan Brown" data-thickness="20mm" data-material="Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/tan-brown-.webp" alt="Tan Brown Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Tan Brown</h3>
-                        <p class="product-material">Indian Granite</p>
-                        <p class="product-description">Classic tan and brown granite with black flecks, providing durability and warmth for high-traffic areas and kitchen installations.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Kadappa</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1325,9 +1102,9 @@ body.modal-open {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // ===== FILTER SYSTEM (REMOVED SORT) =====
+            // ===== FILTER SYSTEM =====
             const colorFilter = document.getElementById('colorFilter');
-            const finishFilter = document.getElementById('finishFilter');
+            const typeFilter = document.getElementById('typeFilter');
             const productsGrid = document.getElementById('productsGrid');
             const productCards = Array.from(document.querySelectorAll('.product-card:not(.no-results)'));
             const currentCountSpan = document.getElementById('currentCount');
@@ -1338,16 +1115,16 @@ body.modal-open {
 
             function filterProducts() {
                 const colorValue = colorFilter.value;
-                const finishValue = finishFilter.value;
+                const typeValue = typeFilter.value;
 
                 filteredProducts = productCards.filter(card => {
                     const cardColor = card.dataset.color;
-                    const cardFinish = card.dataset.finish;
+                    const cardType = card.dataset.type;
 
                     const colorMatch = colorValue === 'all' || cardColor === colorValue;
-                    const finishMatch = finishValue === 'all' || cardFinish === finishValue;
+                    const typeMatch = typeValue === 'all' || cardType === typeValue;
 
-                    return colorMatch && finishMatch;
+                    return colorMatch && typeMatch;
                 });
 
                 updateDisplay();
@@ -1373,7 +1150,7 @@ body.modal-open {
             }
 
             colorFilter.addEventListener('change', filterProducts);
-            finishFilter.addEventListener('change', filterProducts);
+            typeFilter.addEventListener('change', filterProducts);
 
             updateDisplay();
 
@@ -1386,9 +1163,8 @@ body.modal-open {
                     const productName = card.dataset.name;
                     const material = card.dataset.material;
                     const thickness = card.dataset.thickness;
-                    const finish = card.dataset.finish;
 
-                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following limestone product:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
 
                     const whatsappURL = `https://wa.me/919876543210?text=${message}`;
                     window.open(whatsappURL, '_blank');
@@ -1732,7 +1508,7 @@ body.modal-open {
                 observer.observe(card);
             });
 
-            console.log('✅ BNB Premium Marbles - Enhanced with Professional Lightbox');
+            console.log('✅ BNB Luxury Limestone - Premium Collection Showcase');
         });
     </script>
 </body>
