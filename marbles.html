@@ -151,7 +151,7 @@ body.modal-open {
     max-width: 600px;
 }
 
-/* FILTER BAR - COMPACT (REMOVED SORT) */
+/* FILTER BAR - COMPACT */
 .filter-bar {
     display: flex;
     align-items: center;
@@ -239,7 +239,7 @@ body.modal-open {
     }
 }
 
-/* PRODUCT CARD - OPTIMIZED (NO BATCH BADGE) */
+/* PRODUCT CARD - OPTIMIZED */
 .product-card {
     background: var(--surface-light);
     border: 1px solid var(--border-color);
@@ -818,7 +818,7 @@ body.modal-open {
                 <div class="header-top">
                     <div class="header-content">
                         <div class="breadcrumb">
-                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Marbles</span>
+                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Premium Marbles</span>
                         </div>
                         <button class="back-button" id="backButton">
                             <i class="fas fa-arrow-left"></i>
@@ -826,7 +826,7 @@ body.modal-open {
                         </button>
                         <h1 class="page-title">Premium Marbles</h1>
                         <p class="page-description">
-                            Discover our curated collection of premium marble slabs, sourced globally and crafted to elevate any space with timeless elegance.
+                            Explore our curated collection of exquisite natural marble slabs featuring stunning veining, rich colors, and timeless elegance perfect for luxury interiors and architectural masterpieces.
                         </p>
                     </div>
 
@@ -835,21 +835,19 @@ body.modal-open {
                             <label class="filter-label">Color</label>
                             <select class="filter-select" id="colorFilter">
                                 <option value="all">All Colors</option>
-                                <option value="black">Black</option>
                                 <option value="white">White</option>
-                                <option value="grey">Grey</option>
-                                <option value="beige">Beige</option>
                                 <option value="brown">Brown</option>
+                                <option value="green">Green</option>
                             </select>
                         </div>
 
                         <div class="filter-group">
-                            <label class="filter-label">Finish</label>
-                            <select class="filter-select" id="finishFilter">
-                                <option value="all">All Finishes</option>
-                                <option value="polished">Polished</option>
-                                <option value="honed">Honed</option>
-                                <option value="pepper">Pepper</option>
+                            <label class="filter-label">Type</label>
+                            <select class="filter-select" id="typeFilter">
+                                <option value="all">All Types</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="rainforest">Rain Forest</option>
+                                <option value="classic">Classic</option>
                             </select>
                         </div>
                     </div>
@@ -858,7 +856,7 @@ body.modal-open {
                 <!-- RESULTS BAR -->
                 <div class="results-bar">
                     <div class="results-count">
-                        Showing <span id="currentCount">11</span> of <span id="totalCount">11</span> products
+                        Showing <span id="currentCount">9</span> of <span id="totalCount">9</span> products
                     </div>
                 </div>
             </div>
@@ -872,15 +870,15 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 1 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Bash Paradiso" data-thickness="20mm" data-material="Premium Granite">
+                <div class="product-card" data-color="brown" data-type="rainforest" data-name="Rain Forest Brown Marble" data-thickness="18mm" data-material="Exotic Fantasy Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/bash-pardisco.webp" alt="Bash Paradiso Marble" class="product-image">
+                        <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Bash Paradiso</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Rich brown tones with golden veins create a warm, luxurious aesthetic perfect for premium countertops and feature walls.</p>
+                        <h3 class="product-name">Rain Forest Brown Marble</h3>
+                        <p class="product-material">Exotic Fantasy Marble</p>
+                        <p class="product-description">Spectacular Rain Forest Brown marble with dramatic forest-inspired veining and rich chocolate tones. Premium exotic marble perfect for luxury feature walls, statement countertops, and creating nature-inspired sophisticated interiors with breathtaking visual impact.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
@@ -888,11 +886,11 @@ body.modal-open {
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Fantasy</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -909,27 +907,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 2 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Forest" data-thickness="20mm" data-material="Premium Granite">
+                <div class="product-card" data-color="green" data-type="rainforest" data-name="Rain Forest Green Marble" data-thickness="18mm" data-material="Exotic Fantasy Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/042-Black-Forest.webp" alt="Black Forest Marble" class="product-image">
+                        <img src="Marbles/RAIN-FOREST-GREEN.webp" alt="Rain Forest Green Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Black Forest</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Deep black base with dramatic white and grey veining, offering a bold statement for modern interiors and dramatic spaces.</p>
+                        <h3 class="product-name">Rain Forest Green Marble</h3>
+                        <p class="product-material">Exotic Fantasy Marble</p>
+                        <p class="product-description">Stunning Rain Forest Green marble featuring vibrant emerald veining and tropical rainforest patterns. Exclusive designer marble ideal for artistic interiors, luxury bathroom vanities, and creating bold organic aesthetic in high-end residential and commercial projects.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
+                                <span class="spec-value">Green</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Fantasy</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -946,27 +944,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 3 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Galaxy Granite" data-thickness="20mm" data-material="Premium Granite">
+                <div class="product-card" data-color="green" data-type="classic" data-name="Forest Green Marble" data-thickness="18mm" data-material="Natural Green Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/Black-Galaxy-Granite.png.webp" alt="Black Galaxy Granite Marble" class="product-image">
+                        <img src="Marbles/Forest-green.webp" alt="Forest Green Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Black Galaxy Granite</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Stunning black granite with sparkling golden flecks resembling a starry night sky, perfect for elegant kitchen and bathroom designs.</p>
+                        <h3 class="product-name">Forest Green Marble</h3>
+                        <p class="product-material">Natural Green Marble</p>
+                        <p class="product-description">Classic Forest Green marble with deep emerald tones and natural white veining. Premium natural green marble perfect for elegant flooring, decorative wall cladding, and creating serene nature-inspired spaces with timeless sophistication and earthy charm.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
+                                <span class="spec-value">Green</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Classic</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -983,27 +981,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 4 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Brown Fantasy" data-thickness="20mm" data-material="Fantasy Granite">
+                <div class="product-card" data-color="green" data-type="classic" data-name="Spider Green Marble" data-thickness="18mm" data-material="Exotic Green Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/BROWN FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
+                        <img src="Marbles/spider-green.webp" alt="Spider Green Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Brown Fantasy</h3>
-                        <p class="product-material">Fantasy Granite</p>
-                        <p class="product-description">Exotic blend of brown, cream, and gold tones with unique patterns, creating a warm and inviting ambiance in any setting.</p>
+                        <h3 class="product-name">Spider Green Marble</h3>
+                        <p class="product-material">Exotic Green Marble</p>
+                        <p class="product-description">Unique Spider Green marble featuring intricate spider web-like veining and rich green hues. Distinctive exotic marble ideal for luxury hotel lobbies, statement bathroom walls, and creating dramatic contemporary interiors with artistic visual appeal.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
+                                <span class="spec-value">Green</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Exotic</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1020,27 +1018,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 5 -->
-                <div class="product-card" data-color="grey" data-finish="honed" data-name="Chambord Grey Limestone" data-thickness="20mm" data-material="Honed Limestone">
+                <div class="product-card" data-color="brown" data-type="fantasy" data-name="Brown Fantasy Marble" data-thickness="18mm" data-material="Fantasy Brown Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/chamboard.webp" alt="Chambord Grey Limestone" class="product-image">
+                        <img src="Marbles/BROWN-FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Chambord Grey Limestone</h3>
-                        <p class="product-material">Honed Limestone</p>
-                        <p class="product-description">Sophisticated grey limestone with subtle veining and matte finish, ideal for contemporary flooring and wall applications.</p>
+                        <h3 class="product-name">Brown Fantasy Marble</h3>
+                        <p class="product-material">Fantasy Brown Marble</p>
+                        <p class="product-description">Luxurious Brown Fantasy marble with flowing cream and brown veining patterns. Premium fantasy marble perfect for elegant kitchen countertops, luxurious bathroom vanities, and creating warm sophisticated ambiance in residential and hospitality interiors.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey</span>
+                                <span class="spec-value">Brown</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Honed</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Fantasy</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1057,27 +1055,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 6 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Coffee Brown" data-thickness="20mm" data-material="Premium Granite">
+                <div class="product-card" data-color="brown" data-type="classic" data-name="Chamboard Marble" data-thickness="18mm" data-material="Premium Classic Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/Coffee-Brown_2.webp" alt="Coffee Brown Marble" class="product-image">
+                        <img src="Marbles/chamboard.webp" alt="Chamboard Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Coffee Brown</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Rich coffee brown granite with flowing cream veins, offering warmth and elegance to kitchens, bathrooms, and living spaces.</p>
+                        <h3 class="product-name">Chamboard Marble</h3>
+                        <p class="product-material">Premium Classic Marble</p>
+                        <p class="product-description">Elegant Chamboard marble with subtle beige-brown tones and delicate veining. Classic premium marble ideal for traditional architecture, heritage restoration projects, timeless flooring, and creating refined European-inspired interiors with understated luxury.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
+                                <span class="spec-value">Brown/Beige</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Classic</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1094,27 +1092,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 7 -->
-                <div class="product-card" data-color="beige" data-finish="polished" data-name="Crystal Yellow Granite" data-thickness="20mm" data-material="Yellow Granite">
+                <div class="product-card" data-color="brown" data-type="fantasy" data-name="Fantasy Brown Dark Marble" data-thickness="18mm" data-material="Dark Fantasy Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/crystal-yellow-granite-polished.webp" alt="Crystal Yellow Granite" class="product-image">
+                        <img src="Marbles/Fantasy-Brown-Dark.webp" alt="Fantasy Brown Dark Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Crystal Yellow Granite</h3>
-                        <p class="product-material">Yellow Granite</p>
-                        <p class="product-description">Vibrant yellow granite with crystalline sparkle and gold undertones, bringing brightness and energy to any interior design.</p>
+                        <h3 class="product-name">Fantasy Brown Dark Marble</h3>
+                        <p class="product-material">Dark Fantasy Marble</p>
+                        <p class="product-description">Rich Fantasy Brown Dark marble with deep chocolate tones and dramatic golden-brown veining. Luxurious dark fantasy marble perfect for premium countertops, feature walls, and creating opulent moody interiors with striking depth and character.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Beige/Yellow</span>
+                                <span class="spec-value">Dark Brown</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Fantasy</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1131,27 +1129,27 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 8 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Fantasy Brown Dark" data-thickness="20mm" data-material="Fantasy Marble">
+                <div class="product-card" data-color="white" data-type="classic" data-name="Panda White Marble" data-thickness="18mm" data-material="Premium White Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/Fantasy Brown Dark.webp" alt="Fantasy Brown Dark" class="product-image">
+                        <img src="Marbles/PANDA-WHITE.webp" alt="Panda White Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Fantasy Brown Dark</h3>
-                        <p class="product-material">Fantasy Marble</p>
-                        <p class="product-description">Deep brown fantasy marble with intricate patterns and cream veining, adding depth and character to countertops and backsplashes.</p>
+                        <h3 class="product-name">Panda White Marble</h3>
+                        <p class="product-material">Premium White Marble</p>
+                        <p class="product-description">Stunning Panda White marble featuring crisp white background with bold black veining reminiscent of panda markings. Premium designer marble ideal for modern kitchens, luxury bathrooms, and creating bold contemporary interiors with striking monochrome aesthetic.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
+                                <span class="spec-value">White</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Premium</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1168,15 +1166,15 @@ body.modal-open {
                 </div>
 
                 <!-- PRODUCT CARD 9 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="River White" data-thickness="20mm" data-material="Premium Granite">
+                <div class="product-card" data-color="white" data-type="classic" data-name="River White Marble" data-thickness="18mm" data-material="Classic White Marble">
                     <div class="product-image-container">
-                        <img src="Marbles/RIVER WHITE.webp" alt="River White Marble" class="product-image">
+                        <img src="Marbles/RIVER-WHITE.webp" alt="River White Marble" class="product-image">
                         <button class="quick-view">Quick View</button>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">River White</h3>
-                        <p class="product-material">Premium Granite</p>
-                        <p class="product-description">Clean white granite with grey and burgundy veining, offering a timeless and elegant look for classic and contemporary spaces.</p>
+                        <h3 class="product-name">River White Marble</h3>
+                        <p class="product-material">Classic White Marble</p>
+                        <p class="product-description">Elegant River White marble with flowing grey veining resembling peaceful river streams. Classic white marble perfect for bright kitchen islands, luxury spa bathrooms, and creating serene sophisticated spaces with natural flowing elegance and timeless beauty.</p>
                         <div class="product-specs">
                             <div class="spec-item">
                                 <span class="spec-label">Color</span>
@@ -1184,85 +1182,11 @@ body.modal-open {
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
+                                <span class="spec-value">18mm</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 10 -->
-                <div class="product-card" data-color="grey" data-finish="polished" data-name="Steel Grey Granite" data-thickness="20mm" data-material="Steel Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/steel-grey-granite-polished.webp" alt="Steel Grey Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Steel Grey Granite</h3>
-                        <p class="product-material">Steel Granite</p>
-                        <p class="product-description">Industrial-chic grey granite with steel-like finish and subtle patterns, perfect for modern minimalist and urban design aesthetics.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT CARD 11 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Tan Brown" data-thickness="20mm" data-material="Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Marbles/tan-brown-.webp" alt="Tan Brown Marble" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Tan Brown</h3>
-                        <p class="product-material">Indian Granite</p>
-                        <p class="product-description">Classic tan and brown granite with black flecks, providing durability and warmth for high-traffic areas and kitchen installations.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
+                                <span class="spec-label">Type</span>
+                                <span class="spec-value">Classic</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1325,9 +1249,9 @@ body.modal-open {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // ===== FILTER SYSTEM (REMOVED SORT) =====
+            // ===== FILTER SYSTEM =====
             const colorFilter = document.getElementById('colorFilter');
-            const finishFilter = document.getElementById('finishFilter');
+            const typeFilter = document.getElementById('typeFilter');
             const productsGrid = document.getElementById('productsGrid');
             const productCards = Array.from(document.querySelectorAll('.product-card:not(.no-results)'));
             const currentCountSpan = document.getElementById('currentCount');
@@ -1338,16 +1262,16 @@ body.modal-open {
 
             function filterProducts() {
                 const colorValue = colorFilter.value;
-                const finishValue = finishFilter.value;
+                const typeValue = typeFilter.value;
 
                 filteredProducts = productCards.filter(card => {
                     const cardColor = card.dataset.color;
-                    const cardFinish = card.dataset.finish;
+                    const cardType = card.dataset.type;
 
                     const colorMatch = colorValue === 'all' || cardColor === colorValue;
-                    const finishMatch = finishValue === 'all' || cardFinish === finishValue;
+                    const typeMatch = typeValue === 'all' || cardType === typeValue;
 
-                    return colorMatch && finishMatch;
+                    return colorMatch && typeMatch;
                 });
 
                 updateDisplay();
@@ -1373,7 +1297,7 @@ body.modal-open {
             }
 
             colorFilter.addEventListener('change', filterProducts);
-            finishFilter.addEventListener('change', filterProducts);
+            typeFilter.addEventListener('change', filterProducts);
 
             updateDisplay();
 
@@ -1386,9 +1310,8 @@ body.modal-open {
                     const productName = card.dataset.name;
                     const material = card.dataset.material;
                     const thickness = card.dataset.thickness;
-                    const finish = card.dataset.finish;
 
-                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following marble slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
 
                     const whatsappURL = `https://wa.me/919876543210?text=${message}`;
                     window.open(whatsappURL, '_blank');
@@ -1732,7 +1655,7 @@ body.modal-open {
                 observer.observe(card);
             });
 
-            console.log('✅ BNB Premium Marbles - Enhanced with Professional Lightbox');
+            console.log('✅ BNB Premium Marbles - Luxury Collection Showcase');
         });
     </script>
 </body>
