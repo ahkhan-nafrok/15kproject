@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Forest Brown Marble - BNB Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+/* ========== COLOR SYSTEM ========== */
+:root {
+  --primary-blue: #2673B8;
+  --background-base: #eeeeee;
+  --surface-light: #F0F3F7;
+  --accent-white: #F7F9FC;
+  --text-primary: #1A2332;
+  --text-body: #5A6B7F;
+  --text-muted: #7A8A9E;
+  --border-color: #D4DCE6;
+  --border-light: #E3E9F0;
+  --whatsapp-green: #25D366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-base);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+/* PRODUCT DETAIL SECTION */
+.product-detail-section {
+    background: var(--background-base);
+    padding: clamp(2rem, 3.5vw, 3rem) 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+/* BACK BUTTON */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-body);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.back-button i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    background: var(--text-primary);
+    color: var(--accent-white);
+    border-color: var(--text-primary);
+    transform: translateX(-3px);
+}
+
+.back-button:hover i {
+    transform: translateX(-3px);
+}
+
+/* PRODUCT LAYOUT */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 4vw, 4rem);
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: clamp(2rem, 3.5vw, 3rem);
+    box-shadow: 0 4px 20px rgba(26, 35, 50, 0.06);
+}
+
+/* LEFT COLUMN - IMAGE GALLERY */
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* MAIN IMAGE */
+.main-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background: var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.main-image-container:hover .main-image {
+    transform: scale(1.05);
+}
+
+/* THUMBNAIL GALLERY */
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.thumbnail {
+    position: relative;
+    padding-top: 100%;
+    background: var(--border-light);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.thumbnail.active {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
+}
+
+.thumbnail:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* RIGHT COLUMN - PRODUCT INFO */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.product-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+}
+
+/* SPECIFICATIONS TABLE */
+.specifications {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-light);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.specifications tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.specifications tr:last-child {
+    border-bottom: none;
+}
+
+.specifications td {
+    padding: clamp(0.8rem, 1.2vw, 1rem) clamp(1rem, 1.5vw, 1.2rem);
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+}
+
+.specifications td:first-child {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    letter-spacing: 0.8px;
+    width: 35%;
+    background: rgba(38, 115, 184, 0.05);
+}
+
+.specifications td:last-child {
+    font-weight: 500;
+    color: var(--text-body);
+    letter-spacing: 0.2px;
+}
+
+/* PRODUCT DESCRIPTION */
+.product-description {
+    background: var(--accent-white);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: clamp(1.2rem, 1.8vw, 1.5rem);
+}
+
+.description-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+.description-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-body);
+    letter-spacing: 0.2px;
+}
+
+/* ACTION BUTTONS */
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.action-btn {
+    padding: clamp(0.9rem, 1.2vw, 1rem) clamp(1.2rem, 1.8vw, 1.5rem);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.action-btn i {
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+}
+
+.call-btn {
+    background: var(--surface-light);
+    color: var(--text-body);
+}
+
+.call-btn:hover {
+    background: var(--text-primary);
+    color: var(--accent-white);
+    border-color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(26, 35, 50, 0.15);
+}
+
+.whatsapp-btn {
+    background: var(--whatsapp-green);
+    color: white;
+    border-color: var(--whatsapp-green);
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    border-color: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 991px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .specifications td:first-child {
+        width: 40%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-layout {
+        padding: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .thumbnail-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+    }
+
+    .product-actions {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .specifications td {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .specifications td:first-child {
+        font-size: 0.65rem;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.back-button {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.product-layout {
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+    <section class="product-detail-section">
+        <div class="container">
+            <!-- BACK BUTTON -->
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+                Back to Gallery
+            </button>
+
+            <!-- PRODUCT LAYOUT -->
+            <div class="product-layout">
+                <!-- LEFT COLUMN - IMAGE GALLERY -->
+                <div class="product-gallery">
+                    <!-- MAIN IMAGE -->
+                    <div class="main-image-container">
+                        <img src="../Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="main-image" id="mainImage">
+                    </div>
+
+                    <!-- THUMBNAIL GALLERY -->
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
+                            <img src="../Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 1">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
+                            <img src="../Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 2">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
+                            <img src="../Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN - PRODUCT INFO -->
+                <div class="product-info">
+                    <div>
+                        <h1 class="product-title">Rain Forest Brown Marble</h1>
+                        <p class="product-subtitle">Exotic Fantasy Marble from India</p>
+                    </div>
+
+                    <!-- SPECIFICATIONS TABLE -->
+                    <table class="specifications">
+                        <tr>
+                            <td>Origin</td>
+                            <td>North India</td>
+                        </tr>
+                        <tr>
+                            <td>Color</td>
+                            <td>Brown</td>
+                        </tr>
+                        <tr>
+                            <td>Gangsaw Slab</td>
+                            <td>280 x 180 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Cutter Slab</td>
+                            <td>180 x 60 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Tiles</td>
+                            <td>30 x 30, 30 x 60, 60 x 60, 60 x 120 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Thickness</td>
+                            <td>2, 3, 4, 5 upto 20 cm</td>
+                        </tr>
+                        <tr>
+                            <td>Countertops</td>
+                            <td>Custom</td>
+                        </tr>
+                        <tr>
+                            <td>Finishes</td>
+                            <td>Flamed, Polished, Lepotra, Honed, Brushed, Leather, Antique, Bush Hammered and Shot Blast</td>
+                        </tr>
+                    </table>
+
+                    <!-- PRODUCT DESCRIPTION -->
+                    <div class="product-description">
+                        <h3 class="description-title">Product Description</h3>
+                        <p class="description-text">
+                            Spectacular Rain Forest Brown marble with dramatic forest-inspired veining and rich chocolate tones. This premium exotic marble is perfect for luxury feature walls, statement countertops, and creating nature-inspired sophisticated interiors with breathtaking visual impact. Known for its durability and unique patterns, each slab tells its own story.
+                        </p>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="product-actions">
+                        <a href="tel:+919876543210" class="action-btn call-btn">
+                            <i class="fas fa-phone-alt"></i>
+                            Call Us
+                        </a>
+                        <button class="action-btn whatsapp-btn" onclick="sendWhatsAppMessage()">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Change main image when thumbnail is clicked
+        function changeImage(imageSrc, thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = imageSrc;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+
+        // WhatsApp message function
+        function sendWhatsAppMessage() {
+            const productName = "Rain Forest Brown Marble";
+            const message = `Hello BNB Enterprises,%0A%0AI'm interested in the ${productName}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+            const whatsappURL = `https://wa.me/919876543210?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        console.log('✅ Rain Forest Brown Marble - Product Detail Page');
+    </script>
+</body>
+</html>
