@@ -2,808 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    
-    <!-- CRITICAL: Load fonts in HEAD -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <title>Rain Forest Brown Marble - BNB Enterprises</title>
+    <title>Forest Green Marble - BNB Enterprises</title>
     
-    <style>
-/* ========== GLOBAL VARIABLES ========== */
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
-  --pure-white: #F2F4F7;
-  --off-white: #EDF0F4;
-}
-
-/* ========== GLOBAL RESET ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ========== PAGE LOADER ========== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-light);
-    z-index: 9999;
-    gap: 12px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
-    object-fit: contain;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
-}
-
-.loader-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
-    color: var(--text-primary);
-}
-
-.loader-subtext {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
-    font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
-
-body.loaded .page-loader {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* ========== SITE WRAPPER ========== */
-.site-wrapper {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded .site-wrapper {
-    opacity: 1;
-}
-
-/* ========== WHATSAPP FLOATING BUTTON ========== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 52px;
-    height: 52px;
-    background: var(--whatsapp-green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
-    z-index: 9998;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-float i {
-    color: white;
-    font-size: 26px;
-}
-
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 2px solid var(--whatsapp-green);
-    border-radius: 50%;
-    opacity: 0;
-    animation: whatsapp-pulse 2s infinite;
-}
-
-@keyframes whatsapp-pulse {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
-}
-
-/* ========== PRODUCT DETAIL PAGE STYLES ========== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2rem);
-}
-
-.product-detail-section {
-    background: var(--background-base);
-    padding: clamp(6rem, 8vw, 8rem) 0 clamp(2rem, 3.5vw, 3rem);
-    min-height: 50vh;
-}
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.back-button i {
-    font-size: 0.75rem;
-    transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-    background: var(--text-primary);
-    color: var(--accent-white);
-    border-color: var(--text-primary);
-    transform: translateX(-3px);
-}
-
-.back-button:hover i {
-    transform: translateX(-3px);
-}
-
-.product-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2.5rem, 4vw, 4rem);
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: clamp(2rem, 3.5vw, 3rem);
-    box-shadow: 0 4px 20px rgba(26, 35, 50, 0.06);
-}
-
-.product-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.main-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.main-image-container:hover .main-image {
-    transform: scale(1.05);
-}
-
-.thumbnail-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
-}
-
-.thumbnail {
-    position: relative;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 2px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.thumbnail.active {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
-}
-
-.thumbnail:hover {
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
-}
-
-.thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.product-info {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.product-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-}
-
-.product-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.3px;
-}
-
-.specifications {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface-light);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.specifications tr {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.specifications tr:last-child {
-    border-bottom: none;
-}
-
-.specifications td {
-    padding: clamp(0.8rem, 1.2vw, 1rem) clamp(1rem, 1.5vw, 1.2rem);
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
-}
-
-.specifications td:first-child {
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    letter-spacing: 0.8px;
-    width: 35%;
-    background: rgba(38, 115, 184, 0.05);
-}
-
-.specifications td:last-child {
-    font-weight: 500;
-    color: var(--text-body);
-    letter-spacing: 0.2px;
-}
-
-.product-description {
-    background: var(--accent-white);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    padding: clamp(1.2rem, 1.8vw, 1.5rem);
-}
-
-.description-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    margin-bottom: 0.8rem;
-}
-
-.description-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    letter-spacing: 0.2px;
-}
-
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-top: auto;
-}
-
-.action-btn {
-    padding: clamp(0.9rem, 1.2vw, 1rem) clamp(1.2rem, 1.8vw, 1.5rem);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    text-decoration: none;
-    border-radius: 6px;
-}
-
-.action-btn i {
-    font-size: clamp(1rem, 1.2vw, 1.1rem);
-}
-
-.call-btn {
-    background: var(--surface-light);
-    color: var(--text-body);
-}
-
-.call-btn:hover {
-    background: var(--text-primary);
-    color: var(--accent-white);
-    border-color: var(--text-primary);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(26, 35, 50, 0.15);
-}
-
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: white;
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-}
-
-/* ========== WHY CHOOSE SECTION ========== */
-.why-choose-section {
-    background: white;
-    padding: clamp(3rem, 5vw, 4.5rem) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.why-choose-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.why-choose-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.5rem, 2.8vw, 2rem);
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.why-choose-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.05vw, 0.95rem);
-    font-weight: 400;
-    line-height: 1.8;
-    color: var(--text-body);
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
-    text-align: justify;
-}
-
-.benefits-section {
-    margin-top: clamp(2rem, 3vw, 2.5rem);
-}
-
-.benefits-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
-}
-
-.benefits-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.benefits-list li {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.88rem, 1vw, 0.92rem);
-    font-weight: 500;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-bottom: 0.6rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.benefits-list li::before {
-    content: '•';
-    color: var(--primary-blue);
-    font-weight: 900;
-    font-size: 1.3rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-.contact-section {
-    margin-top: clamp(2rem, 3vw, 2.5rem);
-    padding: clamp(1.2rem, 2vw, 1.5rem);
-    background: var(--surface-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.contact-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
-}
-
-.contact-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.88rem, 1vw, 0.92rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-bottom: 0.8rem;
-}
-
-.contact-info-item {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.88rem, 1vw, 0.92rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.5rem;
-}
-
-.contact-info-item strong {
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-right: 0.3rem;
-}
-
-.contact-info-item a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.contact-info-item a:hover {
-    opacity: 0.7;
-}
-
-.faq-section {
-    margin-top: clamp(2.5rem, 4vw, 3.5rem);
-}
-
-.faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2vw, 1.6rem);
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.faq-item {
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.faq-question {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.2vw, 1.1rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.6rem;
-    line-height: 1.4;
-}
-
-.faq-answer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.88rem, 1vw, 0.92rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    padding-left: 0.5rem;
-    text-align: justify;
-}
-
-/* ========== BEST SELLERS SECTION ========== */
-.best-sellers-section {
-    background: var(--background-base);
-    padding: clamp(3rem, 5vw, 4rem) 0;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
-}
-
-.section-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.9vw, 0.75rem);
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--primary-blue);
-    margin-bottom: 0.8rem;
-}
-
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
-
-.best-sellers-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: clamp(1rem, 1.5vw, 1.5rem);
-}
-
-.bestseller-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-}
-
-.bestseller-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-}
-
-.bestseller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
-    border-color: var(--primary-blue);
-}
-
-.bestseller-card:hover::before {
-    transform: scaleX(1);
-}
-
-.bestseller-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    overflow: hidden;
-    background: var(--border-light);
-}
-
-.bestseller-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bestseller-card:hover .bestseller-image {
-    transform: scale(1.08);
-}
-
-.bestseller-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.85rem, 1vw, 0.95rem);
-    font-weight: 800;
-    letter-spacing: 0.3px;
-    color: var(--text-primary);
-    text-align: center;
-    padding: clamp(1rem, 1.3vw, 1.2rem);
-    line-height: 1.3;
-    transition: color 0.3s ease;
-}
-
-.bestseller-card:hover .bestseller-name {
-    color: var(--primary-blue);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 991px) {
-    .product-detail-section {
-        padding: clamp(5rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 2.5rem);
-    }
-
-    .product-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .specifications td:first-child {
-        width: 40%;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .product-layout {
-        padding: clamp(1.5rem, 5vw, 2rem);
-    }
-
-    .thumbnail-gallery {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.6rem;
-    }
-
-    .product-actions {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-    }
-
-    .specifications td {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.9rem;
-    }
-
-    .specifications td:first-child {
-        font-size: 0.65rem;
-    }
-
-    .best-sellers-grid {
-        gap: 1rem;
-    }
-
-    .whatsapp-float {
-        width: 46px;
-        height: 46px;
-        bottom: 16px;
-        right: 16px;
-    }
-
-    .whatsapp-float i {
-        font-size: 22px;
-    }
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.product-layout {
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-    opacity: 0;
-}
-
-/* ========== SCROLL MARGIN ========== */
-section {
-    scroll-margin-top: 80px;
-}
-
-/* ========== COMPONENT CONTAINERS ========== */
-#navbarComponent,
-#footerComponent {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-    </style>
+    <link rel="stylesheet" href="productStyle.css">
 </head>
 <body>
     <!-- Page Loader -->
@@ -813,11 +24,32 @@ section {
         <div class="loader-subtext">Loading...</div>
     </div>
 
+    <!-- Image Lightbox -->
+    <div class="image-lightbox" id="imageLightbox">
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="closeLightbox" aria-label="Close lightbox">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <button class="lightbox-nav lightbox-prev" id="prevImage" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="lightbox-image-wrapper" id="imageWrapper">
+                <img src="" alt="Product Image" class="lightbox-image" id="lightboxImage">
+            </div>
+            
+            <button class="lightbox-nav lightbox-next" id="nextImage" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="lightbox-counter" id="imageCounter">1 / 3</div>
+            <div class="lightbox-zoom-hint" id="zoomHint">Pinch to zoom • Swipe to navigate</div>
+        </div>
+    </div>
+
     <!-- Site Wrapper -->
     <div class="site-wrapper">
-        <!-- Navbar Component -->
-
-        <!-- Main Content -->
         <main>
             <!-- PRODUCT DETAIL SECTION -->
             <section class="product-detail-section">
@@ -829,37 +61,51 @@ section {
 
                     <div class="product-layout">
                         <div class="product-gallery">
-                            <div class="main-image-container">
-                                <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="main-image" id="mainImage">
+                            <div class="main-image-container" onclick="openLightbox(0)">
+                                <img src="Marbles/Forest-green.webp" alt="Forest Green Marble" class="main-image" id="mainImage">
+                                <div class="image-zoom-icon">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
                             </div>
 
                             <div class="thumbnail-gallery">
-                                <div class="thumbnail active" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
-                                    <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 1">
+                                <div class="thumbnail active" onclick="changeImage('Marbles/Forest-green.webp', this, 0)">
+                                    <img src="Marbles/Forest-green.webp" alt="Forest Green Marble View 1">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
-                                    <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 2">
+                                <div class="thumbnail" onclick="changeImage('Marbles/Forest-green.webp', this, 1)">
+                                    <img src="Marbles/Forest-green.webp" alt="Forest Green Marble View 2">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('../Marbles/RAIN-FOREST-BROWN.webp', this)">
-                                    <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 3">
+                                <div class="thumbnail" onclick="changeImage('Marbles/Forest-green.webp', this, 2)">
+                                    <img src="Marbles/Forest-green.webp" alt="Forest Green Marble View 3">
                                 </div>
                             </div>
                         </div>
 
                         <div class="product-info">
                             <div>
-                                <h1 class="product-title">Rain Forest Brown Marble</h1>
-                                <p class="product-subtitle">Exotic Fantasy Marble from India</p>
+                                <h1 class="product-title">Forest Green Marble</h1>
+                                <p class="product-subtitle">Premium Natural Marble from India</p>
+                            </div>
+
+                            <div class="product-description">
+                                <h3 class="description-title">Product Description</h3>
+                                <p class="description-text">
+                                    Captivating Forest Green marble showcasing rich deep green hues with dramatic natural veining. This premium marble brings timeless sophistication to any space, ideal for luxurious flooring, statement walls, and high-end countertops. Its dense forest-like patterns create a bold yet refined aesthetic that transforms interiors into masterpieces of natural art.
+                                </p>
                             </div>
 
                             <table class="specifications">
                                 <tr>
-                                    <td>Origin</td>
-                                    <td>North India</td>
+                                    <td>Color</td>
+                                    <td>Dark Green</td>
                                 </tr>
                                 <tr>
-                                    <td>Color</td>
-                                    <td>Brown</td>
+                                    <td>Thickness</td>
+                                    <td>2, 3, 4, 5 upto 20 cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Origin</td>
+                                    <td>North India</td>
                                 </tr>
                                 <tr>
                                     <td>Gangsaw Slab</td>
@@ -874,10 +120,6 @@ section {
                                     <td>30 x 30, 30 x 60, 60 x 60, 60 x 120 cm</td>
                                 </tr>
                                 <tr>
-                                    <td>Thickness</td>
-                                    <td>2, 3, 4, 5 upto 20 cm</td>
-                                </tr>
-                                <tr>
                                     <td>Countertops</td>
                                     <td>Custom</td>
                                 </tr>
@@ -887,15 +129,8 @@ section {
                                 </tr>
                             </table>
 
-                            <div class="product-description">
-                                <h3 class="description-title">Product Description</h3>
-                                <p class="description-text">
-                                    Spectacular Rain Forest Brown marble with dramatic forest-inspired veining and rich chocolate tones. This premium exotic marble is perfect for luxury feature walls, statement countertops, and creating nature-inspired sophisticated interiors with breathtaking visual impact. Known for its durability and unique patterns, each slab tells its own story.
-                                </p>
-                            </div>
-
                             <div class="product-actions">
-                                <a href="tel:+919876543210" class="action-btn call-btn">
+                                <a href="tel:+919940191813" class="action-btn call-btn">
                                     <i class="fas fa-phone-alt"></i>
                                     Call Us
                                 </a>
@@ -909,147 +144,62 @@ section {
                 </div>
             </section>
 
-            <!-- WHY CHOOSE BNB SECTION -->
-            <section class="why-choose-section">
+            <!-- WHY CHOOSE BNB COMPONENT -->
+            <div id="whyChooseComponent"></div>
+
+            <!-- BEST SELLERS SECTION -->
+            <section class="best-sellers-section">
                 <div class="container">
-                    <div class="why-choose-content">
-                        <h2 class="why-choose-title">Why Choose BNB Enterprises As A Top Rain Forest Brown Marble Exporter-</h2>
-                        
-                        <p class="why-choose-text">
-                            BNB Enterprises has the quality experience of more than 25 years in natural stone industry. This industry is very competitive. Regardless, our team stays unbeatable. Also, we accept every new challenge as a golden possibility to shine our bright expertise, mastery, and learning in the stone industry. We are an ISO-certified stone manufacturer, supplier, and trader that provides top-quality Rain Forest Brown Marble with exceptional color consistency, natural veining patterns, and superior durability.
-                        </p>
+                    <div class="section-header">
+                        <div class="section-subtitle">Popular Collections</div>
+                        <h2 class="section-title">Our Most Selling Marbles</h2>
+                    </div>
 
-                        <p class="why-choose-text">
-                            Even if it is for indoor scenery, outdoor tasks, or commercial areas, you can blindly choose BNB Enterprises's Rain Forest Brown Marble to change your spaces into aesthetic places. We are not only evolving as the top choice for natural stone lovers but also winning the confidence of international clients. We export our premier Rain Forest Brown Marble products to more than 20 countries across the World including USA, UK, Dubai, Singapore, and Australia.
-                        </p>
+                    <div class="best-sellers-grid">
+                        <a href="rain-forest-brown.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="bestseller-image">
+                            </div>
+                            <h3 class="bestseller-name">Rain Forest Brown Marble</h3>
+                        </a>
 
-                        <div class="benefits-section">
-                            <h3 class="benefits-title">Benefits of Picking BNB Enterprises –</h3>
-                            <ul class="benefits-list">
-                                <li>Potent quality Rain Forest Brown Marble at affordable prices</li>
-                                <li>Choices for personalizations in sizes, finishes, and thicknesses</li>
-                                <li>Quick & delighted services and solutions for bulk orders</li>
-                                <li>Moral support and service by a skilled team of stone experts</li>
-                                <li>Known in various finishes including polished, honed, leathered, brushed, and more</li>
-                                <li>Direct sourcing from premium quarries in North India</li>
-                                <li>ISO-certified quality assurance and testing procedures</li>
-                                <li>Worldwide shipping with secure packaging and logistics</li>
-                                <li>No hidden terms & conditions, transparent pricing</li>
-                                <li>Dedicated customer support for design consultation and installation guidance</li>
-                            </ul>
-                        </div>
+                        <a href="rain-forest-green.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/RAIN-FOREST-GREEN.webp" alt="Rain Forest Green Marble" class="bestseller-image">
+                            </div>
+                            <h3 class="bestseller-name">Rain Forest Green Marble</h3>
+                        </a>
 
-                        <div class="contact-section">
-                            <h3 class="contact-title">Contact Information:</h3>
-                            <p class="contact-text">
-                                If you want to know more about our Rain Forest Brown Marble or other premium natural stones, then you can contact us at the below-mentioned info –
-                            </p>
-                            <div class="contact-info-item">
-                                <strong>Address:</strong> Plot No. 11/B, Kelamballi Industrial Area, Badanagappa, Chamajanagar, Karnataka, India 571313.
+                        <a href="spider-green.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/spider-green.webp" alt="Spider Green Marble" class="bestseller-image">
                             </div>
-                            <div class="contact-info-item">
-                                <strong>Mobile:</strong> <a href="tel:+919829051786">+91 98290 51786</a> or <a href="tel:+919983777786">+91 99837 77786</a>
-                            </div>
-                            <div class="contact-info-item">
-                                <strong>Email:</strong> <a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a>
-                            </div>
-                        </div>
+                            <h3 class="bestseller-name">Spider Green Marble</h3>
+                        </a>
 
-                        <div class="faq-section">
-                            <h3 class="faq-title">Frequently Asked Questions for Rain Forest Brown Marble –</h3>
-                            
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.1 What are the key factors of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. Rain Forest Brown Marble is well-known for its dramatic forest-inspired veining patterns, rich chocolate brown tones with natural green undertones, exceptional longevity, resistance to scratches & heat, and its capability to enhance the aesthetic appeal of any interior or exterior space with a luxurious natural look.
-                                </p>
+                        <a href="brown-fantasy.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/BROWN-FANTASY.webp" alt="Brown Fantasy Marble" class="bestseller-image">
                             </div>
+                            <h3 class="bestseller-name">Brown Fantasy Marble</h3>
+                        </a>
 
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.2 What are the different uses of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. It is usually used for luxury flooring, kitchen countertops, bathroom vanity tops, feature walls, wall cladding, staircases, tabletops, fireplace surrounds, and decorative applications. It is suitable for both residential and commercial interior & exterior décor projects.
-                                </p>
+                        <a href="panda-white.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/PANDA-WHITE.webp" alt="Panda White Marble" class="bestseller-image">
                             </div>
+                            <h3 class="bestseller-name">Panda White Marble</h3>
+                        </a>
 
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.3 Which are the different finishes of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. There are some different finishes of this marble such as polished (high gloss shine), honed (matte smooth finish), leathered (textured surface), brushed (slightly rough texture), flamed (rough outdoor finish), antiqued, bush hammered, and shot blasted finishes for various aesthetic and functional requirements.
-                                </p>
+                        <a href="river-white.html" class="bestseller-card">
+                            <div class="bestseller-image-container">
+                                <img src="Marbles/RIVER-WHITE.webp" alt="River White Marble" class="bestseller-image">
                             </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.4 Who is the top manufacturer and exporter of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. BNB Enterprises is one of the leading manufacturers and exporters of Rain Forest Brown Marble and other premium natural stones. We source directly from the finest quarries in North India and provide our services in several countries such as the USA, UK, Dubai, Singapore, South Korea, Australia, Canada, Israel, Spain, and many more.
-                                </p>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.5 How to maintain Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. Clean regularly with pH-neutral stone cleaners and avoid acidic substances like lemon juice or vinegar. Seal the marble periodically to protect against stains. Use coasters under glasses and avoid dragging heavy objects across the surface to prevent scratches and maintain its natural beauty for years.
-                                </p>
-                            </div>
-                        </div>
+                            <h3 class="bestseller-name">River White Marble</h3>
+                        </a>
                     </div>
                 </div>
             </section>
-
-        <!-- BEST SELLERS SECTION -->
-    <section class="best-sellers-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-subtitle">Popular Collections</div>
-                <h2 class="section-title">Our Most Selling Marbles</h2>
-            </div>
-
-            <div class="best-sellers-grid">
-                <a href="rain-forest-brown.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/RAIN-FOREST-GREEN.webp" alt="Rain Forest Green Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">Rain Forest Green Marble</h3>
-                </a>
-
-                <a href="forest-green.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/Forest-green.webp" alt="Forest Green Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">Forest Green Marble</h3>
-                </a>
-
-                <a href="Marbles/spider-green.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/spider-green.webp" alt="Spider Green Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">Spider Green Marble</h3>
-                </a>
-
-                <a href="Marbles/brown-fantasy.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/BROWN-FANTASY.webp" alt="Brown Fantasy Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">Brown Fantasy Marble</h3>
-                </a>
-
-                <a href="Marbles/panda-white.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/PANDA-WHITE.webp" alt="Panda White Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">Panda White Marble</h3>
-                </a>
-
-                <a href="Marbles/river-white.html" class="bestseller-card">
-                    <div class="bestseller-image-container">
-                        <img src="Marbles/RIVER-WHITE.webp" alt="River White Marble" class="bestseller-image">
-                    </div>
-                    <h3 class="bestseller-name">River White Marble</h3>
-                </a>
-            </div>
-        </div>
-    </section>
         </main>
 
         <!-- Footer Component -->
@@ -1057,7 +207,7 @@ section {
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Rain%20Forest%20Brown%20Marble."
+    <a href="https://wa.me/919940191813?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Forest%20Green%20Marble."
         class="whatsapp-float" 
         target="_blank" 
         rel="noopener noreferrer" 
@@ -1067,190 +217,7 @@ section {
     </a>
 
     <script>
-        // ========== PERFORMANCE TRACKING ==========
-        const performanceMetrics = {
-            startTime: performance.now(),
-            componentsLoaded: 0
-        };
-
-        // ========== PAGE INITIALIZATION ==========
-        document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 1000;
-            const elapsedTime = performance.now() - performanceMetrics.startTime;
-            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-
-            setTimeout(() => {
-                document.body.classList.add("loaded");
-                loadComponents();
-            }, remainingTime);
-        });
-
-        // ========== COMPONENT LOADING SYSTEM ==========
-        async function loadComponents() {
-            const components = [
-                { name: "navbar", target: "navbarComponent" },
-                { name: "footer", target: "footerComponent" }
-            ];
-
-            for (const comp of components) {
-                await loadComponent(comp.name, comp.target);
-                performanceMetrics.componentsLoaded++;
-            }
-
-            console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
-            initializePageFunctions();
-        }
-
-        // ========== COMPONENT LOADER ==========
-        async function loadComponent(name, targetId) {
-            try {
-                const startTime = performance.now();
-                
-                const htmlResp = await fetch(`../${name}.html`);
-                const htmlText = await htmlResp.text();
-
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = htmlText;
-
-                const targetElement = document.getElementById(targetId);
-                if (!targetElement) {
-                    console.error(`❌ Target element #${targetId} not found`);
-                    return;
-                }
-
-                // Extract and insert CSS
-                const styles = tempDiv.querySelectorAll('style');
-                styles.forEach(style => {
-                    const styleElement = document.createElement('style');
-                    styleElement.innerHTML = style.innerHTML;
-                    styleElement.setAttribute('data-component', name);
-                    document.head.appendChild(styleElement);
-                });
-
-                // Extract scripts
-                const scripts = tempDiv.querySelectorAll('script');
-                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
-
-                // Clean up
-                scripts.forEach(script => script.remove());
-                styles.forEach(style => style.remove());
-                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
-                fontLinks.forEach(link => link.remove());
-
-                // Insert HTML
-                targetElement.innerHTML = tempDiv.innerHTML;
-
-                // Wait for DOM
-                await new Promise(resolve => setTimeout(resolve, 100));
-
-                // Execute scripts
-                scriptContents.forEach(scriptContent => {
-                    if (scriptContent.trim()) {
-                        try {
-                            const func = new Function(scriptContent);
-                            func();
-                        } catch (scriptError) {
-                            console.error(`❌ Error executing ${name} script:`, scriptError);
-                        }
-                    }
-                });
-
-                const loadTime = Math.round(performance.now() - startTime);
-                console.log(`✅ ${name} loaded in ${loadTime}ms`);
-
-            } catch (err) {
-                console.error(`❌ Error loading ${name}:`, err);
-            }
-        }
-
-        // ========== PAGE-SPECIFIC FUNCTIONS ==========
-        function initializePageFunctions() {
-            // Image gallery
-            window.changeImage = function(imageSrc, thumbnail) {
-                const mainImage = document.getElementById('mainImage');
-                if (mainImage) {
-                    mainImage.src = imageSrc;
-                }
-                
-                document.querySelectorAll('.thumbnail').forEach(thumb => {
-                    thumb.classList.remove('active');
-                });
-                if (thumbnail) {
-                    thumbnail.classList.add('active');
-                }
-            };
-
-            // WhatsApp message
-            window.sendWhatsAppMessage = function() {
-                const productName = "Rain Forest Brown Marble";
-                const message = `Hello BNB Enterprises,%0A%0AI'm interested in the ${productName}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-                const whatsappURL = `https://wa.me/919876543210?text=${message}`;
-                window.open(whatsappURL, '_blank');
-            };
-
-            // Scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe sections
-            const sections = document.querySelectorAll('.why-choose-section, .best-sellers-section');
-            sections.forEach(section => observer.observe(section));
-
-            // Observe FAQ items
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-                observer.observe(item);
-            });
-
-            // Observe bestseller cards
-            const bestsellerCards = document.querySelectorAll('.bestseller-card');
-            bestsellerCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.08}s`;
-                observer.observe(card);
-            });
-
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    
-                    e.preventDefault();
-                    const targetId = href.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        const headerHeight = 80;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            console.log('✅ Page functions initialized');
-        }
-
-        // ========== PERFORMANCE LOGGING ==========
-        window.addEventListener('load', function() {
-            const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
-            console.log(`🚀 Product Detail Page loaded in ${loadTime}ms`);
-        });
+        const performanceMetrics={startTime:performance.now(),componentsLoaded:0};const lightboxImages=['Marbles/Forest-green.webp','Marbles/Forest-green.webp','Marbles/Forest-green.webp'];let currentImageIndex=0,lightboxOpen=!1,touchStartX=0,touchStartY=0,touchEndX=0,touchEndY=0,initialDistance=0,currentScale=1,currentX=0,currentY=0,isDragging=!1,isPinching=!1;function openLightbox(e){currentImageIndex=e;const t=document.getElementById('imageLightbox'),n=document.getElementById('lightboxImage'),a=document.getElementById('zoomHint');n.src=lightboxImages[currentImageIndex],updateCounter(),t.classList.add('active'),document.body.classList.add('lightbox-open'),lightboxOpen=!0,currentScale=1,currentX=0,currentY=0,updateImageTransform(),a.classList.add('show'),setTimeout(()=>{a.classList.remove('show')},2500)}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('active'),document.body.classList.remove('lightbox-open'),lightboxOpen=!1,currentScale=1,currentX=0,currentY=0}function nextImage(){currentImageIndex=(currentImageIndex+1)%lightboxImages.length,updateLightboxImage()}function prevImage(){currentImageIndex=(currentImageIndex-1+lightboxImages.length)%lightboxImages.length,updateLightboxImage()}function updateLightboxImage(){const e=document.getElementById('lightboxImage');e.style.opacity='0',setTimeout(()=>{e.src=lightboxImages[currentImageIndex],updateCounter(),currentScale=1,currentX=0,currentY=0,updateImageTransform(),e.style.opacity='1'},150)}function updateCounter(){document.getElementById('imageCounter').textContent=`${currentImageIndex+1} / ${lightboxImages.length}`}function updateImageTransform(){document.getElementById('lightboxImage').style.transform=`translate(${currentX}px, ${currentY}px) scale(${currentScale})`}function getDistance(e,t){const n=e.clientX-t.clientX,a=e.clientY-t.clientY;return Math.sqrt(n*n+a*a)}document.addEventListener("DOMContentLoaded",()=>{const e=800,t=performance.now()-performanceMetrics.startTime,n=Math.max(0,e-t);setTimeout(()=>{document.body.classList.add("loaded"),loadComponents(),initializeLightbox()},n)});function initializeLightbox(){const e=document.getElementById('closeLightbox'),t=document.getElementById('prevImage'),n=document.getElementById('nextImage'),a=document.getElementById('imageLightbox'),i=document.getElementById('imageWrapper');e.addEventListener('click',closeLightbox),t.addEventListener('click',e=>{e.stopPropagation(),prevImage()}),n.addEventListener('click',e=>{e.stopPropagation(),nextImage()}),a.addEventListener('click',e=>{e.target===a&&closeLightbox()}),document.addEventListener('keydown',e=>{lightboxOpen&&('Escape'===e.key&&closeLightbox(),'ArrowLeft'===e.key&&prevImage(),'ArrowRight'===e.key&&nextImage())}),i.addEventListener('touchstart',e=>{1===e.touches.length?(touchStartX=e.touches[0].clientX,touchStartY=e.touches[0].clientY,currentScale>1&&(isDragging=!0)):2===e.touches.length&&(isPinching=!0,isDragging=!1,initialDistance=getDistance(e.touches[0],e.touches[1]))},{passive:!0}),i.addEventListener('touchmove',e=>{if(isPinching&&2===e.touches.length){e.preventDefault();const t=getDistance(e.touches[0],e.touches[1]),n=currentScale*(t/initialDistance);currentScale=Math.min(Math.max(n,1),4),updateImageTransform(),initialDistance=t}else if(isDragging&&1===e.touches.length){e.preventDefault();const t=e.touches[0].clientX-touchStartX,n=e.touches[0].clientY-touchStartY;currentX+=t,currentY+=n,touchStartX=e.touches[0].clientX,touchStartY=e.touches[0].clientY,updateImageTransform()}},{passive:!1}),i.addEventListener('touchend',e=>{if(0===e.touches.length){touchEndX=e.changedTouches[0].clientX,touchEndY=e.changedTouches[0].clientY;const t=touchEndX-touchStartX;!isDragging&&1===currentScale&&Math.abs(t)>50&&Math.abs(touchEndY-touchStartY)<100&&(t>0?prevImage():nextImage()),isDragging=!1,isPinching=!1,1===currentScale&&(currentX=0,currentY=0,updateImageTransform())}},{passive:!0});let s=0;i.addEventListener('touchend',e=>{const t=(new Date).getTime(),n=t-s;n<300&&n>0&&(1===currentScale?(currentScale=2):(currentScale=1,currentX=0,currentY=0),updateImageTransform()),s=t}),console.log('✅ Lightbox initialized')}async function loadComponents(){const e=[{name:"why-bnbmarble",target:"whyChooseComponent"},{name:"footer",target:"footerComponent"}];for(const t of e)await loadComponent(t.name,t.target),performanceMetrics.componentsLoaded++;console.log('✅ Components loaded in',Math.round(performance.now()-performanceMetrics.startTime),'ms'),replaceProductNames(),initializePageFunctions()}async function loadComponent(e,t){try{const n=performance.now(),a=await fetch(`../${e}.html`),i=await a.text(),s=document.createElement('div');s.innerHTML=i;const o=document.getElementById(t);if(!o)return void console.error(`❌ Target element #${t} not found`);const c=s.querySelectorAll('style');c.forEach(t=>{const n=document.createElement('style');n.innerHTML=t.innerHTML,n.setAttribute('data-component',e),document.head.appendChild(n)});const r=s.querySelectorAll('script'),l=Array.from(r).map(e=>e.innerHTML);r.forEach(e=>e.remove()),c.forEach(e=>e.remove()),s.querySelectorAll('link[href*="fonts.googleapis.com"]').forEach(e=>e.remove()),o.innerHTML=s.innerHTML,await new Promise(e=>setTimeout(e,50)),l.forEach(t=>{if(t.trim())try{(new Function(t))()}catch(t){console.error(`❌ Error executing ${e} script:`,t)}});const m=Math.round(performance.now()-n);console.log(`✅ ${e} loaded in ${m}ms`)}catch(n){console.error(`❌ Error loading ${e}:`,n)}}function replaceProductNames(){const e=document.querySelector('.product-title');if(!e)return;const t=e.textContent.trim(),n=document.getElementById('whyChooseComponent');n&&n.querySelectorAll('h2, h3, p, li').forEach(e=>{e.innerHTML.includes('[PRODUCT_NAME]')&&(e.innerHTML=e.innerHTML.replace(/\[PRODUCT_NAME\]/g,t))}),console.log('✅ Product names replaced dynamically')}function initializePageFunctions(){window.changeImage=function(e,t,n){const a=document.getElementById('mainImage');a&&(a.src=e),document.querySelectorAll('.thumbnail').forEach(e=>{e.classList.remove('active')}),t&&t.classList.add('active'),currentImageIndex=n},window.sendWhatsAppMessage=function(){const e=document.querySelector('.product-title').textContent,t=`Hello BNB Enterprises,%0A%0AI'm interested in the ${e}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;window.open(`https://wa.me/919940191813?text=${t}`,'_blank')};const e={threshold:.1,rootMargin:'0px 0px -40px 0px'},t=new IntersectionObserver(function(e){e.forEach(e=>{e.isIntersecting&&(e.target.classList.add('animate-on-scroll'),t.unobserve(e.target))})},e);document.querySelectorAll('#whyChooseComponent, .best-sellers-section').forEach(e=>t.observe(e)),document.querySelectorAll('.bestseller-card').forEach((e,n)=>{e.style.animationDelay=`${.06*n}s`,t.observe(e)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener('click',function(e){const t=this.getAttribute('href');if('#'===t)return;e.preventDefault();const n=t.substring(1),a=document.getElementById(n);if(a){const e=a.offsetTop-70;window.scrollTo({top:e,behavior:'smooth'})}})}),console.log('✅ Page functions initialized')}window.addEventListener('load',function(){const e=Math.round(performance.now()-performanceMetrics.startTime);console.log(`🚀 Product Detail Page loaded in ${e}ms`)});
     </script>
 </body>
 </html>

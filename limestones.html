@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-/* ========== REFINED COLOR SYSTEM ========== */
+/* ========== COLOR SYSTEM ========== */
 :root {
   --primary-blue: #2673B8;
   --background-base: #eeeeee;
@@ -22,7 +22,6 @@
   --text-muted: #7A8A9E;
   --border-color: #D4DCE6;
   --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
 }
 
 * {
@@ -31,21 +30,89 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: var(--background-base);
     color: var(--text-body);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-body.modal-open {
-    overflow: hidden;
+/* ========== PAGE LOADER ========== */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-light);
+    z-index: 9999;
+    gap: 12px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* LIMESTONE SECTION - OPTIMIZED */
-.marbles-section {
+.loader-logo {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+    object-fit: contain;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
+}
+
+.loader-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: clamp(2px, 0.5vw, 3px);
+    color: var(--text-primary);
+}
+
+.loader-subtext {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-weight: 500;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+body.loaded .page-loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ========== SITE WRAPPER ========== */
+.site-wrapper {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded .site-wrapper {
+    opacity: 1;
+}
+
+/* LIMESTONE SECTION */
+.limestone-section {
     background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 2.5rem);
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 3rem);
     min-height: 100vh;
 }
 
@@ -55,21 +122,9 @@ body.modal-open {
     padding: 0 clamp(1rem, 4vw, 3rem);
 }
 
-/* HEADER - COMPACT */
+/* HEADER - MINIMAL */
 .page-header {
-    margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
-}
-
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-    gap: 2rem;
-}
-
-.header-content {
-    flex: 1;
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
 .breadcrumb {
@@ -99,7 +154,7 @@ body.modal-open {
     align-items: center;
     gap: 0.6rem;
     padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     background: var(--surface-light);
     border: 1px solid var(--border-color);
     color: var(--text-body);
@@ -136,69 +191,8 @@ body.modal-open {
     font-weight: 900;
     letter-spacing: -1.5px;
     color: var(--text-primary);
-    line-height: 1;
-    margin-bottom: 0.8rem;
-}
-
-.page-description {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    color: var(--text-body);
-    opacity: 0.9;
-    line-height: 1.6;
-    max-width: 600px;
-}
-
-/* FILTER BAR - COMPACT */
-.filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.filter-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-body);
-    opacity: 0.7;
-}
-
-.filter-select {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(2rem, 2.5vw, 2.2rem) clamp(0.6rem, 0.8vw, 0.7rem) clamp(0.9rem, 1.2vw, 1rem);
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 600;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing: 0.3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232673B8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    min-width: 140px;
-    border-radius: 4px;
-}
-
-.filter-select:hover,
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
+    line-height: 1.1;
+    margin-bottom: clamp(0.5rem, 1vw, 0.8rem);
 }
 
 /* RESULTS BAR */
@@ -208,7 +202,7 @@ body.modal-open {
     align-items: center;
     padding: clamp(0.9rem, 1.2vw, 1.2rem) 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+    margin-bottom: clamp(1.8rem, 2.5vw, 2.5rem);
 }
 
 .results-count {
@@ -225,32 +219,38 @@ body.modal-open {
     font-weight: 700;
 }
 
-/* PRODUCTS GRID - OPTIMIZED */
+/* PRODUCTS GRID - OPTIMIZED SIZING */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: clamp(1.3rem, 2vw, 1.6rem);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
     margin-bottom: 3rem;
 }
 
 @media (min-width: 1200px) {
     .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1300px;
     }
 }
 
-/* PRODUCT CARD - OPTIMIZED */
-.product-card {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+@media (min-width: 1400px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.product-card.hidden {
-    display: none;
+/* PRODUCT CARD - CLEAN & MINIMAL */
+.product-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    position: relative;
 }
 
 .product-card::before {
@@ -269,8 +269,8 @@ body.modal-open {
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
     border-color: var(--primary-blue);
 }
 
@@ -278,15 +278,13 @@ body.modal-open {
     transform: scaleX(1);
 }
 
-/* IMAGE CONTAINER */
+/* IMAGE CONTAINER - PERFECT RATIO */
 .product-image-container {
     position: relative;
     width: 100%;
-    padding-top: 110%;
+    padding-top: 100%;
     overflow: hidden;
     background: var(--border-light);
-    cursor: pointer;
-    border-radius: 8px 8px 0 0;
 }
 
 .product-image {
@@ -300,55 +298,19 @@ body.modal-open {
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-/* QUICK VIEW BUTTON */
-.quick-view {
-    position: absolute;
-    bottom: 0.8rem;
-    left: 0.8rem;
-    right: 0.8rem;
-    background: var(--text-primary);
-    color: var(--accent-white);
-    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(1rem, 1.3vw, 1.2rem);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 5;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.product-card:hover .quick-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.quick-view:hover {
-    background: var(--primary-blue);
-}
-
-/* PRODUCT INFO - COMPACT */
-.product-info {
-    padding: clamp(1.1rem, 1.5vw, 1.3rem);
-}
-
+/* PRODUCT NAME - CENTERED */
 .product-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
     font-weight: 800;
     letter-spacing: 0.3px;
     color: var(--text-primary);
-    margin-bottom: 0.35rem;
-    line-height: 1.2;
+    text-align: center;
+    padding: clamp(1.1rem, 1.4vw, 1.3rem);
+    line-height: 1.3;
     transition: color 0.3s ease;
 }
 
@@ -356,439 +318,134 @@ body.modal-open {
     color: var(--primary-blue);
 }
 
-.product-material {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.7;
-    margin-bottom: 0.7rem;
-}
-
-/* PRODUCT DESCRIPTION */
-.product-description {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-body);
-    opacity: 0.85;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* SPECIFICATIONS - 3 COLUMN LAYOUT */
-.product-specs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(0.7rem, 1vw, 0.9rem);
-    padding-top: clamp(0.9rem, 1.2vw, 1.1rem);
+/* ========== ABOUT LIMESTONE SECTION ========== */
+.about-limestone-section {
+    background: white;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
     border-top: 1px solid var(--border-color);
-    margin-bottom: clamp(0.9rem, 1.2vw, 1.1rem);
 }
 
-.spec-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.spec-label {
+.about-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.55rem, 0.7vw, 0.6rem);
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.7;
-}
-
-.spec-value {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    color: var(--text-body);
-}
-
-/* ACTION BUTTONS */
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.6rem, 0.9vw, 0.8rem);
-}
-
-.action-btn {
-    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(0.9rem, 1.2vw, 1rem);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border-radius: 4px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
 }
 
-.action-btn i {
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
-}
-
-.call-btn {
-    background: var(--surface-light);
+.about-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-weight: 400;
+    line-height: 1.7;
     color: var(--text-body);
+    margin-bottom: 0.9rem;
+    text-align: justify;
 }
 
-.call-btn:hover {
-    background: var(--text-primary);
-    color: var(--accent-white);
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
+.benefits-section {
+    margin-top: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: var(--accent-white);
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-/* NO RESULTS MESSAGE */
-.no-results {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 4rem 2rem;
-    display: none;
-}
-
-.no-results.show {
-    display: block;
-}
-
-.no-results-title {
+.benefits-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 0.8rem;
 }
 
-.no-results-text {
+.benefits-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.benefits-list li {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 500;
+    line-height: 1.6;
     color: var(--text-body);
-    opacity: 0.8;
-}
-
-/* ========== ENHANCED LIGHTBOX MODAL ========== */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.96);
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.lightbox-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-/* CLOSE BUTTON - TOP RIGHT */
-.lightbox-close {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10002;
-    transition: all 0.3s ease;
-}
-
-.lightbox-close:hover {
-    background: rgba(255, 59, 59, 0.9);
-    border-color: rgba(255, 59, 59, 1);
-    transform: rotate(90deg);
-}
-
-.lightbox-close i {
-    font-size: 1.3rem;
-    color: white;
-}
-
-/* ZOOM CONTROLS - MOBILE FRIENDLY */
-.zoom-controls {
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    display: flex;
-    gap: 0.6rem;
-    z-index: 10002;
-}
-
-.zoom-btn {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-    font-size: 1.1rem;
-}
-
-.zoom-btn:hover:not(:disabled) {
-    background: rgba(38, 115, 184, 0.9);
-    border-color: var(--primary-blue);
-    transform: scale(1.1);
-}
-
-.zoom-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.zoom-btn i {
-    pointer-events: none;
-}
-
-/* ZOOM INDICATOR */
-.zoom-level-display {
-    position: fixed;
-    bottom: 6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    z-index: 10002;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.zoom-level-display.show {
-    opacity: 1;
-}
-
-/* IMAGE CONTAINER - CENTERED */
-.lightbox-image-wrapper {
+    margin-bottom: 0.5rem;
+    padding-left: 1.3rem;
     position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    cursor: grab;
 }
 
-.lightbox-image-wrapper.zoomed {
-    cursor: grab;
-}
-
-.lightbox-image-wrapper.dragging {
-    cursor: grabbing;
-}
-
-.lightbox-image {
-    max-width: 90vw;
-    max-height: calc(100vh - 160px);
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-    touch-action: none;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* PRODUCT INFO BAR - BOTTOM */
-.lightbox-info {
-    position: fixed;
-    bottom: 0;
+.benefits-list li::before {
+    content: '•';
+    color: var(--primary-blue);
+    font-weight: 900;
+    font-size: 1.2rem;
+    position: absolute;
     left: 0;
-    right: 0;
-    background: rgba(26, 35, 50, 0.95);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 2rem;
-    z-index: 10001;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+    top: -2px;
 }
 
-.lightbox-product-name {
+/* ========== FAQ SECTION ========== */
+.faq-section {
+    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.faq-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
     font-weight: 800;
-    color: white;
-    letter-spacing: 0.3px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.lightbox-product-material {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.95vw, 0.85rem);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.5px;
-    margin-top: 0.3rem;
+.faq-item {
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.lightbox-hint {
+.faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.faq-answer {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.3px;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 0.4rem;
+    text-align: justify;
 }
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 991px) {
-    .header-top {
-        flex-direction: column;
-    }
-
+@media (max-width: 1199px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 768px) {
-    .filter-bar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.8rem;
-    }
-
-    .filter-group {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .filter-select {
-        width: 100%;
-        min-width: auto;
-        flex: 1;
-    }
-
-    .product-image-container {
-        padding-top: 115%;
-    }
-
-    .zoom-controls {
-        top: 1rem;
-        left: 1rem;
-        gap: 0.5rem;
-    }
-
-    .zoom-btn {
-        width: 44px;
-        height: 44px;
-        font-size: 1rem;
-    }
-
-    .lightbox-close {
-        top: 1rem;
-        right: 1rem;
-        width: 44px;
-        height: 44px;
-    }
-
-    .lightbox-close i {
-        font-size: 1.1rem;
-    }
-
-    .lightbox-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-        padding: 1.2rem 1.5rem;
-    }
-
-    .zoom-level-display {
-        bottom: 5rem;
-        font-size: 0.75rem;
-        padding: 0.5rem 1rem;
+@media (max-width: 991px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 576px) {
     .products-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-
+    
     .product-image-container {
-        padding-top: 110%;
-    }
-
-    .product-specs {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.6rem;
-    }
-
-    .zoom-controls {
-        top: 0.8rem;
-        left: 0.8rem;
-        gap: 0.4rem;
-    }
-
-    .zoom-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
-    }
-
-    .lightbox-close {
-        top: 0.8rem;
-        right: 0.8rem;
-        width: 40px;
-        height: 40px;
-    }
-
-    .lightbox-image {
-        max-width: 95vw;
-        max-height: calc(100vh - 140px);
+        padding-top: 95%;
     }
 }
 
@@ -796,7 +453,7 @@ body.modal-open {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -806,673 +463,276 @@ body.modal-open {
 
 .animate-on-scroll {
     opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* LOADING STATE */
+.product-image {
+    background: linear-gradient(90deg, var(--border-light) 0%, var(--surface-light) 50%, var(--border-light) 100%);
+    background-size: 200% 100%;
+}
+
+.product-image[src] {
+    background: none;
+}
+
+#footerComponent {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
 }
 </style>
 </head>
 <body>
-    <section class="marbles-section">
-        <div class="container">
-            <!-- PAGE HEADER -->
-            <div class="page-header">
-                <div class="header-top">
-                    <div class="header-content">
-                        <div class="breadcrumb">
-                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Luxury Limestone</span>
-                        </div>
-                        <button class="back-button" id="backButton">
-                            <i class="fas fa-arrow-left"></i>
-                            Back
-                        </button>
-                        <h1 class="page-title">Luxury Limestone</h1>
-                        <p class="page-description">
-                            Discover our premium collection of natural limestone slabs featuring exceptional durability, earthy tones, and versatile finishes perfect for elegant flooring, wall cladding, and architectural excellence.
-                        </p>
+    <!-- Page Loader -->
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
+        <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
+        <div class="loader-text">BNB ENTERPRISES</div>
+        <div class="loader-subtext">Loading...</div>
+    </div>
+
+    <!-- Site Wrapper -->
+    <div class="site-wrapper">
+        <section class="limestone-section">
+            <div class="container">
+                <!-- PAGE HEADER -->
+                <div class="page-header">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Luxury Limestone</span>
                     </div>
+                    <button class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <h1 class="page-title">Luxury Limestone</h1>
 
-                    <div class="filter-bar">
-                        <div class="filter-group">
-                            <label class="filter-label">Color</label>
-                            <select class="filter-select" id="colorFilter">
-                                <option value="all">All Colors</option>
-                                <option value="yellow">Yellow/Beige</option>
-                                <option value="blue">Blue/Grey</option>
-                                <option value="brown">Brown</option>
-                                <option value="black">Black</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <label class="filter-label">Type</label>
-                            <select class="filter-select" id="typeFilter">
-                                <option value="all">All Types</option>
-                                <option value="tandur">Tandur</option>
-                                <option value="kota">Kota Stone</option>
-                                <option value="kadappa">Kadappa</option>
-                            </select>
+                    <!-- RESULTS BAR -->
+                    <div class="results-bar">
+                        <div class="results-count">
+                            Showing <span>5</span> premium limestone collections
                         </div>
                     </div>
                 </div>
 
-                <!-- RESULTS BAR -->
-                <div class="results-bar">
-                    <div class="results-count">
-                        Showing <span id="currentCount">5</span> of <span id="totalCount">5</span> products
-                    </div>
-                </div>
-            </div>
-
-            <!-- PRODUCTS GRID -->
-            <div class="products-grid" id="productsGrid">
-                <!-- NO RESULTS MESSAGE -->
-                <div class="no-results" id="noResults">
-                    <h3 class="no-results-title">No Products Found</h3>
-                    <p class="no-results-text">Try adjusting your filters to see more options</p>
-                </div>
-
-                <!-- PRODUCT CARD 1 - TANDUR YELLOW -->
-                <div class="product-card" data-color="yellow" data-type="tandur" data-name="Tandur Yellow Limestone" data-thickness="18mm" data-material="Natural Tandur Stone">
-                    <div class="product-image-container">
-                        <img src="Limestone/Tandur-Yellow-Limestone-rotated.webp" alt="Tandur Yellow Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                <!-- PRODUCTS GRID -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- PRODUCT 1 -->
+                    <a href="Limestone/tandur-yellow.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Limestone/Tandur-Yellow-Limestone-rotated.webp" alt="Tandur Yellow Limestone" class="product-image">
+                        </div>
                         <h3 class="product-name">Tandur Yellow Limestone</h3>
-                        <p class="product-material">Natural Tandur Stone</p>
-                        <p class="product-description">Premium Tandur Yellow limestone featuring warm golden-beige tones and natural texture. Ideal for traditional flooring, exterior paving, heritage projects, and creating timeless Indian architectural aesthetics with exceptional durability and slip-resistant finish.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Yellow/Beige</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">18mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Type</span>
-                                <span class="spec-value">Tandur</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 2 - KOTA BLUE -->
-                <div class="product-card" data-color="blue" data-type="kota" data-name="Kota Blue Limestone" data-thickness="18mm" data-material="Premium Kota Stone">
-                    <div class="product-image-container">
-                        <img src="Limestone/Kota-Blue-Limestone-rotated.webp" alt="Kota Blue Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 2 -->
+                    <a href="Limestone/kota-blue.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Limestone/Kota-Blue-Limestone-rotated.webp" alt="Kota Blue Limestone" class="product-image">
+                        </div>
                         <h3 class="product-name">Kota Blue Limestone</h3>
-                        <p class="product-material">Premium Kota Stone</p>
-                        <p class="product-description">Classic Kota Blue limestone with distinctive blue-grey tones and superior hardness. Perfect for heavy traffic commercial flooring, outdoor pathways, contemporary interiors, and creating elegant spaces with low maintenance requirements and natural anti-skid properties.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Blue/Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">18mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Type</span>
-                                <span class="spec-value">Kota Stone</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 3 - KOTA BROWN -->
-                <div class="product-card" data-color="brown" data-type="kota" data-name="Kota Brown Limestone" data-thickness="18mm" data-material="Classic Kota Stone">
-                    <div class="product-image-container">
-                        <img src="Limestone/Kota-Brown-Limestone-rotated.webp" alt="Kota Brown Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 3 -->
+                    <a href="Limestone/kota-brown.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Limestone/Kota-Brown-Limestone-rotated.webp" alt="Kota Brown Limestone" class="product-image">
+                        </div>
                         <h3 class="product-name">Kota Brown Limestone</h3>
-                        <p class="product-material">Classic Kota Stone</p>
-                        <p class="product-description">Traditional Kota Brown limestone featuring rich earthy brown tones and excellent durability. Ideal for rustic interiors, farmhouse flooring, courtyard paving, and creating warm welcoming spaces with authentic Indian stone character and timeless natural beauty.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">18mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Type</span>
-                                <span class="spec-value">Kota Stone</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 4 - TANDUR BLUE -->
-                <div class="product-card" data-color="blue" data-type="tandur" data-name="Tandur Blue Limestone" data-thickness="18mm" data-material="Natural Tandur Stone">
-                    <div class="product-image-container">
-                        <img src="Limestone/Tandur-Blue-Limestone-rotated.webp" alt="Tandur Blue Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 4 -->
+                    <a href="Limestone/tandur-blue.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Limestone/Tandur-Blue-Limestone-rotated.webp" alt="Tandur Blue Limestone" class="product-image">
+                        </div>
                         <h3 class="product-name">Tandur Blue Limestone</h3>
-                        <p class="product-material">Natural Tandur Stone</p>
-                        <p class="product-description">Elegant Tandur Blue limestone with cool blue-grey hues and natural stone texture. Perfect for modern architecture, pool surrounds, exterior cladding, and creating sophisticated contemporary spaces with weather-resistant properties and unique organic patterns.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Blue/Grey</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">18mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Type</span>
-                                <span class="spec-value">Tandur</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 5 - KADAPPA BLACK -->
-                <div class="product-card" data-color="black" data-type="kadappa" data-name="Kadappa Black Limestone" data-thickness="18mm" data-material="Premium Kadappa Stone">
-                    <div class="product-image-container">
-                        <img src="Limestone/Kadappa-Black-Limestone-rotated.webp" alt="Kadappa Black Limestone" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 5 -->
+                    <a href="Limestone/kadappa-black.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Limestone/Kadappa-Black-Limestone-rotated.webp" alt="Kadappa Black Limestone" class="product-image">
+                        </div>
                         <h3 class="product-name">Kadappa Black Limestone</h3>
-                        <p class="product-material">Premium Kadappa Stone</p>
-                        <p class="product-description">Luxurious Kadappa Black limestone featuring deep charcoal-black tones and premium quality finish. Exceptional for luxury residential flooring, commercial lobbies, feature walls, and creating dramatic sophisticated interiors with elegant polished or honed surface options.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">18mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Type</span>
-                                <span class="spec-value">Kadappa</span>
-                            </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT LIMESTONE SECTION -->
+        <section class="about-limestone-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="about-title">Premium Limestone Collection by BNB Enterprises</h2>
+                    
+                    <p class="about-text">
+                        Headquartered in Chennai, India, BNB Enterprises has been establishing a worldwide trading network in premium natural stone, where craftsmanship meets innovation. With decades of expertise rooted in our distinguished family-owned business, we specialize in exporting luxury limestone sourced directly from India's finest quarries including Tandur, Kota, and Kadappa regions. Our state-of-the-art facilities equipped with cutting-edge technology transform raw limestone into exquisite works of art. The limestone collection features prestigious varieties including Tandur Yellow, Tandur Blue, Kota Blue, Kota Brown, and the elegant Kadappa Black limestone, renowned for their durability and natural beauty.
+                    </p>
+
+                    <p class="about-text">
+                        Indian limestone is celebrated worldwide for its exceptional durability, earthy tones, and versatile applications. Our skilled artisans execute every cut with utmost care using advanced machinery including state-of-the-art diamond wire saws for precise cutting and computer-guided polishing equipment. We meticulously process each surface to reveal the limestone's natural splendor and unique characteristics. We inspect every piece before it leaves our facility, ensuring color consistency and structural integrity that adheres to the highest standards. With our warehousing facility located just 5kms from Chennai International Airport, we provide efficient distribution through innovative and cost-effective logistics solutions, delivering custom-cut slabs, tiles, architectural elements, and finished products to clients worldwide for flooring, wall cladding, paving, and heritage restoration projects.
+                    </p>
+
+                    <div class="benefits-section">
+                        <h3 class="benefits-title">Why Choose BNB Enterprises for Premium Limestone</h3>
+                        <ul class="benefits-list">
+                            <li>Decades of expertise in limestone export with state-of-the-art production facilities</li>
+                            <li>Direct sourcing from premier Tandur, Kota, and Kadappa quarries ensuring authentic quality</li>
+                            <li>Advanced machinery with diamond wire saws and computer-guided processing equipment</li>
+                            <li>Premium finishes available: Polished, Honed, Flamed, Leathered, and Natural Cleft</li>
+                            <li>Rigorous quality control inspecting every piece for consistency and structural integrity</li>
+                            <li>Extensive selection from traditional earthy tones to contemporary elegant finishes</li>
+                            <li>Custom fabrication for flooring, wall cladding, paving, and architectural applications</li>
+                            <li>Competitive pricing with integrated trade experience and transparent cost structure</li>
+                            <li>Own warehousing facility 5kms from Chennai International Airport for global delivery</li>
+                            <li>Quality-focused organization with long-term customer relationships across 20+ countries</li>
+                        </ul>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3 class="faq-title">Frequently Asked Questions About Premium Limestone</h3>
+                        
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.1 What makes BNB Enterprises' limestone collection exceptional?</h4>
+                            <p class="faq-answer">
+                                Ans. BNB Enterprises combines decades of expertise with state-of-the-art facilities housing cutting-edge technology to produce exceptional Indian limestone. Our advanced machinery includes diamond wire saws for precise cutting and computer-guided processing equipment ensuring unmatched quality and perfection. We inspect every piece, checking color consistency and structural integrity against the highest standards. Quality is our cornerstone, guaranteeing investments that stand the test of time with prestigious varieties like Tandur Yellow, Kota Blue, and Kadappa Black renowned for their durability and natural beauty.
+                            </p>
                         </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.2 What premium finishes does BNB Enterprises offer for limestone?</h4>
+                            <p class="faq-answer">
+                                Ans. We offer five premium finishes expertly crafted by our skilled artisans: Polished finish provides glossy, refined surface ideal for interior flooring and feature walls. Honed finish offers smooth matte appearance perfect for contemporary designs. Flamed finish creates textured, slip-resistant surface achieved through thermal processing, ideal for outdoor paving. Leathered finish provides subtle texture with natural feel for modern applications. Natural Cleft finish preserves the stone's authentic texture for traditional and heritage projects, each finish revealing the limestone's unique characteristics.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.3 Which limestone varieties are best for specific applications?</h4>
+                            <p class="faq-answer">
+                                Ans. For traditional flooring and exterior paving, Tandur Yellow and Kota Brown offer exceptional durability with warm earthy tones. Kota Blue is perfect for heavy traffic commercial flooring and outdoor pathways with superior hardness. Tandur Blue works beautifully for modern architecture and pool surrounds with its cool elegant hues. Kadappa Black provides luxurious sophistication for high-end residential flooring and commercial lobbies. All varieties undergo rigorous testing for density and weather resistance, with custom fabrication services ensuring perfect fit for your specific project requirements.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.4 How does BNB Enterprises ensure quality and timely global delivery?</h4>
+                            <p class="faq-answer">
+                                Ans. Quality is the cornerstone of BNB Enterprises. We meticulously inspect every piece before it leaves our facility, ensuring nothing short of excellence reaches customers. With our warehousing facility located 5kms from Chennai International Airport, we provide built-to-suit warehousing options, long and short haul transportation, inventory supervision, and value-added services. Decades of experience in global trade have built long-term relationships through innovative and cost-effective logistics solutions, meeting the highest delivery standards while offering competitive pricing to clients across 20+ countries worldwide.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.5 What customization services are available for limestone projects?</h4>
+                            <p class="faq-answer">
+                                Ans. At BNB Enterprises, we believe in limitless possibilities. Our facilities equipped with cutting-edge technology produce custom-cut slabs, tiles, and architectural elements tailored to your specifications. Our team of skilled artisans executes every cut with utmost care, breathing life into every piece of limestone. We collaborate closely with architects, interior designers, homeowners, and contractors, providing personalized guidance throughout the process to understand your vision. Whether for heritage restoration, commercial flooring, or residential elegance, we turn ideas into reality with craftsmanship where expertise meets innovation.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.6 How can I order premium limestone from BNB Enterprises?</h4>
+                            <p class="faq-answer">
+                                Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com for inquiries and orders. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075. We look forward to extending our services and helping you experience the elegance of premium Indian limestone. Our dedicated team provides comprehensive support from material selection through delivery, offering competitive pricing with our integrated trade experience while meeting the highest delivery standards. Allow us to offer you a life amidst art with limestone craftsmanship perfected over decades.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ENHANCED LIGHTBOX MODAL -->
-    <div class="lightbox-modal" id="lightboxModal">
-        <!-- CLOSE BUTTON -->
-        <button class="lightbox-close" id="lightboxClose">
-            <i class="fas fa-times"></i>
-        </button>
-
-        <!-- ZOOM CONTROLS -->
-        <div class="zoom-controls">
-            <button class="zoom-btn" id="zoomInBtn" title="Zoom In">
-                <i class="fas fa-plus"></i>
-            </button>
-            <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out" disabled>
-                <i class="fas fa-minus"></i>
-            </button>
-            <button class="zoom-btn" id="resetZoomBtn" title="Reset" disabled>
-                <i class="fas fa-compress-arrows-alt"></i>
-            </button>
-        </div>
-
-        <!-- ZOOM LEVEL DISPLAY -->
-        <div class="zoom-level-display" id="zoomLevelDisplay">
-            <span id="zoomPercentage">100%</span>
-        </div>
-
-        <!-- IMAGE WRAPPER -->
-        <div class="lightbox-image-wrapper" id="lightboxImageWrapper">
-            <img src="" alt="" class="lightbox-image" id="lightboxImage">
-        </div>
-
-        <!-- PRODUCT INFO -->
-        <div class="lightbox-info">
-            <div>
-                <div class="lightbox-product-name" id="lightboxProductName"></div>
-                <div class="lightbox-product-material" id="lightboxProductMaterial"></div>
-            </div>
-            <div class="lightbox-hint">
-                Pinch • Double-tap • Scroll to zoom • Drag to pan • ESC to close
-            </div>
-        </div>
+        <!-- Footer Component -->
+        <footer id="footerComponent" role="contentinfo"></footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ===== FILTER SYSTEM =====
-            const colorFilter = document.getElementById('colorFilter');
-            const typeFilter = document.getElementById('typeFilter');
-            const productsGrid = document.getElementById('productsGrid');
-            const productCards = Array.from(document.querySelectorAll('.product-card:not(.no-results)'));
-            const currentCountSpan = document.getElementById('currentCount');
-            const totalCountSpan = document.getElementById('totalCount');
-            const noResults = document.getElementById('noResults');
+        // ========== PERFORMANCE TRACKING ==========
+        const performanceMetrics = {
+            startTime: performance.now(),
+            componentsLoaded: 0
+        };
 
-            let filteredProducts = [...productCards];
+        // ========== PAGE INITIALIZATION ==========
+        document.addEventListener("DOMContentLoaded", () => {
+            const minLoadTime = 1000;
+            const elapsedTime = performance.now() - performanceMetrics.startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
-            function filterProducts() {
-                const colorValue = colorFilter.value;
-                const typeValue = typeFilter.value;
+            setTimeout(() => {
+                document.body.classList.add("loaded");
+                loadComponents();
+            }, remainingTime);
+        });
 
-                filteredProducts = productCards.filter(card => {
-                    const cardColor = card.dataset.color;
-                    const cardType = card.dataset.type;
+        // ========== COMPONENT LOADING SYSTEM ==========
+        async function loadComponents() {
+            const components = [
+                { name: "footer", target: "footerComponent" }
+            ];
 
-                    const colorMatch = colorValue === 'all' || cardColor === colorValue;
-                    const typeMatch = typeValue === 'all' || cardType === typeValue;
-
-                    return colorMatch && typeMatch;
-                });
-
-                updateDisplay();
+            for (const comp of components) {
+                await loadComponent(comp.name, comp.target);
+                performanceMetrics.componentsLoaded++;
             }
 
-            function updateDisplay() {
-                productCards.forEach(card => {
-                    card.classList.add('hidden');
-                });
+            console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+            initializePageFunctions();
+        }
 
-                if (filteredProducts.length === 0) {
-                    noResults.classList.add('show');
-                    currentCountSpan.textContent = '0';
-                } else {
-                    noResults.classList.remove('show');
-                    filteredProducts.forEach(card => {
-                        card.classList.remove('hidden');
-                    });
-                    currentCountSpan.textContent = filteredProducts.length;
-                }
-
-                totalCountSpan.textContent = productCards.length;
-            }
-
-            colorFilter.addEventListener('change', filterProducts);
-            typeFilter.addEventListener('change', filterProducts);
-
-            updateDisplay();
-
-            // ===== WHATSAPP FUNCTIONALITY =====
-            document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    const card = this.closest('.product-card');
-                    const productName = card.dataset.name;
-                    const material = card.dataset.material;
-                    const thickness = card.dataset.thickness;
-
-                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following limestone product:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-
-                    const whatsappURL = `https://wa.me/919876543210?text=${message}`;
-                    window.open(whatsappURL, '_blank');
-                });
-            });
-
-            // ===== ENHANCED LIGHTBOX WITH SMOOTH ZOOM =====
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxImageWrapper = document.getElementById('lightboxImageWrapper');
-            const lightboxProductName = document.getElementById('lightboxProductName');
-            const lightboxProductMaterial = document.getElementById('lightboxProductMaterial');
-            const zoomInBtn = document.getElementById('zoomInBtn');
-            const zoomOutBtn = document.getElementById('zoomOutBtn');
-            const resetZoomBtn = document.getElementById('resetZoomBtn');
-            const zoomLevelDisplay = document.getElementById('zoomLevelDisplay');
-            const zoomPercentage = document.getElementById('zoomPercentage');
-
-            // Zoom configuration
-            const MIN_SCALE = 1;
-            const MAX_SCALE = 5;
-            const ZOOM_STEP = 0.5;
-            
-            let currentScale = 1;
-            let translateX = 0;
-            let translateY = 0;
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
-            let zoomDisplayTimeout;
-
-            // Open lightbox
-            function openLightbox(card) {
-                const imgSrc = card.querySelector('.product-image').src;
-                const productName = card.querySelector('.product-name').textContent;
-                const productMaterial = card.querySelector('.product-material').textContent;
-
-                lightboxImage.src = imgSrc;
-                lightboxImage.alt = productName;
-                lightboxProductName.textContent = productName;
-                lightboxProductMaterial.textContent = productMaterial;
-
-                // Reset zoom
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-                applyTransform(false);
-
-                lightboxModal.classList.add('active');
-                document.body.classList.add('modal-open');
-            }
-
-            // Close lightbox
-            function closeLightbox() {
-                lightboxModal.classList.remove('active');
-                document.body.classList.remove('modal-open');
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-            }
-
-            // Apply transform
-            function applyTransform(animate = true) {
-                if (animate) {
-                    lightboxImage.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                } else {
-                    lightboxImage.style.transition = 'none';
-                }
-
-                lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+        // ========== COMPONENT LOADER ==========
+        async function loadComponent(name, targetId) {
+            try {
+                const startTime = performance.now();
                 
-                updateZoomButtons();
-                showZoomLevel();
+                const htmlResp = await fetch(`${name}.html`);
+                const htmlText = await htmlResp.text();
 
-                setTimeout(() => {
-                    lightboxImage.style.transition = 'none';
-                }, 300);
-            }
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlText;
 
-            // Update button states
-            function updateZoomButtons() {
-                zoomOutBtn.disabled = currentScale <= MIN_SCALE;
-                zoomInBtn.disabled = currentScale >= MAX_SCALE;
-                resetZoomBtn.disabled = currentScale === MIN_SCALE;
-
-                if (currentScale > MIN_SCALE) {
-                    lightboxImageWrapper.classList.add('zoomed');
-                } else {
-                    lightboxImageWrapper.classList.remove('zoomed');
-                }
-            }
-
-            // Show zoom level
-            function showZoomLevel() {
-                clearTimeout(zoomDisplayTimeout);
-                zoomPercentage.textContent = Math.round(currentScale * 100) + '%';
-                zoomLevelDisplay.classList.add('show');
-                
-                zoomDisplayTimeout = setTimeout(() => {
-                    zoomLevelDisplay.classList.remove('show');
-                }, 1500);
-            }
-
-            // Zoom in
-            function zoomIn(clientX = null, clientY = null) {
-                const newScale = Math.min(currentScale + ZOOM_STEP, MAX_SCALE);
-                if (newScale === currentScale) return;
-
-                if (clientX !== null && clientY !== null) {
-                    const rect = lightboxImageWrapper.getBoundingClientRect();
-                    const x = clientX - rect.left - rect.width / 2;
-                    const y = clientY - rect.top - rect.height / 2;
-                    
-                    const scaleFactor = newScale / currentScale;
-                    translateX = translateX * scaleFactor - x * (scaleFactor - 1);
-                    translateY = translateY * scaleFactor - y * (scaleFactor - 1);
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) {
+                    console.error(`❌ Target element #${targetId} not found`);
+                    return;
                 }
 
-                currentScale = newScale;
-                applyTransform(true);
-            }
+                const styles = tempDiv.querySelectorAll('style');
+                styles.forEach(style => {
+                    const styleElement = document.createElement('style');
+                    styleElement.innerHTML = style.innerHTML;
+                    styleElement.setAttribute('data-component', name);
+                    document.head.appendChild(styleElement);
+                });
 
-            // Zoom out
-            function zoomOut() {
-                const newScale = Math.max(currentScale - ZOOM_STEP, MIN_SCALE);
-                if (newScale === currentScale) return;
+                const scripts = tempDiv.querySelectorAll('script');
+                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
 
-                const scaleFactor = newScale / currentScale;
-                translateX *= scaleFactor;
-                translateY *= scaleFactor;
+                scripts.forEach(script => script.remove());
+                styles.forEach(style => style.remove());
+                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
+                fontLinks.forEach(link => link.remove());
 
-                currentScale = newScale;
-                applyTransform(true);
-            }
+                targetElement.innerHTML = tempDiv.innerHTML;
 
-            // Reset zoom
-            function resetZoom() {
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-                applyTransform(true);
-            }
+                await new Promise(resolve => setTimeout(resolve, 100));
 
-            // Button controls
-            zoomInBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                zoomIn();
-            });
-
-            zoomOutBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                zoomOut();
-            });
-
-            resetZoomBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                resetZoom();
-            });
-
-            // Double-click/tap to zoom
-            let lastTapTime = 0;
-            lightboxImageWrapper.addEventListener('click', function(e) {
-                const now = Date.now();
-                const timeSinceLastTap = now - lastTapTime;
-                lastTapTime = now;
-
-                if (timeSinceLastTap < 300 && !isDragging) {
-                    e.preventDefault();
-                    if (currentScale === MIN_SCALE) {
-                        zoomIn(e.clientX, e.clientY);
-                    } else {
-                        resetZoom();
+                scriptContents.forEach(scriptContent => {
+                    if (scriptContent.trim()) {
+                        try {
+                            const func = new Function(scriptContent);
+                            func();
+                        } catch (scriptError) {
+                            console.error(`❌ Error executing ${name} script:`, scriptError);
+                        }
                     }
-                }
-            });
-
-            // Mouse wheel zoom
-            lightboxImageWrapper.addEventListener('wheel', function(e) {
-                e.preventDefault();
-                
-                if (e.deltaY < 0) {
-                    zoomIn(e.clientX, e.clientY);
-                } else {
-                    zoomOut();
-                }
-            }, { passive: false });
-
-            // Mouse drag
-            lightboxImageWrapper.addEventListener('mousedown', function(e) {
-                if (currentScale <= MIN_SCALE) return;
-                
-                isDragging = true;
-                lightboxImageWrapper.classList.add('dragging');
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                e.preventDefault();
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-            });
-
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    lightboxImageWrapper.classList.remove('dragging');
-                }
-            });
-
-            // Touch gestures
-            let touchStartDistance = 0;
-            let touchStartScale = 1;
-            let touches = [];
-
-            lightboxImageWrapper.addEventListener('touchstart', function(e) {
-                touches = Array.from(e.touches);
-                
-                if (touches.length === 2) {
-                    e.preventDefault();
-                    const touch1 = touches[0];
-                    const touch2 = touches[1];
-                    touchStartDistance = Math.hypot(
-                        touch2.clientX - touch1.clientX,
-                        touch2.clientY - touch1.clientY
-                    );
-                    touchStartScale = currentScale;
-                } else if (touches.length === 1 && currentScale > MIN_SCALE) {
-                    isDragging = true;
-                    startX = touches[0].clientX - translateX;
-                    startY = touches[0].clientY - translateY;
-                }
-            }, { passive: false });
-
-            lightboxImageWrapper.addEventListener('touchmove', function(e) {
-                touches = Array.from(e.touches);
-                
-                if (touches.length === 2) {
-                    e.preventDefault();
-                    const touch1 = touches[0];
-                    const touch2 = touches[1];
-                    const currentDistance = Math.hypot(
-                        touch2.clientX - touch1.clientX,
-                        touch2.clientY - touch1.clientY
-                    );
-                    
-                    const scale = (currentDistance / touchStartDistance) * touchStartScale;
-                    currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
-                    
-                    applyTransform(false);
-                } else if (touches.length === 1 && isDragging) {
-                    e.preventDefault();
-                    translateX = touches[0].clientX - startX;
-                    translateY = touches[0].clientY - startY;
-                    
-                    lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-                }
-            }, { passive: false });
-
-            lightboxImageWrapper.addEventListener('touchend', function(e) {
-                if (e.touches.length === 0) {
-                    isDragging = false;
-                    updateZoomButtons();
-                    showZoomLevel();
-                }
-            });
-
-            // Open lightbox from Quick View button
-            document.querySelectorAll('.quick-view').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.product-card');
-                    openLightbox(card);
                 });
-            });
 
-            // Open lightbox from product image
-            document.querySelectorAll('.product-image').forEach(img => {
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.product-card');
-                    openLightbox(card);
-                });
-            });
+                const loadTime = Math.round(performance.now() - startTime);
+                console.log(`✅ ${name} loaded in ${loadTime}ms`);
 
-            // Close lightbox
-            lightboxClose.addEventListener('click', closeLightbox);
+            } catch (err) {
+                console.error(`❌ Error loading ${name}:`, err);
+            }
+        }
 
-            lightboxModal.addEventListener('click', function(e) {
-                if (e.target === lightboxModal) {
-                    closeLightbox();
-                }
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
-                    closeLightbox();
-                }
-            });
-
-            // Prevent default drag
-            lightboxImage.addEventListener('dragstart', e => e.preventDefault());
-
-            // ===== BACK BUTTON =====
+        // ========== PAGE-SPECIFIC FUNCTIONS ==========
+        function initializePageFunctions() {
             const backButton = document.getElementById('backButton');
             
             if (backButton) {
@@ -1485,10 +745,9 @@ body.modal-open {
                 });
             }
 
-            // ===== SCROLL ANIMATIONS =====
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -80px 0px'
+                rootMargin: '0px 0px -60px 0px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -1503,12 +762,40 @@ body.modal-open {
             const header = document.querySelector('.page-header');
             if (header) observer.observe(header);
 
+            const productCards = document.querySelectorAll('.product-card');
             productCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animationDelay = `${index * 0.08}s`;
                 observer.observe(card);
             });
 
-            console.log('✅ BNB Luxury Limestone - Premium Collection Showcase');
+            const aboutSection = document.querySelector('.about-limestone-section');
+            if (aboutSection) observer.observe(aboutSection);
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            const images = document.querySelectorAll('.product-image');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+
+            console.log('✅ Page functions initialized');
+        }
+
+        window.addEventListener('load', function() {
+            const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
+            console.log(`🚀 Luxury Limestone Page loaded in ${loadTime}ms`);
         });
     </script>
 </body>

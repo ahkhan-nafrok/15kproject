@@ -2,807 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    
-    <!-- CRITICAL: Load fonts in HEAD -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <title>Rain Forest Brown Marble - BNB Enterprises</title>
     
-    <style>
-/* ========== GLOBAL VARIABLES ========== */
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
-}
-
-/* ========== GLOBAL RESET ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ========== PAGE LOADER ========== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-light);
-    z-index: 9999;
-    gap: 12px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
-    object-fit: contain;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
-}
-
-.loader-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
-    color: var(--text-primary);
-}
-
-.loader-subtext {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
-    font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
-
-body.loaded .page-loader {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* ========== SITE WRAPPER ========== */
-.site-wrapper {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded .site-wrapper {
-    opacity: 1;
-}
-
-/* ========== WHATSAPP FLOATING BUTTON ========== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 52px;
-    height: 52px;
-    background: var(--whatsapp-green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
-    z-index: 9998;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-float i {
-    color: white;
-    font-size: 26px;
-}
-
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 2px solid var(--whatsapp-green);
-    border-radius: 50%;
-    opacity: 0;
-    animation: whatsapp-pulse 2s infinite;
-}
-
-@keyframes whatsapp-pulse {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
-}
-
-/* ========== PRODUCT DETAIL PAGE - SIMPLIFIED ========== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 3vw, 2rem);
-}
-
-.product-detail-section {
-    background: var(--background-base);
-    padding: clamp(5rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 2.5rem);
-    min-height: 50vh;
-}
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.back-button i {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateX(-3px);
-}
-
-.back-button:hover i {
-    transform: translateX(-3px);
-}
-
-/* SIMPLIFIED PRODUCT LAYOUT */
-.product-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 3vw, 3rem);
-    background: white;
-    padding: clamp(1.5rem, 2.5vw, 2rem);
-    border-radius: 8px;
-}
-
-.product-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.main-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.main-image-container:hover .main-image {
-    transform: scale(1.05);
-}
-
-.thumbnail-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-}
-
-.thumbnail {
-    position: relative;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 4px;
-    overflow: hidden;
-    border: 2px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.thumbnail.active {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
-}
-
-.thumbnail:hover {
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
-}
-
-.thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* PRODUCT INFO - OPTIMIZED FONTS */
-.product-info {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.2rem, 1.8vw, 1.5rem);
-}
-
-.product-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-    font-weight: 900;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.3rem;
-}
-
-.product-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 1vw, 0.88rem);
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.2px;
-}
-
-/* COMPACT SPECIFICATIONS TABLE */
-.specifications {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.specifications tr {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.specifications tr:last-child {
-    border-bottom: none;
-}
-
-.specifications td {
-    padding: 0.7rem 0.9rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.75rem;
-}
-
-.specifications td:first-child {
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    letter-spacing: 0.6px;
-    width: 35%;
-    background: rgba(38, 115, 184, 0.05);
-}
-
-.specifications td:last-child {
-    font-weight: 500;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-/* SIMPLIFIED DESCRIPTION */
-.product-description {
-    background: var(--surface-light);
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-}
-
-.description-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    margin-bottom: 0.6rem;
-}
-
-.description-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: auto;
-}
-
-.action-btn {
-    padding: 0.85rem 1.2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.action-btn i {
-    font-size: 0.95rem;
-}
-
-.call-btn {
-    background: var(--surface-light);
-    color: var(--text-body);
-}
-
-.call-btn:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 35, 50, 0.12);
-}
-
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: white;
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
-}
-
-/* ========== WHY CHOOSE SECTION - OPTIMIZED ========== */
-.why-choose-section {
-    background: white;
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.why-choose-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.why-choose-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
-}
-
-.why-choose-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-bottom: 0.9rem;
-    text-align: justify;
-}
-
-.benefits-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.benefits-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.8rem;
-}
-
-.benefits-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.benefits-list li {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.5rem;
-    padding-left: 1.3rem;
-    position: relative;
-}
-
-.benefits-list li::before {
-    content: '•';
-    color: var(--primary-blue);
-    font-weight: 900;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-.contact-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-    padding: 1rem 1.2rem;
-    background: var(--surface-light);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-}
-
-.contact-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.7rem;
-}
-
-.contact-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.7rem;
-}
-
-.contact-info-item {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-body);
-    margin-bottom: 0.4rem;
-}
-
-.contact-info-item strong {
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-right: 0.3rem;
-}
-
-.contact-info-item a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.contact-info-item a:hover {
-    opacity: 0.7;
-}
-
-.faq-section {
-    margin-top: clamp(2rem, 3vw, 2.5rem);
-}
-
-.faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-item {
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-question {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.08vw, 1rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.faq-answer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    padding-left: 0.4rem;
-    text-align: justify;
-}
-
-/* ========== BEST SELLERS - REDESIGNED (3 COLUMNS, BIGGER) ========== */
-.best-sellers-section {
-    background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: clamp(2rem, 3vw, 2.5rem);
-}
-
-.section-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: var(--primary-blue);
-    margin-bottom: 0.6rem;
-}
-
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 900;
-    letter-spacing: -0.4px;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
-
-.best-sellers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 2vw, 2rem);
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.bestseller-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-}
-
-.bestseller-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-}
-
-.bestseller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
-    border-color: var(--primary-blue);
-}
-
-.bestseller-card:hover::before {
-    transform: scaleX(1);
-}
-
-.bestseller-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    overflow: hidden;
-    background: var(--border-light);
-}
-
-.bestseller-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bestseller-card:hover .bestseller-image {
-    transform: scale(1.08);
-}
-
-.bestseller-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    color: var(--text-primary);
-    text-align: center;
-    padding: clamp(1.2rem, 1.5vw, 1.4rem);
-    line-height: 1.3;
-    transition: color 0.3s ease;
-}
-
-.bestseller-card:hover .bestseller-name {
-    color: var(--primary-blue);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 991px) {
-    .product-detail-section {
-        padding: 4.5rem 0 2rem;
-    }
-
-    .product-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .specifications td:first-child {
-        width: 40%;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .product-layout {
-        padding: 1.2rem;
-    }
-
-    .thumbnail-gallery {
-        gap: 0.5rem;
-    }
-
-    .product-actions {
-        grid-template-columns: 1fr;
-        gap: 0.7rem;
-    }
-
-    .specifications td {
-        font-size: 0.72rem;
-        padding: 0.65rem 0.8rem;
-    }
-
-    .specifications td:first-child {
-        font-size: 0.64rem;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .whatsapp-float {
-        width: 48px;
-        height: 48px;
-        bottom: 18px;
-        right: 18px;
-    }
-
-    .whatsapp-float i {
-        font-size: 24px;
-    }
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.product-layout {
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-    opacity: 0;
-}
-
-section {
-    scroll-margin-top: 80px;
-}
-
-#footerComponent {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-    </style>
+<link rel="stylesheet" href="productStyle.css">
 </head>
 <body>
     <!-- Page Loader -->
@@ -812,9 +24,32 @@ section {
         <div class="loader-subtext">Loading...</div>
     </div>
 
+    <!-- Image Lightbox -->
+    <div class="image-lightbox" id="imageLightbox">
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="closeLightbox" aria-label="Close lightbox">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <button class="lightbox-nav lightbox-prev" id="prevImage" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="lightbox-image-wrapper" id="imageWrapper">
+                <img src="" alt="Product Image" class="lightbox-image" id="lightboxImage">
+            </div>
+            
+            <button class="lightbox-nav lightbox-next" id="nextImage" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="lightbox-counter" id="imageCounter">1 / 3</div>
+            <div class="lightbox-zoom-hint" id="zoomHint">Pinch to zoom • Swipe to navigate</div>
+        </div>
+    </div>
+
     <!-- Site Wrapper -->
     <div class="site-wrapper">
-        <!-- Main Content -->
         <main>
             <!-- PRODUCT DETAIL SECTION -->
             <section class="product-detail-section">
@@ -823,20 +58,24 @@ section {
                         <i class="fas fa-arrow-left"></i>
                         Back to Gallery
                     </button>
+
                     <div class="product-layout">
                         <div class="product-gallery">
-                            <div class="main-image-container">
+                            <div class="main-image-container" onclick="openLightbox(0)">
                                 <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="main-image" id="mainImage">
+                                <div class="image-zoom-icon">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
                             </div>
 
                             <div class="thumbnail-gallery">
-                                <div class="thumbnail active" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this)">
+                                <div class="thumbnail active" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this, 0)">
                                     <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 1">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this, 1)">
                                     <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 2">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('Marbles/RAIN-FOREST-BROWN.webp', this, 2)">
                                     <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble View 3">
                                 </div>
                             </div>
@@ -848,14 +87,25 @@ section {
                                 <p class="product-subtitle">Exotic Fantasy Marble from India</p>
                             </div>
 
+                            <div class="product-description">
+                                <h3 class="description-title">Product Description</h3>
+                                <p class="description-text">
+                                    Spectacular Rain Forest Brown marble with dramatic forest-inspired veining and rich chocolate tones. This premium exotic marble is perfect for luxury feature walls, statement countertops, and creating nature-inspired sophisticated interiors with breathtaking visual impact. Known for its durability and unique patterns, each slab tells its own story.
+                                </p>
+                            </div>
+
                             <table class="specifications">
-                                <tr>
-                                    <td>Origin</td>
-                                    <td>North India</td>
-                                </tr>
                                 <tr>
                                     <td>Color</td>
                                     <td>Brown</td>
+                                </tr>
+                                <tr>
+                                    <td>Thickness</td>
+                                    <td>2, 3, 4, 5 upto 20 cm</td>
+                                </tr>
+                                <tr>
+                                    <td>Origin</td>
+                                    <td>North India</td>
                                 </tr>
                                 <tr>
                                     <td>Gangsaw Slab</td>
@@ -870,10 +120,6 @@ section {
                                     <td>30 x 30, 30 x 60, 60 x 60, 60 x 120 cm</td>
                                 </tr>
                                 <tr>
-                                    <td>Thickness</td>
-                                    <td>2, 3, 4, 5 upto 20 cm</td>
-                                </tr>
-                                <tr>
                                     <td>Countertops</td>
                                     <td>Custom</td>
                                 </tr>
@@ -883,15 +129,8 @@ section {
                                 </tr>
                             </table>
 
-                            <div class="product-description">
-                                <h3 class="description-title">Product Description</h3>
-                                <p class="description-text">
-                                    Spectacular Rain Forest Brown marble with dramatic forest-inspired veining and rich chocolate tones. This premium exotic marble is perfect for luxury feature walls, statement countertops, and creating nature-inspired sophisticated interiors with breathtaking visual impact. Known for its durability and unique patterns, each slab tells its own story.
-                                </p>
-                            </div>
-
                             <div class="product-actions">
-                                <a href="tel:+919876543210" class="action-btn call-btn">
+                                <a href="tel:+919940191813" class="action-btn call-btn">
                                     <i class="fas fa-phone-alt"></i>
                                     Call Us
                                 </a>
@@ -905,93 +144,8 @@ section {
                 </div>
             </section>
 
-            <!-- WHY CHOOSE BNB SECTION -->
-            <section class="why-choose-section">
-                <div class="container">
-                    <div class="why-choose-content">
-                        <h2 class="why-choose-title">Why Choose BNB Enterprises As A Top Rain Forest Brown Marble Exporter</h2>
-                        
-                        <p class="why-choose-text">
-                            BNB Enterprises has the quality experience of more than 25 years in natural stone industry. This industry is very competitive. Regardless, our team stays unbeatable. Also, we accept every new challenge as a golden possibility to shine our bright expertise, mastery, and learning in the stone industry. We are an ISO-certified stone manufacturer, supplier, and trader that provides top-quality Rain Forest Brown Marble with exceptional color consistency, natural veining patterns, and superior durability.
-                        </p>
-
-                        <p class="why-choose-text">
-                            Even if it is for indoor scenery, outdoor tasks, or commercial areas, you can blindly choose BNB Enterprises's Rain Forest Brown Marble to change your spaces into aesthetic places. We are not only evolving as the top choice for natural stone lovers but also winning the confidence of international clients. We export our premier Rain Forest Brown Marble products to more than 20 countries across the World including USA, UK, Dubai, Singapore, and Australia.
-                        </p>
-
-                        <div class="benefits-section">
-                            <h3 class="benefits-title">Benefits of Picking BNB Enterprises</h3>
-                            <ul class="benefits-list">
-                                <li>Potent quality Rain Forest Brown Marble at affordable prices</li>
-                                <li>Choices for personalizations in sizes, finishes, and thicknesses</li>
-                                <li>Quick & delighted services and solutions for bulk orders</li>
-                                <li>Moral support and service by a skilled team of stone experts</li>
-                                <li>Known in various finishes including polished, honed, leathered, brushed, and more</li>
-                                <li>Direct sourcing from premium quarries in North India</li>
-                                <li>ISO-certified quality assurance and testing procedures</li>
-                                <li>Worldwide shipping with secure packaging and logistics</li>
-                                <li>No hidden terms & conditions, transparent pricing</li>
-                                <li>Dedicated customer support for design consultation and installation guidance</li>
-                            </ul>
-                        </div>
-
-                        <div class="contact-section">
-                            <h3 class="contact-title">Contact Information</h3>
-                            <p class="contact-text">
-                                If you want to know more about our Rain Forest Brown Marble or other premium natural stones, then you can contact us at the below-mentioned info –
-                            </p>
-                            <div class="contact-info-item">
-                                <strong>Address:</strong> Plot No. 11/B, Kelamballi Industrial Area, Badanagappa, Chamajanagar, Karnataka, India 571313.
-                            </div>
-                            <div class="contact-info-item">
-                                <strong>Mobile:</strong> <a href="tel:+919829051786">+91 98290 51786</a> or <a href="tel:+919983777786">+91 99837 77786</a>
-                            </div>
-                            <div class="contact-info-item">
-                                <strong>Email:</strong> <a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a>
-                            </div>
-                        </div>
-
-                        <div class="faq-section">
-                            <h3 class="faq-title">Frequently Asked Questions for Rain Forest Brown Marble</h3>
-                            
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.1 What are the key factors of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. Rain Forest Brown Marble is well-known for its dramatic forest-inspired veining patterns, rich chocolate brown tones with natural green undertones, exceptional longevity, resistance to scratches & heat, and its capability to enhance the aesthetic appeal of any interior or exterior space with a luxurious natural look.
-                                </p>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.2 What are the different uses of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. It is usually used for luxury flooring, kitchen countertops, bathroom vanity tops, feature walls, wall cladding, staircases, tabletops, fireplace surrounds, and decorative applications. It is suitable for both residential and commercial interior & exterior décor projects.
-                                </p>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.3 Which are the different finishes of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. There are some different finishes of this marble such as polished (high gloss shine), honed (matte smooth finish), leathered (textured surface), brushed (slightly rough texture), flamed (rough outdoor finish), antiqued, bush hammered, and shot blasted finishes for various aesthetic and functional requirements.
-                                </p>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.4 Who is the top manufacturer and exporter of Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. BNB Enterprises is one of the leading manufacturers and exporters of Rain Forest Brown Marble and other premium natural stones. We source directly from the finest quarries in North India and provide our services in several countries such as the USA, UK, Dubai, Singapore, South Korea, Australia, Canada, Israel, Spain, and many more.
-                                </p>
-                            </div>
-
-                            <div class="faq-item">
-                                <h4 class="faq-question">Q.5 How to maintain Rain Forest Brown Marble?</h4>
-                                <p class="faq-answer">
-                                    Ans. Clean regularly with pH-neutral stone cleaners and avoid acidic substances like lemon juice or vinegar. Seal the marble periodically to protect against stains. Use coasters under glasses and avoid dragging heavy objects across the surface to prevent scratches and maintain its natural beauty for years.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- WHY CHOOSE BNB COMPONENT -->
+            <div id="whyChooseComponent"></div>
 
             <!-- BEST SELLERS SECTION -->
             <section class="best-sellers-section">
@@ -1053,7 +207,7 @@ section {
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Rain%20Forest%20Brown%20Marble."
+    <a href="https://wa.me/919940191813?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Rain%20Forest%20Brown%20Marble."
         class="whatsapp-float" 
         target="_blank" 
         rel="noopener noreferrer" 
@@ -1069,21 +223,260 @@ section {
             componentsLoaded: 0
         };
 
-        // ========== PAGE INITIALIZATION ==========
+        // ========== IMAGE LIGHTBOX FUNCTIONALITY ==========
+        const lightboxImages = [
+            'Marbles/RAIN-FOREST-BROWN.webp',
+            'Marbles/RAIN-FOREST-BROWN.webp',
+            'Marbles/RAIN-FOREST-BROWN.webp'
+        ];
+
+        let currentImageIndex = 0;
+        let lightboxOpen = false;
+
+        // Touch gesture variables
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let initialDistance = 0;
+        let currentScale = 1;
+        let currentX = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let isPinching = false;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const zoomHint = document.getElementById('zoomHint');
+            
+            lightboxImage.src = lightboxImages[currentImageIndex];
+            updateCounter();
+            
+            lightbox.classList.add('active');
+            document.body.classList.add('lightbox-open');
+            lightboxOpen = true;
+
+            // Reset zoom
+            currentScale = 1;
+            currentX = 0;
+            currentY = 0;
+            updateImageTransform();
+
+            // Show zoom hint briefly
+            zoomHint.classList.add('show');
+            setTimeout(() => {
+                zoomHint.classList.remove('show');
+            }, 2500);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            document.body.classList.remove('lightbox-open');
+            lightboxOpen = false;
+            
+            // Reset zoom
+            currentScale = 1;
+            currentX = 0;
+            currentY = 0;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.style.opacity = '0';
+            
+            setTimeout(() => {
+                lightboxImage.src = lightboxImages[currentImageIndex];
+                updateCounter();
+                
+                // Reset zoom
+                currentScale = 1;
+                currentX = 0;
+                currentY = 0;
+                updateImageTransform();
+                
+                lightboxImage.style.opacity = '1';
+            }, 150);
+        }
+
+        function updateCounter() {
+            const counter = document.getElementById('imageCounter');
+            counter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+        }
+
+        function updateImageTransform() {
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+        }
+
+        function getDistance(touch1, touch2) {
+            const dx = touch1.clientX - touch2.clientX;
+            const dy = touch1.clientY - touch2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        // ========== EVENT LISTENERS ==========
         document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 1000;
+            const minLoadTime = 800;
             const elapsedTime = performance.now() - performanceMetrics.startTime;
             const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
             setTimeout(() => {
                 document.body.classList.add("loaded");
                 loadComponents();
+                initializeLightbox();
             }, remainingTime);
         });
 
-        // ========== COMPONENT LOADING SYSTEM ==========
+        function initializeLightbox() {
+            const closeLightboxBtn = document.getElementById('closeLightbox');
+            const prevBtn = document.getElementById('prevImage');
+            const nextBtn = document.getElementById('nextImage');
+            const lightbox = document.getElementById('imageLightbox');
+            const imageWrapper = document.getElementById('imageWrapper');
+            const lightboxImage = document.getElementById('lightboxImage');
+
+            // Close button
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+
+            // Navigation buttons
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevImage();
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextImage();
+            });
+
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightboxOpen) return;
+                
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+
+            // Touch events for swipe and pinch-to-zoom
+            imageWrapper.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    
+                    if (currentScale > 1) {
+                        isDragging = true;
+                    }
+                } else if (e.touches.length === 2) {
+                    isPinching = true;
+                    isDragging = false;
+                    initialDistance = getDistance(e.touches[0], e.touches[1]);
+                }
+            }, { passive: true });
+
+            imageWrapper.addEventListener('touchmove', (e) => {
+                if (isPinching && e.touches.length === 2) {
+                    e.preventDefault();
+                    const currentDistance = getDistance(e.touches[0], e.touches[1]);
+                    const scale = currentScale * (currentDistance / initialDistance);
+                    
+                    // Limit zoom between 1x and 4x
+                    currentScale = Math.min(Math.max(scale, 1), 4);
+                    updateImageTransform();
+                    initialDistance = currentDistance;
+                } else if (isDragging && e.touches.length === 1) {
+                    e.preventDefault();
+                    const deltaX = e.touches[0].clientX - touchStartX;
+                    const deltaY = e.touches[0].clientY - touchStartY;
+                    
+                    currentX += deltaX;
+                    currentY += deltaY;
+                    
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    
+                    updateImageTransform();
+                }
+            }, { passive: false });
+
+            imageWrapper.addEventListener('touchend', (e) => {
+                if (e.touches.length === 0) {
+                    touchEndX = e.changedTouches[0].clientX;
+                    touchEndY = e.changedTouches[0].clientY;
+                    
+                    const deltaX = touchEndX - touchStartX;
+                    const deltaY = touchEndY - touchStartY;
+                    
+                    // If not dragging and scale is 1, handle swipe
+                    if (!isDragging && currentScale === 1) {
+                        if (Math.abs(deltaX) > 50 && Math.abs(deltaY) < 100) {
+                            if (deltaX > 0) {
+                                prevImage();
+                            } else {
+                                nextImage();
+                            }
+                        }
+                    }
+                    
+                    isDragging = false;
+                    isPinching = false;
+                    
+                    // Reset position if zoomed out
+                    if (currentScale === 1) {
+                        currentX = 0;
+                        currentY = 0;
+                        updateImageTransform();
+                    }
+                }
+            }, { passive: true });
+
+            // Double tap to zoom
+            let lastTap = 0;
+            imageWrapper.addEventListener('touchend', (e) => {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+                
+                if (tapLength < 300 && tapLength > 0) {
+                    if (currentScale === 1) {
+                        currentScale = 2;
+                    } else {
+                        currentScale = 1;
+                        currentX = 0;
+                        currentY = 0;
+                    }
+                    updateImageTransform();
+                }
+                
+                lastTap = currentTime;
+            });
+
+            console.log('✅ Lightbox initialized');
+        }
+
+        // ========== COMPONENT LOADING ==========
         async function loadComponents() {
             const components = [
+                { name: "why-bnbmarble", target: "whyChooseComponent" },
                 { name: "footer", target: "footerComponent" }
             ];
 
@@ -1093,14 +486,13 @@ section {
             }
 
             console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+            replaceProductNames();
             initializePageFunctions();
         }
 
-        // ========== COMPONENT LOADER ==========
         async function loadComponent(name, targetId) {
             try {
                 const startTime = performance.now();
-                
                 const htmlResp = await fetch(`../${name}.html`);
                 const htmlText = await htmlResp.text();
 
@@ -1113,7 +505,6 @@ section {
                     return;
                 }
 
-                // Extract and insert CSS
                 const styles = tempDiv.querySelectorAll('style');
                 styles.forEach(style => {
                     const styleElement = document.createElement('style');
@@ -1122,23 +513,17 @@ section {
                     document.head.appendChild(styleElement);
                 });
 
-                // Extract scripts
                 const scripts = tempDiv.querySelectorAll('script');
                 const scriptContents = Array.from(scripts).map(script => script.innerHTML);
 
-                // Clean up
                 scripts.forEach(script => script.remove());
                 styles.forEach(style => style.remove());
                 const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
                 fontLinks.forEach(link => link.remove());
 
-                // Insert HTML
                 targetElement.innerHTML = tempDiv.innerHTML;
+                await new Promise(resolve => setTimeout(resolve, 50));
 
-                // Wait for DOM
-                await new Promise(resolve => setTimeout(resolve, 100));
-
-                // Execute scripts
                 scriptContents.forEach(scriptContent => {
                     if (scriptContent.trim()) {
                         try {
@@ -1152,16 +537,31 @@ section {
 
                 const loadTime = Math.round(performance.now() - startTime);
                 console.log(`✅ ${name} loaded in ${loadTime}ms`);
-
             } catch (err) {
                 console.error(`❌ Error loading ${name}:`, err);
             }
         }
 
-        // ========== PAGE-SPECIFIC FUNCTIONS ==========
+        function replaceProductNames() {
+            const productTitle = document.querySelector('.product-title');
+            if (!productTitle) return;
+            
+            const productName = productTitle.textContent.trim();
+            const whyChooseSection = document.getElementById('whyChooseComponent');
+            if (!whyChooseSection) return;
+
+            const elementsToReplace = whyChooseSection.querySelectorAll('h2, h3, p, li');
+            elementsToReplace.forEach(element => {
+                if (element.innerHTML.includes('[PRODUCT_NAME]')) {
+                    element.innerHTML = element.innerHTML.replace(/\[PRODUCT_NAME\]/g, productName);
+                }
+            });
+
+            console.log('✅ Product names replaced dynamically');
+        }
+
         function initializePageFunctions() {
-            // Image gallery
-            window.changeImage = function(imageSrc, thumbnail) {
+            window.changeImage = function(imageSrc, thumbnail, index) {
                 const mainImage = document.getElementById('mainImage');
                 if (mainImage) {
                     mainImage.src = imageSrc;
@@ -1173,20 +573,20 @@ section {
                 if (thumbnail) {
                     thumbnail.classList.add('active');
                 }
+                
+                currentImageIndex = index;
             };
 
-            // WhatsApp message
             window.sendWhatsAppMessage = function() {
-                const productName = "Rain Forest Brown Marble";
+                const productName = document.querySelector('.product-title').textContent;
                 const message = `Hello BNB Enterprises,%0A%0AI'm interested in the ${productName}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-                const whatsappURL = `https://wa.me/919876543210?text=${message}`;
+                const whatsappURL = `https://wa.me/919940191813?text=${message}`;
                 window.open(whatsappURL, '_blank');
             };
 
-            // Scroll animations
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '0px 0px -40px 0px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -1198,25 +598,15 @@ section {
                 });
             }, observerOptions);
 
-            // Observe sections
-            const sections = document.querySelectorAll('.why-choose-section, .best-sellers-section');
+            const sections = document.querySelectorAll('#whyChooseComponent, .best-sellers-section');
             sections.forEach(section => observer.observe(section));
 
-            // Observe FAQ items
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-                observer.observe(item);
-            });
-
-            // Observe bestseller cards
             const bestsellerCards = document.querySelectorAll('.bestseller-card');
             bestsellerCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.08}s`;
+                card.style.animationDelay = `${index * 0.06}s`;
                 observer.observe(card);
             });
 
-            // Smooth scroll
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
@@ -1227,13 +617,9 @@ section {
                     const targetElement = document.getElementById(targetId);
                     
                     if (targetElement) {
-                        const headerHeight = 80;
+                        const headerHeight = 70;
                         const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                     }
                 });
             });
@@ -1241,7 +627,6 @@ section {
             console.log('✅ Page functions initialized');
         }
 
-        // ========== PERFORMANCE LOGGING ==========
         window.addEventListener('load', function() {
             const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
             console.log(`🚀 Product Detail Page loaded in ${loadTime}ms`);

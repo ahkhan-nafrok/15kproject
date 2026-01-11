@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Premium Marbles - BNB Enterprises</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* ========== PAGE LOADER ========== */
@@ -54,41 +55,35 @@ body {
     justify-content: center;
     background: var(--surface-light);
     z-index: 9999;
-    gap: 12px;
+    gap: 10px;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
+    width: clamp(50px, 8vw, 70px);
+    height: clamp(50px, 8vw, 70px);
     object-fit: contain;
     animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.85; }
 }
 
 .loader-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
     font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
+    letter-spacing: clamp(1.5px, 0.4vw, 2.5px);
     color: var(--text-primary);
 }
 
 .loader-subtext {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-size: clamp(0.5rem, 0.8vw, 0.65rem);
     font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
+    letter-spacing: clamp(0.8px, 0.25vw, 1.5px);
     color: var(--primary-blue);
     text-transform: uppercase;
 }
@@ -112,29 +107,29 @@ body.loaded .site-wrapper {
 /* ========== MARBLES SECTION ========== */
 .marbles-section {
     background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 3rem);
+    padding: clamp(2rem, 3vw, 2.8rem) 0 clamp(1.5rem, 2.5vw, 2.5rem);
     min-height: 100vh;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 3rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 /* HEADER - MINIMAL */
 .page-header {
-    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 .breadcrumb {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     color: var(--text-muted);
     opacity: 0.8;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
     text-transform: uppercase;
 }
 
@@ -152,25 +147,26 @@ body.loaded .site-wrapper {
 .back-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: 1.2rem;
+    gap: 0.5rem;
+    padding: clamp(0.55rem, 0.7vw, 0.65rem) clamp(0.9rem, 1.3vw, 1.1rem);
+    margin-bottom: 1rem;
     background: var(--surface-light);
     border: 1px solid var(--border-color);
     color: var(--text-body);
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 4px;
+    touch-action: manipulation;
 }
 
 .back-button i {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     transition: transform 0.3s ease;
 }
 
@@ -187,12 +183,12 @@ body.loaded .site-wrapper {
 
 .page-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
     font-weight: 900;
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
     color: var(--text-primary);
     line-height: 1.1;
-    margin-bottom: clamp(0.5rem, 1vw, 0.8rem);
+    margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem);
 }
 
 /* RESULTS BAR */
@@ -200,16 +196,16 @@ body.loaded .site-wrapper {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: clamp(0.9rem, 1.2vw, 1.2rem) 0;
+    padding: clamp(0.8rem, 1vw, 1rem) 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: clamp(1.8rem, 2.5vw, 2.5rem);
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
 }
 
 .results-count {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
     font-weight: 600;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     color: var(--text-body);
     opacity: 0.8;
 }
@@ -222,9 +218,9 @@ body.loaded .site-wrapper {
 /* PRODUCTS GRID - OPTIMIZED SIZING */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: clamp(1.5rem, 2.5vw, 2rem);
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: 2.5rem;
 }
 
 @media (min-width: 1200px) {
@@ -234,23 +230,18 @@ body.loaded .site-wrapper {
     }
 }
 
-@media (min-width: 1400px) {
-    .products-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 /* PRODUCT CARD - CLEAN & MINIMAL */
 .product-card {
     background: white;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     display: block;
     text-decoration: none;
     position: relative;
+    touch-action: manipulation;
 }
 
 .product-card::before {
@@ -265,12 +256,12 @@ body.loaded .site-wrapper {
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    border-radius: 8px 8px 0 0;
+    border-radius: 6px 6px 0 0;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(26, 35, 50, 0.12);
     border-color: var(--primary-blue);
 }
 
@@ -294,22 +285,22 @@ body.loaded .site-wrapper {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 /* PRODUCT NAME - CENTERED */
 .product-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    font-size: clamp(0.8rem, 0.95vw, 0.9rem);
     font-weight: 800;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     color: var(--text-primary);
     text-align: center;
-    padding: clamp(1.1rem, 1.4vw, 1.3rem);
+    padding: clamp(0.9rem, 1.2vw, 1.1rem);
     line-height: 1.3;
     transition: color 0.3s ease;
 }
@@ -321,7 +312,7 @@ body.loaded .site-wrapper {
 /* ========== ABOUT MARBLES SECTION ========== */
 .about-marbles-section {
     background: white;
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    padding: clamp(2rem, 3vw, 2.8rem) 0;
     border-top: 1px solid var(--border-color);
 }
 
@@ -332,34 +323,34 @@ body.loaded .site-wrapper {
 
 .about-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
     font-weight: 800;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     color: var(--text-primary);
     line-height: 1.3;
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
 }
 
 .about-text {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-size: clamp(0.75rem, 0.85vw, 0.8rem);
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.65;
     color: var(--text-body);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.8rem;
     text-align: justify;
 }
 
 .benefits-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: clamp(1.2rem, 2vw, 1.6rem);
 }
 
 .benefits-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
 }
 
 .benefits-list {
@@ -369,12 +360,12 @@ body.loaded .site-wrapper {
 
 .benefits-list li {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
     font-weight: 500;
     line-height: 1.6;
     color: var(--text-body);
-    margin-bottom: 0.5rem;
-    padding-left: 1.3rem;
+    margin-bottom: 0.45rem;
+    padding-left: 1.2rem;
     position: relative;
 }
 
@@ -382,7 +373,7 @@ body.loaded .site-wrapper {
     content: '•';
     color: var(--primary-blue);
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     position: absolute;
     left: 0;
     top: -2px;
@@ -390,38 +381,38 @@ body.loaded .site-wrapper {
 
 /* ========== FAQ SECTION ========== */
 .faq-section {
-    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+    margin-top: clamp(2rem, 3vw, 2.5rem);
 }
 
 .faq-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
     font-weight: 800;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     color: var(--text-primary);
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .faq-item {
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .faq-question {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-size: clamp(0.82rem, 0.95vw, 0.88rem);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     line-height: 1.4;
 }
 
 .faq-answer {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-body);
-    padding-left: 0.4rem;
+    padding-left: 0.3rem;
     text-align: justify;
 }
 
@@ -441,7 +432,7 @@ body.loaded .site-wrapper {
 @media (max-width: 576px) {
     .products-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
     
     .product-image-container {
@@ -453,7 +444,7 @@ body.loaded .site-wrapper {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(25px);
     }
     to {
         opacity: 1;
@@ -463,7 +454,7 @@ body.loaded .site-wrapper {
 
 .animate-on-scroll {
     opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* LOADING STATE */
@@ -499,7 +490,7 @@ body.loaded .site-wrapper {
                     <div class="breadcrumb">
                         <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Premium Marbles</span>
                     </div>
-                    <button class="back-button" id="backButton">
+                    <button class="back-button" onclick="window.history.back()">
                         <i class="fas fa-arrow-left"></i>
                         Back
                     </button>
@@ -594,29 +585,29 @@ body.loaded .site-wrapper {
         <section class="about-marbles-section">
             <div class="container">
                 <div class="about-content">
-                    <h2 class="about-title">Premium Natural Marble Collection by BNB Enterprises</h2>
+                    <h2 class="about-title">Exquisite Natural Marble Collection by BNB Enterprises</h2>
                     
                     <p class="about-text">
-                        BNB Enterprises offers an exquisite collection of premium natural marbles sourced directly from the finest quarries across India. With over 25 years of expertise in the natural stone industry, we specialize in providing high-quality marble that combines timeless beauty with exceptional durability. Our marble collection features stunning varieties including Rain Forest Brown, Rain Forest Green, Forest Green, Spider Green, Brown Fantasy, and elegant white marbles like Panda White and River White.
+                        Headquartered in Chennai, India, BNB Enterprises has been establishing a worldwide trading network, offering customers an integrated trade experience with competitive pricing while meeting the highest delivery standards. With decades of experience in global trade rooted in our distinguished family-owned natural stone business, we specialize in exporting premium natural marbles alongside granite, bringing timeless elegance to architectural projects worldwide. Our marble collection features stunning varieties including Rain Forest Brown, Rain Forest Green, Forest Green, Spider Green, Brown Fantasy, Chamboard, Fantasy Brown Dark, and elegant white marbles like Panda White and River White.
                     </p>
 
                     <p class="about-text">
-                        Each marble slab in our collection is carefully selected for its unique veining patterns, color consistency, and structural integrity. Whether you're designing luxury residential spaces, commercial projects, or architectural masterpieces, our marble collection offers the perfect solution for flooring, countertops, wall cladding, staircases, and decorative applications. We provide comprehensive customization options in various sizes, thicknesses, and finishes to meet your specific project requirements.
+                        Where craftsmanship meets innovation, we transform raw marble into exquisite works of art. Each marble slab in our collection is sourced from the finest quarries and meticulously selected for unique veining patterns, color consistency, and structural integrity. We inspect every vein in each slab before it leaves our facility, ensuring color consistency and structural excellence. Whether for luxury residential spaces, commercial projects, or architectural masterpieces, our marbles serve perfectly for flooring, countertops, wall cladding, staircases, and decorative applications. With our own warehousing facility near Chennai International Airport and comprehensive value-added services, we ensure seamless global delivery.
                     </p>
 
                     <div class="benefits-section">
-                        <h3 class="benefits-title">Why Choose Our Premium Marble Collection</h3>
+                        <h3 class="benefits-title">Why Choose BNB Enterprises for Premium Marble</h3>
                         <ul class="benefits-list">
-                            <li>Directly sourced from premium quarries ensuring authentic quality and color consistency</li>
-                            <li>Wide range of exotic marble varieties suitable for diverse design aesthetics</li>
-                            <li>Available in multiple finishes: polished, honed, leathered, brushed, flamed, and more</li>
-                            <li>Custom sizing options from standard tiles to large format slabs</li>
-                            <li>ISO-certified quality assurance with rigorous testing procedures</li>
-                            <li>Expert consultation for material selection and application guidance</li>
-                            <li>Competitive pricing with transparent cost structure</li>
-                            <li>Worldwide shipping with secure packaging and reliable logistics</li>
-                            <li>Technical support for installation and maintenance guidance</li>
-                            <li>Trusted by architects, designers, and builders across 20+ countries</li>
+                            <li>Decades of expertise in natural stone export with worldwide trading network</li>
+                            <li>Sourced from finest quarries ensuring authentic quality and natural splendor</li>
+                            <li>State-of-the-art facilities with cutting-edge technology and advanced machinery</li>
+                            <li>Multiple premium finishes: Polished, Leathered, Flamed, and Lepatura/Antique</li>
+                            <li>Rigorous quality control with inspection of every vein and slab</li>
+                            <li>Custom-made countertops, tiles, architectural elements, and artistic engravings</li>
+                            <li>Competitive pricing with integrated trade experience</li>
+                            <li>Own warehousing facility near Chennai International Airport</li>
+                            <li>Efficient logistics solutions with long-term reliability</li>
+                            <li>Quality-focused organization meeting client needs meticulously</li>
                         </ul>
                     </div>
 
@@ -624,44 +615,44 @@ body.loaded .site-wrapper {
                         <h3 class="faq-title">Frequently Asked Questions About Premium Marbles</h3>
                         
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.1 What makes premium marble different from standard marble?</h4>
+                            <h4 class="faq-question">Q.1 What makes BNB Enterprises' marble collection premium quality?</h4>
                             <p class="faq-answer">
-                                Ans. Premium marble is distinguished by superior color consistency, minimal natural defects, distinctive veining patterns, higher density for better durability, and sourcing from select quarries known for exceptional stone quality. Premium marble undergoes rigorous quality checks and selection processes to ensure only the finest slabs reach customers.
+                                Ans. Our premium marble collection stands out through meticulous sourcing from the finest quarries, rigorous quality control where we inspect every vein in each slab, superior color consistency, and structural integrity verification. Backed by decades of expertise in natural stone export and state-of-the-art facilities with cutting-edge technology, we ensure every marble piece exudes unmatched beauty and perfection. Our quality control processes adhere to the highest standards, guaranteeing your investment stands the test of time.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.2 How do I choose the right marble type for my project?</h4>
+                            <h4 class="faq-question">Q.2 What marble finishes does BNB Enterprises offer?</h4>
                             <p class="faq-answer">
-                                Ans. Consider factors like application area (kitchen, bathroom, flooring), traffic levels, maintenance preferences, and design aesthetics. Light-colored marbles like Panda White and River White are ideal for creating spacious, bright interiors, while darker varieties like Rain Forest Brown and Spider Green add dramatic elegance. Our experts can help match marble characteristics to your specific requirements.
+                                Ans. We offer four premium finishes: Polished finish provides a glossy, reflective surface bringing out natural colors, ideal for countertops, flooring, and wall cladding. Leathered finish offers textured appearance with slight sheen, hiding fingerprints better, perfect for countertops and vanities. Flamed finish creates rough, textured, slip-resistant surface for outdoor applications like pool surrounds. Lepatura/Antique finish delivers a unique granular worn-out antiqued look with rustic charm, non-slippery and easy to clean. Each finish is crafted using advanced equipment to reveal the marble's unique characteristics.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.3 What maintenance is required for marble surfaces?</h4>
+                            <h4 class="faq-question">Q.3 How does BNB Enterprises ensure global delivery quality?</h4>
                             <p class="faq-answer">
-                                Ans. Regular cleaning with pH-neutral stone cleaners, immediate spill cleanup, periodic sealing (every 6-12 months depending on usage), avoiding acidic substances like lemon juice and vinegar, using coasters and trivets, and professional polishing when needed to maintain shine. Proper maintenance ensures marble retains its beauty for decades.
+                                Ans. With our own warehousing facility located just 5kms from Chennai International Airport, we provide built-to-suit warehousing options, long and short haul transportation, inventory supervision, and comprehensive value-added services. Our decades of experience in global trade means we've successfully built long-term relationships by constantly improving distribution process efficiency through innovative and cost-effective logistics solutions. We ensure competitive pricing while meeting the highest delivery standards worldwide with secure packaging and reliable logistics.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.4 Which marble types are best for high-traffic areas?</h4>
+                            <h4 class="faq-question">Q.4 What customization options are available for marble projects?</h4>
                             <p class="faq-answer">
-                                Ans. For high-traffic commercial or residential areas, choose denser marbles with consistent patterns like Forest Green, Spider Green, or Brown Fantasy. Honed or leathered finishes are preferable over polished finishes as they better hide scratches and wear. Darker colors with busy veining patterns also camouflage minor imperfections better than light, uniform marbles.
+                                Ans. BNB Enterprises offers extensive customization with our state-of-the-art facilities equipped to produce custom-made countertops, tiles, architectural elements, lamination, and artistic engravings. Our skilled artisans execute every cut with utmost care, meticulously polishing surfaces to reveal granite's natural splendor. We collaborate closely with architects, interior designers, homeowners, and contractors to understand your vision and bring it to life, providing personalized guidance throughout the process to ensure your satisfaction.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.5 What finishes are available for marble and which should I choose?</h4>
+                            <h4 class="faq-question">Q.5 Which marble varieties are best for different applications?</h4>
                             <p class="faq-answer">
-                                Ans. Available finishes include polished (high gloss, elegant appearance), honed (smooth matte, less slippery), leathered (textured, contemporary look), brushed (slightly textured, rustic feel), flamed (rough, outdoor use), and antiqued (aged appearance). Choose based on application: polished for countertops and walls, honed for bathrooms, leathered for modern designs, and flamed for outdoor spaces.
+                                Ans. For bright, spacious interiors, Panda White and River White are ideal choices. Rain Forest Brown and Spider Green add dramatic elegance to contemporary spaces. Brown Fantasy and Forest Green work beautifully for statement pieces. Chamboard offers versatility for various design styles. For high-traffic areas, choose denser varieties with leathered or flamed finishes. Our extensive selection from classic timeless to bold contemporary ensures every design vision finds its perfect match, catering to diverse tastes and architectural styles.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.6 How does marble compare to granite and other natural stones?</h4>
+                            <h4 class="faq-question">Q.6 How can I place an order with BNB Enterprises?</h4>
                             <p class="faq-answer">
-                                Ans. Marble offers unmatched elegance with distinctive veining and luxurious appearance, making it ideal for sophisticated interiors. While granite is harder and more resistant to scratches and acids, marble provides superior aesthetic appeal and is preferred for luxury applications. Marble requires more maintenance than granite but rewards with timeless beauty and increases property value significantly.
+                                Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075. Our dedicated team will provide personalized guidance, help you select the perfect marble variety for your project, discuss customization options, and arrange competitive pricing with our integrated trade experience. We're committed to turning your design ideas into reality with our expertise and quality-focused approach.
                             </p>
                         </div>
                     </div>
@@ -682,7 +673,7 @@ body.loaded .site-wrapper {
 
         // ========== PAGE INITIALIZATION ==========
         document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 1000;
+            const minLoadTime = 800;
             const elapsedTime = performance.now() - performanceMetrics.startTime;
             const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
@@ -724,7 +715,6 @@ body.loaded .site-wrapper {
                     return;
                 }
 
-                // Extract and insert CSS
                 const styles = tempDiv.querySelectorAll('style');
                 styles.forEach(style => {
                     const styleElement = document.createElement('style');
@@ -733,23 +723,18 @@ body.loaded .site-wrapper {
                     document.head.appendChild(styleElement);
                 });
 
-                // Extract scripts
                 const scripts = tempDiv.querySelectorAll('script');
                 const scriptContents = Array.from(scripts).map(script => script.innerHTML);
 
-                // Clean up
                 scripts.forEach(script => script.remove());
                 styles.forEach(style => style.remove());
                 const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
                 fontLinks.forEach(link => link.remove());
 
-                // Insert HTML
                 targetElement.innerHTML = tempDiv.innerHTML;
 
-                // Wait for DOM
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, 50));
 
-                // Execute scripts
                 scriptContents.forEach(scriptContent => {
                     if (scriptContent.trim()) {
                         try {
@@ -771,23 +756,19 @@ body.loaded .site-wrapper {
 
         // ========== PAGE-SPECIFIC FUNCTIONS ==========
         function initializePageFunctions() {
-            // ===== BACK BUTTON =====
+            // ===== BACK BUTTON - FIXED =====
             const backButton = document.getElementById('backButton');
             
             if (backButton) {
                 backButton.addEventListener('click', function() {
-                    if (window.history.length > 1) {
-                        window.history.back();
-                    } else {
-                        window.location.href = 'index.html';
-                    }
+                    window.history.back();
                 });
             }
 
             // ===== SCROLL ANIMATIONS =====
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -60px 0px'
+                rootMargin: '0px 0px -50px 0px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -804,18 +785,16 @@ body.loaded .site-wrapper {
 
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.08}s`;
+                card.style.animationDelay = `${index * 0.06}s`;
                 observer.observe(card);
             });
 
-            // Observe about section
             const aboutSection = document.querySelector('.about-marbles-section');
             if (aboutSection) observer.observe(aboutSection);
 
-            // Observe FAQ items
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animationDelay = `${index * 0.08}s`;
                 observer.observe(item);
             });
 
