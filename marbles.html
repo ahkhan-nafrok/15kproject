@@ -30,14 +30,86 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: var(--background-base);
     color: var(--text-body);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* MARBLES SECTION */
+/* ========== PAGE LOADER ========== */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-light);
+    z-index: 9999;
+    gap: 12px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-logo {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+    object-fit: contain;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
+}
+
+.loader-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: clamp(2px, 0.5vw, 3px);
+    color: var(--text-primary);
+}
+
+.loader-subtext {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-weight: 500;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+body.loaded .page-loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ========== SITE WRAPPER ========== */
+.site-wrapper {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded .site-wrapper {
+    opacity: 1;
+}
+
+/* ========== MARBLES SECTION ========== */
 .marbles-section {
     background: var(--background-base);
     padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 3rem);
@@ -246,7 +318,114 @@ body {
     color: var(--primary-blue);
 }
 
-/* RESPONSIVE DESIGN */
+/* ========== ABOUT MARBLES SECTION ========== */
+.about-marbles-section {
+    background: white;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.about-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-body);
+    margin-bottom: 0.9rem;
+    text-align: justify;
+}
+
+.benefits-section {
+    margin-top: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.benefits-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+.benefits-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.benefits-list li {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: 0.5rem;
+    padding-left: 1.3rem;
+    position: relative;
+}
+
+.benefits-list li::before {
+    content: '•';
+    color: var(--primary-blue);
+    font-weight: 900;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* ========== FAQ SECTION ========== */
+.faq-section {
+    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.faq-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.faq-item {
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 0.4rem;
+    text-align: justify;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 1199px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -296,109 +475,302 @@ body {
 .product-image[src] {
     background: none;
 }
+
+#footerComponent {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
 </style>
 </head>
 <body>
-    <section class="marbles-section">
-        <div class="container">
-            <!-- PAGE HEADER -->
-            <div class="page-header">
-                <div class="breadcrumb">
-                    <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Premium Marbles</span>
-                </div>
-                <button class="back-button" id="backButton">
-                    <i class="fas fa-arrow-left"></i>
-                    Back
-                </button>
-                <h1 class="page-title">Premium Marbles</h1>
+    <!-- Page Loader -->
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
+        <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
+        <div class="loader-text">BNB ENTERPRISES</div>
+        <div class="loader-subtext">Loading...</div>
+    </div>
 
-                <!-- RESULTS BAR -->
-                <div class="results-bar">
-                    <div class="results-count">
-                        Showing <span>9</span> premium marble collections
+    <!-- Site Wrapper -->
+    <div class="site-wrapper">
+        <section class="marbles-section">
+            <div class="container">
+                <!-- PAGE HEADER -->
+                <div class="page-header">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Premium Marbles</span>
+                    </div>
+                    <button class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <h1 class="page-title">Premium Marbles</h1>
+
+                    <!-- RESULTS BAR -->
+                    <div class="results-bar">
+                        <div class="results-count">
+                            Showing <span>9</span> premium marble collections
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTS GRID -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- PRODUCT 1 -->
+                    <a href="Marble/rain-forest-brown.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Rain Forest Brown Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 2 -->
+                    <a href="Marble/rain-forest-green.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/RAIN-FOREST-GREEN.webp" alt="Rain Forest Green Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Rain Forest Green Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 3 -->
+                    <a href="Marble/forest-green.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/Forest-green.webp" alt="Forest Green Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Forest Green Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 4 -->
+                    <a href="Marble/spider-green.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/spider-green.webp" alt="Spider Green Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Spider Green Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 5 -->
+                    <a href="Marble/brown-fantasy.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/BROWN-FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Brown Fantasy Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 6 -->
+                    <a href="Marble/chamboard.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/chamboard.webp" alt="Chamboard Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Chamboard Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 7 -->
+                    <a href="Marble/fantasy-brown-dark.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/Fantasy-Brown-Dark.webp" alt="Fantasy Brown Dark Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Fantasy Brown Dark Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 8 -->
+                    <a href="Marble/panda-white.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/PANDA-WHITE.webp" alt="Panda White Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">Panda White Marble</h3>
+                    </a>
+
+                    <!-- PRODUCT 9 -->
+                    <a href="Marble/river-white.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Marble/Marbles/RIVER-WHITE.webp" alt="River White Marble" class="product-image">
+                        </div>
+                        <h3 class="product-name">River White Marble</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT MARBLES SECTION -->
+        <section class="about-marbles-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="about-title">Premium Natural Marble Collection by BNB Enterprises</h2>
+                    
+                    <p class="about-text">
+                        BNB Enterprises offers an exquisite collection of premium natural marbles sourced directly from the finest quarries across India. With over 25 years of expertise in the natural stone industry, we specialize in providing high-quality marble that combines timeless beauty with exceptional durability. Our marble collection features stunning varieties including Rain Forest Brown, Rain Forest Green, Forest Green, Spider Green, Brown Fantasy, and elegant white marbles like Panda White and River White.
+                    </p>
+
+                    <p class="about-text">
+                        Each marble slab in our collection is carefully selected for its unique veining patterns, color consistency, and structural integrity. Whether you're designing luxury residential spaces, commercial projects, or architectural masterpieces, our marble collection offers the perfect solution for flooring, countertops, wall cladding, staircases, and decorative applications. We provide comprehensive customization options in various sizes, thicknesses, and finishes to meet your specific project requirements.
+                    </p>
+
+                    <div class="benefits-section">
+                        <h3 class="benefits-title">Why Choose Our Premium Marble Collection</h3>
+                        <ul class="benefits-list">
+                            <li>Directly sourced from premium quarries ensuring authentic quality and color consistency</li>
+                            <li>Wide range of exotic marble varieties suitable for diverse design aesthetics</li>
+                            <li>Available in multiple finishes: polished, honed, leathered, brushed, flamed, and more</li>
+                            <li>Custom sizing options from standard tiles to large format slabs</li>
+                            <li>ISO-certified quality assurance with rigorous testing procedures</li>
+                            <li>Expert consultation for material selection and application guidance</li>
+                            <li>Competitive pricing with transparent cost structure</li>
+                            <li>Worldwide shipping with secure packaging and reliable logistics</li>
+                            <li>Technical support for installation and maintenance guidance</li>
+                            <li>Trusted by architects, designers, and builders across 20+ countries</li>
+                        </ul>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3 class="faq-title">Frequently Asked Questions About Premium Marbles</h3>
+                        
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.1 What makes premium marble different from standard marble?</h4>
+                            <p class="faq-answer">
+                                Ans. Premium marble is distinguished by superior color consistency, minimal natural defects, distinctive veining patterns, higher density for better durability, and sourcing from select quarries known for exceptional stone quality. Premium marble undergoes rigorous quality checks and selection processes to ensure only the finest slabs reach customers.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.2 How do I choose the right marble type for my project?</h4>
+                            <p class="faq-answer">
+                                Ans. Consider factors like application area (kitchen, bathroom, flooring), traffic levels, maintenance preferences, and design aesthetics. Light-colored marbles like Panda White and River White are ideal for creating spacious, bright interiors, while darker varieties like Rain Forest Brown and Spider Green add dramatic elegance. Our experts can help match marble characteristics to your specific requirements.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.3 What maintenance is required for marble surfaces?</h4>
+                            <p class="faq-answer">
+                                Ans. Regular cleaning with pH-neutral stone cleaners, immediate spill cleanup, periodic sealing (every 6-12 months depending on usage), avoiding acidic substances like lemon juice and vinegar, using coasters and trivets, and professional polishing when needed to maintain shine. Proper maintenance ensures marble retains its beauty for decades.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.4 Which marble types are best for high-traffic areas?</h4>
+                            <p class="faq-answer">
+                                Ans. For high-traffic commercial or residential areas, choose denser marbles with consistent patterns like Forest Green, Spider Green, or Brown Fantasy. Honed or leathered finishes are preferable over polished finishes as they better hide scratches and wear. Darker colors with busy veining patterns also camouflage minor imperfections better than light, uniform marbles.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.5 What finishes are available for marble and which should I choose?</h4>
+                            <p class="faq-answer">
+                                Ans. Available finishes include polished (high gloss, elegant appearance), honed (smooth matte, less slippery), leathered (textured, contemporary look), brushed (slightly textured, rustic feel), flamed (rough, outdoor use), and antiqued (aged appearance). Choose based on application: polished for countertops and walls, honed for bathrooms, leathered for modern designs, and flamed for outdoor spaces.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.6 How does marble compare to granite and other natural stones?</h4>
+                            <p class="faq-answer">
+                                Ans. Marble offers unmatched elegance with distinctive veining and luxurious appearance, making it ideal for sophisticated interiors. While granite is harder and more resistant to scratches and acids, marble provides superior aesthetic appeal and is preferred for luxury applications. Marble requires more maintenance than granite but rewards with timeless beauty and increases property value significantly.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- PRODUCTS GRID -->
-            <div class="products-grid" id="productsGrid">
-                <!-- PRODUCT 1 -->
-                <a href="Marbles/rain-forest-brown.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/RAIN-FOREST-BROWN.webp" alt="Rain Forest Brown Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Rain Forest Brown Marble</h3>
-                </a>
-
-                <!-- PRODUCT 2 -->
-                <a href="Marbles/rain-forest-green.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/RAIN-FOREST-GREEN.webp" alt="Rain Forest Green Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Rain Forest Green Marble</h3>
-                </a>
-
-                <!-- PRODUCT 3 -->
-                <a href="Marbles/forest-green.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/Forest-green.webp" alt="Forest Green Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Forest Green Marble</h3>
-                </a>
-
-                <!-- PRODUCT 4 -->
-                <a href="Marbles/spider-green.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/spider-green.webp" alt="Spider Green Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Spider Green Marble</h3>
-                </a>
-
-                <!-- PRODUCT 5 -->
-                <a href="Marbles/brown-fantasy.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/BROWN-FANTASY.webp" alt="Brown Fantasy Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Brown Fantasy Marble</h3>
-                </a>
-
-                <!-- PRODUCT 6 -->
-                <a href="Marbles/chamboard.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/chamboard.webp" alt="Chamboard Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Chamboard Marble</h3>
-                </a>
-
-                <!-- PRODUCT 7 -->
-                <a href="Marbles/fantasy-brown-dark.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/Fantasy-Brown-Dark.webp" alt="Fantasy Brown Dark Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Fantasy Brown Dark Marble</h3>
-                </a>
-
-                <!-- PRODUCT 8 -->
-                <a href="Marbles/panda-white.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/PANDA-WHITE.webp" alt="Panda White Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">Panda White Marble</h3>
-                </a>
-
-                <!-- PRODUCT 9 -->
-                <a href="Marbles/river-white.html" class="product-card">
-                    <div class="product-image-container">
-                        <img src="Marbles/RIVER-WHITE.webp" alt="River White Marble" class="product-image">
-                    </div>
-                    <h3 class="product-name">River White Marble</h3>
-                </a>
-            </div>
-        </div>
-    </section>
+        <!-- Footer Component -->
+        <footer id="footerComponent" role="contentinfo"></footer>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // ========== PERFORMANCE TRACKING ==========
+        const performanceMetrics = {
+            startTime: performance.now(),
+            componentsLoaded: 0
+        };
+
+        // ========== PAGE INITIALIZATION ==========
+        document.addEventListener("DOMContentLoaded", () => {
+            const minLoadTime = 1000;
+            const elapsedTime = performance.now() - performanceMetrics.startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+            setTimeout(() => {
+                document.body.classList.add("loaded");
+                loadComponents();
+            }, remainingTime);
+        });
+
+        // ========== COMPONENT LOADING SYSTEM ==========
+        async function loadComponents() {
+            const components = [
+                { name: "footer", target: "footerComponent" }
+            ];
+
+            for (const comp of components) {
+                await loadComponent(comp.name, comp.target);
+                performanceMetrics.componentsLoaded++;
+            }
+
+            console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+            initializePageFunctions();
+        }
+
+        // ========== COMPONENT LOADER ==========
+        async function loadComponent(name, targetId) {
+            try {
+                const startTime = performance.now();
+                
+                const htmlResp = await fetch(`${name}.html`);
+                const htmlText = await htmlResp.text();
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlText;
+
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) {
+                    console.error(`❌ Target element #${targetId} not found`);
+                    return;
+                }
+
+                // Extract and insert CSS
+                const styles = tempDiv.querySelectorAll('style');
+                styles.forEach(style => {
+                    const styleElement = document.createElement('style');
+                    styleElement.innerHTML = style.innerHTML;
+                    styleElement.setAttribute('data-component', name);
+                    document.head.appendChild(styleElement);
+                });
+
+                // Extract scripts
+                const scripts = tempDiv.querySelectorAll('script');
+                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
+
+                // Clean up
+                scripts.forEach(script => script.remove());
+                styles.forEach(style => style.remove());
+                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
+                fontLinks.forEach(link => link.remove());
+
+                // Insert HTML
+                targetElement.innerHTML = tempDiv.innerHTML;
+
+                // Wait for DOM
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                // Execute scripts
+                scriptContents.forEach(scriptContent => {
+                    if (scriptContent.trim()) {
+                        try {
+                            const func = new Function(scriptContent);
+                            func();
+                        } catch (scriptError) {
+                            console.error(`❌ Error executing ${name} script:`, scriptError);
+                        }
+                    }
+                });
+
+                const loadTime = Math.round(performance.now() - startTime);
+                console.log(`✅ ${name} loaded in ${loadTime}ms`);
+
+            } catch (err) {
+                console.error(`❌ Error loading ${name}:`, err);
+            }
+        }
+
+        // ========== PAGE-SPECIFIC FUNCTIONS ==========
+        function initializePageFunctions() {
             // ===== BACK BUTTON =====
             const backButton = document.getElementById('backButton');
             
@@ -436,6 +808,17 @@ body {
                 observer.observe(card);
             });
 
+            // Observe about section
+            const aboutSection = document.querySelector('.about-marbles-section');
+            if (aboutSection) observer.observe(aboutSection);
+
+            // Observe FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
             // ===== LAZY LOAD IMAGES =====
             const images = document.querySelectorAll('.product-image');
             const imageObserver = new IntersectionObserver((entries) => {
@@ -450,7 +833,13 @@ body {
 
             images.forEach(img => imageObserver.observe(img));
 
-            console.log('✅ BNB Premium Marbles - Simplified Gallery');
+            console.log('✅ Page functions initialized');
+        }
+
+        // ========== PERFORMANCE LOGGING ==========
+        window.addEventListener('load', function() {
+            const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
+            console.log(`🚀 Marbles Gallery Page loaded in ${loadTime}ms`);
         });
     </script>
 </body>

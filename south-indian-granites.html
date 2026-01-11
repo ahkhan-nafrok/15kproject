@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-/* ========== REFINED COLOR SYSTEM ========== */
+/* ========== COLOR SYSTEM ========== */
 :root {
   --primary-blue: #2673B8;
   --background-base: #eeeeee;
@@ -22,7 +22,6 @@
   --text-muted: #7A8A9E;
   --border-color: #D4DCE6;
   --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
 }
 
 * {
@@ -31,21 +30,89 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: var(--background-base);
     color: var(--text-body);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-body.modal-open {
-    overflow: hidden;
+/* ========== PAGE LOADER ========== */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-light);
+    z-index: 9999;
+    gap: 12px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* MARBLES SECTION - OPTIMIZED */
-.marbles-section {
+.loader-logo {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+    object-fit: contain;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
+}
+
+.loader-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: clamp(2px, 0.5vw, 3px);
+    color: var(--text-primary);
+}
+
+.loader-subtext {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-weight: 500;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+body.loaded .page-loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ========== SITE WRAPPER ========== */
+.site-wrapper {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded .site-wrapper {
+    opacity: 1;
+}
+
+/* GRANITES SECTION */
+.granites-section {
     background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 2.5rem);
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 3rem);
     min-height: 100vh;
 }
 
@@ -55,21 +122,9 @@ body.modal-open {
     padding: 0 clamp(1rem, 4vw, 3rem);
 }
 
-/* HEADER - COMPACT */
+/* HEADER - MINIMAL */
 .page-header {
-    margin-bottom: clamp(1.8rem, 3vw, 2.5rem);
-}
-
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
-    gap: 2rem;
-}
-
-.header-content {
-    flex: 1;
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
 .breadcrumb {
@@ -99,7 +154,7 @@ body.modal-open {
     align-items: center;
     gap: 0.6rem;
     padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     background: var(--surface-light);
     border: 1px solid var(--border-color);
     color: var(--text-body);
@@ -136,69 +191,8 @@ body.modal-open {
     font-weight: 900;
     letter-spacing: -1.5px;
     color: var(--text-primary);
-    line-height: 1;
-    margin-bottom: 0.8rem;
-}
-
-.page-description {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    color: var(--text-body);
-    opacity: 0.9;
-    line-height: 1.6;
-    max-width: 600px;
-}
-
-/* FILTER BAR - COMPACT (REMOVED SORT) */
-.filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.filter-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-body);
-    opacity: 0.7;
-}
-
-.filter-select {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(2rem, 2.5vw, 2.2rem) clamp(0.6rem, 0.8vw, 0.7rem) clamp(0.9rem, 1.2vw, 1rem);
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 600;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing: 0.3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232673B8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    min-width: 140px;
-    border-radius: 4px;
-}
-
-.filter-select:hover,
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(38, 115, 184, 0.08);
+    line-height: 1.1;
+    margin-bottom: clamp(0.5rem, 1vw, 0.8rem);
 }
 
 /* RESULTS BAR */
@@ -208,7 +202,7 @@ body.modal-open {
     align-items: center;
     padding: clamp(0.9rem, 1.2vw, 1.2rem) 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+    margin-bottom: clamp(1.8rem, 2.5vw, 2.5rem);
 }
 
 .results-count {
@@ -225,32 +219,38 @@ body.modal-open {
     font-weight: 700;
 }
 
-/* PRODUCTS GRID - OPTIMIZED */
+/* PRODUCTS GRID - OPTIMIZED SIZING */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: clamp(1.3rem, 2vw, 1.6rem);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
     margin-bottom: 3rem;
 }
 
 @media (min-width: 1200px) {
     .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1300px;
     }
 }
 
-/* PRODUCT CARD - OPTIMIZED (NO BATCH BADGE) */
-.product-card {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+@media (min-width: 1400px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.product-card.hidden {
-    display: none;
+/* PRODUCT CARD - CLEAN & MINIMAL */
+.product-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    position: relative;
 }
 
 .product-card::before {
@@ -269,8 +269,8 @@ body.modal-open {
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
     border-color: var(--primary-blue);
 }
 
@@ -278,15 +278,13 @@ body.modal-open {
     transform: scaleX(1);
 }
 
-/* IMAGE CONTAINER */
+/* IMAGE CONTAINER - PERFECT RATIO */
 .product-image-container {
     position: relative;
     width: 100%;
-    padding-top: 110%;
+    padding-top: 100%;
     overflow: hidden;
     background: var(--border-light);
-    cursor: pointer;
-    border-radius: 8px 8px 0 0;
 }
 
 .product-image {
@@ -300,55 +298,19 @@ body.modal-open {
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-/* QUICK VIEW BUTTON */
-.quick-view {
-    position: absolute;
-    bottom: 0.8rem;
-    left: 0.8rem;
-    right: 0.8rem;
-    background: var(--text-primary);
-    color: var(--accent-white);
-    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(1rem, 1.3vw, 1.2rem);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 5;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.product-card:hover .quick-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.quick-view:hover {
-    background: var(--primary-blue);
-}
-
-/* PRODUCT INFO - COMPACT */
-.product-info {
-    padding: clamp(1.1rem, 1.5vw, 1.3rem);
-}
-
+/* PRODUCT NAME - CENTERED */
 .product-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
     font-weight: 800;
     letter-spacing: 0.3px;
     color: var(--text-primary);
-    margin-bottom: 0.35rem;
-    line-height: 1.2;
+    text-align: center;
+    padding: clamp(1.1rem, 1.4vw, 1.3rem);
+    line-height: 1.3;
     transition: color 0.3s ease;
 }
 
@@ -356,439 +318,134 @@ body.modal-open {
     color: var(--primary-blue);
 }
 
-.product-material {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.7;
-    margin-bottom: 0.7rem;
-}
-
-/* PRODUCT DESCRIPTION */
-.product-description {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-body);
-    opacity: 0.85;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* SPECIFICATIONS - 3 COLUMN LAYOUT */
-.product-specs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(0.7rem, 1vw, 0.9rem);
-    padding-top: clamp(0.9rem, 1.2vw, 1.1rem);
+/* ========== ABOUT GRANITES SECTION ========== */
+.about-granites-section {
+    background: white;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
     border-top: 1px solid var(--border-color);
-    margin-bottom: clamp(0.9rem, 1.2vw, 1.1rem);
 }
 
-.spec-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.spec-label {
+.about-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.55rem, 0.7vw, 0.6rem);
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.7;
-}
-
-.spec-value {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.9vw, 0.8rem);
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    color: var(--text-body);
-}
-
-/* ACTION BUTTONS */
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.6rem, 0.9vw, 0.8rem);
-}
-
-.action-btn {
-    padding: clamp(0.65rem, 0.85vw, 0.75rem) clamp(0.9rem, 1.2vw, 1rem);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border-radius: 4px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
 }
 
-.action-btn i {
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
-}
-
-.call-btn {
-    background: var(--surface-light);
+.about-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-weight: 400;
+    line-height: 1.7;
     color: var(--text-body);
+    margin-bottom: 0.9rem;
+    text-align: justify;
 }
 
-.call-btn:hover {
-    background: var(--text-primary);
-    color: var(--accent-white);
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
+.benefits-section {
+    margin-top: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: var(--accent-white);
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-/* NO RESULTS MESSAGE */
-.no-results {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 4rem 2rem;
-    display: none;
-}
-
-.no-results.show {
-    display: block;
-}
-
-.no-results-title {
+.benefits-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 0.8rem;
 }
 
-.no-results-text {
+.benefits-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.benefits-list li {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 500;
+    line-height: 1.6;
     color: var(--text-body);
-    opacity: 0.8;
-}
-
-/* ========== ENHANCED LIGHTBOX MODAL ========== */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.96);
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.lightbox-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-/* CLOSE BUTTON - TOP RIGHT */
-.lightbox-close {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10002;
-    transition: all 0.3s ease;
-}
-
-.lightbox-close:hover {
-    background: rgba(255, 59, 59, 0.9);
-    border-color: rgba(255, 59, 59, 1);
-    transform: rotate(90deg);
-}
-
-.lightbox-close i {
-    font-size: 1.3rem;
-    color: white;
-}
-
-/* ZOOM CONTROLS - MOBILE FRIENDLY */
-.zoom-controls {
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    display: flex;
-    gap: 0.6rem;
-    z-index: 10002;
-}
-
-.zoom-btn {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-    font-size: 1.1rem;
-}
-
-.zoom-btn:hover:not(:disabled) {
-    background: rgba(38, 115, 184, 0.9);
-    border-color: var(--primary-blue);
-    transform: scale(1.1);
-}
-
-.zoom-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.zoom-btn i {
-    pointer-events: none;
-}
-
-/* ZOOM INDICATOR */
-.zoom-level-display {
-    position: fixed;
-    bottom: 6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    z-index: 10002;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.zoom-level-display.show {
-    opacity: 1;
-}
-
-/* IMAGE CONTAINER - CENTERED */
-.lightbox-image-wrapper {
+    margin-bottom: 0.5rem;
+    padding-left: 1.3rem;
     position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    cursor: grab;
 }
 
-.lightbox-image-wrapper.zoomed {
-    cursor: grab;
-}
-
-.lightbox-image-wrapper.dragging {
-    cursor: grabbing;
-}
-
-.lightbox-image {
-    max-width: 90vw;
-    max-height: calc(100vh - 160px);
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-    touch-action: none;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* PRODUCT INFO BAR - BOTTOM */
-.lightbox-info {
-    position: fixed;
-    bottom: 0;
+.benefits-list li::before {
+    content: '•';
+    color: var(--primary-blue);
+    font-weight: 900;
+    font-size: 1.2rem;
+    position: absolute;
     left: 0;
-    right: 0;
-    background: rgba(26, 35, 50, 0.95);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 2rem;
-    z-index: 10001;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+    top: -2px;
 }
 
-.lightbox-product-name {
+/* ========== FAQ SECTION ========== */
+.faq-section {
+    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.faq-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
     font-weight: 800;
-    color: white;
-    letter-spacing: 0.3px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.lightbox-product-material {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.95vw, 0.85rem);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.5px;
-    margin-top: 0.3rem;
+.faq-item {
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.lightbox-hint {
+.faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.faq-answer {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.3px;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 0.4rem;
+    text-align: justify;
 }
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 991px) {
-    .header-top {
-        flex-direction: column;
-    }
-
+@media (max-width: 1199px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 768px) {
-    .filter-bar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.8rem;
-    }
-
-    .filter-group {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .filter-select {
-        width: 100%;
-        min-width: auto;
-        flex: 1;
-    }
-
-    .product-image-container {
-        padding-top: 115%;
-    }
-
-    .zoom-controls {
-        top: 1rem;
-        left: 1rem;
-        gap: 0.5rem;
-    }
-
-    .zoom-btn {
-        width: 44px;
-        height: 44px;
-        font-size: 1rem;
-    }
-
-    .lightbox-close {
-        top: 1rem;
-        right: 1rem;
-        width: 44px;
-        height: 44px;
-    }
-
-    .lightbox-close i {
-        font-size: 1.1rem;
-    }
-
-    .lightbox-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-        padding: 1.2rem 1.5rem;
-    }
-
-    .zoom-level-display {
-        bottom: 5rem;
-        font-size: 0.75rem;
-        padding: 0.5rem 1rem;
+@media (max-width: 991px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 576px) {
     .products-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-
+    
     .product-image-container {
-        padding-top: 110%;
-    }
-
-    .product-specs {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.6rem;
-    }
-
-    .zoom-controls {
-        top: 0.8rem;
-        left: 0.8rem;
-        gap: 0.4rem;
-    }
-
-    .zoom-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
-    }
-
-    .lightbox-close {
-        top: 0.8rem;
-        right: 0.8rem;
-        width: 40px;
-        height: 40px;
-    }
-
-    .lightbox-image {
-        max-width: 95vw;
-        max-height: calc(100vh - 140px);
+        padding-top: 95%;
     }
 }
 
@@ -796,7 +453,7 @@ body.modal-open {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -806,1083 +463,364 @@ body.modal-open {
 
 .animate-on-scroll {
     opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* LOADING STATE */
+.product-image {
+    background: linear-gradient(90deg, var(--border-light) 0%, var(--surface-light) 50%, var(--border-light) 100%);
+    background-size: 200% 100%;
+}
+
+.product-image[src] {
+    background: none;
+}
+
+#footerComponent {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
 }
 </style>
 </head>
 <body>
-    <section class="marbles-section">
-        <div class="container">
-            <!-- PAGE HEADER -->
-            <div class="page-header">
-                <div class="header-top">
-                    <div class="header-content">
-                        <div class="breadcrumb">
-                            <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>South Indian Granites</span>
-                        </div>
-                        <button class="back-button" id="backButton">
-                            <i class="fas fa-arrow-left"></i>
-                            Back
-                        </button>
-                        <h1 class="page-title">South Indian Granites</h1>
-                        <p class="page-description">
-                            Explore our premium collection of authentic South Indian granite slabs, renowned worldwide for their exceptional quality, durability, and stunning natural patterns.
-                        </p>
+    <!-- Page Loader -->
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
+        <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
+        <div class="loader-text">BNB ENTERPRISES</div>
+        <div class="loader-subtext">Loading...</div>
+    </div>
+
+    <!-- Site Wrapper -->
+    <div class="site-wrapper">
+        <section class="granites-section">
+            <div class="container">
+                <!-- PAGE HEADER -->
+                <div class="page-header">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>South Indian Granites</span>
                     </div>
+                    <button class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <h1 class="page-title">South Indian Granites</h1>
 
-                    <div class="filter-bar">
-                        <div class="filter-group">
-                            <label class="filter-label">Color</label>
-                            <select class="filter-select" id="colorFilter">
-                                <option value="all">All Colors</option>
-                                <option value="black">Black</option>
-                                <option value="white">White</option>
-                                <option value="grey">Grey</option>
-                                <option value="beige">Beige</option>
-                                <option value="brown">Brown</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <label class="filter-label">Finish</label>
-                            <select class="filter-select" id="finishFilter">
-                                <option value="all">All Finishes</option>
-                                <option value="polished">Polished</option>
-                                <option value="honed">Honed</option>
-                                <option value="pepper">Pepper</option>
-                            </select>
+                    <!-- RESULTS BAR -->
+                    <div class="results-bar">
+                        <div class="results-count">
+                            Showing <span>16</span> premium granite collections
                         </div>
                     </div>
                 </div>
 
-                <!-- RESULTS BAR -->
-                <div class="results-bar">
-                    <div class="results-count">
-                        Showing <span id="currentCount">16</span> of <span id="totalCount">16</span> products
-                    </div>
-                </div>
-            </div>
-
-            <!-- PRODUCTS GRID -->
-            <div class="products-grid" id="productsGrid">
-                <!-- NO RESULTS MESSAGE -->
-                <div class="no-results" id="noResults">
-                    <h3 class="no-results-title">No Products Found</h3>
-                    <p class="no-results-text">Try adjusting your filters to see more options</p>
-                </div>
-
-                <!-- PRODUCT CARD 1 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Absolute Black Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/ABSOLUTE-BLACK-GRANITE.webp" alt="Absolute Black Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                <!-- PRODUCTS GRID -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- PRODUCT 1 -->
+                    <a href="Granites/South-indian/absolute-black.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/ABSOLUTE-BLACK-GRANITE.webp" alt="Absolute Black Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Absolute Black Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Pure jet black granite from South India with consistent solid black color. Premium absolute black stone ideal for countertops, flooring, and monuments with unmatched durability and elegance.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 2 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Forest Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 2 -->
+                    <a href="Granites/South-indian/black-forest.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Black Forest Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Exotic black forest granite from South India featuring deep black base with dramatic white and grey veining. Perfect for contemporary kitchen countertops and luxury interiors with striking natural patterns.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 3 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/BLACK-GRANITE.webp" alt="Black Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 3 -->
+                    <a href="Granites/South-indian/black-granite.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/BLACK-GRANITE.webp" alt="Black Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Black Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Premium South Indian black granite with dense composition and superior strength. Classic black stone for high-traffic flooring, kitchen platforms, and exterior cladding with exceptional durability.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 4 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Pearl Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/Black-Pearl.webp" alt="Black Pearl Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 4 -->
+                    <a href="Granites/South-indian/black-pearl.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/Black-Pearl.webp" alt="Black Pearl Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Black Pearl Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Lustrous black pearl granite from South India with silver and grey flecks creating a pearlescent effect. Elegant choice for premium countertops, luxury bathrooms, and sophisticated commercial spaces.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 5 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Coffee Brown Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/COFFEE-BROWN-GRANITE.webp" alt="Coffee Brown Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 5 -->
+                    <a href="Granites/South-indian/coffee-brown.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/COFFEE-BROWN-GRANITE.webp" alt="Coffee Brown Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Coffee Brown Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Rich coffee brown granite from South India with cream and beige veining. Warm earthy tones perfect for kitchen countertops, flooring, and creating cozy residential and hospitality interiors.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 6 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Imperial Red Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/IMPERIAL-RED-GRANITE.webp" alt="Imperial Red Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 6 -->
+                    <a href="Granites/South-indian/imperial-red.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/IMPERIAL-RED-GRANITE.webp" alt="Imperial Red Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Imperial Red Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Majestic imperial red granite from South India with deep burgundy and brown tones. Premium red granite ideal for statement flooring, feature walls, and luxury interior design projects with regal appeal.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown/Red</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 7 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="Kuppam White Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/Kuppam-white-granite-1024x1024.webp" alt="Kuppam White Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 7 -->
+                    <a href="Granites/South-indian/kuppam-white.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/Kuppam-white-granite-1024x1024.webp" alt="Kuppam White Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Kuppam White Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Pure Kuppam white granite from South India with consistent creamy white background. Versatile light granite for bright kitchens, bathrooms, and contemporary minimalist architecture with timeless elegance.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">White</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 8 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Lakha Red Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/LAKHA-RED-GRANITE.webp" alt="Lakha Red Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 8 -->
+                    <a href="Granites/South-indian/lakha-red.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/LAKHA-RED-GRANITE.webp" alt="Lakha Red Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Lakha Red Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Vibrant Lakha red granite from South India with rich reddish-brown hues and black patterns. Durable red stone for outdoor paving, memorial work, and creating bold architectural statements.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown/Red</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 9 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="Moon White Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/MOON-WHITE-GRANITE.webp" alt="Moon White Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 9 -->
+                    <a href="Granites/South-indian/moon-white.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/MOON-WHITE-GRANITE.webp" alt="Moon White Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Moon White Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Luminous moon white granite from South India with soft grey and burgundy speckles. Elegant light-colored granite perfect for bright interiors, modern kitchens, and creating spacious ambiance.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">White</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 10 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Pearl Black Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/PEARL-BLACK-GRANITE.webp" alt="Pearl Black Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 10 -->
+                    <a href="Granites/South-indian/pearl-black.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/PEARL-BLACK-GRANITE.webp" alt="Pearl Black Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Pearl Black Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Premium pearl black granite from South India with subtle shimmer and uniform texture. Sophisticated black stone for luxury countertops, premium flooring, and elegant interior applications.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                 WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-
-                <!-- PRODUCT CARD 11 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="Viscont White Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/Viscont-White-Granite south india.webp" alt="Viscont White Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 11 -->
+                    <a href="Granites/South-indian/viscont-white.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/Viscont-White-Granite south india.webp" alt="Viscont White Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Viscont White Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Classic Viscont white granite from South India with grey and black veining patterns. Timeless white granite for versatile kitchen designs, bathroom vanities, and contemporary architectural projects.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">White</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 12 -->
-                <div class="product-card" data-color="white" data-finish="polished" data-name="White Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/WHITE-GRANITE.webp" alt="White Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 12 -->
+                    <a href="Granites/South-indian/white-granite.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/WHITE-GRANITE.webp" alt="White Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">White Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Pure white granite from South India with clean appearance and durable composition. Premium white stone for minimalist designs, clean kitchen aesthetics, and creating bright living spaces.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">White</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 13 -->
-                <div class="product-card" data-color="black" data-finish="polished" data-name="Black Galaxy Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/black-galaxy-south.webp" alt="Black Galaxy Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 13 -->
+                    <a href="Granites/South-indian/black-galaxy.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/black-galaxy-south.webp" alt="Black Galaxy Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Black Galaxy Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Stunning black galaxy granite from South India with golden and bronze speckles resembling stars. Iconic luxury granite for premium countertops, feature walls, and high-end interior designs.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Black</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 14 -->
-                <div class="product-card" data-color="brown" data-finish="polished" data-name="Classic Paradiso Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/classic-paradiso-southindia.webp" alt="Classic Paradiso Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 14 -->
+                    <a href="Granites/South-indian/classic-paradiso.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/classic-paradiso-southindia.webp" alt="Classic Paradiso Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Classic Paradiso Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Exotic classic paradiso granite from South India with brown, gold, and cream waves. Stunning decorative granite for luxury countertops, bar tops, and creating unique focal points.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Brown</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 15 -->
-                <div class="product-card" data-color="grey" data-finish="polished" data-name="Himalayan Blue Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/himalyan-blue.webp" alt="Himalayan Blue Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 15 -->
+                    <a href="Granites/South-indian/himalayan-blue.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/himalyan-blue.webp" alt="Himalayan Blue Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Himalayan Blue Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Rare Himalayan blue granite from South India with grey-blue tones and unique patterns. Exclusive designer granite for upscale projects, statement pieces, and distinctive architectural applications.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey/Blue</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </a>
 
-                <!-- PRODUCT CARD 16 -->
-                <div class="product-card" data-color="grey" data-finish="polished" data-name="Olivia Green Granite" data-thickness="20mm" data-material="South Indian Granite">
-                    <div class="product-image-container">
-                        <img src="Granites/olivia-green-south.webp" alt="Olivia Green Granite" class="product-image">
-                        <button class="quick-view">Quick View</button>
-                    </div>
-                    <div class="product-info">
+                    <!-- PRODUCT 16 -->
+                    <a href="Granites/South-indian/olivia-green.html" class="product-card">
+                        <div class="product-image-container">
+                            <img src="Granites/South-indian/olivia-green-south.webp" alt="Olivia Green Granite" class="product-image">
+                        </div>
                         <h3 class="product-name">Olivia Green Granite</h3>
-                        <p class="product-material">South Indian Granite</p>
-                        <p class="product-description">Distinctive Olivia green granite from South India with olive-grey tones and natural patterns. Unique colored granite for artistic interiors, nature-inspired designs, and creating organic aesthetics.</p>
-                        <div class="product-specs">
-                            <div class="spec-item">
-                                <span class="spec-label">Color</span>
-                                <span class="spec-value">Grey/Green</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Thickness</span>
-                                <span class="spec-value">20mm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label">Finish</span>
-                                <span class="spec-value">Polished</span>
-                            </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SOUTH INDIAN GRANITES SECTION -->
+        <section class="about-granites-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="about-title">Premium South Indian Granite Collection by BNB Enterprises</h2>
+                    
+                    <p class="about-text">
+                        BNB Enterprises proudly presents an extensive collection of South Indian granites, sourced from the world-renowned quarries of Karnataka, Tamil Nadu, Andhra Pradesh, and Telangana. South Indian granite is globally recognized for its exceptional quality, uniformity, and stunning dark hues that have made it the preferred choice for premium architectural projects worldwide. Our collection features iconic varieties including Absolute Black, Black Galaxy, Black Pearl, Black Forest, Coffee Brown, Imperial Red, Moon White, Viscont White, Classic Paradiso, Himalayan Blue, and the exquisite Olivia Green granite.
+                    </p>
+
+                    <p class="about-text">
+                        South Indian granites are distinguished by their superior density, minimal porosity, and remarkable consistency in color and pattern. The region's unique geological formations produce some of the world's finest black granites with exceptional depth and reflective properties. Varieties like Black Galaxy with its golden speckles, Absolute Black with its pure jet-black appearance, and Coffee Brown with its rich chocolatey tones are internationally acclaimed. These granites are ideal for luxury countertops, flooring, wall cladding, monuments, and architectural facades. Available in gangsaw slabs, cutter slabs, and custom-cut tiles with various edge profiles and finishes.
+                    </p>
+
+                    <div class="benefits-section">
+                        <h3 class="benefits-title">Why Choose South Indian Granite from BNB Enterprises</h3>
+                        <ul class="benefits-list">
+                            <li>Direct sourcing from premier quarries in Karnataka, Tamil Nadu, and Andhra Pradesh</li>
+                            <li>World-famous for deep blacks, rich browns, pristine whites, and unique multicolor varieties</li>
+                            <li>Superior density and minimal porosity ensuring maximum durability and stain resistance</li>
+                            <li>Exceptional color consistency ideal for large-scale commercial and residential projects</li>
+                            <li>Available in multiple premium finishes: polished, honed, flamed, leathered, and brushed</li>
+                            <li>Custom fabrication from standard tiles to large format slabs (up to 280 x 180 cm)</li>
+                            <li>ISO-certified quality with comprehensive testing for strength and longevity</li>
+                            <li>Perfect for luxury kitchen countertops, bathroom vanities, and high-end commercial spaces</li>
+                            <li>Internationally exported to USA, UK, Middle East, Europe, and Asia Pacific regions</li>
+                            <li>Technical support for selection, installation, and long-term maintenance guidance</li>
+                        </ul>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3 class="faq-title">Frequently Asked Questions About South Indian Granites</h3>
+                        
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.1 Why is South Indian granite considered superior quality?</h4>
+                            <p class="faq-answer">
+                                Ans. South Indian granite is globally renowned for its exceptional density, uniformity, and low porosity. The region's ancient geological formations produce granite with consistent color patterns and superior structural integrity. Varieties like Absolute Black and Black Galaxy have become international standards for premium black granite. The consistent quality, minimal water absorption, and excellent polish retention make South Indian granite ideal for both residential luxury projects and demanding commercial applications.
+                            </p>
                         </div>
-                        <div class="product-actions">
-                            <a href="tel:+919876543210" class="action-btn call-btn">
-                                <i class="fas fa-phone-alt"></i>
-                                Call Us
-                            </a>
-                            <button class="action-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </button>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.2 What makes Black Galaxy granite unique?</h4>
+                            <p class="faq-answer">
+                                Ans. Black Galaxy granite from South India is famous for its deep black background with distinctive golden-bronze speckles that resemble stars in the night sky. This unique appearance is created by bronze-colored feldspar crystals uniformly distributed throughout the stone. Black Galaxy is highly sought after for luxury kitchen countertops, bathroom vanities, and feature walls. Its remarkable depth, brilliance when polished, and ability to hide minor scratches make it a premium choice for high-end residential and commercial interiors.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.3 Which South Indian granite is best for kitchen countertops?</h4>
+                            <p class="faq-answer">
+                                Ans. For kitchen countertops, Absolute Black, Black Galaxy, and Coffee Brown are excellent choices due to their durability and stain resistance. Absolute Black provides a sleek, modern aesthetic and hides minor scratches well. Black Galaxy adds luxury with its sparkling appearance. Coffee Brown offers warmth while maintaining practicality. Moon White and Viscont White are popular for lighter, brighter kitchens. All these varieties have low porosity, excellent heat resistance, and maintain their beauty with minimal maintenance when properly sealed.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.4 How do South Indian granites compare to imported granites?</h4>
+                            <p class="faq-answer">
+                                Ans. South Indian granites often surpass imported varieties in quality and consistency while being more cost-effective. The region produces some of the world's finest black granites that match or exceed the quality of granites from Brazil, Scandinavia, or Africa. South Indian granite offers superior density, consistent patterns ideal for book-matching, and excellent availability in various sizes. The established quarrying infrastructure ensures reliable supply for large projects. Many international projects specify South Indian granite as their premium choice.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.5 What maintenance is required for South Indian granite surfaces?</h4>
+                            <p class="faq-answer">
+                                Ans. South Indian granites require minimal maintenance due to their low porosity. Clean daily with mild soap and water or pH-neutral stone cleaners. Seal polished surfaces every 12-18 months to maintain stain resistance, though dense varieties like Absolute Black rarely require sealing. Wipe spills promptly, use cutting boards and trivets, and avoid abrasive cleaners. Black and dark-colored granites naturally hide minor scratches better than lighter stones. Professional polishing every few years maintains the original high-gloss finish.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.6 Can South Indian granite be used for outdoor applications?</h4>
+                            <p class="faq-answer">
+                                Ans. Yes, South Indian granite is excellent for outdoor use due to its superior density and weather resistance. Varieties like Absolute Black, Black Pearl, and Imperial Red are perfect for exterior cladding, paving, landscaping, and monuments. They withstand extreme weather conditions, UV exposure, freeze-thaw cycles, and pollution without fading or deteriorating. Flamed, thermal, or bush hammered finishes are recommended for outdoor flooring to provide slip resistance. South Indian granite's low water absorption prevents frost damage in cold climates.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ENHANCED LIGHTBOX MODAL -->
-    <div class="lightbox-modal" id="lightboxModal">
-        <!-- CLOSE BUTTON -->
-        <button class="lightbox-close" id="lightboxClose">
-            <i class="fas fa-times"></i>
-        </button>
-
-        <!-- ZOOM CONTROLS -->
-        <div class="zoom-controls">
-            <button class="zoom-btn" id="zoomInBtn" title="Zoom In">
-                <i class="fas fa-plus"></i>
-            </button>
-            <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out" disabled>
-                <i class="fas fa-minus"></i>
-            </button>
-            <button class="zoom-btn" id="resetZoomBtn" title="Reset" disabled>
-                <i class="fas fa-compress-arrows-alt"></i>
-            </button>
-        </div>
-
-        <!-- ZOOM LEVEL DISPLAY -->
-        <div class="zoom-level-display" id="zoomLevelDisplay">
-            <span id="zoomPercentage">100%</span>
-        </div>
-
-        <!-- IMAGE WRAPPER -->
-        <div class="lightbox-image-wrapper" id="lightboxImageWrapper">
-            <img src="" alt="" class="lightbox-image" id="lightboxImage">
-        </div>
-
-        <!-- PRODUCT INFO -->
-        <div class="lightbox-info">
-            <div>
-                <div class="lightbox-product-name" id="lightboxProductName"></div>
-                <div class="lightbox-product-material" id="lightboxProductMaterial"></div>
-            </div>
-            <div class="lightbox-hint">
-                Pinch • Double-tap • Scroll to zoom • Drag to pan • ESC to close
-            </div>
-        </div>
+        <!-- Footer Component -->
+        <footer id="footerComponent" role="contentinfo"></footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ===== FILTER SYSTEM (REMOVED SORT) =====
-            const colorFilter = document.getElementById('colorFilter');
-            const finishFilter = document.getElementById('finishFilter');
-            const productsGrid = document.getElementById('productsGrid');
-            const productCards = Array.from(document.querySelectorAll('.product-card:not(.no-results)'));
-            const currentCountSpan = document.getElementById('currentCount');
-            const totalCountSpan = document.getElementById('totalCount');
-            const noResults = document.getElementById('noResults');
+        // ========== PERFORMANCE TRACKING ==========
+        const performanceMetrics = {
+            startTime: performance.now(),
+            componentsLoaded: 0
+        };
 
-            let filteredProducts = [...productCards];
+        // ========== PAGE INITIALIZATION ==========
+        document.addEventListener("DOMContentLoaded", () => {
+            const minLoadTime = 1000;
+            const elapsedTime = performance.now() - performanceMetrics.startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
-            function filterProducts() {
-                const colorValue = colorFilter.value;
-                const finishValue = finishFilter.value;
+            setTimeout(() => {
+                document.body.classList.add("loaded");
+                loadComponents();
+            }, remainingTime);
+        });
 
-                filteredProducts = productCards.filter(card => {
-                    const cardColor = card.dataset.color;
-                    const cardFinish = card.dataset.finish;
+        // ========== COMPONENT LOADING SYSTEM ==========
+        async function loadComponents() {
+            const components = [
+                { name: "footer", target: "footerComponent" }
+            ];
 
-                    const colorMatch = colorValue === 'all' || cardColor === colorValue;
-                    const finishMatch = finishValue === 'all' || cardFinish === finishValue;
-
-                    return colorMatch && finishMatch;
-                });
-
-                updateDisplay();
+            for (const comp of components) {
+                await loadComponent(comp.name, comp.target);
+                performanceMetrics.componentsLoaded++;
             }
 
-            function updateDisplay() {
-                productCards.forEach(card => {
-                    card.classList.add('hidden');
-                });
+            console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+            initializePageFunctions();
+        }
 
-                if (filteredProducts.length === 0) {
-                    noResults.classList.add('show');
-                    currentCountSpan.textContent = '0';
-                } else {
-                    noResults.classList.remove('show');
-                    filteredProducts.forEach(card => {
-                        card.classList.remove('hidden');
-                    });
-                    currentCountSpan.textContent = filteredProducts.length;
-                }
-
-                totalCountSpan.textContent = productCards.length;
-            }
-
-            colorFilter.addEventListener('change', filterProducts);
-            finishFilter.addEventListener('change', filterProducts);
-
-            updateDisplay();
-
-            // ===== WHATSAPP FUNCTIONALITY =====
-            document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    const card = this.closest('.product-card');
-                    const productName = card.dataset.name;
-                    const material = card.dataset.material;
-                    const thickness = card.dataset.thickness;
-                    const finish = card.dataset.finish;
-
-                    const message = `Hello BNB Enterprises,%0A%0AI'm interested in the following granite slab:%0A%0A*Product:* ${productName}%0A*Material:* ${material}%0A*Thickness:* ${thickness}%0A*Finish:* ${finish}%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-
-                    const whatsappURL = `https://wa.me/919876543210?text=${message}`;
-                    window.open(whatsappURL, '_blank');
-                });
-            });
-
-            // ===== ENHANCED LIGHTBOX WITH SMOOTH ZOOM =====
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxImageWrapper = document.getElementById('lightboxImageWrapper');
-            const lightboxProductName = document.getElementById('lightboxProductName');
-            const lightboxProductMaterial = document.getElementById('lightboxProductMaterial');
-            const zoomInBtn = document.getElementById('zoomInBtn');
-            const zoomOutBtn = document.getElementById('zoomOutBtn');
-            const resetZoomBtn = document.getElementById('resetZoomBtn');
-            const zoomLevelDisplay = document.getElementById('zoomLevelDisplay');
-            const zoomPercentage = document.getElementById('zoomPercentage');
-
-            // Zoom configuration
-            const MIN_SCALE = 1;
-            const MAX_SCALE = 5;
-            const ZOOM_STEP = 0.5;
-            
-            let currentScale = 1;
-            let translateX = 0;
-            let translateY = 0;
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
-            let zoomDisplayTimeout;
-
-            // Open lightbox
-            function openLightbox(card) {
-                const imgSrc = card.querySelector('.product-image').src;
-                const productName = card.querySelector('.product-name').textContent;
-                const productMaterial = card.querySelector('.product-material').textContent;
-
-                lightboxImage.src = imgSrc;
-                lightboxImage.alt = productName;
-                lightboxProductName.textContent = productName;
-                lightboxProductMaterial.textContent = productMaterial;
-
-                // Reset zoom
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-                applyTransform(false);
-
-                lightboxModal.classList.add('active');
-                document.body.classList.add('modal-open');
-            }
-
-            // Close lightbox
-            function closeLightbox() {
-                lightboxModal.classList.remove('active');
-                document.body.classList.remove('modal-open');
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-            }
-
-            // Apply transform
-            function applyTransform(animate = true) {
-                if (animate) {
-                    lightboxImage.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                } else {
-                    lightboxImage.style.transition = 'none';
-                }
-
-                lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+        // ========== COMPONENT LOADER ==========
+        async function loadComponent(name, targetId) {
+            try {
+                const startTime = performance.now();
                 
-                updateZoomButtons();
-                showZoomLevel();
+                const htmlResp = await fetch(`${name}.html`);
+                const htmlText = await htmlResp.text();
 
-                setTimeout(() => {
-                    lightboxImage.style.transition = 'none';
-                }, 300);
-            }
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlText;
 
-            // Update button states
-            function updateZoomButtons() {
-                zoomOutBtn.disabled = currentScale <= MIN_SCALE;
-                zoomInBtn.disabled = currentScale >= MAX_SCALE;
-                resetZoomBtn.disabled = currentScale === MIN_SCALE;
-
-                if (currentScale > MIN_SCALE) {
-                    lightboxImageWrapper.classList.add('zoomed');
-                } else {
-                    lightboxImageWrapper.classList.remove('zoomed');
-                }
-            }
-
-            // Show zoom level
-            function showZoomLevel() {
-                clearTimeout(zoomDisplayTimeout);
-                zoomPercentage.textContent = Math.round(currentScale * 100) + '%';
-                zoomLevelDisplay.classList.add('show');
-                
-                zoomDisplayTimeout = setTimeout(() => {
-                    zoomLevelDisplay.classList.remove('show');
-                }, 1500);
-            }
-
-            // Zoom in
-            function zoomIn(clientX = null, clientY = null) {
-                const newScale = Math.min(currentScale + ZOOM_STEP, MAX_SCALE);
-                if (newScale === currentScale) return;
-
-                if (clientX !== null && clientY !== null) {
-                    const rect = lightboxImageWrapper.getBoundingClientRect();
-                    const x = clientX - rect.left - rect.width / 2;
-                    const y = clientY - rect.top - rect.height / 2;
-                    
-                    const scaleFactor = newScale / currentScale;
-                    translateX = translateX * scaleFactor - x * (scaleFactor - 1);
-                    translateY = translateY * scaleFactor - y * (scaleFactor - 1);
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) {
+                    console.error(`❌ Target element #${targetId} not found`);
+                    return;
                 }
 
-                currentScale = newScale;
-                applyTransform(true);
-            }
+                const styles = tempDiv.querySelectorAll('style');
+                styles.forEach(style => {
+                    const styleElement = document.createElement('style');
+                    styleElement.innerHTML = style.innerHTML;
+                    styleElement.setAttribute('data-component', name);
+                    document.head.appendChild(styleElement);
+                });
 
-            // Zoom out
-            function zoomOut() {
-                const newScale = Math.max(currentScale - ZOOM_STEP, MIN_SCALE);
-                if (newScale === currentScale) return;
+                const scripts = tempDiv.querySelectorAll('script');
+                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
 
-                const scaleFactor = newScale / currentScale;
-                translateX *= scaleFactor;
-                translateY *= scaleFactor;
+                scripts.forEach(script => script.remove());
+                styles.forEach(style => style.remove());
+                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
+                fontLinks.forEach(link => link.remove());
 
-                currentScale = newScale;
-                applyTransform(true);
-            }
+                targetElement.innerHTML = tempDiv.innerHTML;
 
-            // Reset zoom
-            function resetZoom() {
-                currentScale = MIN_SCALE;
-                translateX = 0;
-                translateY = 0;
-                applyTransform(true);
-            }
+                await new Promise(resolve => setTimeout(resolve, 100));
 
-            // Button controls
-            zoomInBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                zoomIn();
-            });
-
-            zoomOutBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                zoomOut();
-            });
-
-            resetZoomBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                resetZoom();
-            });
-
-            // Double-click/tap to zoom
-            let lastTapTime = 0;
-            lightboxImageWrapper.addEventListener('click', function(e) {
-                const now = Date.now();
-                const timeSinceLastTap = now - lastTapTime;
-                lastTapTime = now;
-
-                if (timeSinceLastTap < 300 && !isDragging) {
-                    e.preventDefault();
-                    if (currentScale === MIN_SCALE) {
-                        zoomIn(e.clientX, e.clientY);
-                    } else {
-                        resetZoom();
+                scriptContents.forEach(scriptContent => {
+                    if (scriptContent.trim()) {
+                        try {
+                            const func = new Function(scriptContent);
+                            func();
+                        } catch (scriptError) {
+                            console.error(`❌ Error executing ${name} script:`, scriptError);
+                        }
                     }
-                }
-            });
-
-            // Mouse wheel zoom
-            lightboxImageWrapper.addEventListener('wheel', function(e) {
-                e.preventDefault();
-                
-                if (e.deltaY < 0) {
-                    zoomIn(e.clientX, e.clientY);
-                } else {
-                    zoomOut();
-                }
-            }, { passive: false });
-
-            // Mouse drag
-            lightboxImageWrapper.addEventListener('mousedown', function(e) {
-                if (currentScale <= MIN_SCALE) return;
-                
-                isDragging = true;
-                lightboxImageWrapper.classList.add('dragging');
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                e.preventDefault();
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-            });
-
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    lightboxImageWrapper.classList.remove('dragging');
-                }
-            });
-
-            // Touch gestures
-            let touchStartDistance = 0;
-            let touchStartScale = 1;
-            let touches = [];
-
-            lightboxImageWrapper.addEventListener('touchstart', function(e) {
-                touches = Array.from(e.touches);
-                
-                if (touches.length === 2) {
-                    e.preventDefault();
-                    const touch1 = touches[0];
-                    const touch2 = touches[1];
-                    touchStartDistance = Math.hypot(
-                        touch2.clientX - touch1.clientX,
-                        touch2.clientY - touch1.clientY
-                    );
-                    touchStartScale = currentScale;
-                } else if (touches.length === 1 && currentScale > MIN_SCALE) {
-                    isDragging = true;
-                    startX = touches[0].clientX - translateX;
-                    startY = touches[0].clientY - translateY;
-                }
-            }, { passive: false });
-
-            lightboxImageWrapper.addEventListener('touchmove', function(e) {
-                touches = Array.from(e.touches);
-                
-                if (touches.length === 2) {
-                    e.preventDefault();
-                    const touch1 = touches[0];
-                    const touch2 = touches[1];
-                    const currentDistance = Math.hypot(
-                        touch2.clientX - touch1.clientX,
-                        touch2.clientY - touch1.clientY
-                    );
-                    
-                    const scale = (currentDistance / touchStartDistance) * touchStartScale;
-                    currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
-                    
-                    applyTransform(false);
-                } else if (touches.length === 1 && isDragging) {
-                    e.preventDefault();
-                    translateX = touches[0].clientX - startX;
-                    translateY = touches[0].clientY - startY;
-                    
-                    lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-                }
-            }, { passive: false });
-
-            lightboxImageWrapper.addEventListener('touchend', function(e) {
-                if (e.touches.length === 0) {
-                    isDragging = false;
-                    updateZoomButtons();
-                    showZoomLevel();
-                }
-            });
-
-            // Open lightbox from Quick View button
-            document.querySelectorAll('.quick-view').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.product-card');
-                    openLightbox(card);
                 });
-            });
 
-            // Open lightbox from product image
-            document.querySelectorAll('.product-image').forEach(img => {
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.product-card');
-                    openLightbox(card);
-                });
-            });
+                const loadTime = Math.round(performance.now() - startTime);
+                console.log(`✅ ${name} loaded in ${loadTime}ms`);
 
-            // Close lightbox
-            lightboxClose.addEventListener('click', closeLightbox);
+            } catch (err) {
+                console.error(`❌ Error loading ${name}:`, err);
+            }
+        }
 
-            lightboxModal.addEventListener('click', function(e) {
-                if (e.target === lightboxModal) {
-                    closeLightbox();
-                }
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
-                    closeLightbox();
-                }
-            });
-
-            // Prevent default drag
-            lightboxImage.addEventListener('dragstart', e => e.preventDefault());
-
-            // ===== BACK BUTTON =====
+        // ========== PAGE-SPECIFIC FUNCTIONS ==========
+        function initializePageFunctions() {
             const backButton = document.getElementById('backButton');
             
             if (backButton) {
@@ -1895,10 +833,9 @@ body.modal-open {
                 });
             }
 
-            // ===== SCROLL ANIMATIONS =====
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -80px 0px'
+                rootMargin: '0px 0px -60px 0px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -1913,14 +850,41 @@ body.modal-open {
             const header = document.querySelector('.page-header');
             if (header) observer.observe(header);
 
+            const productCards = document.querySelectorAll('.product-card');
             productCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animationDelay = `${index * 0.08}s`;
                 observer.observe(card);
             });
 
-            console.log('✅ BNB South Indian Granites - Enhanced with Professional Lightbox');
+            const aboutSection = document.querySelector('.about-granites-section');
+            if (aboutSection) observer.observe(aboutSection);
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            const images = document.querySelectorAll('.product-image');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+
+            console.log('✅ Page functions initialized');
+        }
+
+        window.addEventListener('load', function() {
+            const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
+            console.log(`🚀 South Indian Granites Page loaded in ${loadTime}ms`);
         });
     </script>
 </body>
 </html>
-                                
