@@ -490,7 +490,7 @@ body.loaded .site-wrapper {
         <div class="loader-text">BNB ENTERPRISES</div>
         <div class="loader-subtext">Loading...</div>
     </div>
-
+<div id="navbarComponent"></div>
     <!-- Site Wrapper -->
     <div class="site-wrapper">
         <section class="granites-section">
@@ -752,6 +752,7 @@ body.loaded .site-wrapper {
         // ========== COMPONENT LOADING SYSTEM ==========
         async function loadComponents() {
             const components = [
+                { name: "navbar-product", target: "navbarComponent" },
                 { name: "footer", target: "footerComponent" }
             ];
 
