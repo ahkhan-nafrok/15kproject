@@ -68,7 +68,7 @@ body {
     border-bottom: 1px solid var(--light-gray);
     padding: 1.2rem 0;
     position: sticky;
-    top: 80px;  /* Changed from top: 0 to top: 80px */
+    top: 80px;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
@@ -352,11 +352,34 @@ body {
     opacity: 0.7;
 }
 
-/* cards Section */
+/* Enhanced Product Cards Section */
 .cards-section {
     max-width: 1400px;
     margin: 0 auto;
     padding: 4rem 2rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 0.8rem;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--pure-black);
 }
 
 .cards-grid {
@@ -395,8 +418,27 @@ body {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.cards-card::after {
+    content: '';
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .cards-card:hover::before {
     transform: scaleX(1);
+}
+
+.cards-card:hover::after {
+    opacity: 0.1;
+    transform: scale(15);
 }
 
 .cards-card:hover {
@@ -406,12 +448,14 @@ body {
 }
 
 .cards-icon {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
 }
 
 .cards-icon svg {
@@ -420,16 +464,18 @@ body {
     stroke: var(--primary-blue);
     fill: none;
     stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cards-card:hover .cards-icon {
-    transform: scale(1.1) rotateY(360deg);
+    transform: scale(1.15) translateY(-5px);
 }
 
 .cards-card:hover .cards-icon svg {
     stroke: var(--primary-blue);
-    filter: drop-shadow(0 4px 8px rgba(38, 115, 184, 0.2));
+    filter: drop-shadow(0 4px 8px rgba(38, 115, 184, 0.3));
 }
 
 .cards-name {
@@ -439,11 +485,40 @@ body {
     letter-spacing: 0.5px;
     color: var(--primary-blue);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .cards-card:hover .cards-name {
     transform: translateY(-2px);
     letter-spacing: 1px;
+}
+
+.card-arrow {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: translate(-10px, 10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+}
+
+.card-arrow svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--primary-blue);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cards-card:hover .card-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
 }
 
 /* Fade in animation */
@@ -470,6 +545,11 @@ body {
 @media (max-width: 1200px) {
     .hero-section {
         gap: 2.5rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
@@ -504,7 +584,6 @@ body {
         max-height: 450px;
     }
 
-    /* Mobile: 2x2 Grid */
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.2rem;
@@ -539,6 +618,11 @@ body {
 
     .hero-image {
         max-height: 400px;
+    }
+    
+    .cards-icon {
+        width: 64px;
+        height: 64px;
     }
 }
 
@@ -623,8 +707,8 @@ body {
     }
     
     .cards-icon {
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
     }
     
     .cards-name {
@@ -746,56 +830,178 @@ body {
     </section>
 
     <section class="cards-section">
+        <div class="section-header">
+            <div class="section-label">Our Products</div>
+            <h2 class="section-title">What We Offer</h2>
+        </div>
+        
         <div class="cards-grid">
-            <div class="cards-card" data-cards="granites">
+            <!-- Agriculture Commodities Card -->
+            <div class="cards-card" data-product="agriculture" data-url="Agriculture.html">
                 <div class="cards-icon">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 8L8 20L32 32L56 20L32 8Z"/>
-                        <path d="M8 28L32 40L56 28"/>
-                        <path d="M8 36L32 48L56 36"/>
-                        <path d="M16 24L32 32L48 24"/>
+                        <!-- Wheat stalks -->
+                        <path d="M20 48 L20 20"/>
+                        <path d="M32 48 L32 16"/>
+                        <path d="M44 48 L44 18"/>
+                        
+                        <!-- Left wheat grains -->
+                        <ellipse cx="17" cy="22" rx="3" ry="4"/>
+                        <ellipse cx="17" cy="27" rx="3" ry="4"/>
+                        <ellipse cx="17" cy="32" rx="3" ry="4"/>
+                        <ellipse cx="17" cy="37" rx="3" ry="4"/>
+                        
+                        <ellipse cx="23" cy="22" rx="3" ry="4"/>
+                        <ellipse cx="23" cy="27" rx="3" ry="4"/>
+                        <ellipse cx="23" cy="32" rx="3" ry="4"/>
+                        <ellipse cx="23" cy="37" rx="3" ry="4"/>
+                        
+                        <!-- Middle wheat grains -->
+                        <ellipse cx="29" cy="18" rx="3" ry="4"/>
+                        <ellipse cx="29" cy="23" rx="3" ry="4"/>
+                        <ellipse cx="29" cy="28" rx="3" ry="4"/>
+                        <ellipse cx="29" cy="33" rx="3" ry="4"/>
+                        <ellipse cx="29" cy="38" rx="3" ry="4"/>
+                        
+                        <ellipse cx="35" cy="18" rx="3" ry="4"/>
+                        <ellipse cx="35" cy="23" rx="3" ry="4"/>
+                        <ellipse cx="35" cy="28" rx="3" ry="4"/>
+                        <ellipse cx="35" cy="33" rx="3" ry="4"/>
+                        <ellipse cx="35" cy="38" rx="3" ry="4"/>
+                        
+                        <!-- Right wheat grains -->
+                        <ellipse cx="41" cy="20" rx="3" ry="4"/>
+                        <ellipse cx="41" cy="25" rx="3" ry="4"/>
+                        <ellipse cx="41" cy="30" rx="3" ry="4"/>
+                        <ellipse cx="41" cy="35" rx="3" ry="4"/>
+                        <ellipse cx="41" cy="40" rx="3" ry="4"/>
+                        
+                        <ellipse cx="47" cy="20" rx="3" ry="4"/>
+                        <ellipse cx="47" cy="25" rx="3" ry="4"/>
+                        <ellipse cx="47" cy="30" rx="3" ry="4"/>
+                        <ellipse cx="47" cy="35" rx="3" ry="4"/>
+                        <ellipse cx="47" cy="40" rx="3" ry="4"/>
                     </svg>
                 </div>
-                <div class="cards-name">Granites</div>
+                <div class="cards-name">Agriculture Commodities</div>
+                <div class="card-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
 
-            <div class="cards-card" data-cards="leather">
+            <!-- Leather Card -->
+            <div class="cards-card" data-product="leather" data-url="leather.html">
                 <div class="cards-icon">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 16C12 16 16 12 24 12C32 12 36 16 40 16C44 16 48 12 52 12C52 12 56 16 56 24C56 32 52 40 48 44C44 48 40 52 32 52C24 52 20 48 16 44C12 40 8 32 8 24C8 16 12 16 12 16Z"/>
-                        <path d="M24 24C24 24 28 28 32 28C36 28 40 24 40 24"/>
-                        <path d="M20 32C20 32 24 36 32 36C40 36 44 32 44 32"/>
+                        <!-- Leather hide shape -->
+                        <path d="M32 10 C20 10, 12 16, 12 24 C12 28, 10 32, 10 36 C10 44, 16 52, 24 54 C28 55, 32 56, 36 55 C40 54, 44 52, 46 48 C48 44, 52 40, 54 36 C56 32, 54 28, 54 24 C54 16, 44 10, 32 10 Z"/>
+                        
+                        <!-- Texture lines for leather -->
+                        <path d="M18 22 Q20 24, 22 22"/>
+                        <path d="M24 26 Q26 28, 28 26"/>
+                        <path d="M30 24 Q32 26, 34 24"/>
+                        <path d="M38 28 Q40 30, 42 28"/>
+                        <path d="M20 32 Q22 34, 24 32"/>
+                        <path d="M28 36 Q30 38, 32 36"/>
+                        <path d="M36 34 Q38 36, 40 34"/>
+                        <path d="M26 42 Q28 44, 30 42"/>
+                        <path d="M34 40 Q36 42, 38 40"/>
+                        
+                        <!-- Stitching pattern -->
+                        <circle cx="16" cy="26" r="1.5" fill="currentColor"/>
+                        <circle cx="22" cy="30" r="1.5" fill="currentColor"/>
+                        <circle cx="28" cy="32" r="1.5" fill="currentColor"/>
+                        <circle cx="36" cy="32" r="1.5" fill="currentColor"/>
+                        <circle cx="42" cy="34" r="1.5" fill="currentColor"/>
+                        <circle cx="48" cy="38" r="1.5" fill="currentColor"/>
                     </svg>
                 </div>
                 <div class="cards-name">Leather</div>
+                <div class="card-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
 
-            <div class="cards-card" data-cards="paper">
+            <!-- Paper Card -->
+            <div class="cards-card" data-product="paper" data-url="paper.html">
                 <div class="cards-icon">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="14" y="8" width="36" height="48" rx="1"/>
-                        <line x1="20" y1="18" x2="44" y2="18"/>
-                        <line x1="20" y1="26" x2="44" y2="26"/>
-                        <line x1="20" y1="34" x2="44" y2="34"/>
-                        <line x1="20" y1="42" x2="36" y2="42"/>
+                        <!-- Paper roll -->
+                        <ellipse cx="32" cy="18" rx="18" ry="6"/>
+                        <rect x="14" y="18" width="36" height="28"/>
+                        <ellipse cx="32" cy="46" rx="18" ry="6"/>
+                        
+                        <!-- Paper texture lines -->
+                        <line x1="14" y1="24" x2="50" y2="24" opacity="0.3"/>
+                        <line x1="14" y1="28" x2="50" y2="28" opacity="0.3"/>
+                        <line x1="14" y1="32" x2="50" y2="32" opacity="0.3"/>
+                        <line x1="14" y1="36" x2="50" y2="36" opacity="0.3"/>
+                        <line x1="14" y1="40" x2="50" y2="40" opacity="0.3"/>
+                        
+                        <!-- Spiral on roll -->
+                        <path d="M20 18 Q22 16, 24 18" fill="none" opacity="0.4"/>
+                        <path d="M26 18 Q28 16, 30 18" fill="none" opacity="0.4"/>
+                        <path d="M32 18 Q34 16, 36 18" fill="none" opacity="0.4"/>
+                        <path d="M38 18 Q40 16, 42 18" fill="none" opacity="0.4"/>
                     </svg>
                 </div>
                 <div class="cards-name">Paper</div>
+                <div class="card-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
 
-            <div class="cards-card" data-cards="aquaculture">
+            <!-- Aquaculture Card -->
+            <div class="cards-card" data-product="aquaculture" data-url="aquaculture.html">
                 <div class="cards-icon">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 16C24 16 18 22 18 28C18 32 20 36 24 38"/>
-                        <path d="M32 16C40 16 46 22 46 28C46 32 44 36 40 38"/>
-                        <ellipse cx="32" cy="32" rx="8" ry="6"/>
-                        <path d="M28 38C28 38 26 42 26 46C26 50 28 52 32 52C36 52 38 50 38 46C38 42 36 38 36 38"/>
-                        <path d="M24 28L20 26"/>
-                        <path d="M40 28L44 26"/>
-                        <line x1="32" y1="24" x2="32" y2="20"/>
+                        <!-- Shrimp body -->
+                        <path d="M48 32 C48 32, 42 28, 36 28 C30 28, 24 30, 20 32 C16 34, 12 36, 10 38"/>
+                        
+                        <!-- Shrimp segments -->
+                        <path d="M44 30 C44 30, 42 34, 40 36"/>
+                        <path d="M38 29 C38 29, 36 33, 34 35"/>
+                        <path d="M32 29 C32 29, 30 33, 28 35"/>
+                        <path d="M26 30 C26 30, 24 34, 22 36"/>
+                        <path d="M20 32 C20 32, 18 36, 16 38"/>
+                        
+                        <!-- Shrimp head/rostrum -->
+                        <path d="M48 32 L54 28"/>
+                        <path d="M48 32 L54 36"/>
+                        
+                        <!-- Shrimp antennae -->
+                        <path d="M50 30 Q56 24, 58 20"/>
+                        <path d="M50 34 Q56 40, 58 44"/>
+                        
+                        <!-- Shrimp legs -->
+                        <path d="M42 34 L42 40"/>
+                        <path d="M36 34 L36 40"/>
+                        <path d="M30 34 L30 40"/>
+                        <path d="M24 35 L24 41"/>
+                        <path d="M18 36 L18 42"/>
+                        
+                        <!-- Shrimp tail fan -->
+                        <path d="M10 38 L6 36"/>
+                        <path d="M10 38 L6 40"/>
+                        <path d="M10 38 L8 42"/>
+                        <path d="M10 38 L8 34"/>
+                        
+                        <!-- Eye -->
+                        <circle cx="48" cy="32" r="2" fill="currentColor"/>
                     </svg>
                 </div>
                 <div class="cards-name">Aquaculture</div>
+                <div class="card-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>
@@ -823,7 +1029,7 @@ body {
                 console.log('✅ Stat rows initialized:', statRows.length);
             }
 
-            // Initialize cards cards
+            // Initialize product cards with navigation
             const cardsCards = document.querySelectorAll('.cards-card');
             if (cardsCards.length > 0) {
                 const cardsObserver = new IntersectionObserver((entries) => {
@@ -843,16 +1049,25 @@ body {
                 cardsCards.forEach(card => {
                     cardsObserver.observe(card);
                     
-                    // Add click handler
+                    // Add click handler with navigation
                     card.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const cards = this.dataset.cards;
-                        console.log(`📦 cards clicked: ${cards}`);
-                        // Add your navigation logic here
+                        const product = this.dataset.product;
+                        const url = this.dataset.url;
+                        
+                        console.log(`🔗 Navigating to: ${product} → ${url}`);
+                        
+                        // Add a slight delay for the animation to complete
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 200);
                     });
+                    
+                    // Add hover cursor effect
+                    card.style.cursor = 'pointer';
                 });
 
-                console.log('✅ cards cards initialized:', cardsCards.length);
+                console.log('✅ Product cards initialized with navigation:', cardsCards.length);
             }
 
             console.log('✅ About Component fully initialized');
@@ -873,7 +1088,7 @@ body {
         // Your index.html looks for this function
         window.initializeAbout = initializeAboutComponent;
         
-        console.log('📄 About.html script loaded');
+        console.log('📄 About.html script loaded and ready');
     </script>
 </body>
 </html>
