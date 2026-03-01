@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Luxury Limestone - BNB Enterprises</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* ========== PAGE LOADER ========== */
@@ -54,41 +55,35 @@ body {
     justify-content: center;
     background: var(--surface-light);
     z-index: 9999;
-    gap: 12px;
+    gap: 10px;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
+    width: clamp(50px, 8vw, 70px);
+    height: clamp(50px, 8vw, 70px);
     object-fit: contain;
     animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.85; }
 }
 
 .loader-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
     font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
+    letter-spacing: clamp(1.5px, 0.4vw, 2.5px);
     color: var(--text-primary);
 }
 
 .loader-subtext {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-size: clamp(0.5rem, 0.8vw, 0.65rem);
     font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
+    letter-spacing: clamp(0.8px, 0.25vw, 1.5px);
     color: var(--primary-blue);
     text-transform: uppercase;
 }
@@ -109,32 +104,32 @@ body.loaded .site-wrapper {
     opacity: 1;
 }
 
-/* LIMESTONE SECTION */
+/* ========== LIMESTONE SECTION ========== */
 .limestone-section {
     background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(2rem, 3vw, 3rem);
+    padding: clamp(2rem, 3vw, 2.8rem) 0 clamp(1.5rem, 2.5vw, 2.5rem);
     min-height: 100vh;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 3rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 /* HEADER - MINIMAL */
 .page-header {
-    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 .breadcrumb {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     color: var(--text-muted);
     opacity: 0.8;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
     text-transform: uppercase;
 }
 
@@ -152,25 +147,26 @@ body.loaded .site-wrapper {
 .back-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: 1.2rem;
+    gap: 0.5rem;
+    padding: clamp(0.55rem, 0.7vw, 0.65rem) clamp(0.9rem, 1.3vw, 1.1rem);
+    margin-bottom: 1rem;
     background: var(--surface-light);
     border: 1px solid var(--border-color);
     color: var(--text-body);
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.65rem, 0.8vw, 0.7rem);
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 4px;
+    touch-action: manipulation;
 }
 
 .back-button i {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     transition: transform 0.3s ease;
 }
 
@@ -187,12 +183,12 @@ body.loaded .site-wrapper {
 
 .page-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
     font-weight: 900;
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
     color: var(--text-primary);
     line-height: 1.1;
-    margin-bottom: clamp(0.5rem, 1vw, 0.8rem);
+    margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem);
 }
 
 /* RESULTS BAR */
@@ -200,16 +196,16 @@ body.loaded .site-wrapper {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: clamp(0.9rem, 1.2vw, 1.2rem) 0;
+    padding: clamp(0.8rem, 1vw, 1rem) 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: clamp(1.8rem, 2.5vw, 2.5rem);
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
 }
 
 .results-count {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
     font-weight: 600;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     color: var(--text-body);
     opacity: 0.8;
 }
@@ -222,9 +218,9 @@ body.loaded .site-wrapper {
 /* PRODUCTS GRID - OPTIMIZED SIZING */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: clamp(1.5rem, 2.5vw, 2rem);
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: 2.5rem;
 }
 
 @media (min-width: 1200px) {
@@ -234,23 +230,18 @@ body.loaded .site-wrapper {
     }
 }
 
-@media (min-width: 1400px) {
-    .products-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
 /* PRODUCT CARD - CLEAN & MINIMAL */
 .product-card {
     background: white;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     display: block;
     text-decoration: none;
     position: relative;
+    touch-action: manipulation;
 }
 
 .product-card::before {
@@ -265,12 +256,12 @@ body.loaded .site-wrapper {
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    border-radius: 8px 8px 0 0;
+    border-radius: 6px 6px 0 0;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(26, 35, 50, 0.12);
     border-color: var(--primary-blue);
 }
 
@@ -294,22 +285,22 @@ body.loaded .site-wrapper {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 /* PRODUCT NAME - CENTERED */
 .product-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    font-size: clamp(0.8rem, 0.95vw, 0.9rem);
     font-weight: 800;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     color: var(--text-primary);
     text-align: center;
-    padding: clamp(1.1rem, 1.4vw, 1.3rem);
+    padding: clamp(0.9rem, 1.2vw, 1.1rem);
     line-height: 1.3;
     transition: color 0.3s ease;
 }
@@ -321,7 +312,7 @@ body.loaded .site-wrapper {
 /* ========== ABOUT LIMESTONE SECTION ========== */
 .about-limestone-section {
     background: white;
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    padding: clamp(2rem, 3vw, 2.8rem) 0;
     border-top: 1px solid var(--border-color);
 }
 
@@ -332,34 +323,34 @@ body.loaded .site-wrapper {
 
 .about-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
     font-weight: 800;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     color: var(--text-primary);
     line-height: 1.3;
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
 }
 
 .about-text {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-size: clamp(0.75rem, 0.85vw, 0.8rem);
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.65;
     color: var(--text-body);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.8rem;
     text-align: justify;
 }
 
 .benefits-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: clamp(1.2rem, 2vw, 1.6rem);
 }
 
 .benefits-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
 }
 
 .benefits-list {
@@ -369,12 +360,12 @@ body.loaded .site-wrapper {
 
 .benefits-list li {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
     font-weight: 500;
     line-height: 1.6;
     color: var(--text-body);
-    margin-bottom: 0.5rem;
-    padding-left: 1.3rem;
+    margin-bottom: 0.45rem;
+    padding-left: 1.2rem;
     position: relative;
 }
 
@@ -382,7 +373,7 @@ body.loaded .site-wrapper {
     content: '•';
     color: var(--primary-blue);
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     position: absolute;
     left: 0;
     top: -2px;
@@ -390,42 +381,42 @@ body.loaded .site-wrapper {
 
 /* ========== FAQ SECTION ========== */
 .faq-section {
-    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+    margin-top: clamp(2rem, 3vw, 2.5rem);
 }
 
 .faq-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
     font-weight: 800;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     color: var(--text-primary);
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .faq-item {
-    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .faq-question {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-size: clamp(0.82rem, 0.95vw, 0.88rem);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     line-height: 1.4;
 }
 
 .faq-answer {
     font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
     font-weight: 400;
     line-height: 1.6;
     color: var(--text-body);
-    padding-left: 0.4rem;
+    padding-left: 0.3rem;
     text-align: justify;
 }
 
-/* RESPONSIVE DESIGN */
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 1199px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -441,7 +432,7 @@ body.loaded .site-wrapper {
 @media (max-width: 576px) {
     .products-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
     
     .product-image-container {
@@ -453,7 +444,7 @@ body.loaded .site-wrapper {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(25px);
     }
     to {
         opacity: 1;
@@ -463,7 +454,7 @@ body.loaded .site-wrapper {
 
 .animate-on-scroll {
     opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* LOADING STATE */
@@ -480,7 +471,7 @@ body.loaded .site-wrapper {
     font-family: 'Montserrat', sans-serif;
     width: 100%;
 }
-</style>
+    </style>
 </head>
 <body>
     <!-- Page Loader -->
@@ -489,6 +480,8 @@ body.loaded .site-wrapper {
         <div class="loader-text">BNB ENTERPRISES</div>
         <div class="loader-subtext">Loading...</div>
     </div>
+
+    <div id="navbarComponent"></div>
 
     <!-- Site Wrapper -->
     <div class="site-wrapper">
@@ -499,7 +492,7 @@ body.loaded .site-wrapper {
                     <div class="breadcrumb">
                         <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Luxury Limestone</span>
                     </div>
-                    <button class="back-button" id="backButton">
+                    <button class="back-button" onclick="window.history.back()">
                         <i class="fas fa-arrow-left"></i>
                         Back
                     </button>
@@ -629,7 +622,7 @@ body.loaded .site-wrapper {
                         <div class="faq-item">
                             <h4 class="faq-question">Q.6 How can I order premium limestone from BNB Enterprises?</h4>
                             <p class="faq-answer">
-                                Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com for inquiries and orders. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075. We look forward to extending our services and helping you experience the elegance of premium Indian limestone. Our dedicated team provides comprehensive support from material selection through delivery, offering competitive pricing with our integrated trade experience while meeting the highest delivery standards. Allow us to offer you a life amidst art with limestone craftsmanship perfected over decades.
+                                Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com for inquiries and orders. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075. We look forward to extending our services and helping you experience the elegance of premium Indian limestone. Our dedicated team provides comprehensive support from material selection through delivery, offering competitive pricing with our integrated trade experience while meeting the highest delivery standards.
                             </p>
                         </div>
                     </div>
@@ -650,7 +643,7 @@ body.loaded .site-wrapper {
 
         // ========== PAGE INITIALIZATION ==========
         document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 1000;
+            const minLoadTime = 800;
             const elapsedTime = performance.now() - performanceMetrics.startTime;
             const remainingTime = Math.max(0, minLoadTime - elapsedTime);
 
@@ -663,6 +656,7 @@ body.loaded .site-wrapper {
         // ========== COMPONENT LOADING SYSTEM ==========
         async function loadComponents() {
             const components = [
+                { name: "navbar-product", target: "navbarComponent" },
                 { name: "footer", target: "footerComponent" }
             ];
 
@@ -710,7 +704,7 @@ body.loaded .site-wrapper {
 
                 targetElement.innerHTML = tempDiv.innerHTML;
 
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, 50));
 
                 scriptContents.forEach(scriptContent => {
                     if (scriptContent.trim()) {
@@ -733,21 +727,10 @@ body.loaded .site-wrapper {
 
         // ========== PAGE-SPECIFIC FUNCTIONS ==========
         function initializePageFunctions() {
-            const backButton = document.getElementById('backButton');
-            
-            if (backButton) {
-                backButton.addEventListener('click', function() {
-                    if (window.history.length > 1) {
-                        window.history.back();
-                    } else {
-                        window.location.href = 'index.html';
-                    }
-                });
-            }
-
+            // ===== SCROLL ANIMATIONS =====
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: '0px 0px -60px 0px'
+                rootMargin: '0px 0px -50px 0px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -764,7 +747,7 @@ body.loaded .site-wrapper {
 
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.08}s`;
+                card.style.animationDelay = `${index * 0.06}s`;
                 observer.observe(card);
             });
 
@@ -773,10 +756,11 @@ body.loaded .site-wrapper {
 
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animationDelay = `${index * 0.08}s`;
                 observer.observe(item);
             });
 
+            // ===== LAZY LOAD IMAGES =====
             const images = document.querySelectorAll('.product-image');
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -793,6 +777,7 @@ body.loaded .site-wrapper {
             console.log('✅ Page functions initialized');
         }
 
+        // ========== PERFORMANCE LOGGING ==========
         window.addEventListener('load', function() {
             const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
             console.log(`🚀 Luxury Limestone Page loaded in ${loadTime}ms`);
