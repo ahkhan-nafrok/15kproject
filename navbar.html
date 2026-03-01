@@ -1135,7 +1135,6 @@ body {
           </div>
         </li>
 
-
         <li class="nav-item">
           <a class="nav-link" href="#contact">Contact</a>
         </li>
@@ -1184,14 +1183,43 @@ body {
       const navLinks = document.getElementById('navLinks');
       const menuOverlay = document.getElementById('menuOverlay');
       const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
-      
+
       if (!header || !menuToggle || !navLinks) {
         setTimeout(initNavbar, 100);
         return;
       }
 
-      console.log('✅ Minimalist Multi-Level Navbar initialized');
+      console.log('✅ Navbar initialized');
 
+      // ─── CLOSE MENU HELPER ────────────────────────────────────────────────────
+      function closeMenu() {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        dropdownItems.forEach(item => {
+          item.classList.remove('mobile-dropdown-active');
+          item.querySelectorAll('.mobile-dropdown-item.has-submenu')
+              .forEach(sub => sub.classList.remove('mobile-submenu-active'));
+        });
+      }
+
+      // ─── SMOOTH SCROLL HELPER ─────────────────────────────────────────────────
+      // Works on both desktop and mobile.
+      // Reads the live header height so it always compensates correctly
+      // regardless of whether the header is in its tall or scrolled state.
+      function smoothScrollTo(targetId) {
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return false; // signal: section not found on this page
+
+        const headerHeight = header.getBoundingClientRect().height;
+        const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight - 8;
+
+        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        return true;
+      }
+
+      // ─── DESKTOP DROPDOWN HOVER ───────────────────────────────────────────────
       dropdownItems.forEach(item => {
         const navLink = item.querySelector('.nav-link');
         let closeTimeout;
@@ -1199,10 +1227,8 @@ body {
         item.addEventListener('mouseenter', () => {
           if (window.innerWidth > 991) {
             clearTimeout(closeTimeout);
-            dropdownItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('dropdown-active');
-              }
+            dropdownItems.forEach(other => {
+              if (other !== item) other.classList.remove('dropdown-active');
             });
             item.classList.add('dropdown-active');
           }
@@ -1212,12 +1238,13 @@ body {
           if (window.innerWidth > 991) {
             closeTimeout = setTimeout(() => {
               item.classList.remove('dropdown-active');
-              const submenuItems = item.querySelectorAll('.dropdown-item.has-submenu');
-              submenuItems.forEach(sub => sub.classList.remove('submenu-active'));
+              item.querySelectorAll('.dropdown-item.has-submenu')
+                  .forEach(sub => sub.classList.remove('submenu-active'));
             }, 200);
           }
         });
 
+        // Mobile: toggle dropdown on nav-link click
         navLink.addEventListener('click', (e) => {
           if (window.innerWidth <= 991) {
             e.preventDefault();
@@ -1225,6 +1252,7 @@ body {
           }
         });
 
+        // Desktop submenu hover
         const submenuItems = item.querySelectorAll('.dropdown-item.has-submenu');
         submenuItems.forEach(submenuItem => {
           let submenuTimeout;
@@ -1233,9 +1261,7 @@ body {
             if (window.innerWidth > 991) {
               clearTimeout(submenuTimeout);
               submenuItems.forEach(other => {
-                if (other !== submenuItem) {
-                  other.classList.remove('submenu-active');
-                }
+                if (other !== submenuItem) other.classList.remove('submenu-active');
               });
               submenuItem.classList.add('submenu-active');
             }
@@ -1251,8 +1277,8 @@ body {
         });
       });
 
-      const mobileSubmenuItems = document.querySelectorAll('.mobile-dropdown-item.has-submenu');
-      mobileSubmenuItems.forEach(mobileSubItem => {
+      // ─── MOBILE SUBMENU TOGGLE ────────────────────────────────────────────────
+      document.querySelectorAll('.mobile-dropdown-item.has-submenu').forEach(mobileSubItem => {
         mobileSubItem.addEventListener('click', (e) => {
           if (!e.target.closest('.mobile-submenu-item')) {
             e.stopPropagation();
@@ -1262,16 +1288,48 @@ body {
         });
       });
 
+      // ─── ANCHOR NAV LINKS (Home, About, Contact …) ───────────────────────────
+      // FIX: previously this only ran smooth-scroll on mobile (≤991 px).
+      // Now it runs on ALL screen sizes, so "About" (and every other anchor link)
+      // navigates correctly on desktop too.
+      // Uses querySelectorAll with a simple attribute selector instead of the
+      // complex :not() that caused the original bug.
+      document.querySelectorAll('.nav-link[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return; // skip non-anchor links
+
+        link.addEventListener('click', (e) => {
+          const targetId = href.slice(1); // e.g. "about"
+
+          // Close mobile menu first (no-op on desktop)
+          if (window.innerWidth <= 991) {
+            closeMenu();
+          }
+
+          // Attempt smooth scroll to the section
+          const found = smoothScrollTo(targetId);
+
+          if (found) {
+            // Section exists on this page — prevent default jump & use smooth scroll
+            e.preventDefault();
+          }
+          // If not found, let the browser follow the href naturally
+          // (useful if the section is on a different page)
+        });
+      });
+
+      // ─── CLOSE DESKTOP DROPDOWNS ON OUTSIDE CLICK ────────────────────────────
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.nav-item.has-dropdown')) {
           dropdownItems.forEach(item => {
             item.classList.remove('dropdown-active');
-            const submenuItems = item.querySelectorAll('.dropdown-item.has-submenu');
-            submenuItems.forEach(sub => sub.classList.remove('submenu-active'));
+            item.querySelectorAll('.dropdown-item.has-submenu')
+                .forEach(sub => sub.classList.remove('submenu-active'));
           });
         }
       });
 
+      // ─── HAMBURGER TOGGLE ─────────────────────────────────────────────────────
       menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         menuToggle.classList.toggle('active');
@@ -1280,58 +1338,9 @@ body {
         document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
       });
 
-      menuOverlay.addEventListener('click', () => {
-        closeMenu();
-      });
+      menuOverlay.addEventListener('click', closeMenu);
 
-      function closeMenu() {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        dropdownItems.forEach(item => {
-          item.classList.remove('mobile-dropdown-active');
-          const mobileSubItems = item.querySelectorAll('.mobile-dropdown-item.has-submenu');
-          mobileSubItems.forEach(sub => sub.classList.remove('mobile-submenu-active'));
-        });
-      }
-
-      const regularNavLinks = document.querySelectorAll('.nav-link:not(.has-dropdown .nav-link)');
-      regularNavLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          if (window.innerWidth <= 991) {
-            e.preventDefault();
-            closeMenu();
-            
-            const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-              const headerHeight = 80;
-              const targetPosition = targetElement.offsetTop - headerHeight;
-              
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }
-        });
-      });
-
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-        
-        if (currentScroll > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-      });
-
+      // ─── ESC KEY ──────────────────────────────────────────────────────────────
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           if (navLinks.classList.contains('active')) {
@@ -1339,28 +1348,32 @@ body {
           } else {
             dropdownItems.forEach(item => {
               item.classList.remove('dropdown-active');
-              const submenuItems = item.querySelectorAll('.dropdown-item.has-submenu');
-              submenuItems.forEach(sub => sub.classList.remove('submenu-active'));
+              item.querySelectorAll('.dropdown-item.has-submenu')
+                  .forEach(sub => sub.classList.remove('submenu-active'));
             });
           }
         }
       });
 
+      // ─── SCROLL: HEADER GLASS EFFECT ─────────────────────────────────────────
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 100);
+      }, { passive: true });
+
+      // ─── RESIZE: CLEANUP ──────────────────────────────────────────────────────
       window.addEventListener('resize', () => {
         if (window.innerWidth > 991) {
-          if (navLinks.classList.contains('active')) {
-            closeMenu();
-          }
+          if (navLinks.classList.contains('active')) closeMenu();
           dropdownItems.forEach(item => {
             item.classList.remove('mobile-dropdown-active');
-            const mobileSubItems = item.querySelectorAll('.mobile-dropdown-item.has-submenu');
-            mobileSubItems.forEach(sub => sub.classList.remove('mobile-submenu-active'));
+            item.querySelectorAll('.mobile-dropdown-item.has-submenu')
+                .forEach(sub => sub.classList.remove('mobile-submenu-active'));
           });
         } else {
           dropdownItems.forEach(item => {
             item.classList.remove('dropdown-active');
-            const submenuItems = item.querySelectorAll('.dropdown-item.has-submenu');
-            submenuItems.forEach(sub => sub.classList.remove('submenu-active'));
+            item.querySelectorAll('.dropdown-item.has-submenu')
+                .forEach(sub => sub.classList.remove('submenu-active'));
           });
         }
       });
