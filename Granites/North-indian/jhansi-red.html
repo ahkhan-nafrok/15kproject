@@ -4,834 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="ProductStyle.css">
+
     <title>Jhansi Red Granite - BNB Enterprises</title>
-    
-    <style>
-/* ========== GLOBAL VARIABLES ========== */
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
-}
-
-/* ========== GLOBAL RESET ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ========== PAGE LOADER ========== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-light);
-    z-index: 9999;
-    gap: 12px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
-    object-fit: contain;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
-}
-
-.loader-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
-    color: var(--text-primary);
-}
-
-.loader-subtext {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
-    font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
-
-body.loaded .page-loader {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* ========== SITE WRAPPER ========== */
-.site-wrapper {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded .site-wrapper {
-    opacity: 1;
-}
-
-/* ========== WHATSAPP FLOATING BUTTON ========== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 52px;
-    height: 52px;
-    background: var(--whatsapp-green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
-    z-index: 9998;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-float i {
-    color: white;
-    font-size: 26px;
-}
-
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 2px solid var(--whatsapp-green);
-    border-radius: 50%;
-    opacity: 0;
-    animation: whatsapp-pulse 2s infinite;
-}
-
-@keyframes whatsapp-pulse {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
-}
-
-/* ========== PRODUCT DETAIL PAGE - SIMPLIFIED ========== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 3vw, 2rem);
-}
-
-.product-detail-section {
-    background: var(--background-base);
-    padding: clamp(5rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 2.5rem);
-    min-height: 50vh;
-}
-
-/* ========== BREADCRUMB NAVIGATION ========== */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 500;
-    color: var(--text-muted);
-    flex-wrap: wrap;
-}
-
-.breadcrumb a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.breadcrumb a:hover {
-    opacity: 0.7;
-}
-
-.breadcrumb span {
-    color: var(--text-body);
-    font-weight: 600;
-}
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.back-button i {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateX(-3px);
-}
-
-.back-button:hover i {
-    transform: translateX(-3px);
-}
-
-/* SIMPLIFIED PRODUCT LAYOUT */
-.product-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 3vw, 3rem);
-    background: white;
-    padding: clamp(1.5rem, 2.5vw, 2rem);
-    border-radius: 8px;
-}
-
-.product-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.main-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.main-image-container:hover .main-image {
-    transform: scale(1.05);
-}
-
-.thumbnail-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-}
-
-.thumbnail {
-    position: relative;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 4px;
-    overflow: hidden;
-    border: 2px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.thumbnail.active {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
-}
-
-.thumbnail:hover {
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
-}
-
-.thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* PRODUCT INFO - OPTIMIZED FONTS */
-.product-info {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.2rem, 1.8vw, 1.5rem);
-}
-
-.product-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-    font-weight: 900;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.3rem;
-}
-
-.product-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 1vw, 0.88rem);
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.2px;
-}
-
-/* COMPACT SPECIFICATIONS TABLE */
-.specifications {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.specifications tr {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.specifications tr:last-child {
-    border-bottom: none;
-}
-
-.specifications td {
-    padding: 0.7rem 0.9rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.75rem;
-}
-
-.specifications td:first-child {
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    letter-spacing: 0.6px;
-    width: 35%;
-    background: rgba(38, 115, 184, 0.05);
-}
-
-.specifications td:last-child {
-    font-weight: 500;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-/* SIMPLIFIED DESCRIPTION */
-.product-description {
-    background: var(--surface-light);
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-}
-
-.description-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    margin-bottom: 0.6rem;
-}
-
-.description-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: auto;
-}
-
-.action-btn {
-    padding: 0.85rem 1.2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.action-btn i {
-    font-size: 0.95rem;
-}
-
-.call-btn {
-    background: var(--surface-light);
-    color: var(--text-body);
-}
-
-.call-btn:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 35, 50, 0.12);
-}
-
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: white;
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
-}
-
-/* ========== WHY CHOOSE SECTION - OPTIMIZED ========== */
-.why-choose-section {
-    background: white;
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.why-choose-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.why-choose-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
-}
-
-.why-choose-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-bottom: 0.9rem;
-    text-align: justify;
-}
-
-.benefits-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.benefits-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.8rem;
-}
-
-.benefits-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.benefits-list li {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.5rem;
-    padding-left: 1.3rem;
-    position: relative;
-}
-
-.benefits-list li::before {
-    content: '•';
-    color: var(--primary-blue);
-    font-weight: 900;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-.contact-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-    padding: 1rem 1.2rem;
-    background: var(--surface-light);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-}
-
-.contact-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.7rem;
-}
-
-.contact-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.7rem;
-}
-
-.contact-info-item {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-body);
-    margin-bottom: 0.4rem;
-}
-
-.contact-info-item strong {
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-right: 0.3rem;
-}
-
-.contact-info-item a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.contact-info-item a:hover {
-    opacity: 0.7;
-}
-
-.faq-section {
-    margin-top: clamp(2rem, 3vw, 2.5rem);
-}
-
-.faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-item {
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-question {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.08vw, 1rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.faq-answer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    padding-left: 0.4rem;
-    text-align: justify;
-}
-
-/* ========== BEST SELLERS - REDESIGNED (3 COLUMNS, BIGGER) ========== */
-.best-sellers-section {
-    background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: clamp(2rem, 3vw, 2.5rem);
-}
-
-.section-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: var(--primary-blue);
-    margin-bottom: 0.6rem;
-}
-
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 900;
-    letter-spacing: -0.4px;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
-
-.best-sellers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 2vw, 2rem);
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.bestseller-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-}
-
-.bestseller-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-}
-
-.bestseller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
-    border-color: var(--primary-blue);
-}
-
-.bestseller-card:hover::before {
-    transform: scaleX(1);
-}
-
-.bestseller-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    overflow: hidden;
-    background: var(--border-light);
-}
-
-.bestseller-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bestseller-card:hover .bestseller-image {
-    transform: scale(1.08);
-}
-
-.bestseller-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    color: var(--text-primary);
-    text-align: center;
-    padding: clamp(1.2rem, 1.5vw, 1.4rem);
-    line-height: 1.3;
-    transition: color 0.3s ease;
-}
-
-.bestseller-card:hover .bestseller-name {
-    color: var(--primary-blue);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 991px) {
-    .product-detail-section {
-        padding: 4.5rem 0 2rem;
-    }
-
-    .product-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .specifications td:first-child {
-        width: 40%;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .product-layout {
-        padding: 1.2rem;
-    }
-
-    .thumbnail-gallery {
-        gap: 0.5rem;
-    }
-
-    .product-actions {
-        grid-template-columns: 1fr;
-        gap: 0.7rem;
-    }
-
-    .specifications td {
-        font-size: 0.72rem;
-        padding: 0.65rem 0.8rem;
-    }
-
-    .specifications td:first-child {
-        font-size: 0.64rem;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .whatsapp-float {
-        width: 48px;
-        height: 48px;
-        bottom: 18px;
-        right: 18px;
-    }
-
-    .whatsapp-float i {
-        font-size: 24px;
-    }
-
-    .breadcrumb {
-        font-size: 0.68rem;
-    }
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.product-layout {
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-    opacity: 0;
-}
-
-section {
-    scroll-margin-top: 80px;
-}
-
-#footerComponent {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-    </style>
 </head>
 <body>
     <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
@@ -852,20 +37,21 @@ section {
                         <i class="fas fa-arrow-left"></i>
                         Back to Gallery
                     </button>
+
                     <div class="product-layout">
                         <div class="product-gallery">
-                            <div class="main-image-container">
+                            <div class="main-image-container" onclick="ProductLightbox.open(currentGalleryIndex)" style="cursor:zoom-in">
                                 <img src="JHANSI-RED-GRANITE.webp" alt="Jhansi Red Granite" class="main-image" id="mainImage">
                             </div>
 
                             <div class="thumbnail-gallery">
-                                <div class="thumbnail active" onclick="changeImage('JHANSI-RED-GRANITE.webp', this)">
+                                <div class="thumbnail active" onclick="changeImage('JHANSI-RED-GRANITE.webp', this, 0)">
                                     <img src="JHANSI-RED-GRANITE.webp" alt="Jhansi Red Granite View 1">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('JHANSI-RED-GRANITE.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('JHANSI-RED-GRANITE.webp', this, 1)">
                                     <img src="JHANSI-RED-GRANITE.webp" alt="Jhansi Red Granite View 2">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('JHANSI-RED-GRANITE.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('JHANSI-RED-GRANITE.webp', this, 2)">
                                     <img src="JHANSI-RED-GRANITE.webp" alt="Jhansi Red Granite View 3">
                                 </div>
                             </div>
@@ -914,13 +100,11 @@ section {
 
                             <div class="product-description">
                                 <h3 class="description-title">Product Description</h3>
-                                <p class="description-text">
-                                    Stunning Jhansi Red granite from North India with majestic deep red base with black patterns creating a bold royal statement This premium Uttar Pradesh granite is perfect for elegant countertops, decorative flooring, and sophisticated residential interiors. Known for its exceptional durability and unique natural beauty, each slab showcases distinctive patterns that make every installation truly one-of-a-kind.
-                                </p>
+                                <p class="description-text">Stunning Jhansi Red granite from North India with majestic deep red base with black patterns creating a bold royal statement. This premium Uttar Pradesh granite is perfect for elegant countertops, decorative flooring, and sophisticated residential interiors. Known for its exceptional durability and unique natural beauty, each slab showcases distinctive patterns that make every installation truly one-of-a-kind.</p>
                             </div>
 
                             <div class="product-actions">
-                                <a href="tel:+919876543210" class="action-btn call-btn">
+                                <a href="tel:+919829051786" class="action-btn call-btn">
                                     <i class="fas fa-phone-alt"></i>
                                     Call Us
                                 </a>
@@ -938,7 +122,7 @@ section {
                 <div class="container">
                     <div class="why-choose-content">
                         <h2 class="why-choose-title">Why Choose BNB Enterprises As A Top Jhansi Red Granite Exporter</h2>
-                        
+
                         <p class="why-choose-text">
                             BNB Enterprises has the quality experience of more than 25 years in natural stone industry. This industry is very competitive. Regardless, our team stays unbeatable. Also, we accept every new challenge as a golden possibility to shine our bright expertise, mastery, and learning in the stone industry. We are an ISO-certified stone manufacturer, supplier, and trader that provides top-quality Jhansi Red Granite with vibrant red coloration and superior durability.
                         </p>
@@ -952,13 +136,13 @@ section {
                             <ul class="benefits-list">
                                 <li>Potent quality Jhansi Red Granite at affordable prices</li>
                                 <li>Choices for personalizations in sizes, finishes, and thicknesses</li>
-                                <li>Quick & delighted services and solutions for bulk orders</li>
+                                <li>Quick &amp; delighted services and solutions for bulk orders</li>
                                 <li>Moral support and service by a skilled team of stone experts</li>
                                 <li>Known in various finishes including polished, honed, leathered, brushed, and more</li>
                                 <li>Direct sourcing from premium quarries in Uttar Pradesh, North India</li>
                                 <li>ISO-certified quality assurance and testing procedures</li>
                                 <li>Worldwide shipping with secure packaging and logistics</li>
-                                <li>No hidden terms & conditions, transparent pricing</li>
+                                <li>No hidden terms &amp; conditions, transparent pricing</li>
                                 <li>Dedicated customer support for design consultation and installation guidance</li>
                             </ul>
                         </div>
@@ -981,18 +165,18 @@ section {
 
                         <div class="faq-section">
                             <h3 class="faq-title">Frequently Asked Questions for Jhansi Red Granite</h3>
-                            
+
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.1 What are the key factors of Jhansi Red Granite?</h4>
                                 <p class="faq-answer">
-                                    Ans. Jhansi Red Granite is well-known for its Deep Red with Black Patterns, elegant appearance, exceptional longevity, resistance to scratches & heat, low maintenance requirements, and its capability to enhance the aesthetic appeal of any interior or exterior space with a unique natural look.
+                                    Ans. Jhansi Red Granite is well-known for its Deep Red with Black Patterns, elegant appearance, exceptional longevity, resistance to scratches &amp; heat, low maintenance requirements, and its capability to enhance the aesthetic appeal of any interior or exterior space with a unique natural look.
                                 </p>
                             </div>
 
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.2 What are the different uses of Jhansi Red Granite?</h4>
                                 <p class="faq-answer">
-                                    Ans. It is usually used for elegant flooring, kitchen countertops, bathroom vanity tops, wall cladding, staircases, tabletops, outdoor paving, monument installations, and decorative applications. It is suitable for both residential and commercial interior & exterior décor projects.
+                                    Ans. It is usually used for elegant flooring, kitchen countertops, bathroom vanity tops, wall cladding, staircases, tabletops, outdoor paving, monument installations, and decorative applications. It is suitable for both residential and commercial interior &amp; exterior décor projects.
                                 </p>
                             </div>
 
@@ -1078,20 +262,40 @@ section {
         <footer id="footerComponent" role="contentinfo"></footer>
     </div>
 
-    <a href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Jhansi Red%20Granite."
-        class="whatsapp-float" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+    <a href="https://wa.me/919940191813?text=Hello%20BNB%20Enterprises,%20I%20am%20interested%20in%20Jhansi%20Red%20Granite%20Granite."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Contact us on WhatsApp"
         title="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev"  id="lightboxPrev"  aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <div class="lightbox-image-wrapper" id="lightboxImageWrapper">
+            <img src="" alt="" class="lightbox-image" id="lightboxImage" draggable="false">
+        </div>
+        <button class="lightbox-next"  id="lightboxNext"  aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-zoom-badge" id="lightboxZoomBadge">1x</div>
+        <div class="lightbox-thumbnails" id="lightboxThumbnails"></div>
+        <div class="lightbox-counter"   id="lightboxCounter">1 / 1</div>
+        <div class="lightbox-zoom-hint" id="lightboxZoomHint">
+            <i class="fas fa-hand-pointer"></i> Pinch or double-tap to zoom
+        </div>
+    </div>
+
+    <script src="ProductLightbox.js"></script>
     <script>
         const performanceMetrics = {
             startTime: performance.now(),
             componentsLoaded: 0
         };
+
+        const pageImages = ['JHANSI-RED-GRANITE.webp', 'JHANSI-RED-GRANITE.webp', 'JHANSI-RED-GRANITE.webp'];
+        let currentGalleryIndex = 0;
 
         document.addEventListener("DOMContentLoaded", () => {
             const minLoadTime = 1000;
@@ -1121,7 +325,7 @@ section {
         async function loadComponent(name, targetId) {
             try {
                 const startTime = performance.now();
-                
+
                 const htmlResp = await fetch(`../../${name}.html`);
                 const htmlText = await htmlResp.text();
 
@@ -1174,12 +378,15 @@ section {
         }
 
         function initializePageFunctions() {
-            window.changeImage = function(imageSrc, thumbnail) {
+            ProductLightbox.init(pageImages);
+
+            window.changeImage = function(imageSrc, thumbnail, index) {
                 const mainImage = document.getElementById('mainImage');
                 if (mainImage) {
                     mainImage.src = imageSrc;
                 }
-                
+                currentGalleryIndex = index;
+
                 document.querySelectorAll('.thumbnail').forEach(thumb => {
                     thumb.classList.remove('active');
                 });
@@ -1191,7 +398,7 @@ section {
             window.sendWhatsAppMessage = function() {
                 const productName = "Jhansi Red Granite";
                 const message = `Hello BNB Enterprises,%0A%0AI'm interested in the ${productName}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-                const whatsappURL = `https://wa.me/919876543210?text=${message}`;
+                const whatsappURL = `https://wa.me/919940191813?text=${message}`;
                 window.open(whatsappURL, '_blank');
             };
 
@@ -1228,15 +435,15 @@ section {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
                     if (href === '#') return;
-                    
+
                     e.preventDefault();
                     const targetId = href.substring(1);
                     const targetElement = document.getElementById(targetId);
-                    
+
                     if (targetElement) {
                         const headerHeight = 80;
                         const targetPosition = targetElement.offsetTop - headerHeight;
-                        
+
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'

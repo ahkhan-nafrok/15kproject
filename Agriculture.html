@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Shrimp Aquaculture & Export - BNB Enterprises</title>
+    <title>Spices & Agricultural Exports - BNB Enterprises</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,7 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body { font-family: 'Montserrat', sans-serif; background: var(--background-base); color: var(--text-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; touch-action: pan-y pinch-zoom; }
 
+/* ========== PAGE LOADER ========== */
 .page-loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface-light); z-index: 9999; gap: 10px; transition: opacity 0.5s ease, visibility 0.5s ease; }
 .loader-logo { width: clamp(50px,8vw,70px); height: clamp(50px,8vw,70px); object-fit: contain; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.05);opacity:0.85;} }
@@ -36,28 +37,37 @@ body.loaded .page-loader { opacity:0; visibility:hidden; pointer-events:none; }
 .site-wrapper { opacity:0; transition:opacity 0.5s ease; }
 body.loaded .site-wrapper { opacity:1; }
 
-.products-section { background:var(--background-base); padding:clamp(2rem,3vw,2.8rem) 0 clamp(1.5rem,2.5vw,2.5rem); min-height:100vh; }
+/* ========== LAYOUT ========== */
 .container { max-width:1400px; margin:0 auto; padding:0 clamp(1rem,3vw,2rem); }
+
+/* ========== PRODUCTS SECTION ========== */
+.products-section { background:var(--background-base); padding:clamp(2rem,3vw,2.8rem) 0 clamp(1.5rem,2.5vw,2.5rem); min-height:100vh; }
 .page-header { margin-bottom:clamp(1.5rem,2.5vw,2.5rem); }
 
+/* ========== BREADCRUMB ========== */
 .breadcrumb { font-family:'Raleway',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:600; letter-spacing:0.8px; color:var(--text-muted); opacity:0.8; margin-bottom:0.7rem; text-transform:uppercase; }
 .breadcrumb a { color:var(--primary-blue); text-decoration:none; transition:opacity 0.3s ease; }
 .breadcrumb a:hover { opacity:0.7; }
 
+/* ========== BACK BUTTON ========== */
 .back-button { display:inline-flex; align-items:center; gap:0.5rem; padding:clamp(0.55rem,0.7vw,0.65rem) clamp(0.9rem,1.3vw,1.1rem); margin-bottom:1rem; background:var(--surface-light); border:1px solid var(--border-color); color:var(--text-body); font-family:'Montserrat',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:700; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; cursor:pointer; transition:all 0.3s ease; border-radius:4px; touch-action:manipulation; }
 .back-button i { font-size:0.7rem; transition:transform 0.3s ease; }
 .back-button:hover { background:var(--text-primary); color:var(--accent-white); border-color:var(--text-primary); transform:translateX(-3px); }
 .back-button:hover i { transform:translateX(-3px); }
 
+/* ========== PAGE TITLE ========== */
 .page-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:900; letter-spacing:-1px; color:var(--text-primary); line-height:1.1; margin-bottom:clamp(0.4rem,0.8vw,0.6rem); }
 
+/* ========== RESULTS BAR ========== */
 .results-bar { display:flex; justify-content:flex-start; align-items:center; padding:clamp(0.8rem,1vw,1rem) 0; border-bottom:1px solid var(--border-color); margin-bottom:clamp(1.5rem,2vw,2rem); }
 .results-count { font-family:'Raleway',sans-serif; font-size:clamp(0.7rem,0.85vw,0.75rem); font-weight:600; color:var(--text-body); opacity:0.8; }
 .results-count span { color:var(--primary-blue); font-weight:700; }
 
+/* ========== PRODUCTS GRID ========== */
 .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:clamp(1.2rem,2vw,1.5rem); margin-bottom:2.5rem; }
 @media (min-width:1200px) { .products-grid { grid-template-columns:repeat(4,1fr); max-width:1300px; } }
 
+/* ========== PRODUCT CARD ========== */
 .product-card { background:white; border:1px solid var(--border-color); border-radius:6px; overflow:hidden; transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; display:block; text-decoration:none; position:relative; touch-action:manipulation; }
 .product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--primary-blue); transform:scaleX(0); transform-origin:left; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index:10; border-radius:6px 6px 0 0; }
 .product-card:hover { transform:translateY(-6px); box-shadow:0 15px 40px rgba(26,35,50,0.12); border-color:var(--primary-blue); }
@@ -70,10 +80,12 @@ body.loaded .site-wrapper { opacity:1; }
 .product-name { font-family:'Montserrat',sans-serif; font-size:clamp(0.8rem,0.95vw,0.9rem); font-weight:800; letter-spacing:0.2px; color:var(--text-primary); text-align:center; padding:clamp(0.9rem,1.2vw,1.1rem); line-height:1.3; transition:color 0.3s ease; }
 .product-card:hover .product-name { color:var(--primary-blue); }
 
-/* SIZE BADGE */
-.size-badge { position:absolute; top:0.7rem; right:0.7rem; background:var(--primary-blue); color:white; font-family:'Montserrat',sans-serif; font-size:0.55rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; padding:0.3rem 0.65rem; border-radius:3px; z-index:5; }
+/* ========== TYPE BADGE ========== */
+.type-badge { position:absolute; top:0.7rem; right:0.7rem; background:var(--primary-blue); color:white; font-family:'Montserrat',sans-serif; font-size:0.55rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; padding:0.3rem 0.65rem; border-radius:3px; z-index:5; }
+.type-badge.chilli { background:#C0392B; }
+.type-badge.onion { background:#8E44AD; }
 
-/* PROCESS STEPS */
+/* ========== PROCESS STEPS ========== */
 .process-steps { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1rem; margin:clamp(1.2rem,2vw,1.6rem) 0; }
 .process-step { background:var(--surface-light); border:1px solid var(--border-color); border-radius:6px; padding:1rem 1.2rem; position:relative; overflow:hidden; }
 .process-step::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--primary-blue); }
@@ -81,26 +93,46 @@ body.loaded .site-wrapper { opacity:1; }
 .step-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.68rem,0.8vw,0.73rem); font-weight:800; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.3rem; }
 .step-desc { font-family:'Raleway',sans-serif; font-size:clamp(0.65rem,0.75vw,0.7rem); font-weight:500; color:var(--text-body); line-height:1.5; }
 
+/* ========== ABOUT SECTION ========== */
 .about-section { background:white; padding:clamp(2rem,3vw,2.8rem) 0; border-top:1px solid var(--border-color); }
 .about-content { max-width:1200px; margin:0 auto; }
 .about-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); line-height:1.3; margin-bottom:clamp(0.8rem,1.2vw,1rem); }
 .about-text { font-family:'Raleway',sans-serif; font-size:clamp(0.75rem,0.85vw,0.8rem); font-weight:400; line-height:1.65; color:var(--text-body); margin-bottom:0.8rem; text-align:justify; }
+
+/* ========== SECTION SUB TITLE ========== */
+.section-sub-title { font-family:'Montserrat',sans-serif; font-size:clamp(1rem,1.4vw,1.2rem); font-weight:800; color:var(--text-primary); margin:clamp(1.5rem,2vw,2rem) 0 0.7rem; letter-spacing:-0.2px; }
+.section-sub-title span { color:var(--primary-blue); }
+
+/* ========== TWO COL ========== */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:clamp(1.2rem,2vw,1.6rem) 0; }
+@media (max-width:768px) { .two-col { grid-template-columns:1fr; } }
+.info-block { background:var(--surface-light); border:1px solid var(--border-color); border-radius:6px; padding:clamp(1rem,1.5vw,1.3rem); }
+.info-block h4 { font-family:'Montserrat',sans-serif; font-size:clamp(0.75rem,0.88vw,0.82rem); font-weight:800; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.7rem; }
+.info-block ul { list-style:none; padding:0; }
+.info-block ul li { font-family:'Raleway',sans-serif; font-size:clamp(0.7rem,0.8vw,0.75rem); font-weight:500; color:var(--text-body); line-height:1.6; margin-bottom:0.35rem; padding-left:1.1rem; position:relative; }
+.info-block ul li::before { content:'—'; color:var(--primary-blue); font-weight:700; position:absolute; left:0; }
+
+/* ========== BENEFITS SECTION ========== */
 .benefits-section { margin-top:clamp(1.2rem,2vw,1.6rem); }
 .benefits-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.9rem,1.1vw,1rem); font-weight:800; color:var(--text-primary); margin-bottom:0.7rem; }
 .benefits-list { list-style:none; padding-left:0; }
 .benefits-list li { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:500; line-height:1.6; color:var(--text-body); margin-bottom:0.45rem; padding-left:1.2rem; position:relative; }
 .benefits-list li::before { content:'•'; color:var(--primary-blue); font-weight:900; font-size:1.1rem; position:absolute; left:0; top:-2px; }
 
+/* ========== FAQ SECTION ========== */
 .faq-section { margin-top:clamp(2rem,3vw,2.5rem); }
 .faq-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.1rem,1.6vw,1.3rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); margin-bottom:clamp(1.2rem,2vw,1.5rem); }
 .faq-item { margin-bottom:clamp(1.2rem,2vw,1.5rem); }
 .faq-question { font-family:'Montserrat',sans-serif; font-size:clamp(0.82rem,0.95vw,0.88rem); font-weight:700; color:var(--text-primary); margin-bottom:0.45rem; line-height:1.4; }
 .faq-answer { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:400; line-height:1.6; color:var(--text-body); padding-left:0.3rem; text-align:justify; }
+.faq-answer a { color:var(--primary-blue); text-decoration:none; }
 
+/* ========== RESPONSIVE ========== */
 @media (max-width:1199px) { .products-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:991px) { .products-grid { grid-template-columns:repeat(2,1fr); } .process-steps { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:576px) { .products-grid { grid-template-columns:1fr; gap:1.2rem; } .process-steps { grid-template-columns:1fr; } .product-image-container { padding-top:95%; } }
 
+/* ========== ANIMATIONS ========== */
 @keyframes fadeInUp { from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);} }
 .animate-on-scroll { opacity:0; animation:fadeInUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
 #footerComponent { font-family:'Montserrat',sans-serif; width:100%; }
@@ -116,215 +148,244 @@ body.loaded .site-wrapper { opacity:1; }
     <div id="navbarComponent"></div>
 
     <div class="site-wrapper">
+
+        <!-- ========== PRODUCTS SECTION ========== -->
         <section class="products-section">
             <div class="container">
                 <div class="page-header">
                     <div class="breadcrumb">
-                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Shrimp Aquaculture & Export</span>
+                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Spices &amp; Agricultural Exports</span>
                     </div>
                     <button class="back-button" onclick="window.history.back()">
                         <i class="fas fa-arrow-left"></i> Back
                     </button>
-                    <h1 class="page-title">Shrimp Aquaculture & Export</h1>
+                    <h1 class="page-title">Spices &amp; Agricultural Exports</h1>
                     <div class="results-bar">
-                        <div class="results-count">Showing <span>8</span> shrimp grade & product collections</div>
+                        <div class="results-count">Showing <span>5</span> spice &amp; agricultural product collections</div>
                     </div>
                 </div>
 
                 <div class="products-grid" id="productsGrid">
 
-                    <a href="Aquaculture/export-grade-shrimp.html" class="product-card">
+                    <a href="Spices/byadgi-chilli.html" class="product-card">
                         <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/export-grade-shrimp.webp" alt="Export Grade Processed Shrimp" class="product-image">
-                            <span class="size-badge">Processed</span>
+                            <img src="Spices/byadgi-chilli.webp" alt="Byadgi Red Chilli" class="product-image">
+                            <span class="type-badge chilli">Chilli</span>
                         </div>
-                        <h3 class="product-name">Export Grade Processed Shrimp</h3>
+                        <h3 class="product-name">Byadgi (Bayadgi) Red Chilli</h3>
                     </a>
 
-                    <a href="Aquaculture/fresh-market-shrimp.html" class="product-card">
+                    <a href="Spices/teja-chilli.html" class="product-card">
                         <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/fresh-market-shrimp.webp" alt="Fresh Market Shrimp" class="product-image">
-                            <span class="size-badge">Fresh</span>
+                            <img src="Spices/teja-chilli.webp" alt="Teja Red Chilli" class="product-image">
+                            <span class="type-badge chilli">Chilli</span>
                         </div>
-                        <h3 class="product-name">Fresh Market Shrimp</h3>
+                        <h3 class="product-name">Teja Red Chilli</h3>
                     </a>
 
-                    <a href="Aquaculture/shrimp-20-30.html" class="product-card">
+                    <a href="Spices/334-chilli.html" class="product-card">
                         <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-20-30.webp" alt="Shrimp 20/30 Count" class="product-image">
-                            <span class="size-badge">20/30</span>
+                            <img src="Spices/334-chilli.webp" alt="334 Red Chilli" class="product-image">
+                            <span class="type-badge chilli">Chilli</span>
                         </div>
-                        <h3 class="product-name">Shrimp — 20/30 Count per Kg</h3>
+                        <h3 class="product-name">334 Red Chilli</h3>
                     </a>
 
-                    <a href="Aquaculture/shrimp-30-40.html" class="product-card">
+                    <a href="Spices/nashik-onion.html" class="product-card">
                         <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-30-40.webp" alt="Shrimp 30/40 Count" class="product-image">
-                            <span class="size-badge">30/40</span>
+                            <img src="Spices/nashik-onion.webp" alt="Nashik Onion" class="product-image">
+                            <span class="type-badge onion">Onion</span>
                         </div>
-                        <h3 class="product-name">Shrimp — 30/40 Count per Kg</h3>
+                        <h3 class="product-name">Nashik Onion — Maharashtra</h3>
                     </a>
 
-                    <a href="Aquaculture/shrimp-40-50.html" class="product-card">
+                    <a href="Spices/mp-onion.html" class="product-card">
                         <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-40-50.webp" alt="Shrimp 40/50 Count" class="product-image">
-                            <span class="size-badge">40/50</span>
+                            <img src="Spices/mp-onion.webp" alt="Madhya Pradesh Onion" class="product-image">
+                            <span class="type-badge onion">Onion</span>
                         </div>
-                        <h3 class="product-name">Shrimp — 40/50 Count per Kg</h3>
-                    </a>
-
-                    <a href="Aquaculture/shrimp-50-60.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-50-60.webp" alt="Shrimp 50/60 Count" class="product-image">
-                            <span class="size-badge">50/60</span>
-                        </div>
-                        <h3 class="product-name">Shrimp — 50/60 Count per Kg</h3>
-                    </a>
-
-                    <a href="Aquaculture/hoso-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/hoso-shrimp.webp" alt="HOSO Head On Shell On Shrimp" class="product-image">
-                            <span class="size-badge">HOSO</span>
-                        </div>
-                        <h3 class="product-name">HOSO — Head On Shell On Shrimp</h3>
-                    </a>
-
-                    <a href="Aquaculture/hlso-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/hlso-shrimp.webp" alt="HLSO Headless Shell On Shrimp" class="product-image">
-                            <span class="size-badge">HLSO</span>
-                        </div>
-                        <h3 class="product-name">HLSO — Headless Shell On Shrimp</h3>
+                        <h3 class="product-name">Onion — Madhya Pradesh</h3>
                     </a>
 
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
+        <!-- ========== ABOUT SECTION ========== -->
         <section class="about-section">
             <div class="container">
                 <div class="about-content">
-                    <h2 class="about-title">Premium Shrimp Aquaculture & Export from West Godavari, Andhra Pradesh</h2>
+
+                    <h2 class="about-title">Premium Indian Spices &amp; Agricultural Commodity Exports by BNB Enterprises</h2>
 
                     <p class="about-text">
-                        BNB Enterprises is engaged in shrimp aquaculture and export from the West Godavari district of Andhra Pradesh — one of India's most productive and recognized shrimp farming regions. We supply high-quality shrimp to both domestic and international markets, with exports currently serving the United Arab Emirates for retail markets and restaurant supply. Our shrimp are either processed for frozen export — with a shelf life of 2 years — or supplied fresh to nearby markets, depending on customer requirements and market destination.
+                        BNB Enterprises is actively engaged in the export of agricultural commodities from India, supplying quality produce to international markets with a strong focus on grading, consistency, and reliable shipments. As part of a diversified trading group with three decades of family business heritage and established global trade relationships, we bring the same commitment to quality and reliability that defines all our operations to our agricultural commodity exports. Our key export products include red chillies and onions, sourced from well-known, established producing regions and packed as per buyer requirements for international markets.
                     </p>
 
                     <p class="about-text">
-                        Our focus throughout the farming and export process is on healthy aquaculture practices, strict hygiene standards, proper size grading, and reliable supply. We operate controlled aquaculture pond systems with powerful aeration infrastructure, maintaining continuous oxygen levels across all ponds with around-the-clock power supply. This ensures optimal dissolved oxygen levels, superior shrimp growth and survival rates, reduced biological stress on shrimp, and consistently healthier and stronger harvests ready for export-grade quality standards.
+                        We currently serve markets including Malaysia and Sri Lanka, and are actively expanding into new destinations backed by our established international trading network. Our agricultural commodity operations encompass careful sourcing from primary producing regions, rigorous quality inspection and grading, appropriate packing for export transport, and timely dispatch to meet market schedules and buyer requirements. Every shipment reflects our commitment to delivering Indian agricultural commodities of consistent quality, meeting the high standards expected by international buyers.
                     </p>
 
-                    <p class="about-text">
-                        Our operations cover the complete shrimp production cycle — from farming under controlled aquaculture conditions with continuous aeration and monitoring, through careful harvesting and hygienic handling, to professional processing and packing for frozen exports or fresh dispatch to nearby markets. Strict quality checks are applied at every stage of the chain to ensure that every shipment meets the standards expected by international buyers and food service customers.
-                    </p>
-
-                    <!-- PROCESS STEPS -->
+                    <!-- ========== PROCESS STEPS ========== -->
                     <div class="process-steps">
                         <div class="process-step">
                             <div class="step-num">01</div>
-                            <div class="step-title">Controlled Farming</div>
-                            <div class="step-desc">Shrimp raised in controlled aquaculture ponds in West Godavari, Andhra Pradesh with continuous monitoring.</div>
+                            <div class="step-title">Regional Sourcing</div>
+                            <div class="step-desc">Red chillies sourced from Guntur's established farms and mandis. Onions sourced from Nashik, Maharashtra and Madhya Pradesh.</div>
                         </div>
                         <div class="process-step">
                             <div class="step-num">02</div>
-                            <div class="step-title">Aeration Systems</div>
-                            <div class="step-desc">Powerful aerators and 24/7 power supply maintain optimal dissolved oxygen levels for healthy, active shrimp growth.</div>
+                            <div class="step-title">Quality Inspection</div>
+                            <div class="step-desc">Rigorous visual inspection of all incoming produce, removing damaged, diseased, or substandard product before processing.</div>
                         </div>
                         <div class="process-step">
                             <div class="step-num">03</div>
-                            <div class="step-title">Careful Harvesting</div>
-                            <div class="step-desc">Shrimp are harvested carefully to minimize stress and damage, maintaining full quality and appearance integrity.</div>
+                            <div class="step-title">Cleaning &amp; Sorting</div>
+                            <div class="step-desc">Thorough cleaning and sorting of chillies to remove debris. Onions sorted to remove any damaged or off-grade stock.</div>
                         </div>
                         <div class="process-step">
                             <div class="step-num">04</div>
-                            <div class="step-title">Hygienic Processing</div>
-                            <div class="step-desc">Processed in hygienic facility conditions with proper HACCP protocols, achieving 2-year shelf life for frozen export.</div>
+                            <div class="step-title">Grading</div>
+                            <div class="step-desc">Chillies graded by variety: Byadgi, Teja, and 334 kept separate. Onions size-graded — small, medium, large — per buyer spec.</div>
                         </div>
                         <div class="process-step">
                             <div class="step-num">05</div>
-                            <div class="step-title">Size Grading</div>
-                            <div class="step-desc">Sorted by count per kilogram for precise size grading, meeting exact buyer specifications for retail or food service.</div>
+                            <div class="step-title">Moisture Control</div>
+                            <div class="step-desc">Moisture content of red chillies tested and controlled to meet international export standards and prevent spoilage in transit.</div>
                         </div>
                         <div class="process-step">
                             <div class="step-num">06</div>
-                            <div class="step-title">Quality Checks</div>
-                            <div class="step-desc">Strict quality inspection at every stage ensuring only export-grade shrimp reach the final packing and dispatch stage.</div>
+                            <div class="step-title">Export Packing &amp; Dispatch</div>
+                            <div class="step-desc">Packed as per buyer specification — gunny bags, mesh bags, jute bags, or cartons — with timely dispatch to meet market schedules.</div>
                         </div>
                     </div>
 
+                    <!-- ========== RED CHILLI ========== -->
+                    <h3 class="section-sub-title">Red Chilli Exports — <span>Guntur, Andhra Pradesh</span></h3>
+                    <p class="about-text">
+                        Our red chillies are sourced from Guntur, Andhra Pradesh — a region internationally recognized as one of the world's premier chilli production zones. Guntur chillies are known globally for their vibrant colour, intense heat, and distinctive flavour profiles, making them highly sought after by food processors, spice manufacturers, and culinary supply chains worldwide. We supply multiple popular and internationally traded varieties — Byadgi (Bayadgi), Teja, and 334 — based on customer preference, heat level requirement, and end-use application.
+                    </p>
+                    <p class="about-text">
+                        Byadgi chillies are prized for their deep red colour and moderate heat level, making them the preferred variety for colour extraction, paprika production, and premium food colouring applications. Teja chillies are known for their very high pungency and heat content, widely used in spice processing and hot sauce manufacturing. The 334 variety offers a balanced profile suitable for general spice blending and food processing. All varieties are selected and prepared with strict focus on proper cleaning and sorting, uniform colour and quality grading, suitable moisture content control, and appropriate packing as per export specifications.
+                    </p>
+
+                    <!-- ========== ONION ========== -->
+                    <h3 class="section-sub-title">Onion Exports — <span>Nashik &amp; Madhya Pradesh</span></h3>
+                    <p class="about-text">
+                        BNB Enterprises exports onions sourced primarily from Nashik, Maharashtra — India's most prominent and internationally recognized onion growing region — as well as from Madhya Pradesh, another major producing state. Nashik onions are known worldwide for their consistent quality, excellent shelf life, uniform colour, and keeping properties that make them ideal for export markets requiring product that remains in good condition through shipping and retail distribution. Madhya Pradesh onions complement our supply with similar export-grade quality and good keeping characteristics.
+                    </p>
+                    <p class="about-text">
+                        All onions are carefully graded by size and quality before dispatch to ensure uniformity and better shelf life. Our export process includes size grading as per buyer specifications (small, medium, or large), thorough quality inspection and sorting to remove damaged or substandard product, proper packing for transport and export — including mesh bags, jute bags, or carton packing as required — and timely dispatch to meet market schedules and seasonal supply windows.
+                    </p>
+
+                    <!-- ========== TWO COL PROCESS ========== -->
+                    <div class="two-col">
+                        <div class="info-block">
+                            <h4>Red Chilli — Our Process</h4>
+                            <ul>
+                                <li>Sourced from Guntur's established chilli farms and mandis</li>
+                                <li>Careful selection for colour uniformity and variety purity</li>
+                                <li>Cleaning and sorting to remove debris and damaged chillies</li>
+                                <li>Moisture content testing and control to meet export standards</li>
+                                <li>Grading by variety: Byadgi, Teja, 334 kept separate</li>
+                                <li>Packing as per buyer specification for export readiness</li>
+                            </ul>
+                        </div>
+                        <div class="info-block">
+                            <h4>Onion — Our Process</h4>
+                            <ul>
+                                <li>Sourced from Nashik and MP's major onion producing areas</li>
+                                <li>Visual quality inspection removing damaged or diseased stock</li>
+                                <li>Size grading: small, medium, large as per buyer requirement</li>
+                                <li>Packing in mesh bags, jute bags, or cartons as specified</li>
+                                <li>Weight verification and batch uniformity check before dispatch</li>
+                                <li>Timely dispatch aligned to export schedule and market season</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ========== BENEFITS ========== -->
                     <div class="benefits-section">
-                        <h3 class="benefits-title">Why Choose BNB Enterprises for Shrimp Aquaculture & Export</h3>
+                        <h3 class="benefits-title">Why Choose BNB Enterprises for Spices &amp; Agricultural Commodity Exports</h3>
                         <ul class="benefits-list">
-                            <li>Sourced from West Godavari, Andhra Pradesh — India's premier shrimp aquaculture region</li>
-                            <li>Modern controlled pond systems with powerful aerators and 24/7 power for optimal oxygen levels</li>
-                            <li>Healthy farming practices minimizing biological stress for stronger, export-quality shrimp</li>
-                            <li>Complete farm-to-market operations: farming, aeration, harvesting, processing, grading, and packing</li>
-                            <li>Hygienic processing facility delivering 2-year shelf life for frozen export products</li>
-                            <li>Size grading by count per kilogram — 20/30, 30/40, 40/50, 50/60 and custom sizes</li>
-                            <li>HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms available</li>
-                            <li>Export supply to UAE markets — retail and restaurant — with reliable volumes</li>
-                            <li>Fresh supply options for nearby domestic markets in addition to processed export</li>
-                            <li>Strict quality checks at every stage ensuring consistent, reliable, export-standard shrimp</li>
+                            <li>Sourced from India's premier producing regions: Guntur for chillies, Nashik &amp; MP for onions</li>
+                            <li>Multiple red chilli varieties: Byadgi (Bayadgi), Teja, and 334 based on customer requirement</li>
+                            <li>Rigorous cleaning, sorting, and grading ensuring uniform quality in every shipment</li>
+                            <li>Moisture content and quality standards maintained for export-grade produce</li>
+                            <li>Onion size grading — small, medium, large — customized to buyer specifications</li>
+                            <li>Active export markets in Malaysia and Sri Lanka with expansion-ready capacity</li>
+                            <li>Flexible packing options: mesh bags, jute bags, carton packing as per buyer needs</li>
+                            <li>Reliable supply volumes with timely dispatch meeting market schedules</li>
+                            <li>Backed by decades of global commodity trading experience and established international network</li>
+                            <li>Competitive export pricing with full trade documentation and customs compliance support</li>
                         </ul>
                     </div>
 
+                    <!-- ========== FAQ ========== -->
                     <div class="faq-section">
-                        <h3 class="faq-title">Frequently Asked Questions About Shrimp Aquaculture & Export</h3>
+                        <h3 class="faq-title">Frequently Asked Questions About Spices &amp; Agricultural Exports</h3>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.1 Where are BNB Enterprises' shrimp farmed?</h4>
+                            <h4 class="faq-question">Q.1 What red chilli varieties does BNB Enterprises export?</h4>
                             <p class="faq-answer">
-                                Ans. Our shrimp are farmed in the West Godavari district of Andhra Pradesh, India — one of the country's most productive and recognized shrimp aquaculture regions. The area's geographical conditions, water quality, and established aquaculture infrastructure make it ideal for producing high-quality shrimp at scale. Our controlled pond systems in this region are equipped with powerful aeration systems and around-the-clock power supply, ensuring consistently optimal growing conditions throughout each production cycle.
+                                Ans. BNB Enterprises exports three of India's most internationally traded red chilli varieties from Guntur, Andhra Pradesh: Byadgi (Bayadgi), Teja, and 334. Byadgi chillies are celebrated for their deep, vibrant red colour and moderate heat, making them ideal for paprika production, colour extraction, and premium food colouring applications. Teja chillies offer very high pungency levels and are widely used in spice processing, condiment manufacturing, and hot sauce production. The 334 variety provides a well-balanced heat and colour profile, suitable for spice blending and general food processing applications. We supply the specific variety based on customer end-use requirements and market preference.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.2 What shrimp size grades does BNB Enterprises offer?</h4>
+                            <h4 class="faq-question">Q.2 Why is Guntur, Andhra Pradesh significant for red chilli sourcing?</h4>
                             <p class="faq-answer">
-                                Ans. We supply shrimp sorted and graded by count per kilogram, allowing buyers to select the exact size range suitable for their market or end-use. Our standard grades include 20/30 count (large premium shrimp), 30/40 count, 40/50 count, and 50/60 count per kilogram. We also supply shrimp in HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms. Grading is performed carefully to ensure batch uniformity, consistent quality, and appearance standards across every size category. Custom grading specifications can also be discussed based on buyer requirements.
+                                Ans. Guntur, Andhra Pradesh is internationally recognized as one of the world's most important red chilli production regions. The unique climate, soil conditions, and generations of chilli farming expertise in this region produce chillies with consistently superior colour intensity, heat levels, and flavour profiles. Guntur is home to Asia's largest chilli trading market, drawing buyers from across India and internationally. Sourcing from Guntur ensures that BNB Enterprises' red chilli exports carry the authenticity, quality consistency, and variety purity that international spice buyers, food processors, and flavour manufacturers rely on.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.3 How does BNB Enterprises ensure shrimp quality and food safety?</h4>
+                            <h4 class="faq-question">Q.3 What onion varieties and sizes does BNB Enterprises export?</h4>
                             <p class="faq-answer">
-                                Ans. Quality and food safety are embedded at every stage of our shrimp operations. Starting at the farm level, our controlled pond systems maintain optimal dissolved oxygen levels through powerful aerators and continuous power supply, ensuring healthy, stress-free shrimp growth. At harvest, careful handling minimizes physical damage and maintains full product integrity. During processing, hygienic facility conditions and proper food safety protocols are followed to ensure our frozen shrimp achieve a shelf life of 2 years. Strict quality checks are applied at every stage from harvesting through grading, processing, and final packing.
+                                Ans. We export onions sourced from Nashik, Maharashtra and Madhya Pradesh — two of India's most important onion producing regions. Nashik onions are particularly prized for their excellent shelf life, uniform deep red or pink colour, and consistent quality that holds up well through export logistics. Madhya Pradesh onions offer similarly strong export-grade quality. We supply onions in small, medium, and large sizes based on buyer requirements. All onions are graded for size uniformity and inspected for quality before packing in mesh bags, jute bags, or cartons as specified by the buyer.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.4 Which markets does BNB Enterprises supply shrimp to?</h4>
+                            <h4 class="faq-question">Q.4 Which international markets does BNB Enterprises currently export to?</h4>
                             <p class="faq-answer">
-                                Ans. BNB Enterprises currently supplies shrimp to the United Arab Emirates, catering to both retail market buyers and restaurant and food service customers. Depending on customer requirements, we supply either processed frozen shrimp for export or fresh shrimp for nearby markets. Our processed export shrimp offers a shelf life of 2 years, making it suitable for international retail shelf and food service distribution chains. As we grow our aquaculture and export operations, we are actively looking to expand into additional international markets backed by BNB Enterprises' established global trade network.
+                                Ans. BNB Enterprises currently exports red chillies and onions to Malaysia and Sri Lanka. These markets value the quality, consistency, and competitive pricing of Indian agricultural produce, and we have established reliable supply relationships in both destinations. Backed by BNB Enterprises' broader international trading network — built through decades of global trade across natural stone, leather, paper, and aquaculture — we are actively looking to expand our agricultural export reach to additional markets in Southeast Asia, the Middle East, and beyond.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.5 What role does aeration play in BNB's shrimp farming quality?</h4>
+                            <h4 class="faq-question">Q.5 How does BNB Enterprises ensure quality and consistency in agricultural exports?</h4>
                             <p class="faq-answer">
-                                Ans. Aeration is one of the most critical factors in producing high-quality, export-grade shrimp. Our ponds are equipped with powerful aerators running on around-the-clock power supply, maintaining consistently optimal dissolved oxygen levels in the water. Proper oxygenation supports better shrimp growth rates and higher survival rates, reduces biological stress that can negatively affect meat texture and taste, helps maintain healthier pond conditions reducing disease risk, and produces stronger, firmer shrimp with superior appearance — essential for export quality standards. Our investment in reliable aeration infrastructure directly translates into better product quality for our buyers.
+                                Ans. Quality assurance in our agricultural operations begins at sourcing — we select produce from established, reputable farms and mandis in the respective production regions. For red chillies, this includes careful selection for variety purity, colour uniformity, cleaning, sorting, moisture content control, and grade-specific packing. For onions, it includes visual quality inspection, size grading, removal of damaged or diseased stock, and appropriate packing for export transport. Every shipment is checked for consistency before dispatch. Our decades of commodity trading experience means we understand what international buyers expect and we build our processes around delivering that consistently.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.6 Does BNB Enterprises offer both fresh and processed shrimp?</h4>
+                            <h4 class="faq-question">Q.6 What packing options are available for red chilli and onion exports?</h4>
                             <p class="faq-answer">
-                                Ans. Yes. BNB Enterprises offers both supply options to cater to different market requirements. For export markets such as the UAE, we supply processed frozen shrimp with a 2-year shelf life, suitable for retail and restaurant distribution. For customers in nearby domestic markets, we also offer fresh shrimp supply direct from our farms in West Godavari. Both supply options go through the same rigorous grading, quality checking, and hygiene processes to ensure our customers receive premium-quality shrimp regardless of whether they require fresh or frozen product.
+                                Ans. We offer flexible packing options tailored to buyer specifications and international shipping requirements. Red chillies can be packed in standard gunny bags or polypropylene bags of varying weights as per buyer requirement, with appropriate labelling for export documentation. Onions are commonly packed in mesh bags (25 kg, 50 kg), jute bags, or cardboard cartons based on destination market requirements and buyer preference. All packing is done to ensure minimal product damage during transit and to comply with the import regulations of the destination country. Our logistics experience ensures proper documentation and timely customs clearance.
                             </p>
                         </div>
 
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.7 How can I place an order or enquire about shrimp supply?</h4>
+                            <h4 class="faq-question">Q.7 Can BNB Enterprises supply other Indian agricultural commodities beyond chillies and onions?</h4>
                             <p class="faq-answer">
-                                Ans. Contact BNB Enterprises at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will assist with product specifications, size grading requirements, pricing, volume discussions, and export logistics. We are committed to being a reliable, quality-focused shrimp supply partner for both domestic and international buyers.
+                                Ans. Our current primary agricultural export focus is on red chillies from Guntur and onions from Nashik and Madhya Pradesh. However, as part of a diversified global trading company with established international networks and commodity sourcing expertise, we are open to discussions on other Indian agricultural commodities based on buyer interest and market demand. Our experience across multiple trading categories — natural stone, leather, paper, aquaculture, and agriculture — gives us the sourcing, logistics, and trade execution capabilities to expand into additional commodity lines where reliable quality and supply can be assured.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4 class="faq-question">Q.8 How can I place an order or enquire about agricultural commodity exports?</h4>
+                            <p class="faq-answer">
+                                Ans. Contact BNB Enterprises at +91 9940191813 or email <a href="mailto:admin@bnbentglobal.com">admin@bnbentglobal.com</a>. Our office is at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will discuss your specific commodity requirements, variety preferences, grading specifications, volume needs, packing requirements, destination market, and pricing. We are committed to building reliable, long-term agricultural export supply relationships with international buyers.
                             </p>
                         </div>
                     </div>
 
+                    <!-- ========== CONTACT BLOCK ========== -->
                     <div style="margin-top:clamp(2rem,3vw,2.5rem); padding:clamp(1.2rem,1.8vw,1.5rem); background:#F0F3F7; border-radius:8px; border:1px solid #D4DCE6;">
                         <h3 style="font-family:'Montserrat',sans-serif; font-size:clamp(0.95rem,1.2vw,1.08rem); font-weight:800; color:#1A2332; margin-bottom:clamp(0.8rem,1.1vw,1rem);">Get in Touch with BNB Enterprises</h3>
-                        <p style="font-family:'Raleway',sans-serif; font-size:clamp(0.78rem,0.9vw,0.83rem); font-weight:400; line-height:1.65; color:#5A6B7F; margin-bottom:0.8rem;">For inquiries about our shrimp aquaculture, export grades, and pricing, contact us today:</p>
+                        <p style="font-family:'Raleway',sans-serif; font-size:clamp(0.78rem,0.9vw,0.83rem); font-weight:400; line-height:1.65; color:#5A6B7F; margin-bottom:0.8rem;">For inquiries about our spice and agricultural commodity exports, contact us today:</p>
                         <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
                         <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Phone:</strong> <a href="tel:+919940191813" style="color:#2673B8; text-decoration:none;">+91 99401 91813</a></div>
                         <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Email:</strong> <a href="mailto:admin@bnbentglobal.com" style="color:#2673B8; text-decoration:none;">admin@bnbentglobal.com</a></div>
@@ -375,7 +436,7 @@ body.loaded .site-wrapper { opacity:1; }
             document.querySelectorAll('.faq-item').forEach((item, i) => { item.style.animationDelay = `${i * 0.08}s`; observer.observe(item); });
             document.querySelectorAll('.process-step').forEach((step, i) => { step.style.animationDelay = `${i * 0.05}s`; observer.observe(step); });
         }
-        window.addEventListener('load', function() { console.log('🚀 Aquaculture Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms'); });
+        window.addEventListener('load', function() { console.log('🚀 Spices Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms'); });
     </script>
 </body>
 </html>
