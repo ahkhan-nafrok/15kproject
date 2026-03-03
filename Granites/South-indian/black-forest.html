@@ -4,1271 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    
-    <!-- CRITICAL: Load fonts in HEAD -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="ProductStyle.css">
     <title>Black Forest Granite - BNB Enterprises</title>
-    
-    <style>
-/* ========== GLOBAL VARIABLES ========== */
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-  --whatsapp-green: #25D366;
-}
-
-/* ========== GLOBAL RESET ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* ========== PAGE LOADER ========== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-light);
-    z-index: 9999;
-    gap: 12px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader-logo {
-    width: clamp(60px, 10vw, 80px);
-    height: clamp(60px, 10vw, 80px);
-    object-fit: contain;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
-}
-
-.loader-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    font-weight: 700;
-    letter-spacing: clamp(2px, 0.5vw, 3px);
-    color: var(--text-primary);
-}
-
-.loader-subtext {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.625rem, 1vw, 0.75rem);
-    font-weight: 500;
-    letter-spacing: clamp(1px, 0.3vw, 2px);
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
-
-body.loaded .page-loader {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* ========== SITE WRAPPER ========== */
-.site-wrapper {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded .site-wrapper {
-    opacity: 1;
-}
-
-/* ========== WHATSAPP FLOATING BUTTON ========== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 52px;
-    height: 52px;
-    background: var(--whatsapp-green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
-    z-index: 9998;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-float i {
-    color: white;
-    font-size: 26px;
-}
-
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 2px solid var(--whatsapp-green);
-    border-radius: 50%;
-    opacity: 0;
-    animation: whatsapp-pulse 2s infinite;
-}
-
-@keyframes whatsapp-pulse {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
-}
-
-/* ========== PRODUCT DETAIL PAGE - SIMPLIFIED ========== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 3vw, 2rem);
-}
-
-.product-detail-section {
-    background: var(--background-base);
-    padding: clamp(5rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 2.5rem);
-    min-height: 50vh;
-}
-
-/* ========== BREADCRUMB NAVIGATION ========== */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 500;
-    color: var(--text-muted);
-    flex-wrap: wrap;
-}
-
-.breadcrumb a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.breadcrumb a:hover {
-    opacity: 0.7;
-}
-
-.breadcrumb span {
-    color: var(--text-body);
-    font-weight: 600;
-}
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-body);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.back-button i {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateX(-3px);
-}
-
-.back-button:hover i {
-    transform: translateX(-3px);
-}
-
-/* SIMPLIFIED PRODUCT LAYOUT */
-.product-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 3vw, 3rem);
-    background: white;
-    padding: clamp(1.5rem, 2.5vw, 2rem);
-    border-radius: 8px;
-}
-
-.product-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.main-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.main-image-container:hover .main-image {
-    transform: scale(1.05);
-}
-
-.thumbnail-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-}
-
-.thumbnail {
-    position: relative;
-    padding-top: 100%;
-    background: var(--border-light);
-    border-radius: 4px;
-    overflow: hidden;
-    border: 2px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.thumbnail.active {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
-}
-
-.thumbnail:hover {
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
-}
-
-.thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* PRODUCT INFO - OPTIMIZED FONTS */
-.product-info {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.2rem, 1.8vw, 1.5rem);
-}
-
-.product-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-    font-weight: 900;
-    letter-spacing: -0.3px;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.3rem;
-}
-
-.product-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.8rem, 1vw, 0.88rem);
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.2px;
-}
-
-/* COMPACT SPECIFICATIONS TABLE */
-.specifications {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface-light);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.specifications tr {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.specifications tr:last-child {
-    border-bottom: none;
-}
-
-.specifications td {
-    padding: 0.7rem 0.9rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.75rem;
-}
-
-.specifications td:first-child {
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    letter-spacing: 0.6px;
-    width: 35%;
-    background: rgba(38, 115, 184, 0.05);
-}
-
-.specifications td:last-child {
-    font-weight: 500;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-/* SIMPLIFIED DESCRIPTION */
-.product-description {
-    background: var(--surface-light);
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-}
-
-.description-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    margin-bottom: 0.6rem;
-}
-
-.description-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    letter-spacing: 0.1px;
-}
-
-.product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: auto;
-}
-
-.action-btn {
-    padding: 0.85rem 1.2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.action-btn i {
-    font-size: 0.95rem;
-}
-
-.call-btn {
-    background: var(--surface-light);
-    color: var(--text-body);
-}
-
-.call-btn:hover {
-    background: var(--text-primary);
-    color: white;
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 35, 50, 0.12);
-}
-
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: white;
-    border-color: var(--whatsapp-green);
-}
-
-.whatsapp-btn:hover {
-    background: #128C7E;
-    border-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
-}
-
-/* ========== WHY CHOOSE SECTION - OPTIMIZED ========== */
-.why-choose-section {
-    background: white;
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.why-choose-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.why-choose-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
-}
-
-.why-choose-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-bottom: 0.9rem;
-    text-align: justify;
-}
-
-.benefits-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-}
-
-.benefits-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.8rem;
-}
-
-.benefits-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.benefits-list li {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.5rem;
-    padding-left: 1.3rem;
-    position: relative;
-}
-
-.benefits-list li::before {
-    content: '•';
-    color: var(--primary-blue);
-    font-weight: 900;
-    font-size: 1.2rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-.contact-section {
-    margin-top: clamp(1.5rem, 2.5vw, 2rem);
-    padding: 1rem 1.2rem;
-    background: var(--surface-light);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-}
-
-.contact-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.7rem;
-}
-
-.contact-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.7rem;
-}
-
-.contact-info-item {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-body);
-    margin-bottom: 0.4rem;
-}
-
-.contact-info-item strong {
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-right: 0.3rem;
-}
-
-.contact-info-item a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.contact-info-item a:hover {
-    opacity: 0.7;
-}
-
-.faq-section {
-    margin-top: clamp(2rem, 3vw, 2.5rem);
-}
-
-.faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-item {
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-question {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.08vw, 1rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.faq-answer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    padding-left: 0.4rem;
-    text-align: justify;
-}
-
-/* ========== BEST SELLERS - REDESIGNED (3 COLUMNS, BIGGER) ========== */
-.best-sellers-section {
-    background: var(--background-base);
-    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: clamp(2rem, 3vw, 2.5rem);
-}
-
-.section-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: var(--primary-blue);
-    margin-bottom: 0.6rem;
-}
-
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 900;
-    letter-spacing: -0.4px;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
-
-.best-sellers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 2vw, 2rem);
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.bestseller-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-}
-
-.bestseller-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-}
-
-.bestseller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(26, 35, 50, 0.15);
-    border-color: var(--primary-blue);
-}
-
-.bestseller-card:hover::before {
-    transform: scaleX(1);
-}
-
-.bestseller-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%;
-    overflow: hidden;
-    background: var(--border-light);
-}
-
-.bestseller-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bestseller-card:hover .bestseller-image {
-    transform: scale(1.08);
-}
-
-.bestseller-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    color: var(--text-primary);
-    text-align: center;
-    padding: clamp(1.2rem, 1.5vw, 1.4rem);
-    line-height: 1.3;
-    transition: color 0.3s ease;
-}
-
-.bestseller-card:hover .bestseller-name {
-    color: var(--primary-blue);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 991px) {
-    .product-detail-section {
-        padding: 4.5rem 0 2rem;
-    }
-
-    .product-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .specifications td:first-child {
-        width: 40%;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .product-layout {
-        padding: 1.2rem;
-    }
-
-    .thumbnail-gallery {
-        gap: 0.5rem;
-    }
-
-    .product-actions {
-        grid-template-columns: 1fr;
-        gap: 0.7rem;
-    }
-
-    .specifications td {
-        font-size: 0.72rem;
-        padding: 0.65rem 0.8rem;
-    }
-
-    .specifications td:first-child {
-        font-size: 0.64rem;
-    }
-
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .whatsapp-float {
-        width: 48px;
-        height: 48px;
-        bottom: 18px;
-        right: 18px;
-    }
-
-    .whatsapp-float i {
-        font-size: 24px;
-    }
-
-    .breadcrumb {
-        font-size: 0.68rem;
-    }
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.product-layout {
-    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-    opacity: 0;
-}
-
-section {
-    scroll-margin-top: 80px;
-}
-
-#footerComponent {
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-    </style>
 </head>
 <body>
-    <!-- Page Loader -->
     <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
         <img src="../../assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
         <div class="loader-text">BNB ENTERPRISES</div>
         <div class="loader-subtext">Loading...</div>
     </div>
 
-    <!-- Site Wrapper -->
     <div class="site-wrapper">
-        <!-- Main Content -->
         <main>
-            <!-- PRODUCT DETAIL SECTION -->
             <section class="product-detail-section">
                 <div class="container">
-                    <!-- BREADCRUMB NAVIGATION -->
                     <div class="breadcrumb">
                         <a href="../../index.html">Home</a> / <a href="#collections">Collections</a> / <span>South Indian Granites</span>
                     </div>
-
                     <button class="back-button" onclick="window.history.back()">
-                        <i class="fas fa-arrow-left"></i>
-                        Back to Gallery
+                        <i class="fas fa-arrow-left"></i>Back to Gallery
                     </button>
                     <div class="product-layout">
                         <div class="product-gallery">
-                            <div class="main-image-container">
+                            <div class="main-image-container" id="mainImageContainer">
                                 <img src="BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite" class="main-image" id="mainImage">
+                                <div class="magnifier-overlay">
+                                    <div class="magnifier-icon"><i class="fas fa-search-plus"></i></div>
+                                </div>
                             </div>
-
                             <div class="thumbnail-gallery">
-                                <div class="thumbnail active" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this)">
+                                <div class="thumbnail active" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this, 0)">
                                     <img src="BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite View 1">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this, 1)">
                                     <img src="BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite View 2">
                                 </div>
-                                <div class="thumbnail" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this)">
+                                <div class="thumbnail" onclick="changeImage('BLACK-FOREST-GRANITE.webp', this, 2)">
                                     <img src="BLACK-FOREST-GRANITE.webp" alt="Black Forest Granite View 3">
                                 </div>
                             </div>
                         </div>
-
                         <div class="product-info">
                             <div>
                                 <h1 class="product-title">Black Forest Granite</h1>
                                 <p class="product-subtitle">Premium South Indian Granite from Tamil Nadu</p>
                             </div>
-
                             <table class="specifications">
-                                <tr>
-                                    <td>Origin</td>
-                                    <td>South India, Tamil Nadu</td>
-                                </tr>
-                                <tr>
-                                    <td>Color</td>
-                                    <td>Black with Brown & Gold Veins</td>
-                                </tr>
-                                <tr>
-                                    <td>Gangsaw Slab</td>
-                                    <td>280 x 180 cm</td>
-                                </tr>
-                                <tr>
-                                    <td>Cutter Slab</td>
-                                    <td>180 x 60 cm</td>
-                                </tr>
-                                <tr>
-                                    <td>Tiles</td>
-                                    <td>30 x 30, 30 x 60, 60 x 60, 60 x 120 cm</td>
-                                </tr>
-                                <tr>
-                                    <td>Thickness</td>
-                                    <td>2, 3, 4, 5 upto 20 cm</td>
-                                </tr>
-                                <tr>
-                                    <td>Countertops</td>
-                                    <td>Custom</td>
-                                </tr>
-                                <tr>
-                                    <td>Finishes</td>
-                                    <td>Flamed, Polished, Lepotra, Honed, Brushed, Leather, Antique, Bush Hammered and Shot Blast</td>
-                                </tr>
+                                <tr><td>Origin</td><td>South India, Tamil Nadu</td></tr>
+                                <tr><td>Color</td><td>Black with Brown &amp; Gold Veins</td></tr>
+                                <tr><td>Gangsaw Slab</td><td>280 x 180 cm</td></tr>
+                                <tr><td>Cutter Slab</td><td>180 x 60 cm</td></tr>
+                                <tr><td>Tiles</td><td>30 x 30, 30 x 60, 60 x 60, 60 x 120 cm</td></tr>
+                                <tr><td>Thickness</td><td>2, 3, 4, 5 upto 20 cm</td></tr>
+                                <tr><td>Countertops</td><td>Custom</td></tr>
+                                <tr><td>Finishes</td><td>Flamed, Polished, Lepotra, Honed, Brushed, Leather, Antique, Bush Hammered and Shot Blast</td></tr>
                             </table>
-
                             <div class="product-description">
                                 <h3 class="description-title">Product Description</h3>
-                                <p class="description-text">
-                                    Premium Black Forest granite from South India featuring dramatic black base with rich brown and golden veins creating a forest-like natural pattern. This exquisite Tamil Nadu granite is perfect for luxury kitchen countertops, feature walls, and high-end commercial spaces. Known for exceptional durability, heat resistance, and unique veining patterns that make each slab a one-of-a-kind masterpiece.
-                                </p>
+                                <p class="description-text">Premium Black Forest granite from South India featuring dramatic black base with rich brown and golden veins creating a forest-like natural pattern. This exquisite Tamil Nadu granite is perfect for luxury kitchen countertops, feature walls, and high-end commercial spaces. Known for exceptional durability, heat resistance, and unique veining patterns that make each slab a one-of-a-kind masterpiece.</p>
                             </div>
-
                             <div class="product-actions">
-                                <a href="tel:+919876543210" class="action-btn call-btn">
-                                    <i class="fas fa-phone-alt"></i>
-                                    Call Us
-                                </a>
-                                <button class="action-btn whatsapp-btn" onclick="sendWhatsAppMessage()">
-                                    <i class="fab fa-whatsapp"></i>
-                                    WhatsApp
-                                </button>
+                                <a href="tel:+919876543210" class="action-btn call-btn"><i class="fas fa-phone-alt"></i>Call Us</a>
+                                <button class="action-btn whatsapp-btn" onclick="sendWhatsAppMessage()"><i class="fab fa-whatsapp"></i>WhatsApp</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- WHY CHOOSE BNB SECTION -->
             <section class="why-choose-section">
                 <div class="container">
                     <div class="why-choose-content">
                         <h2 class="why-choose-title">Why Choose BNB Enterprises As A Top Black Forest Granite Exporter</h2>
-                        
-                        <p class="why-choose-text">
-                            BNB Enterprises has the quality experience of more than 25 years in natural stone industry. This industry is very competitive. Regardless, our team stays unbeatable. Also, we accept every new challenge as a golden possibility to shine our bright expertise, mastery, and learning in the stone industry. We are an ISO-certified stone manufacturer, supplier, and trader that provides top-quality Black Forest Granite with dramatic veining patterns, rich color variations, and superior structural integrity.
-                        </p>
-
-                        <p class="why-choose-text">
-                            Even if it is for indoor scenery, outdoor tasks, or commercial areas, you can blindly choose BNB Enterprises's Black Forest Granite to change your spaces into aesthetic places. We are not only evolving as the top choice for natural stone lovers but also winning the confidence of international clients. We export our premier Black Forest Granite products to more than 20 countries across the World including USA, UK, Dubai, Singapore, and Australia.
-                        </p>
-
+                        <p class="why-choose-text">BNB Enterprises has the quality experience of more than 25 years in natural stone industry. This industry is very competitive. Regardless, our team stays unbeatable. Also, we accept every new challenge as a golden possibility to shine our bright expertise, mastery, and learning in the stone industry. We are an ISO-certified stone manufacturer, supplier, and trader that provides top-quality Black Forest Granite with dramatic veining patterns, rich color variations, and superior structural integrity.</p>
+                        <p class="why-choose-text">Even if it is for indoor scenery, outdoor tasks, or commercial areas, you can blindly choose BNB Enterprises's Black Forest Granite to change your spaces into aesthetic places. We are not only evolving as the top choice for natural stone lovers but also winning the confidence of international clients. We export our premier Black Forest Granite products to more than 20 countries across the World including USA, UK, Dubai, Singapore, and Australia.</p>
                         <div class="benefits-section">
                             <h3 class="benefits-title">Benefits of Picking BNB Enterprises</h3>
                             <ul class="benefits-list">
                                 <li>Potent quality Black Forest Granite at affordable prices</li>
                                 <li>Choices for personalizations in sizes, finishes, and thicknesses</li>
-                                <li>Quick & delighted services and solutions for bulk orders</li>
+                                <li>Quick &amp; delighted services and solutions for bulk orders</li>
                                 <li>Moral support and service by a skilled team of stone experts</li>
                                 <li>Known in various finishes including polished, honed, leathered, brushed, and more</li>
                                 <li>Direct sourcing from premium quarries in Tamil Nadu, South India</li>
                                 <li>ISO-certified quality assurance and testing procedures</li>
                                 <li>Worldwide shipping with secure packaging and logistics</li>
-                                <li>No hidden terms & conditions, transparent pricing</li>
+                                <li>No hidden terms &amp; conditions, transparent pricing</li>
                                 <li>Dedicated customer support for design consultation and installation guidance</li>
                             </ul>
                         </div>
-
                         <div class="contact-section">
                             <h3 class="contact-title">Contact Information</h3>
-                            <p class="contact-text">
-                                If you want to know more about our Black Forest Granite or other premium natural stones, then you can contact us at the below-mentioned info –
-                            </p>
-                            <div class="contact-info-item">
-                                <strong>Address:</strong> Plot No. 11/B, Kelamballi Industrial Area, Badanagappa, Chamajanagar, Karnataka, India 571313.
-                            </div>
-                            <div class="contact-info-item">
-                                <strong>Mobile:</strong> <a href="tel:+919829051786">+91 98290 51786</a> or <a href="tel:+919983777786">+91 99837 77786</a>
-                            </div>
-                            <div class="contact-info-item">
-                                <strong>Email:</strong> <a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a>
-                            </div>
+                            <p class="contact-text">If you want to know more about our Black Forest Granite or other premium natural stones, then you can contact us at the below-mentioned info –</p>
+                            <div class="contact-info-item"><strong>Address:</strong> Plot No. 11/B, Kelamballi Industrial Area, Badanagappa, Chamajanagar, Karnataka, India 571313.</div>
+                            <div class="contact-info-item"><strong>Mobile:</strong> <a href="tel:+919829051786">+91 98290 51786</a> or <a href="tel:+919983777786">+91 99837 77786</a></div>
+                            <div class="contact-info-item"><strong>Email:</strong> <a href="mailto:info@bnbenterprises.com">info@bnbenterprises.com</a></div>
                         </div>
-
                         <div class="faq-section">
                             <h3 class="faq-title">Frequently Asked Questions for Black Forest Granite</h3>
-                            
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.1 What are the key factors of Black Forest Granite?</h4>
-                                <p class="faq-answer">
-                                    Ans. Black Forest Granite is well-known for its dramatic black base with brown and golden veins creating natural forest-like patterns, exceptional durability and hardness, unique veining that makes each slab distinctive, superior heat resistance for kitchen applications, excellent polish retention, and its capability to enhance both modern and traditional interior designs with artistic elegance.
-                                </p>
+                                <p class="faq-answer">Ans. Black Forest Granite is well-known for its dramatic black base with brown and golden veins creating natural forest-like patterns, exceptional durability and hardness, unique veining that makes each slab distinctive, superior heat resistance for kitchen applications, excellent polish retention, and its capability to enhance both modern and traditional interior designs with artistic elegance.</p>
                             </div>
-
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.2 What are the different uses of Black Forest Granite?</h4>
-                                <p class="faq-answer">
-                                    Ans. It is usually used for luxury kitchen countertops and islands, bathroom vanity tops, premium flooring in high-end homes, feature walls and accent panels, staircases and steps, tabletops and furniture surfaces, fireplace surrounds, bar tops, and decorative applications. It is suitable for both sophisticated residential and exclusive commercial interior projects worldwide.
-                                </p>
+                                <p class="faq-answer">Ans. It is usually used for luxury kitchen countertops and islands, bathroom vanity tops, premium flooring in high-end homes, feature walls and accent panels, staircases and steps, tabletops and furniture surfaces, fireplace surrounds, bar tops, and decorative applications. It is suitable for both sophisticated residential and exclusive commercial interior projects worldwide.</p>
                             </div>
-
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.3 Which are the different finishes of Black Forest Granite?</h4>
-                                <p class="faq-answer">
-                                    Ans. There are some different finishes of this granite such as polished (mirror-like high gloss showing full color depth), honed (smooth matte finish), leathered (textured surface with slight sheen), brushed (slightly rough texture), flamed (rough outdoor finish), antiqued (worn vintage look), bush hammered, and shot blasted finishes for various aesthetic and functional requirements in architectural applications.
-                                </p>
+                                <p class="faq-answer">Ans. There are some different finishes of this granite such as polished (mirror-like high gloss showing full color depth), honed (smooth matte finish), leathered (textured surface with slight sheen), brushed (slightly rough texture), flamed (rough outdoor finish), antiqued (worn vintage look), bush hammered, and shot blasted finishes for various aesthetic and functional requirements in architectural applications.</p>
                             </div>
-
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.4 Who is the top manufacturer and exporter of Black Forest Granite?</h4>
-                                <p class="faq-answer">
-                                    Ans. BNB Enterprises is one of the leading manufacturers and exporters of Black Forest Granite and other premium natural stones. We source directly from the finest quarries in Tamil Nadu, South India and provide our services in several countries such as the USA, UK, Dubai, Singapore, South Korea, Australia, Canada, Israel, Spain, and many more.
-                                </p>
+                                <p class="faq-answer">Ans. BNB Enterprises is one of the leading manufacturers and exporters of Black Forest Granite and other premium natural stones. We source directly from the finest quarries in Tamil Nadu, South India and provide our services in several countries such as the USA, UK, Dubai, Singapore, South Korea, Australia, Canada, Israel, Spain, and many more.</p>
                             </div>
-
                             <div class="faq-item">
                                 <h4 class="faq-question">Q.5 How to maintain Black Forest Granite?</h4>
-                                <p class="faq-answer">
-                                    Ans. Clean regularly with pH-neutral stone cleaners and warm water. Seal annually to protect the veined areas and maintain color vibrancy. Wipe spills immediately, especially acidic substances. Use cutting boards and trivets to prevent scratches and heat marks. Avoid harsh chemicals and abrasive cleaners. Professional polishing every 2-3 years maintains the beautiful finish and natural luster of the veining patterns.
-                                </p>
+                                <p class="faq-answer">Ans. Clean regularly with pH-neutral stone cleaners and warm water. Seal annually to protect the veined areas and maintain color vibrancy. Wipe spills immediately, especially acidic substances. Use cutting boards and trivets to prevent scratches and heat marks. Avoid harsh chemicals and abrasive cleaners. Professional polishing every 2-3 years maintains the beautiful finish and natural luster of the veining patterns.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- BEST SELLERS SECTION -->
             <section class="best-sellers-section">
                 <div class="container">
                     <div class="section-header">
                         <div class="section-subtitle">Popular Collections</div>
                         <h2 class="section-title">Our Most Selling Granites</h2>
                     </div>
-
                     <div class="best-sellers-grid">
-                        <a href="absolute-black.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="ABSOLUTE-BLACK-GRANITE.webp" alt="Absolute Black Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Absolute Black Granite</h3>
-                        </a>
-
-                        <a href="black-galaxy.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="black-galaxy-south.webp" alt="Black Galaxy Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Black Galaxy Granite</h3>
-                        </a>
-
-                        <a href="coffee-brown.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="COFFEE-BROWN-GRANITE.webp" alt="Coffee Brown Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Coffee Brown Granite</h3>
-                        </a>
-
-                        <a href="imperial-red.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="IMPERIAL-RED-GRANITE.webp" alt="Imperial Red Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Imperial Red Granite</h3>
-                        </a>
-
-                        <a href="moon-white.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="MOON-WHITE-GRANITE.webp" alt="Moon White Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Moon White Granite</h3>
-                        </a>
-
-                        <a href="viscont-white.html" class="bestseller-card">
-                            <div class="bestseller-image-container">
-                                <img src="Viscont-White-Granite south india.webp" alt="Viscont White Granite" class="bestseller-image">
-                            </div>
-                            <h3 class="bestseller-name">Viscont White Granite</h3>
-                        </a>
+                        <a href="absolute-black.html" class="bestseller-card"><div class="bestseller-image-container"><img src="ABSOLUTE-BLACK-GRANITE.webp" alt="Absolute Black Granite" class="bestseller-image"></div><h3 class="bestseller-name">Absolute Black Granite</h3></a>
+                        <a href="black-galaxy.html" class="bestseller-card"><div class="bestseller-image-container"><img src="black-galaxy-south.webp" alt="Black Galaxy Granite" class="bestseller-image"></div><h3 class="bestseller-name">Black Galaxy Granite</h3></a>
+                        <a href="coffee-brown.html" class="bestseller-card"><div class="bestseller-image-container"><img src="COFFEE-BROWN-GRANITE.webp" alt="Coffee Brown Granite" class="bestseller-image"></div><h3 class="bestseller-name">Coffee Brown Granite</h3></a>
+                        <a href="imperial-red.html" class="bestseller-card"><div class="bestseller-image-container"><img src="IMPERIAL-RED-GRANITE.webp" alt="Imperial Red Granite" class="bestseller-image"></div><h3 class="bestseller-name">Imperial Red Granite</h3></a>
+                        <a href="moon-white.html" class="bestseller-card"><div class="bestseller-image-container"><img src="MOON-WHITE-GRANITE.webp" alt="Moon White Granite" class="bestseller-image"></div><h3 class="bestseller-name">Moon White Granite</h3></a>
+                        <a href="viscont-white.html" class="bestseller-card"><div class="bestseller-image-container"><img src="Viscont-White-Granite south india.webp" alt="Viscont White Granite" class="bestseller-image"></div><h3 class="bestseller-name">Viscont White Granite</h3></a>
                     </div>
                 </div>
             </section>
         </main>
-
-        <!-- Footer Component -->
         <footer id="footerComponent" role="contentinfo"></footer>
     </div>
 
-    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20Black%20Forest%20Granite."
-        class="whatsapp-float" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        aria-label="Contact us on WhatsApp"
-        title="Chat with us on WhatsApp">
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" title="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <div id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Image lightbox">
+        <button id="lightboxClose" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
+        <button id="lightboxPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button id="lightboxNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        <div id="lightboxImageWrapper"><img id="lightboxImage" src="" alt="Product image"></div>
+        <div id="lightboxCounter"></div>
+        <div id="lightboxZoomHint">Pinch or double-tap to zoom &nbsp;·&nbsp; Swipe to navigate</div>
+        <div id="lightboxZoomBadge"></div>
+        <div id="lightboxThumbnails"></div>
+    </div>
+
+    <script src="ProductLightbox.js"></script>
     <script>
-        // ========== PERFORMANCE TRACKING ==========
-        const performanceMetrics = {
-            startTime: performance.now(),
-            componentsLoaded: 0
-        };
-
-        // ========== PAGE INITIALIZATION ==========
+        const performanceMetrics = { startTime: performance.now(), componentsLoaded: 0 };
         document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 1000;
-            const elapsedTime = performance.now() - performanceMetrics.startTime;
-            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-
-            setTimeout(() => {
-                document.body.classList.add("loaded");
-                loadComponents();
-            }, remainingTime);
+            const remainingTime = Math.max(0, 1000 - (performance.now() - performanceMetrics.startTime));
+            setTimeout(() => { document.body.classList.add("loaded"); loadComponents(); }, remainingTime);
         });
-
-        // ========== COMPONENT LOADING SYSTEM ==========
         async function loadComponents() {
-            const components = [
-                { name: "footer", target: "footerComponent" }
-            ];
-
-            for (const comp of components) {
-                await loadComponent(comp.name, comp.target);
-                performanceMetrics.componentsLoaded++;
-            }
-
+            await loadComponent("footer", "footerComponent");
+            performanceMetrics.componentsLoaded++;
             console.log('✅ Components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
             initializePageFunctions();
         }
-
-        // ========== COMPONENT LOADER ==========
         async function loadComponent(name, targetId) {
             try {
-                const startTime = performance.now();
-                
-                const htmlResp = await fetch(`../../${name}.html`);
-                const htmlText = await htmlResp.text();
-
+                const htmlText = await (await fetch(`../../${name}.html`)).text();
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = htmlText;
-
-                const targetElement = document.getElementById(targetId);
-                if (!targetElement) {
-                    console.error(`❌ Target element #${targetId} not found`);
-                    return;
-                }
-
-                const styles = tempDiv.querySelectorAll('style');
-                styles.forEach(style => {
-                    const styleElement = document.createElement('style');
-                    styleElement.innerHTML = style.innerHTML;
-                    styleElement.setAttribute('data-component', name);
-                    document.head.appendChild(styleElement);
-                });
-
-                const scripts = tempDiv.querySelectorAll('script');
-                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
-
-                scripts.forEach(script => script.remove());
-                styles.forEach(style => style.remove());
-                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
-                fontLinks.forEach(link => link.remove());
-
-                targetElement.innerHTML = tempDiv.innerHTML;
-
-                await new Promise(resolve => setTimeout(resolve, 100));
-
-                scriptContents.forEach(scriptContent => {
-                    if (scriptContent.trim()) {
-                        try {
-                            const func = new Function(scriptContent);
-                            func();
-                        } catch (scriptError) {
-                            console.error(`❌ Error executing ${name} script:`, scriptError);
-                        }
-                    }
-                });
-
-                const loadTime = Math.round(performance.now() - startTime);
-                console.log(`✅ ${name} loaded in ${loadTime}ms`);
-
-            } catch (err) {
-                console.error(`❌ Error loading ${name}:`, err);
-            }
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                tempDiv.querySelectorAll('style').forEach(s => { const n = document.createElement('style'); n.innerHTML = s.innerHTML; n.setAttribute('data-component', name); document.head.appendChild(n); });
+                const sc = Array.from(tempDiv.querySelectorAll('script')).map(s => s.innerHTML);
+                tempDiv.querySelectorAll('script,style,link[href*="fonts.googleapis.com"]').forEach(e => e.remove());
+                target.innerHTML = tempDiv.innerHTML;
+                await new Promise(r => setTimeout(r, 100));
+                sc.forEach(c => { if (c.trim()) try { (new Function(c))(); } catch(e){} });
+                console.log(`✅ ${name} loaded`);
+            } catch (err) { console.error(`❌ Error loading ${name}:`, err); }
         }
-
-        // ========== PAGE-SPECIFIC FUNCTIONS ==========
         function initializePageFunctions() {
-            window.changeImage = function(imageSrc, thumbnail) {
-                const mainImage = document.getElementById('mainImage');
-                if (mainImage) {
-                    mainImage.src = imageSrc;
-                }
-                
-                document.querySelectorAll('.thumbnail').forEach(thumb => {
-                    thumb.classList.remove('active');
-                });
-                if (thumbnail) {
-                    thumbnail.classList.add('active');
-                }
+            const productImages = ['BLACK-FOREST-GRANITE.webp','BLACK-FOREST-GRANITE.webp','BLACK-FOREST-GRANITE.webp'];
+            if (window.ProductLightbox) ProductLightbox.init(productImages);
+            let currentImageIndex = 0;
+            window.changeImage = function(src, thumb, idx) {
+                const m = document.getElementById('mainImage'); if (m) m.src = src;
+                currentImageIndex = idx !== undefined ? idx : 0;
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                if (thumb) thumb.classList.add('active');
             };
-
+            const mc = document.getElementById('mainImageContainer');
+            if (mc) mc.addEventListener('click', () => { if (window.ProductLightbox) ProductLightbox.open(currentImageIndex); });
             window.sendWhatsAppMessage = function() {
-                const productName = "Black Forest Granite";
-                const message = `Hello BNB Enterprises,%0A%0AI'm interested in the ${productName}.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
-                const whatsappURL = `https://wa.me/919876543210?text=${message}`;
-                window.open(whatsappURL, '_blank');
+                const msg = `Hello BNB Enterprises,%0A%0AI'm interested in the Black Forest Granite.%0A%0APlease provide more details and pricing.%0A%0AThank you!`;
+                window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
             };
-
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const sections = document.querySelectorAll('.why-choose-section, .best-sellers-section');
-            sections.forEach(section => observer.observe(section));
-
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-                observer.observe(item);
-            });
-
-            const bestsellerCards = document.querySelectorAll('.bestseller-card');
-            bestsellerCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.08}s`;
-                observer.observe(card);
-            });
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    
-                    e.preventDefault();
-                    const targetId = href.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        const headerHeight = 80;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
+            const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('animate-on-scroll'); obs.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.why-choose-section,.best-sellers-section').forEach(s => obs.observe(s));
+            document.querySelectorAll('.faq-item').forEach((item, i) => { item.style.animationDelay = `${i*0.1}s`; obs.observe(item); });
+            document.querySelectorAll('.bestseller-card').forEach((card, i) => { card.style.animationDelay = `${i*0.08}s`; obs.observe(card); });
+            document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) { const h=this.getAttribute('href'); if(h==='#')return; e.preventDefault(); const t=document.getElementById(h.substring(1)); if(t) window.scrollTo({top:t.offsetTop-80,behavior:'smooth'}); }));
             console.log('✅ Page functions initialized');
         }
-
-        window.addEventListener('load', function() {
-            const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
-            console.log(`🚀 Black Forest Granite Page loaded in ${loadTime}ms`);
-        });
+        window.addEventListener('load', () => console.log(`🚀 Black Forest Granite Page loaded in ${Math.round(performance.now() - performanceMetrics.startTime)}ms`));
     </script>
 </body>
 </html>

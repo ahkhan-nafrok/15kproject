@@ -1,0 +1,1199 @@
+/*
+ * ProductStyle.css
+ * ================
+ * Centralized stylesheet for BNB Enterprises
+ * South Indian Granite — Product Detail Pages
+ *
+ * Sections
+ * --------
+ *  1. CSS Custom Properties (Design Tokens)
+ *  2. Global Reset & Base
+ *  3. Page Loader
+ *  4. Site Wrapper & Transitions
+ *  5. WhatsApp Floating Button
+ *  6. Layout & Container
+ *  7. Breadcrumb Navigation
+ *  8. Back Button
+ *  9. Product Layout (Gallery + Info)
+ * 10. Product Gallery & Thumbnails
+ * 11. Main Image — Magnifier Overlay
+ * 12. Product Info Panel
+ * 13. Specifications Table
+ * 14. Product Description
+ * 15. Action Buttons (Call / WhatsApp)
+ * 16. Why Choose Section
+ * 17. Benefits & Contact Blocks
+ * 18. FAQ Section
+ * 19. Best Sellers Section
+ * 20. Lightbox Overlay
+ * 21. Scroll Animations
+ * 22. Responsive Design
+ */
+
+/* =====================================================
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ===================================================== */
+:root {
+  --primary-blue: #2673B8;
+  --background-base: #eeeeee;
+  --surface-light: #F0F3F7;
+  --accent-white: #F7F9FC;
+  --text-primary: #1A2332;
+  --text-body: #5A6B7F;
+  --text-muted: #7A8A9E;
+  --border-color: #D4DCE6;
+  --border-light: #E3E9F0;
+  --whatsapp-green: #25D366;
+
+  /* Spacing scale */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-gallery: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-card: 0 20px 50px rgba(26, 35, 50, 0.15);
+  --shadow-btn: 0 6px 16px rgba(26, 35, 50, 0.12);
+  --shadow-whatsapp: 0 3px 15px rgba(37, 211, 102, 0.25);
+  --shadow-whatsapp-hover: 0 6px 24px rgba(37, 211, 102, 0.4);
+}
+
+/* =====================================================
+   2. GLOBAL RESET & BASE
+   ===================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-base);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+/* =====================================================
+   3. PAGE LOADER
+   ===================================================== */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-light);
+    z-index: 9999;
+    gap: 12px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-logo {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+    object-fit: contain;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1);    opacity: 1;    }
+    50%       { transform: scale(1.05); opacity: 0.85; }
+}
+
+.loader-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 700;
+    letter-spacing: clamp(2px, 0.5vw, 3px);
+    color: var(--text-primary);
+}
+
+.loader-subtext {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.625rem, 1vw, 0.75rem);
+    font-weight: 500;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+body.loaded .page-loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* =====================================================
+   4. SITE WRAPPER & TRANSITIONS
+   ===================================================== */
+.site-wrapper {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded .site-wrapper {
+    opacity: 1;
+}
+
+/* =====================================================
+   5. WHATSAPP FLOATING BUTTON
+   ===================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    background: var(--whatsapp-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-whatsapp);
+    z-index: 9998;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: var(--shadow-whatsapp-hover);
+}
+
+.whatsapp-float i {
+    color: white;
+    font-size: 26px;
+}
+
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 2px solid var(--whatsapp-green);
+    border-radius: 50%;
+    opacity: 0;
+    animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+    0%   { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.3); opacity: 0;   }
+}
+
+/* =====================================================
+   6. LAYOUT & CONTAINER
+   ===================================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.product-detail-section {
+    background: var(--background-base);
+    padding: clamp(5rem, 6vw, 6rem) 0 clamp(2rem, 3vw, 2.5rem);
+    min-height: 50vh;
+}
+
+/* =====================================================
+   7. BREADCRUMB NAVIGATION
+   ===================================================== */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+}
+
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+    opacity: 0.7;
+}
+
+.breadcrumb span {
+    color: var(--text-body);
+    font-weight: 600;
+}
+
+/* =====================================================
+   8. BACK BUTTON
+   ===================================================== */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-body);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-sm);
+}
+
+.back-button i {
+    font-size: 0.7rem;
+    transition: transform var(--transition-fast);
+}
+
+.back-button:hover {
+    background: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+    transform: translateX(-3px);
+}
+
+.back-button:hover i {
+    transform: translateX(-3px);
+}
+
+/* =====================================================
+   9. PRODUCT LAYOUT (GALLERY + INFO)
+   ===================================================== */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 3vw, 3rem);
+    background: white;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    border-radius: var(--radius-lg);
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+    opacity: 0;
+}
+
+/* =====================================================
+   10. PRODUCT GALLERY & THUMBNAILS
+   ===================================================== */
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* ---- Main Image Container ---- */
+.main-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background: var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    cursor: zoom-in;
+}
+
+.main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-gallery);
+}
+
+.main-image-container:hover .main-image {
+    transform: scale(1.05);
+}
+
+/* ---- Thumbnail Gallery ---- */
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+}
+
+.thumbnail {
+    position: relative;
+    padding-top: 100%;
+    background: var(--border-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.2);
+}
+
+.thumbnail:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =====================================================
+   11. MAIN IMAGE — MAGNIFIER OVERLAY
+   ===================================================== */
+.magnifier-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(26, 35, 50, 0);
+    transition: background 0.35s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.main-image-container:hover .magnifier-overlay {
+    background: rgba(26, 35, 50, 0.18);
+}
+
+.magnifier-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.75);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+.main-image-container:hover .magnifier-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.magnifier-icon i {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+/* =====================================================
+   12. PRODUCT INFO PANEL
+   ===================================================== */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.2rem, 1.8vw, 1.5rem);
+}
+
+.product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    font-weight: 900;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+}
+
+.product-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.8rem, 1vw, 0.88rem);
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.2px;
+}
+
+/* =====================================================
+   13. SPECIFICATIONS TABLE
+   ===================================================== */
+.specifications {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.specifications tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.specifications tr:last-child {
+    border-bottom: none;
+}
+
+.specifications td {
+    padding: 0.7rem 0.9rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+}
+
+.specifications td:first-child {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.6px;
+    width: 35%;
+    background: rgba(38, 115, 184, 0.05);
+}
+
+.specifications td:last-child {
+    font-weight: 500;
+    color: var(--text-body);
+    letter-spacing: 0.1px;
+}
+
+/* =====================================================
+   14. PRODUCT DESCRIPTION
+   ===================================================== */
+.product-description {
+    background: var(--surface-light);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.2rem;
+}
+
+.description-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+.description-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    letter-spacing: 0.1px;
+}
+
+/* =====================================================
+   15. ACTION BUTTONS (CALL / WHATSAPP)
+   ===================================================== */
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+.action-btn {
+    padding: 0.85rem 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.action-btn i {
+    font-size: 0.95rem;
+}
+
+.call-btn {
+    background: var(--surface-light);
+    color: var(--text-body);
+}
+
+.call-btn:hover {
+    background: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-btn);
+}
+
+.whatsapp-btn {
+    background: var(--whatsapp-green);
+    color: white;
+    border-color: var(--whatsapp-green);
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    border-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
+}
+
+/* =====================================================
+   16. WHY CHOOSE SECTION
+   ===================================================== */
+.why-choose-section {
+    background: white;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.why-choose-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-choose-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.why-choose-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.85rem, 0.95vw, 0.88rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-body);
+    margin-bottom: 0.9rem;
+    text-align: justify;
+}
+
+/* =====================================================
+   17. BENEFITS & CONTACT BLOCKS
+   ===================================================== */
+.benefits-section {
+    margin-top: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.benefits-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+.benefits-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.benefits-list li {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: 0.5rem;
+    padding-left: 1.3rem;
+    position: relative;
+}
+
+.benefits-list li::before {
+    content: '•';
+    color: var(--primary-blue);
+    font-weight: 900;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.contact-section {
+    margin-top: clamp(1.5rem, 2.5vw, 2rem);
+    padding: 1rem 1.2rem;
+    background: var(--surface-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.7rem;
+}
+
+.contact-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: 0.7rem;
+}
+
+.contact-info-item {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-body);
+    margin-bottom: 0.4rem;
+}
+
+.contact-info-item strong {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: 0.3rem;
+}
+
+.contact-info-item a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.contact-info-item a:hover {
+    opacity: 0.7;
+}
+
+/* =====================================================
+   18. FAQ SECTION
+   ===================================================== */
+.faq-section {
+    margin-top: clamp(2rem, 3vw, 2.5rem);
+}
+
+.faq-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.faq-item {
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.92rem, 1.08vw, 1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.82rem, 0.92vw, 0.86rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 0.4rem;
+    text-align: justify;
+}
+
+/* =====================================================
+   19. BEST SELLERS SECTION
+   ===================================================== */
+.best-sellers-section {
+    background: var(--background-base);
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+}
+
+.section-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 0.6rem;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.best-sellers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 2vw, 2rem);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bestseller-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+}
+
+.bestseller-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-smooth);
+    z-index: 10;
+}
+
+.bestseller-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--primary-blue);
+}
+
+.bestseller-card:hover::before {
+    transform: scaleX(1);
+}
+
+.bestseller-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+    background: var(--border-light);
+}
+
+.bestseller-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-gallery);
+}
+
+.bestseller-card:hover .bestseller-image {
+    transform: scale(1.08);
+}
+
+.bestseller-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: var(--text-primary);
+    text-align: center;
+    padding: clamp(1.2rem, 1.5vw, 1.4rem);
+    line-height: 1.3;
+    transition: color var(--transition-fast);
+}
+
+.bestseller-card:hover .bestseller-name {
+    color: var(--primary-blue);
+}
+
+/* =====================================================
+   20. LIGHTBOX OVERLAY
+   ===================================================== */
+#lightboxOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.93);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#lightboxOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent body scroll when lightbox is open */
+body.lightbox-open {
+    overflow: hidden;
+}
+
+/* ---- Image Wrapper (handles zoom/pan transforms) ---- */
+#lightboxImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+#lightboxImageWrapper.dragging {
+    cursor: grabbing;
+}
+
+/* ---- Lightbox Image ---- */
+#lightboxImage {
+    max-width: 88vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 4px;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+#lightboxImage.no-transition {
+    transition: none !important;
+}
+
+/* ---- Close Button ---- */
+#lightboxClose {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#lightboxClose:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* ---- Prev / Next Navigation ---- */
+#lightboxPrev,
+#lightboxNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#lightboxPrev { left: 20px; }
+#lightboxNext { right: 20px; }
+
+#lightboxPrev:hover,
+#lightboxNext:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Hide nav when only 1 image */
+#lightboxOverlay[data-count="1"] #lightboxPrev,
+#lightboxOverlay[data-count="1"] #lightboxNext {
+    display: none;
+}
+
+/* ---- Counter ---- */
+#lightboxCounter {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* ---- Zoom Level Badge ---- */
+#lightboxZoomBadge {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: rgba(38, 115, 184, 0.85);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.28rem 0.75rem;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 10;
+    pointer-events: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#lightboxZoomBadge.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* ---- Zoom Hint ---- */
+#lightboxZoomHint {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.3px;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
+}
+
+#lightboxZoomHint.hide {
+    opacity: 0;
+}
+
+/* ---- Thumbnail Strip ---- */
+#lightboxThumbnails {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 10;
+    max-width: 90vw;
+    overflow-x: auto;
+    padding: 4px 8px;
+    scrollbar-width: none;
+}
+
+#lightboxThumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+.lightbox-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.lightbox-thumb:hover {
+    opacity: 0.85;
+    border-color: rgba(255, 255, 255, 0.55);
+    transform: translateY(-2px);
+}
+
+.lightbox-thumb.active {
+    opacity: 1;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(38, 115, 184, 0.4);
+}
+
+/* =====================================================
+   21. SCROLL ANIMATIONS
+   ===================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* =====================================================
+   22. RESPONSIVE DESIGN
+   ===================================================== */
+@media (max-width: 991px) {
+    .product-detail-section {
+        padding: 4.5rem 0 2rem;
+    }
+
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .specifications td:first-child {
+        width: 40%;
+    }
+
+    .best-sellers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    #lightboxPrev { left: 10px; }
+    #lightboxNext { right: 10px; }
+
+    #lightboxImage {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-layout {
+        padding: 1.2rem;
+    }
+
+    .thumbnail-gallery {
+        gap: 0.5rem;
+    }
+
+    .product-actions {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+
+    .specifications td {
+        font-size: 0.72rem;
+        padding: 0.65rem 0.8rem;
+    }
+
+    .specifications td:first-child {
+        font-size: 0.64rem;
+    }
+
+    .best-sellers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .whatsapp-float {
+        width: 48px;
+        height: 48px;
+        bottom: 18px;
+        right: 18px;
+    }
+
+    .whatsapp-float i {
+        font-size: 24px;
+    }
+
+    .breadcrumb {
+        font-size: 0.68rem;
+    }
+
+    #lightboxPrev,
+    #lightboxNext {
+        width: 38px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+
+    #lightboxPrev { left: 8px; }
+    #lightboxNext { right: 8px; }
+
+    #lightboxZoomHint,
+    #lightboxCounter {
+        font-size: 0.65rem;
+    }
+}
+
+/* Footer component override */
+#footerComponent {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}

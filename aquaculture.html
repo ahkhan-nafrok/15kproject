@@ -11,6 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
+/* ========== COLOR SYSTEM ========== */
 :root {
   --primary-blue: #2673B8;
   --background-base: #eeeeee;
@@ -25,88 +26,343 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'Montserrat', sans-serif; background: var(--background-base); color: var(--text-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; touch-action: pan-y pinch-zoom; }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-base);
+    color: var(--text-body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y pinch-zoom;
+}
 
-.page-loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface-light); z-index: 9999; gap: 10px; transition: opacity 0.5s ease, visibility 0.5s ease; }
+/* ========== PAGE LOADER ========== */
+.page-loader {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--surface-light); z-index: 9999; gap: 10px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
 .loader-logo { width: clamp(50px,8vw,70px); height: clamp(50px,8vw,70px); object-fit: contain; animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.05);opacity:0.85;} }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.05);opacity:0.85;} }
 .loader-text { font-family:'Montserrat',sans-serif; font-size:clamp(0.75rem,1.2vw,0.95rem); font-weight:700; letter-spacing:clamp(1.5px,0.4vw,2.5px); color:var(--text-primary); }
 .loader-subtext { font-family:'Raleway',sans-serif; font-size:clamp(0.5rem,0.8vw,0.65rem); font-weight:500; letter-spacing:clamp(0.8px,0.25vw,1.5px); color:var(--primary-blue); text-transform:uppercase; }
 body.loaded .page-loader { opacity:0; visibility:hidden; pointer-events:none; }
+
+/* ========== SITE WRAPPER ========== */
 .site-wrapper { opacity:0; transition:opacity 0.5s ease; }
 body.loaded .site-wrapper { opacity:1; }
 
-.products-section { background:var(--background-base); padding:clamp(2rem,3vw,2.8rem) 0 clamp(1.5rem,2.5vw,2.5rem); min-height:100vh; }
-.container { max-width:1400px; margin:0 auto; padding:0 clamp(1rem,3vw,2rem); }
-.page-header { margin-bottom:clamp(1.5rem,2.5vw,2.5rem); }
+/* ========== HERO BANNER ========== */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: clamp(220px, 38vw, 520px);
+    overflow: hidden;
+    background: #1a1a1a;
+    display: block;
+}
+.hero-banner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(26, 35, 50, 0.08) 0%,
+        rgba(26, 35, 50, 0.04) 40%,
+        rgba(26, 35, 50, 0.22) 100%
+    );
+    pointer-events: none;
+}
 
-.breadcrumb { font-family:'Raleway',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:600; letter-spacing:0.8px; color:var(--text-muted); opacity:0.8; margin-bottom:0.7rem; text-transform:uppercase; }
-.breadcrumb a { color:var(--primary-blue); text-decoration:none; transition:opacity 0.3s ease; }
-.breadcrumb a:hover { opacity:0.7; }
+/* ========== BACK BUTTON (Hero Overlay) ========== */
+.back-button {
+    position: absolute;
+    bottom: clamp(0.9rem, 2.2vw, 1.4rem);
+    left: clamp(1rem, 3vw, 2rem);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: clamp(0.5rem, 0.7vw, 0.6rem) clamp(0.85rem, 1.3vw, 1.05rem);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    touch-action: manipulation;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+.back-button i { font-size: 0.7rem; transition: transform 0.3s ease; }
+.back-button:hover {
+    background: var(--text-primary);
+    color: #fff;
+    border-color: var(--text-primary);
+    transform: translateX(-3px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+}
+.back-button:hover i { transform: translateX(-3px); }
 
-.back-button { display:inline-flex; align-items:center; gap:0.5rem; padding:clamp(0.55rem,0.7vw,0.65rem) clamp(0.9rem,1.3vw,1.1rem); margin-bottom:1rem; background:var(--surface-light); border:1px solid var(--border-color); color:var(--text-body); font-family:'Montserrat',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:700; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; cursor:pointer; transition:all 0.3s ease; border-radius:4px; touch-action:manipulation; }
-.back-button i { font-size:0.7rem; transition:transform 0.3s ease; }
-.back-button:hover { background:var(--text-primary); color:var(--accent-white); border-color:var(--text-primary); transform:translateX(-3px); }
-.back-button:hover i { transform:translateX(-3px); }
+/* ========== PRODUCTS SECTION ========== */
+.products-section {
+    background: var(--background-base);
+    padding: clamp(2rem, 3vw, 2.8rem) 0 clamp(1.5rem, 2.5vw, 2.5rem);
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
+.page-header { margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); }
 
-.page-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:900; letter-spacing:-1px; color:var(--text-primary); line-height:1.1; margin-bottom:clamp(0.4rem,0.8vw,0.6rem); }
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem);
+}
 
-.results-bar { display:flex; justify-content:flex-start; align-items:center; padding:clamp(0.8rem,1vw,1rem) 0; border-bottom:1px solid var(--border-color); margin-bottom:clamp(1.5rem,2vw,2rem); }
-.results-count { font-family:'Raleway',sans-serif; font-size:clamp(0.7rem,0.85vw,0.75rem); font-weight:600; color:var(--text-body); opacity:0.8; }
-.results-count span { color:var(--primary-blue); font-weight:700; }
+/* RESULTS BAR */
+.results-bar {
+    display: flex; justify-content: flex-start; align-items: center;
+    padding: clamp(0.8rem, 1vw, 1rem) 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+.results-count {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
+    font-weight: 600;
+    color: var(--text-body);
+    opacity: 0.8;
+}
+.results-count span { color: var(--primary-blue); font-weight: 700; }
 
-.products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:clamp(1.2rem,2vw,1.5rem); margin-bottom:2.5rem; }
-@media (min-width:1200px) { .products-grid { grid-template-columns:repeat(4,1fr); max-width:1300px; } }
+/* ========== GALLERY GRID ========== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.75rem, 1.4vw, 1.2rem);
+    margin-bottom: 2.5rem;
+}
+@media (max-width: 1199px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 767px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: clamp(0.6rem, 2.5vw, 0.9rem); } }
+@media (max-width: 400px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; } }
 
-.product-card { background:white; border:1px solid var(--border-color); border-radius:6px; overflow:hidden; transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; display:block; text-decoration:none; position:relative; touch-action:manipulation; }
-.product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--primary-blue); transform:scaleX(0); transform-origin:left; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index:10; border-radius:6px 6px 0 0; }
-.product-card:hover { transform:translateY(-6px); box-shadow:0 15px 40px rgba(26,35,50,0.12); border-color:var(--primary-blue); }
-.product-card:hover::before { transform:scaleX(1); }
-
-.product-image-container { position:relative; width:100%; padding-top:100%; overflow:hidden; background:var(--border-light); }
-.product-image { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-.product-card:hover .product-image { transform:scale(1.06); }
-
-.product-name { font-family:'Montserrat',sans-serif; font-size:clamp(0.8rem,0.95vw,0.9rem); font-weight:800; letter-spacing:0.2px; color:var(--text-primary); text-align:center; padding:clamp(0.9rem,1.2vw,1.1rem); line-height:1.3; transition:color 0.3s ease; }
-.product-card:hover .product-name { color:var(--primary-blue); }
+/* ========== GALLERY CARD ========== */
+.gallery-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    aspect-ratio: 1 / 1;
+}
+.gallery-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    border-radius: 6px 6px 0 0;
+}
+.gallery-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(26,35,50,0.13); border-color: var(--primary-blue); }
+.gallery-card:hover::before { transform: scaleX(1); }
+.gallery-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-card:hover img { transform: scale(1.06); }
 
 /* SIZE BADGE */
-.size-badge { position:absolute; top:0.7rem; right:0.7rem; background:var(--primary-blue); color:white; font-family:'Montserrat',sans-serif; font-size:0.55rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; padding:0.3rem 0.65rem; border-radius:3px; z-index:5; }
+.size-badge {
+    position: absolute;
+    top: 0.65rem; right: 0.65rem;
+    background: var(--primary-blue);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.48rem, 0.65vw, 0.58rem);
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 0.28rem 0.6rem;
+    border-radius: 3px;
+    z-index: 15;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* ========== ABOUT SECTION ========== */
+.about-section {
+    background: white;
+    padding: clamp(2rem, 3vw, 2.8rem) 0;
+    border-top: 1px solid var(--border-color);
+}
+.about-content { max-width: 1200px; margin: 0 auto; }
+.about-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
+}
+.about-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.75rem, 0.85vw, 0.8rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin-bottom: 0.8rem;
+    text-align: justify;
+}
 
 /* PROCESS STEPS */
-.process-steps { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1rem; margin:clamp(1.2rem,2vw,1.6rem) 0; }
-.process-step { background:var(--surface-light); border:1px solid var(--border-color); border-radius:6px; padding:1rem 1.2rem; position:relative; overflow:hidden; }
-.process-step::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--primary-blue); }
-.step-num { font-family:'Montserrat',sans-serif; font-size:clamp(1.2rem,1.8vw,1.5rem); font-weight:900; color:var(--primary-blue); opacity:0.15; line-height:1; margin-bottom:0.3rem; }
-.step-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.68rem,0.8vw,0.73rem); font-weight:800; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.3rem; }
-.step-desc { font-family:'Raleway',sans-serif; font-size:clamp(0.65rem,0.75vw,0.7rem); font-weight:500; color:var(--text-body); line-height:1.5; }
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 1rem;
+    margin: clamp(1.2rem, 2vw, 1.6rem) 0;
+}
+.process-step {
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid var(--primary-blue);
+}
+.step-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    font-weight: 900;
+    color: var(--primary-blue);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+.step-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.68rem, 0.8vw, 0.73rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+}
+.step-desc {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.65rem, 0.75vw, 0.7rem);
+    font-weight: 500;
+    color: var(--text-body);
+    line-height: 1.5;
+}
 
-.about-section { background:white; padding:clamp(2rem,3vw,2.8rem) 0; border-top:1px solid var(--border-color); }
-.about-content { max-width:1200px; margin:0 auto; }
-.about-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); line-height:1.3; margin-bottom:clamp(0.8rem,1.2vw,1rem); }
-.about-text { font-family:'Raleway',sans-serif; font-size:clamp(0.75rem,0.85vw,0.8rem); font-weight:400; line-height:1.65; color:var(--text-body); margin-bottom:0.8rem; text-align:justify; }
-.benefits-section { margin-top:clamp(1.2rem,2vw,1.6rem); }
-.benefits-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.9rem,1.1vw,1rem); font-weight:800; color:var(--text-primary); margin-bottom:0.7rem; }
-.benefits-list { list-style:none; padding-left:0; }
-.benefits-list li { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:500; line-height:1.6; color:var(--text-body); margin-bottom:0.45rem; padding-left:1.2rem; position:relative; }
-.benefits-list li::before { content:'•'; color:var(--primary-blue); font-weight:900; font-size:1.1rem; position:absolute; left:0; top:-2px; }
+@media (max-width: 991px) { .process-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .process-steps { grid-template-columns: 1fr; } }
 
-.faq-section { margin-top:clamp(2rem,3vw,2.5rem); }
-.faq-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.1rem,1.6vw,1.3rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); margin-bottom:clamp(1.2rem,2vw,1.5rem); }
-.faq-item { margin-bottom:clamp(1.2rem,2vw,1.5rem); }
-.faq-question { font-family:'Montserrat',sans-serif; font-size:clamp(0.82rem,0.95vw,0.88rem); font-weight:700; color:var(--text-primary); margin-bottom:0.45rem; line-height:1.4; }
-.faq-answer { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:400; line-height:1.6; color:var(--text-body); padding-left:0.3rem; text-align:justify; }
+/* BENEFITS */
+.benefits-section { margin-top: clamp(1.2rem, 2vw, 1.6rem); }
+.benefits-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.7rem;
+}
+.benefits-list { list-style: none; padding-left: 0; }
+.benefits-list li {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: 0.45rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+.benefits-list li::before {
+    content: '•';
+    color: var(--primary-blue);
+    font-weight: 900;
+    font-size: 1.1rem;
+    position: absolute;
+    left: 0; top: -2px;
+}
 
-@media (max-width:1199px) { .products-grid { grid-template-columns:repeat(3,1fr); } }
-@media (max-width:991px) { .products-grid { grid-template-columns:repeat(2,1fr); } .process-steps { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:576px) { .products-grid { grid-template-columns:1fr; gap:1.2rem; } .process-steps { grid-template-columns:1fr; } .product-image-container { padding-top:95%; } }
+/* ========== FAQ SECTION ========== */
+.faq-section { margin-top: clamp(2rem, 3vw, 2.5rem); }
+.faq-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+}
+.faq-item { margin-bottom: clamp(1.2rem, 2vw, 1.5rem); }
+.faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.82rem, 0.95vw, 0.88rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.45rem;
+    line-height: 1.4;
+}
+.faq-answer {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 0.3rem;
+    text-align: justify;
+}
 
-@keyframes fadeInUp { from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);} }
-.animate-on-scroll { opacity:0; animation:fadeInUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-#footerComponent { font-family:'Montserrat',sans-serif; width:100%; }
+/* ========== SCROLL ANIMATIONS ========== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.animate-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Hero Ken-Burns */
+@keyframes heroKenBurns {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1); }
+}
+body.loaded .hero-banner img {
+    animation: heroKenBurns 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#footerComponent { font-family: 'Montserrat', sans-serif; width: 100%; }
     </style>
 </head>
 <body>
+
+    <!-- Page Loader -->
     <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
         <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
         <div class="loader-text">BNB ENTERPRISES</div>
@@ -116,95 +372,73 @@ body.loaded .site-wrapper { opacity:1; }
     <div id="navbarComponent"></div>
 
     <div class="site-wrapper">
+
+        <!-- ========== HERO BANNER ========== -->
+        <div class="hero-banner">
+            <img
+                src="assets/Aquaculture-BNB.webp"
+                alt="BNB Enterprises Shrimp Aquaculture & Export"
+                loading="eager"
+                decoding="async"
+            >
+            <button class="back-button" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+        </div>
+
+        <!-- ========== PRODUCTS SECTION ========== -->
         <section class="products-section">
             <div class="container">
+
+                <!-- PAGE HEADER -->
                 <div class="page-header">
-                    <div class="breadcrumb">
-                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Shrimp Aquaculture & Export</span>
-                    </div>
-                    <button class="back-button" onclick="window.history.back()">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
                     <h1 class="page-title">Shrimp Aquaculture & Export</h1>
-                    <div class="results-bar">
-                        <div class="results-count">Showing <span>8</span> shrimp grade & product collections</div>
-                    </div>
+                    
                 </div>
 
-                <div class="products-grid" id="productsGrid">
+                <!-- GALLERY GRID — images only, badges retained as identifiers -->
+                <div class="gallery-grid" id="galleryGrid">
 
-                    <a href="Aquaculture/export-grade-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/export-grade-shrimp.webp" alt="Export Grade Processed Shrimp" class="product-image">
-                            <span class="size-badge">Processed</span>
-                        </div>
-                        <h3 class="product-name">Export Grade Processed Shrimp</h3>
-                    </a>
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps2.webp" alt="Export Grade Processed Shrimp" loading="lazy" decoding="async">
+                     
+                    </div>
 
-                    <a href="Aquaculture/fresh-market-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/fresh-market-shrimp.webp" alt="Fresh Market Shrimp" class="product-image">
-                            <span class="size-badge">Fresh</span>
-                        </div>
-                        <h3 class="product-name">Fresh Market Shrimp</h3>
-                    </a>
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps3.webp" alt="Fresh Market Shrimp" loading="lazy" decoding="async">
+                       
+                    </div>
 
-                    <a href="Aquaculture/shrimp-20-30.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-20-30.webp" alt="Shrimp 20/30 Count" class="product-image">
-                            <span class="size-badge">20/30</span>
-                        </div>
-                        <h3 class="product-name">Shrimp — 20/30 Count per Kg</h3>
-                    </a>
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps1.webp" alt="Shrimp 20/30 Count" loading="lazy" decoding="async">
+                       
+                    </div>
 
-                    <a href="Aquaculture/shrimp-30-40.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-30-40.webp" alt="Shrimp 30/40 Count" class="product-image">
-                            <span class="size-badge">30/40</span>
-                        </div>
-                        <h3 class="product-name">Shrimp — 30/40 Count per Kg</h3>
-                    </a>
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps4.webp" alt="Shrimp 30/40 Count" loading="lazy" decoding="async">
+                     
+                    </div>
 
-                    <a href="Aquaculture/shrimp-40-50.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-40-50.webp" alt="Shrimp 40/50 Count" class="product-image">
-                            <span class="size-badge">40/50</span>
-                        </div>
-                        <h3 class="product-name">Shrimp — 40/50 Count per Kg</h3>
-                    </a>
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps5.webp" alt="Shrimp 40/50 Count" loading="lazy" decoding="async">
+                     
+                    </div>
 
-                    <a href="Aquaculture/shrimp-50-60.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/shrimp-50-60.webp" alt="Shrimp 50/60 Count" class="product-image">
-                            <span class="size-badge">50/60</span>
-                        </div>
-                        <h3 class="product-name">Shrimp — 50/60 Count per Kg</h3>
-                    </a>
-
-                    <a href="Aquaculture/hoso-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/hoso-shrimp.webp" alt="HOSO Head On Shell On Shrimp" class="product-image">
-                            <span class="size-badge">HOSO</span>
-                        </div>
-                        <h3 class="product-name">HOSO — Head On Shell On Shrimp</h3>
-                    </a>
-
-                    <a href="Aquaculture/hlso-shrimp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Aquaculture/shrimp/hlso-shrimp.webp" alt="HLSO Headless Shell On Shrimp" class="product-image">
-                            <span class="size-badge">HLSO</span>
-                        </div>
-                        <h3 class="product-name">HLSO — Headless Shell On Shrimp</h3>
-                    </a>
-
+                    <div class="gallery-card">
+                        <img src="assets/aquaculture/bnb-export-shrimps6.webp" alt="Shrimp 50/60 Count" loading="lazy" decoding="async">
+                     
+                    </div>
+                  
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
+        <!-- ========== ABOUT SECTION ========== -->
         <section class="about-section">
             <div class="container">
                 <div class="about-content">
+
                     <h2 class="about-title">Premium Shrimp Aquaculture & Export from West Godavari, Andhra Pradesh</h2>
 
                     <p class="about-text">
@@ -274,56 +508,44 @@ body.loaded .site-wrapper { opacity:1; }
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.1 Where are BNB Enterprises' shrimp farmed?</h4>
-                            <p class="faq-answer">
-                                Ans. Our shrimp are farmed in the West Godavari district of Andhra Pradesh, India — one of the country's most productive and recognized shrimp aquaculture regions. The area's geographical conditions, water quality, and established aquaculture infrastructure make it ideal for producing high-quality shrimp at scale. Our controlled pond systems in this region are equipped with powerful aeration systems and around-the-clock power supply, ensuring consistently optimal growing conditions throughout each production cycle.
-                            </p>
+                            <p class="faq-answer">Ans. Our shrimp are farmed in the West Godavari district of Andhra Pradesh, India — one of the country's most productive and recognized shrimp aquaculture regions. The area's geographical conditions, water quality, and established aquaculture infrastructure make it ideal for producing high-quality shrimp at scale. Our controlled pond systems in this region are equipped with powerful aeration systems and around-the-clock power supply, ensuring consistently optimal growing conditions throughout each production cycle.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.2 What shrimp size grades does BNB Enterprises offer?</h4>
-                            <p class="faq-answer">
-                                Ans. We supply shrimp sorted and graded by count per kilogram, allowing buyers to select the exact size range suitable for their market or end-use. Our standard grades include 20/30 count (large premium shrimp), 30/40 count, 40/50 count, and 50/60 count per kilogram. We also supply shrimp in HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms. Grading is performed carefully to ensure batch uniformity, consistent quality, and appearance standards across every size category. Custom grading specifications can also be discussed based on buyer requirements.
-                            </p>
+                            <p class="faq-answer">Ans. We supply shrimp sorted and graded by count per kilogram, allowing buyers to select the exact size range suitable for their market or end-use. Our standard grades include 20/30 count (large premium shrimp), 30/40 count, 40/50 count, and 50/60 count per kilogram. We also supply shrimp in HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms. Grading is performed carefully to ensure batch uniformity, consistent quality, and appearance standards across every size category. Custom grading specifications can also be discussed based on buyer requirements.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.3 How does BNB Enterprises ensure shrimp quality and food safety?</h4>
-                            <p class="faq-answer">
-                                Ans. Quality and food safety are embedded at every stage of our shrimp operations. Starting at the farm level, our controlled pond systems maintain optimal dissolved oxygen levels through powerful aerators and continuous power supply, ensuring healthy, stress-free shrimp growth. At harvest, careful handling minimizes physical damage and maintains full product integrity. During processing, hygienic facility conditions and proper food safety protocols are followed to ensure our frozen shrimp achieve a shelf life of 2 years. Strict quality checks are applied at every stage from harvesting through grading, processing, and final packing.
-                            </p>
+                            <p class="faq-answer">Ans. Quality and food safety are embedded at every stage of our shrimp operations. Starting at the farm level, our controlled pond systems maintain optimal dissolved oxygen levels through powerful aerators and continuous power supply, ensuring healthy, stress-free shrimp growth. At harvest, careful handling minimizes physical damage and maintains full product integrity. During processing, hygienic facility conditions and proper food safety protocols are followed to ensure our frozen shrimp achieve a shelf life of 2 years. Strict quality checks are applied at every stage from harvesting through grading, processing, and final packing.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.4 Which markets does BNB Enterprises supply shrimp to?</h4>
-                            <p class="faq-answer">
-                                Ans. BNB Enterprises currently supplies shrimp to the United Arab Emirates, catering to both retail market buyers and restaurant and food service customers. Depending on customer requirements, we supply either processed frozen shrimp for export or fresh shrimp for nearby markets. Our processed export shrimp offers a shelf life of 2 years, making it suitable for international retail shelf and food service distribution chains. As we grow our aquaculture and export operations, we are actively looking to expand into additional international markets backed by BNB Enterprises' established global trade network.
-                            </p>
+                            <p class="faq-answer">Ans. BNB Enterprises currently supplies shrimp to the United Arab Emirates, catering to both retail market buyers and restaurant and food service customers. Depending on customer requirements, we supply either processed frozen shrimp for export or fresh shrimp for nearby markets. Our processed export shrimp offers a shelf life of 2 years, making it suitable for international retail shelf and food service distribution chains. As we grow our aquaculture and export operations, we are actively looking to expand into additional international markets backed by BNB Enterprises' established global trade network.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.5 What role does aeration play in BNB's shrimp farming quality?</h4>
-                            <p class="faq-answer">
-                                Ans. Aeration is one of the most critical factors in producing high-quality, export-grade shrimp. Our ponds are equipped with powerful aerators running on around-the-clock power supply, maintaining consistently optimal dissolved oxygen levels in the water. Proper oxygenation supports better shrimp growth rates and higher survival rates, reduces biological stress that can negatively affect meat texture and taste, helps maintain healthier pond conditions reducing disease risk, and produces stronger, firmer shrimp with superior appearance — essential for export quality standards. Our investment in reliable aeration infrastructure directly translates into better product quality for our buyers.
-                            </p>
+                            <p class="faq-answer">Ans. Aeration is one of the most critical factors in producing high-quality, export-grade shrimp. Our ponds are equipped with powerful aerators running on around-the-clock power supply, maintaining consistently optimal dissolved oxygen levels in the water. Proper oxygenation supports better shrimp growth rates and higher survival rates, reduces biological stress that can negatively affect meat texture and taste, helps maintain healthier pond conditions reducing disease risk, and produces stronger, firmer shrimp with superior appearance — essential for export quality standards. Our investment in reliable aeration infrastructure directly translates into better product quality for our buyers.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.6 Does BNB Enterprises offer both fresh and processed shrimp?</h4>
-                            <p class="faq-answer">
-                                Ans. Yes. BNB Enterprises offers both supply options to cater to different market requirements. For export markets such as the UAE, we supply processed frozen shrimp with a 2-year shelf life, suitable for retail and restaurant distribution. For customers in nearby domestic markets, we also offer fresh shrimp supply direct from our farms in West Godavari. Both supply options go through the same rigorous grading, quality checking, and hygiene processes to ensure our customers receive premium-quality shrimp regardless of whether they require fresh or frozen product.
-                            </p>
+                            <p class="faq-answer">Ans. Yes. BNB Enterprises offers both supply options to cater to different market requirements. For export markets such as the UAE, we supply processed frozen shrimp with a 2-year shelf life, suitable for retail and restaurant distribution. For customers in nearby domestic markets, we also offer fresh shrimp supply direct from our farms in West Godavari. Both supply options go through the same rigorous grading, quality checking, and hygiene processes to ensure our customers receive premium-quality shrimp regardless of whether they require fresh or frozen product.</p>
                         </div>
 
                         <div class="faq-item">
                             <h4 class="faq-question">Q.7 How can I place an order or enquire about shrimp supply?</h4>
-                            <p class="faq-answer">
-                                Ans. Contact BNB Enterprises at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will assist with product specifications, size grading requirements, pricing, volume discussions, and export logistics. We are committed to being a reliable, quality-focused shrimp supply partner for both domestic and international buyers.
-                            </p>
+                            <p class="faq-answer">Ans. Contact BNB Enterprises at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will assist with product specifications, size grading requirements, pricing, volume discussions, and export logistics. We are committed to being a reliable, quality-focused shrimp supply partner for both domestic and international buyers.</p>
                         </div>
+
                     </div>
 
+                    <!-- GET IN TOUCH -->
                     <div style="margin-top:clamp(2rem,3vw,2.5rem); padding:clamp(1.2rem,1.8vw,1.5rem); background:#F0F3F7; border-radius:8px; border:1px solid #D4DCE6;">
-                        <h3 style="font-family:'Montserrat',sans-serif; font-size:clamp(0.95rem,1.2vw,1.08rem); font-weight:800; color:#1A2332; margin-bottom:clamp(0.8rem,1.1vw,1rem);">Get in Touch with BNB Enterprises</h3>
+                        <h3 style="font-family:'Montserrat',sans-serif; font-size:clamp(0.95rem,1.2vw,1.08rem); font-weight:800; color:#1A2332; margin-bottom:clamp(0.8rem,1.1vw,1rem); letter-spacing:0.2px;">Get in Touch with BNB Enterprises</h3>
                         <p style="font-family:'Raleway',sans-serif; font-size:clamp(0.78rem,0.9vw,0.83rem); font-weight:400; line-height:1.65; color:#5A6B7F; margin-bottom:0.8rem;">For inquiries about our shrimp aquaculture, export grades, and pricing, contact us today:</p>
                         <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
                         <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Phone:</strong> <a href="tel:+919940191813" style="color:#2673B8; text-decoration:none;">+91 99401 91813</a></div>
@@ -339,43 +561,89 @@ body.loaded .site-wrapper { opacity:1; }
 
     <script>
         const performanceMetrics = { startTime: performance.now(), componentsLoaded: 0 };
+
         document.addEventListener("DOMContentLoaded", () => {
             const minLoadTime = 800;
             const elapsedTime = performance.now() - performanceMetrics.startTime;
             setTimeout(() => { document.body.classList.add("loaded"); loadComponents(); }, Math.max(0, minLoadTime - elapsedTime));
         });
+
         async function loadComponents() {
-            const components = [{ name:"navbar-product", target:"navbarComponent" }, { name:"footer", target:"footerComponent" }];
-            for (const comp of components) { await loadComponent(comp.name, comp.target); performanceMetrics.componentsLoaded++; }
+            const components = [
+                { name: "navbar-product", target: "navbarComponent" },
+                { name: "footer",         target: "footerComponent" }
+            ];
+            for (const comp of components) {
+                await loadComponent(comp.name, comp.target);
+                performanceMetrics.componentsLoaded++;
+            }
             initializePageFunctions();
         }
+
         async function loadComponent(name, targetId) {
             try {
-                const htmlResp = await fetch(`${name}.html`); const htmlText = await htmlResp.text();
-                const tempDiv = document.createElement('div'); tempDiv.innerHTML = htmlText;
-                const targetElement = document.getElementById(targetId); if (!targetElement) return;
+                const htmlResp = await fetch(`${name}.html`);
+                const htmlText = await htmlResp.text();
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlText;
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
                 const styles = tempDiv.querySelectorAll('style');
-                styles.forEach(style => { const s = document.createElement('style'); s.innerHTML = style.innerHTML; s.setAttribute('data-component', name); document.head.appendChild(s); });
-                const scripts = tempDiv.querySelectorAll('script'); const scriptContents = Array.from(scripts).map(s => s.innerHTML);
-                scripts.forEach(s => s.remove()); styles.forEach(s => s.remove());
+                styles.forEach(style => {
+                    const s = document.createElement('style');
+                    s.innerHTML = style.innerHTML;
+                    s.setAttribute('data-component', name);
+                    document.head.appendChild(s);
+                });
+                const scripts = tempDiv.querySelectorAll('script');
+                const scriptContents = Array.from(scripts).map(s => s.innerHTML);
+                scripts.forEach(s => s.remove());
+                styles.forEach(s => s.remove());
                 tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]').forEach(l => l.remove());
                 targetElement.innerHTML = tempDiv.innerHTML;
                 await new Promise(resolve => setTimeout(resolve, 50));
-                scriptContents.forEach(sc => { if (sc.trim()) { try { new Function(sc)(); } catch(e) { console.error(e); } } });
+                scriptContents.forEach(sc => {
+                    if (sc.trim()) { try { new Function(sc)(); } catch(e) { console.error(e); } }
+                });
             } catch(err) { console.error(`Error loading ${name}:`, err); }
         }
+
         function initializePageFunctions() {
             const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
             const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animate-on-scroll'); observer.unobserve(entry.target); } });
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
             }, observerOptions);
-            const header = document.querySelector('.page-header'); if (header) observer.observe(header);
-            document.querySelectorAll('.product-card').forEach((card, i) => { card.style.animationDelay = `${i * 0.06}s`; observer.observe(card); });
-            const aboutSection = document.querySelector('.about-section'); if (aboutSection) observer.observe(aboutSection);
-            document.querySelectorAll('.faq-item').forEach((item, i) => { item.style.animationDelay = `${i * 0.08}s`; observer.observe(item); });
-            document.querySelectorAll('.process-step').forEach((step, i) => { step.style.animationDelay = `${i * 0.05}s`; observer.observe(step); });
+
+            const header = document.querySelector('.page-header');
+            if (header) observer.observe(header);
+
+            document.querySelectorAll('.gallery-card').forEach((card, i) => {
+                card.style.animationDelay = `${i * 0.06}s`;
+                observer.observe(card);
+            });
+
+            const aboutSection = document.querySelector('.about-section');
+            if (aboutSection) observer.observe(aboutSection);
+
+            document.querySelectorAll('.faq-item').forEach((item, i) => {
+                item.style.animationDelay = `${i * 0.08}s`;
+                observer.observe(item);
+            });
+
+            document.querySelectorAll('.process-step').forEach((step, i) => {
+                step.style.animationDelay = `${i * 0.05}s`;
+                observer.observe(step);
+            });
         }
-        window.addEventListener('load', function() { console.log('🚀 Aquaculture Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms'); });
+
+        window.addEventListener('load', function() {
+            console.log('🚀 Aquaculture Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
+        });
     </script>
 </body>
 </html>
