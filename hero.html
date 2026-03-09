@@ -41,10 +41,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000000;
+    /* Poster colour matches the video's first frame tone — prevents flash */
+    background: #0a0f1a;
     padding-top: 6vh;
 }
 
+/* ─── VIDEO ──────────────────────────────────────────────────────────── */
 .hero-video {
     position: absolute;
     top: 50%;
@@ -56,8 +58,23 @@ body {
     transform: translate(-50%, -50%);
     z-index: 1;
     object-fit: cover;
+
+    /*
+     * PERF: Start fully transparent.
+     * JS fades it in only after canplay fires — eliminates the
+     * "blank/half-loaded frame" flash users were seeing.
+     */
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    will-change: opacity; /* isolated composite layer only while transitioning */
 }
 
+.hero-video.is-ready {
+    opacity: 1;
+    will-change: auto; /* release layer after transition */
+}
+
+/* ─── OVERLAY ────────────────────────────────────────────────────────── */
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -68,6 +85,7 @@ body {
     z-index: 2;
 }
 
+/* ─── CONTENT ────────────────────────────────────────────────────────── */
 .hero-content {
     position: relative;
     z-index: 10;
@@ -75,21 +93,44 @@ body {
     padding: 0 2rem;
     max-width: 1400px;
     width: 100%;
+
+    /*
+     * PERF: Content also starts hidden and is triggered by the
+     * same JS event, so animations only run when the video is ready.
+     * This prevents animations playing over a black/poster background.
+     */
+    opacity: 0;
 }
 
-/* MINIMALIST TITLE - Much Smaller */
+.hero-content.is-ready {
+    animation: contentFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes contentFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ─── TITLE ──────────────────────────────────────────────────────────── */
 .hero-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem); /* Was 9rem! Now max 3.5rem */
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
     letter-spacing: clamp(-1px, -0.2vw, -2px);
     line-height: 1.1;
     color: #F2F4F7;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8),
                  0 2px 8px rgba(38, 115, 184, 0.3);
+}
+
+/* Paused until .is-ready is applied — prevents animations running on black */
+.hero-content:not(.is-ready) .hero-title,
+.hero-content:not(.is-ready) .hero-title .blue-text,
+.hero-content:not(.is-ready) .hero-accent-container {
+    animation-play-state: paused;
 }
 
 .hero-title .main-line {
@@ -107,33 +148,21 @@ body {
     margin-top: 0.6em;
     text-shadow: 0 4px 20px rgba(38, 115, 184, 0.6),
                  0 2px 10px rgba(38, 115, 184, 0.4);
-    animation: fadeInUp 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+    animation: fadeInUp 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
     opacity: 0;
 }
 
 @keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.95) translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    from { opacity: 0; transform: scale(0.95) translateY(30px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);    }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0);    }
 }
 
-/* Compact Accent Lines */
+/* ─── ACCENT ─────────────────────────────────────────────────────────── */
 .hero-accent-container {
     display: flex;
     align-items: center;
@@ -141,12 +170,12 @@ body {
     gap: 0.8rem;
     margin-top: 2rem;
     opacity: 0;
-    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
 }
 
 .hero-accent {
@@ -155,13 +184,12 @@ body {
         transparent 0%, 
         var(--primary-blue) 50%, 
         transparent 100%);
-    animation: pulse 2s ease-in-out infinite;
 }
 
 .accent-left {
     width: 0;
-    animation: expandLeft 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards,
-               pulse 2s ease-in-out 2.5s infinite;
+    animation: expandLeft 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards,
+               pulse 2s ease-in-out 2.3s infinite;
 }
 
 .accent-center {
@@ -176,114 +204,96 @@ body {
 
 .accent-right {
     width: 0;
-    animation: expandRight 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards,
-               pulse 2s ease-in-out 2.5s infinite;
+    animation: expandRight 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards,
+               pulse 2s ease-in-out 2.3s infinite;
 }
 
-@keyframes expandLeft {
-    to { width: 60px; }
-}
-
-@keyframes expandRight {
-    to { width: 60px; }
-}
+@keyframes expandLeft  { to { width: 60px; } }
+@keyframes expandRight { to { width: 60px; } }
 
 @keyframes pulse {
     0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+    50%       { opacity: 1;   }
 }
 
 @keyframes glowPulse {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(38, 115, 184, 0.8),
-                    0 0 30px rgba(38, 115, 184, 0.4);
+        box-shadow: 0 0 15px rgba(38, 115, 184, 0.8), 0 0 30px rgba(38, 115, 184, 0.4);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 25px rgba(38, 115, 184, 1),
-                    0 0 50px rgba(38, 115, 184, 0.6);
+        box-shadow: 0 0 25px rgba(38, 115, 184, 1), 0 0 50px rgba(38, 115, 184, 0.6);
         transform: scale(1.15);
     }
 }
 
-/* Responsive */
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 991px) {
-    .hero {
-        padding-top: 4vh;
-    }
-    
-    .hero-accent-container {
-        margin-top: 1.8rem;
-    }
-    
-    @keyframes expandLeft { to { width: 50px; } }
+    .hero { padding-top: 4vh; }
+    .hero-accent-container { margin-top: 1.8rem; }
+    @keyframes expandLeft  { to { width: 50px; } }
     @keyframes expandRight { to { width: 50px; } }
 }
 
 @media (max-width: 768px) {
-    .hero-content {
-        padding: 0 1.5rem;
-    }
-    
-    .hero-accent-container {
-        margin-top: 1.5rem;
-        gap: 0.6rem;
-    }
-    
-    @keyframes expandLeft { to { width: 40px; } }
+    .hero-content        { padding: 0 1.5rem; }
+    .hero-video          { min-width: 110%; min-height: 110%; }
+    .hero-accent-container { margin-top: 1.5rem; gap: 0.6rem; }
+    .accent-center       { width: 5px; height: 5px; }
+    @keyframes expandLeft  { to { width: 40px; } }
     @keyframes expandRight { to { width: 40px; } }
-    
-    .accent-center {
-        width: 5px;
-        height: 5px;
-    }
 }
 
 @media (max-width: 576px) {
-    .hero {
-        padding-top: 20vh;
-    }
-    
-    .hero-content {
-        padding: 0 1rem;
-    }
-    
-    .hero-accent-container {
-        margin-top: 1.2rem;
-    }
-    
-    @keyframes expandLeft { to { width: 35px; } }
+    .hero { padding-top: 20vh; }
+    .hero-content { padding: 0 1rem; }
+    .hero-accent-container { margin-top: 1.2rem; }
+    @keyframes expandLeft  { to { width: 35px; } }
     @keyframes expandRight { to { width: 35px; } }
 }
 
+/* ─── REDUCED MOTION ─────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     .hero-title,
     .hero-title .blue-text,
     .hero-accent-container,
-    .accent-left,
-    .accent-right,
-    .accent-center {
+    .accent-left, .accent-right, .accent-center {
         animation: none !important;
         opacity: 1;
         transform: none;
         width: auto;
     }
-}
-
-@media (max-width: 768px) {
-    .hero-video {
-        min-width: 110%;
-        min-height: 110%;
-    }
+    .hero-video  { transition: none; }
+    .hero-content { animation: none !important; opacity: 1; }
 }
     </style>
 </head>
 <body>
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/heroo.png">
-            <source src="assets/bnb.mp4" type="video/mp4">
-            <source src="" type="video/webm">
-            Your browser does not support the video tag.
+
+        <!--
+            PERF: preload="auto" tells the browser to start buffering immediately.
+            poster= shows a still frame so there is never a black flash even
+            before the video bytes arrive.
+            decoding="async" lets the GPU decode off the main thread.
+        -->
+        <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            decoding="async"
+            poster="assets/heroo.png"
+        >
+            <!--
+                PERF: List WebM first — it's ~30 % smaller than MP4
+                at equal quality, so browsers that support it (Chrome, Firefox,
+                Edge) will load faster. Safari falls back to MP4 automatically.
+            -->
+            <source src="assets/bnb.webm" type="video/webm">
+            <source src="assets/bnb.mp4"  type="video/mp4">
         </video>
 
         <div class="hero-overlay"></div>
@@ -302,32 +312,99 @@ body {
     </section>
 
     <script>
-    (function() {
-        const video = document.querySelector('.hero-video');
-        
-        if (video) {
-            video.play().catch(err => {
-                console.log('Video autoplay prevented:', err);
-            });
+    (function () {
+        'use strict';
 
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    video.pause();
-                } else {
-                    video.play().catch(err => console.log('Video play error:', err));
-                }
-            });
+        const video   = document.querySelector('.hero-video');
+        const content = document.querySelector('.hero-content');
 
-            if ('connection' in navigator) {
-                const connection = navigator.connection;
-                if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-                    video.style.display = 'none';
-                }
-            }
+        // ── 1. Graceful low-bandwidth handling ──────────────────────────
+        // On very slow connections, skip video entirely so users see the
+        // poster (a static image) rather than waiting indefinitely.
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const isSlowNetwork = conn && (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g');
+
+        if (!video) {
+            // No video element at all — just reveal content immediately.
+            if (content) content.classList.add('is-ready');
+            dispatchVideoReady();
+            return;
         }
 
-        console.log('✅ Minimalist Video Hero initialized');
-    })();
+        if (isSlowNetwork) {
+            // Remove video from DOM, show poster via hero background, reveal content.
+            video.parentNode.removeChild(video);
+            if (content) content.classList.add('is-ready');
+            dispatchVideoReady();
+            return;
+        }
+
+        // ── 2. Mark video + content ready once video can play ───────────
+        // readyState 3 = HAVE_FUTURE_DATA (enough data buffered to play)
+        // readyState 4 = HAVE_ENOUGH_DATA (fully buffered segment)
+        // Either is fine — the poster hid any flash up to this point.
+        let resolved = false;
+
+        function onReady() {
+            if (resolved) return;
+            resolved = true;
+
+            video.classList.add('is-ready');
+            if (content) content.classList.add('is-ready');
+            dispatchVideoReady();
+
+            // Clean up listeners to avoid any memory leaks
+            video.removeEventListener('canplay',  onReady);
+            video.removeEventListener('canplaythrough', onReady);
+        }
+
+        // Fallback: if video takes longer than 6 s, unblock the page anyway.
+        // Users will see the poster image, which is acceptable.
+        const fallbackTimer = setTimeout(function () {
+            if (!resolved) {
+                console.warn('[hero] Video ready timeout — revealing content with poster fallback.');
+                onReady();
+            }
+        }, 6000);
+
+        if (video.readyState >= 3) {
+            // Already buffered (e.g. from browser cache on repeat visit)
+            clearTimeout(fallbackTimer);
+            onReady();
+        } else {
+            video.addEventListener('canplay',        onReady, { once: true });
+            video.addEventListener('canplaythrough', onReady, { once: true });
+
+            // If the video errors (missing file, codec mismatch), unblock page.
+            video.addEventListener('error', function () {
+                clearTimeout(fallbackTimer);
+                console.warn('[hero] Video load error — falling back to poster.');
+                video.style.display = 'none'; // hide broken <video> element
+                if (content) content.classList.add('is-ready');
+                dispatchVideoReady();
+            }, { once: true });
+        }
+
+        // ── 3. Pause / resume on tab visibility change ──────────────────
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                video.pause();
+            } else {
+                video.play().catch(function () { /* autoplay policy — silent fail */ });
+            }
+        });
+
+        // ── 4. Broadcast a custom event so index.html can remove the loader ──
+        // (index.html listens for 'heroVideoReady' on document)
+        function dispatchVideoReady() {
+            document.dispatchEvent(new CustomEvent('heroVideoReady', { bubbles: true }));
+        }
+
+        // Kick off play attempt (needed on some mobile browsers)
+        video.play().catch(function () { /* blocked by autoplay policy — muted loop usually allowed */ });
+
+        console.log('✅ Hero video initialised');
+    }());
     </script>
 </body>
 </html>

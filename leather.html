@@ -4,725 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Premium Finished Leather - BNB Enterprises</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
     <style>
-/* ========== COLOR SYSTEM ========== */
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-}
+:root{--blue:#2673B8;--bg:#eeeeee;--surface:#F0F3F7;--dark:#1A2332;--body:#5A6B7F;--border:#D4DCE6;--border-lt:#E3E9F0;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;touch-action:pan-y pinch-zoom;}
+.page-loader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--surface);z-index:9999;gap:10px;transition:opacity .5s,visibility .5s;}
+.loader-logo{width:clamp(50px,8vw,70px);height:clamp(50px,8vw,70px);object-fit:contain;animation:lp 2s ease-in-out infinite;}
+@keyframes lp{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.05);opacity:.85;}}
+.loader-text{font-family:'Montserrat',sans-serif;font-size:clamp(.75rem,1.2vw,.95rem);font-weight:700;letter-spacing:2px;color:var(--dark);}
+.loader-sub{font-family:'Raleway',sans-serif;font-size:clamp(.5rem,.8vw,.65rem);font-weight:500;letter-spacing:1.2px;color:var(--blue);text-transform:uppercase;}
+body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
+.site-wrapper{opacity:0;transition:opacity .5s;}body.loaded .site-wrapper{opacity:1;}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* HERO */
+.page-hero{background:var(--dark);padding:clamp(3rem,5vw,4.5rem) 0 clamp(2.5rem,4vw,3.5rem);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(38,115,184,.15);border-radius:50%;pointer-events:none;}
+.page-hero::after{content:'';position:absolute;bottom:-80px;left:10%;width:200px;height:200px;border:1px solid rgba(38,115,184,.1);border-radius:50%;pointer-events:none;}
+.hero-inner{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);position:relative;z-index:2;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;}
+.back-btn i{font-size:.65rem;transition:transform .3s;}
+.back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
+.back-btn:hover i{transform:translateX(-3px);}
+.hero-tag{font-family:'Raleway',sans-serif;font-size:clamp(.6rem,.75vw,.65rem);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:block;}
+.page-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:white;line-height:1.05;margin-bottom:1rem;}
+.hero-desc{font-family:'Raleway',sans-serif;font-size:clamp(.8rem,.95vw,.9rem);font-weight:500;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;}
+.title-accent{display:block;width:48px;height:3px;background:var(--blue);margin-top:1.2rem;border-radius:1px;}
 
-html { scroll-behavior: smooth; font-size: 16px; }
+/* CONTENT */
+.content-section{padding:clamp(2.5rem,4vw,3.5rem) 0 clamp(2rem,3vw,3rem);}
+.container{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);}
+.inner{max-width:1200px;}
+.sect-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,2vw,1.6rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);line-height:1.3;margin-bottom:clamp(.8rem,1.2vw,1rem);}
+.para{font-family:'Raleway',sans-serif;font-size:clamp(.78rem,.88vw,.82rem);font-weight:400;line-height:1.7;color:var(--body);margin-bottom:.9rem;text-align:justify;}
+.divider{width:100%;height:1px;background:var(--border);margin:clamp(1.8rem,2.5vw,2.2rem) 0;}
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    touch-action: pan-y pinch-zoom;
-}
+/* SPEC GRID */
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
+.spec-card{background:white;border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;border-left:3px solid var(--blue);}
+.spec-card h4{font-family:'Montserrat',sans-serif;font-size:clamp(.68rem,.82vw,.73rem);font-weight:800;color:var(--dark);letter-spacing:.3px;margin-bottom:.3rem;text-transform:uppercase;}
+.spec-card p{font-family:'Raleway',sans-serif;font-size:clamp(.66rem,.76vw,.71rem);font-weight:500;color:var(--body);line-height:1.5;}
 
-/* ========== PAGE LOADER ========== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-light);
-    z-index: 9999;
-    gap: 10px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
+/* BULLETS */
+.block-title{font-family:'Montserrat',sans-serif;font-size:clamp(.9rem,1.1vw,1rem);font-weight:800;color:var(--dark);margin-bottom:.7rem;}
+.bullets{list-style:none;padding:0;}
+.bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
+.bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
 
-.loader-logo {
-    width: clamp(50px, 8vw, 70px);
-    height: clamp(50px, 8vw, 70px);
-    object-fit: contain;
-    animation: pulse 2s ease-in-out infinite;
-}
+/* FAQ */
+.faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
+.faq-head{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,1.6vw,1.3rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);margin-bottom:clamp(1.2rem,2vw,1.5rem);}
+.faq-item{margin-bottom:clamp(1.2rem,2vw,1.5rem);}
+.faq-q{font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,.95vw,.88rem);font-weight:700;color:var(--dark);margin-bottom:.45rem;line-height:1.4;}
+.faq-a{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:400;line-height:1.65;color:var(--body);padding-left:.3rem;text-align:justify;}
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.85; }
-}
+/* CONTACT */
+.contact-block{margin-top:clamp(2rem,3vw,2.5rem);padding:clamp(1.2rem,1.8vw,1.5rem);background:white;border-radius:6px;border:1px solid var(--border);border-left:3px solid var(--blue);}
+.contact-block h3{font-family:'Montserrat',sans-serif;font-size:clamp(.95rem,1.2vw,1.08rem);font-weight:800;color:var(--dark);margin-bottom:clamp(.8rem,1.1vw,1rem);}
+.contact-block p{font-family:'Raleway',sans-serif;font-size:clamp(.76rem,.88vw,.81rem);line-height:1.65;color:var(--body);margin-bottom:.8rem;}
+.crow{font-family:'Raleway',sans-serif;font-size:clamp(.74rem,.86vw,.79rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.4rem;}
+.crow strong{font-weight:700;color:var(--dark);margin-right:.3rem;}
+.crow a{color:var(--blue);text-decoration:none;}
 
-.loader-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
-    font-weight: 700;
-    letter-spacing: clamp(1.5px, 0.4vw, 2.5px);
-    color: var(--text-primary);
-}
-
-.loader-subtext {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.5rem, 0.8vw, 0.65rem);
-    font-weight: 500;
-    letter-spacing: clamp(0.8px, 0.25vw, 1.5px);
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
-
-body.loaded .page-loader { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* ========== SITE WRAPPER ========== */
-.site-wrapper { opacity: 0; transition: opacity 0.5s ease; }
-body.loaded .site-wrapper { opacity: 1; }
-
-/* ========== HERO BANNER ========== */
-.hero-banner {
-    position: relative;
-    width: 100%;
-    height: clamp(220px, 38vw, 520px);
-    overflow: hidden;
-    background: #1a1a1a;
-    display: block;
-}
-
-.hero-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hero-banner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(26, 35, 50, 0.08) 0%,
-        rgba(26, 35, 50, 0.04) 40%,
-        rgba(26, 35, 50, 0.18) 100%
-    );
-    pointer-events: none;
-}
-
-/* ========== PRODUCTS SECTION ========== */
-.products-section {
-    background: var(--background-base);
-    padding: clamp(2rem, 3vw, 2.8rem) 0 clamp(1.5rem, 2.5vw, 2.5rem);
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 3vw, 2rem);
-}
-
-/* HEADER */
-.page-header { margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); }
-
-.back-button {
-    position: absolute;
-    bottom: clamp(0.9rem, 2.2vw, 1.4rem);
-    left: clamp(1rem, 3vw, 2rem);
-    z-index: 20;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: clamp(0.5rem, 0.7vw, 0.6rem) clamp(0.85rem, 1.3vw, 1.05rem);
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    color: var(--text-primary);
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.6rem, 0.75vw, 0.65rem);
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    touch-action: manipulation;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
-}
-
-.back-button i { font-size: 0.7rem; transition: transform 0.3s ease; }
-
-.back-button:hover {
-    background: var(--text-primary);
-    color: #fff;
-    border-color: var(--text-primary);
-    transform: translateX(-3px);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
-}
-
-.back-button:hover i { transform: translateX(-3px); }
-
-.page-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
-    font-weight: 900;
-    letter-spacing: -1px;
-    color: var(--text-primary);
-    line-height: 1.1;
-    margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem);
-}
-
-/* RESULTS BAR */
-.results-bar {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: clamp(0.8rem, 1vw, 1rem) 0;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: clamp(1.5rem, 2vw, 2rem);
-}
-
-.results-count {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    color: var(--text-body);
-    opacity: 0.8;
-}
-
-.results-count span { color: var(--primary-blue); font-weight: 700; }
-
-/* ========== GALLERY GRID ========== */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(0.75rem, 1.4vw, 1.2rem);
-    margin-bottom: 2.5rem;
-}
-
-/* 3 columns on tablet */
-@media (max-width: 1199px) {
-    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* 2 columns on small tablet / large mobile */
-@media (max-width: 767px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: clamp(0.6rem, 2.5vw, 0.9rem);
-    }
-}
-
-/* still 2 columns on small phones */
-@media (max-width: 400px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.6rem;
-    }
-}
-
-/* ========== GALLERY CARD ========== */
-.gallery-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    aspect-ratio: 1 / 1;
-}
-
-.gallery-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-    border-radius: 6px 6px 0 0;
-}
-
-.gallery-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 36px rgba(26, 35, 50, 0.13);
-    border-color: var(--primary-blue);
-}
-
-.gallery-card:hover::before { transform: scaleX(1); }
-
-.gallery-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gallery-card:hover img { transform: scale(1.06); }
-
-/* ========== ABOUT SECTION ========== */
-.about-section {
-    background: white;
-    padding: clamp(2rem, 3vw, 2.8rem) 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.about-content { max-width: 1200px; margin: 0 auto; }
-
-.about-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
-}
-
-.about-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.75rem, 0.85vw, 0.8rem);
-    font-weight: 400;
-    line-height: 1.65;
-    color: var(--text-body);
-    margin-bottom: 0.8rem;
-    text-align: justify;
-}
-
-.benefits-section { margin-top: clamp(1.2rem, 2vw, 1.6rem); }
-
-.benefits-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 0.7rem;
-}
-
-.benefits-list { list-style: none; padding-left: 0; }
-
-.benefits-list li {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin-bottom: 0.45rem;
-    padding-left: 1.2rem;
-    position: relative;
-}
-
-.benefits-list li::before {
-    content: '•';
-    color: var(--primary-blue);
-    font-weight: 900;
-    font-size: 1.1rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
-
-/* QUALITY SPECS GRID */
-.specs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: clamp(1.2rem, 2vw, 1.6rem) 0;
-}
-
-.spec-card {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-    border-left: 3px solid var(--primary-blue);
-}
-
-.spec-card h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.7rem, 0.85vw, 0.75rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: 0.3px;
-    margin-bottom: 0.3rem;
-    text-transform: uppercase;
-}
-
-.spec-card p {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.68rem, 0.78vw, 0.73rem);
-    font-weight: 500;
-    color: var(--text-body);
-    line-height: 1.5;
-}
-
-/* ========== FAQ SECTION ========== */
-.faq-section { margin-top: clamp(2rem, 3vw, 2.5rem); }
-
-.faq-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    color: var(--text-primary);
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
-}
-
-.faq-item { margin-bottom: clamp(1.2rem, 2vw, 1.5rem); }
-
-.faq-question {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.82rem, 0.95vw, 0.88rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.45rem;
-    line-height: 1.4;
-}
-
-.faq-answer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(0.72rem, 0.82vw, 0.77rem);
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-body);
-    padding-left: 0.3rem;
-    text-align: justify;
-}
-
-/* ========== RESPONSIVE SPECS ========== */
-@media (max-width: 991px) {
-    .specs-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 576px) {
-    .specs-grid { grid-template-columns: 1fr; }
-}
-
-/* SCROLL ANIMATIONS */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Hero subtle ken-burns on load */
-@keyframes heroKenBurns {
-    from { transform: scale(1.04); }
-    to   { transform: scale(1); }
-}
-
-body.loaded .hero-banner img {
-    animation: heroKenBurns 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-#footerComponent { font-family: 'Montserrat', sans-serif; width: 100%; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
+@media(max-width:991px){.spec-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:576px){.spec-grid{grid-template-columns:1fr;}}
+#footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
+    <div class="page-loader" role="status" aria-live="polite">
         <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
         <div class="loader-text">BNB ENTERPRISES</div>
-        <div class="loader-subtext">Loading...</div>
+        <div class="loader-sub">Loading...</div>
     </div>
 
     <div id="navbarComponent"></div>
 
-    <!-- Site Wrapper -->
     <div class="site-wrapper">
 
-        <!-- ========== HERO BANNER ========== -->
-        <div class="hero-banner">
-            <img
-                src="assets/BNB-leathers-export.webp"
-                alt="BNB Enterprises Premium Finished Leather"
-                loading="eager"
-                decoding="async"
-            >
-            <button class="back-button" onclick="window.history.back()">
-                <i class="fas fa-arrow-left"></i>
-                Back
-            </button>
+        <div class="page-hero">
+            <div class="hero-inner">
+                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                <span class="hero-tag">Global Exports — Leather</span>
+                <h1 class="page-title">Premium Finished Leather</h1>
+                <p class="hero-desc">Finished goat and sheep leather skins — nubuck, glaze, and mild finishes — exported to China, Vietnam, and global markets.</p>
+                <span class="title-accent"></span>
+            </div>
         </div>
 
-        <!-- ========== PRODUCTS SECTION ========== -->
-        <section class="products-section">
+        <section class="content-section">
             <div class="container">
+                <div class="inner">
 
-                <!-- PAGE HEADER -->
-                <div class="page-header">
-                    <h1 class="page-title">Premium Finished Leather</h1>
+                    <h2 class="sect-title">Premium Finished Leather Exports by BNB Enterprises</h2>
+                    <p class="para">BNB Enterprises is an India-based leather export company specializing in finished goat and sheep leather skins for the global market. Rooted in a thirty-year-old family-owned trading business, we bring decades of sourcing expertise and industry knowledge to every export shipment. We source high-quality wet blue leather from trusted, carefully vetted suppliers across India and process it into premium finished leather skins at our production facility — delivering consistent quality, reliable supply, and competitive pricing to manufacturers in China, Vietnam, and other international markets.</p>
+                    <p class="para">Our finished leather skins are used by leading manufacturers worldwide to produce footwear, bags, garments, upholstery, and a wide range of premium leather goods. Our production process combines skilled craftsmanship with modern stainless steel drum processing technology, ensuring uniform treatment, superior chemical penetration, and consistent batch-to-batch results. Whether you require nubuck, glaze, or mild finishes, our team works closely with each customer to match the leather specification to the end product requirements.</p>
+                    <p class="para">Every batch leaving our facility undergoes strict quality checks covering thickness and substance control, softness and hand feel, surface finish and appearance, tensile strength and durability, and complete color uniformity. Our leather skins are supplied ready for direct use in manufacturing, eliminating the need for additional processing at your end.</p>
 
-                
-                </div>
+                    <div class="divider"></div>
 
-                <!-- GALLERY GRID — images only, no links, no titles -->
-                <div class="gallery-grid" id="galleryGrid">
-
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-5.webp" alt="Finished Goat Leather" loading="lazy" decoding="async">
+                    <div class="spec-grid">
+                        <div class="spec-card"><h4>Thickness Control</h4><p>Precise substance control ensuring uniform thickness across every batch for consistent manufacturing results.</p></div>
+                        <div class="spec-card"><h4>Softness &amp; Hand Feel</h4><p>Carefully controlled processing for optimal softness, pliability, and premium hand feel matching end-use requirements.</p></div>
+                        <div class="spec-card"><h4>Surface Finish</h4><p>Nubuck, glaze, and mild finish options crafted with skilled workmanship and modern machinery.</p></div>
+                        <div class="spec-card"><h4>Color Uniformity</h4><p>Strict color consistency checks across every skin in each batch, ensuring uniformity for seamless production lines.</p></div>
+                        <div class="spec-card"><h4>Strength &amp; Durability</h4><p>Tensile strength and durability tested to meet global standards for footwear, bags, garments, and upholstery.</p></div>
+                        <div class="spec-card"><h4>Export Readiness</h4><p>Fully finished, ready-to-use skins packed and prepared to meet international shipping and customs requirements.</p></div>
                     </div>
 
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-2.webp" alt="Finished Sheep Leather" loading="lazy" decoding="async">
-                    </div>
+                    <div class="divider"></div>
 
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-6.webp" alt="Nubuck Finish Leather" loading="lazy" decoding="async">
-                    </div>
+                    <h3 class="block-title">Why Choose BNB Enterprises for Premium Finished Leather</h3>
+                    <ul class="bullets">
+                        <li>Specialized in goat and sheep leather with decades of family business expertise in global trade</li>
+                        <li>High-quality stainless steel drum processing for uniform chemical penetration and consistent results</li>
+                        <li>Multiple finishes available: Nubuck, Glaze, and Mild finish tailored to customer requirements</li>
+                        <li>Rigorous quality control — thickness, softness, color, strength, and surface checked on every batch</li>
+                        <li>Leather skins sourced from carefully selected and trusted wet blue suppliers across India</li>
+                        <li>Skilled artisan workmanship combined with modern machinery for superior product quality</li>
+                        <li>Reliable supply chain with consistent volume capacity to meet large manufacturer demands</li>
+                        <li>Competitive export pricing with integrated logistics experience for China, Vietnam, and global markets</li>
+                        <li>Ready-to-use finished leather — no additional processing required at customer facility</li>
+                        <li>Quality-focused organization with strict batch-to-batch consistency standards</li>
+                    </ul>
 
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-4.webp" alt="Glaze Finish Leather" loading="lazy" decoding="async">
-                    </div>
-
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-3.webp" alt="Mild Finish Leather" loading="lazy" decoding="async">
-                    </div>
-
-                    <div class="gallery-card">
-                        <img src="assets/leather/BNB-leather-export-1.webp" alt="Wet Blue Goat Leather" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT SECTION -->
-        <section class="about-section">
-            <div class="container">
-                <div class="about-content">
-                    <h2 class="about-title">Premium Finished Leather Exports by BNB Enterprises</h2>
-
-                    <p class="about-text">
-                        BNB Enterprises is an India-based leather export company specializing in finished goat and sheep leather skins for the global market. Rooted in a thirty-year-old family-owned trading business, we bring decades of sourcing expertise and industry knowledge to every export shipment. We source high-quality wet blue leather from trusted, carefully vetted suppliers across India and process it into premium finished leather skins at our production facility — delivering consistent quality, reliable supply, and competitive pricing to manufacturers in China, Vietnam, and other international markets.
-                    </p>
-
-                    <p class="about-text">
-                        Our finished leather skins are used by leading manufacturers worldwide to produce footwear, bags, garments, upholstery, and a wide range of premium leather goods. Our production process combines skilled craftsmanship with modern stainless steel drum processing technology, ensuring uniform treatment, superior chemical penetration, and consistent batch-to-batch results. Whether you require nubuck, glaze, or mild finishes, our team works closely with each customer to match the leather specification to the end product requirements.
-                    </p>
-
-                    <p class="about-text">
-                        Every batch leaving our facility undergoes strict quality checks covering thickness and substance control, softness and hand feel, surface finish and appearance, tensile strength and durability, and complete color uniformity. Our leather skins are supplied ready for direct use in manufacturing, eliminating the need for additional processing at your end.
-                    </p>
-
-                    <!-- QUALITY SPECS GRID -->
-                    <div class="specs-grid">
-                        <div class="spec-card">
-                            <h4>Thickness Control</h4>
-                            <p>Precise substance control ensuring uniform thickness across every batch for consistent manufacturing results.</p>
-                        </div>
-                        <div class="spec-card">
-                            <h4>Softness & Hand Feel</h4>
-                            <p>Carefully controlled processing for optimal softness, pliability, and premium hand feel matching end-use requirements.</p>
-                        </div>
-                        <div class="spec-card">
-                            <h4>Surface Finish</h4>
-                            <p>Nubuck, glaze, and mild finish options crafted with skilled workmanship and modern machinery.</p>
-                        </div>
-                        <div class="spec-card">
-                            <h4>Color Uniformity</h4>
-                            <p>Strict color consistency checks across every skin in each batch, ensuring uniformity for seamless production lines.</p>
-                        </div>
-                        <div class="spec-card">
-                            <h4>Strength & Durability</h4>
-                            <p>Tensile strength and durability tested to meet global standards for footwear, bags, garments, and upholstery.</p>
-                        </div>
-                        <div class="spec-card">
-                            <h4>Export Readiness</h4>
-                            <p>Fully finished, ready-to-use skins packed and prepared to meet international shipping and customs requirements.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefits-section">
-                        <h3 class="benefits-title">Why Choose BNB Enterprises for Premium Finished Leather</h3>
-                        <ul class="benefits-list">
-                            <li>Specialized in goat and sheep leather with decades of family business expertise in global trade</li>
-                            <li>High-quality stainless steel drum processing for uniform chemical penetration and consistent results</li>
-                            <li>Multiple finishes available: Nubuck, Glaze, and Mild finish tailored to customer requirements</li>
-                            <li>Rigorous quality control — thickness, softness, color, strength, and surface checked on every batch</li>
-                            <li>Leather skins sourced from carefully selected and trusted wet blue suppliers across India</li>
-                            <li>Skilled artisan workmanship combined with modern machinery for superior product quality</li>
-                            <li>Reliable supply chain with consistent volume capacity to meet large manufacturer demands</li>
-                            <li>Competitive export pricing with integrated logistics experience for China, Vietnam, and global markets</li>
-                            <li>Ready-to-use finished leather — no additional processing required at customer facility</li>
-                            <li>Quality-focused organization with strict batch-to-batch consistency standards</li>
-                        </ul>
-                    </div>
-
-                    <div class="faq-section">
-                        <h3 class="faq-title">Frequently Asked Questions About Premium Finished Leather</h3>
-
+                    <div class="faq-wrap">
+                        <h3 class="faq-head">Frequently Asked Questions About Premium Finished Leather</h3>
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.1 What types of leather does BNB Enterprises specialize in?</h4>
-                            <p class="faq-answer">
-                                Ans. BNB Enterprises specializes in finished goat and sheep leather skins for export. We source high-quality wet blue goat and sheep skins from trusted suppliers across India and process them into finished leather at our facility. Our expertise spans nubuck, glaze, and mild finishes, making our leather suitable for footwear, bags, garments, gloves, upholstery, and various other leather goods. We can tailor finish specifications to match exact customer and end-product requirements.
-                            </p>
+                            <h4 class="faq-q">Q.1 What types of leather does BNB Enterprises specialize in?</h4>
+                            <p class="faq-a">Ans. BNB Enterprises specializes in finished goat and sheep leather skins for export. We source high-quality wet blue goat and sheep skins from trusted suppliers across India and process them into finished leather at our facility. Our expertise spans nubuck, glaze, and mild finishes, making our leather suitable for footwear, bags, garments, gloves, upholstery, and various other leather goods. We can tailor finish specifications to match exact customer and end-product requirements.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.2 What finishes does BNB Enterprises offer for leather skins?</h4>
-                            <p class="faq-answer">
-                                Ans. We offer three primary finishes: Nubuck finish provides a velvet-like buffed surface with a soft texture, widely used in premium footwear and accessories. Glaze finish delivers a highly polished, smooth, and shiny surface ideal for high-end bags, garments, and fashion leather goods. Mild finish offers a balanced, natural-looking surface with moderate sheen suitable for versatile everyday manufacturing needs. Each finish is produced using our skilled workmanship and modern stainless steel drum technology to ensure complete uniformity across every batch.
-                            </p>
+                            <h4 class="faq-q">Q.2 What finishes does BNB Enterprises offer for leather skins?</h4>
+                            <p class="faq-a">Ans. We offer three primary finishes: Nubuck finish provides a velvet-like buffed surface with a soft texture, widely used in premium footwear and accessories. Glaze finish delivers a highly polished, smooth, and shiny surface ideal for high-end bags, garments, and fashion leather goods. Mild finish offers a balanced, natural-looking surface with moderate sheen suitable for versatile everyday manufacturing needs. Each finish is produced using our skilled workmanship and modern stainless steel drum technology to ensure complete uniformity across every batch.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.3 What quality control measures does BNB Enterprises follow?</h4>
-                            <p class="faq-answer">
-                                Ans. Every batch of finished leather at BNB Enterprises undergoes strict and comprehensive quality control across five key parameters: Thickness and substance control ensuring uniform leather weight across all skins; Softness and hand feel assessment matching customer-specified requirements; Surface finish and appearance inspection for consistency and defect-free output; Tensile strength and durability testing meeting international manufacturing standards; Color uniformity checks verifying consistent shade and tone across the entire batch. Only leather that passes all quality criteria is approved for export, ensuring our customers receive ready-to-use skins every time.
-                            </p>
+                            <h4 class="faq-q">Q.3 What quality control measures does BNB Enterprises follow?</h4>
+                            <p class="faq-a">Ans. Every batch of finished leather at BNB Enterprises undergoes strict and comprehensive quality control across five key parameters: Thickness and substance control ensuring uniform leather weight across all skins; Softness and hand feel assessment matching customer-specified requirements; Surface finish and appearance inspection for consistency and defect-free output; Tensile strength and durability testing meeting international manufacturing standards; Color uniformity checks verifying consistent shade and tone across the entire batch. Only leather that passes all quality criteria is approved for export.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.4 Which markets does BNB Enterprises currently export leather to?</h4>
-                            <p class="faq-answer">
-                                Ans. BNB Enterprises currently exports premium finished leather primarily to China and Vietnam, supplying manufacturers who value consistent quality, reliable supply, and competitive pricing. Our clients in these markets use our leather skins to produce footwear, bags, garments, and other finished leather goods for global retail. As part of BNB Enterprises' broader global trading network, we are also open to expanding into new markets and geographies, backed by decades of international trade experience and logistics expertise.
-                            </p>
+                            <h4 class="faq-q">Q.4 Which markets does BNB Enterprises currently export leather to?</h4>
+                            <p class="faq-a">Ans. BNB Enterprises currently exports premium finished leather primarily to China and Vietnam, supplying manufacturers who value consistent quality, reliable supply, and competitive pricing. Our clients in these markets use our leather skins to produce footwear, bags, garments, and other finished leather goods for global retail. As part of BNB Enterprises' broader global trading network, we are also open to expanding into new markets and geographies, backed by decades of international trade experience and logistics expertise.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.5 How does BNB Enterprises ensure consistent supply volumes?</h4>
-                            <p class="faq-answer">
-                                Ans. We maintain consistent supply volumes by sourcing wet blue skins from a network of carefully selected and trusted suppliers across India. Our processing facility runs with modern stainless steel drum equipment that allows uniform, scalable batch processing. Our established sourcing relationships and production capacity allow us to meet the volume requirements of large-scale manufacturers reliably. With BNB Enterprises' strong logistics background — including proximity to Chennai International Airport for our natural stone operations — we bring the same supply chain efficiency and reliability to our leather export operations.
-                            </p>
+                            <h4 class="faq-q">Q.5 How does BNB Enterprises ensure consistent supply volumes?</h4>
+                            <p class="faq-a">Ans. We maintain consistent supply volumes by sourcing wet blue skins from a network of carefully selected and trusted suppliers across India. Our processing facility runs with modern stainless steel drum equipment that allows uniform, scalable batch processing. Our established sourcing relationships and production capacity allow us to meet the volume requirements of large-scale manufacturers reliably.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.6 How can I place an order or enquire about leather products?</h4>
-                            <p class="faq-answer">
-                                Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will assist you with leather grade selection, finish specifications, volume requirements, pricing, and logistics arrangements. We are committed to building long-term supply relationships built on quality, consistency, and trust.
-                            </p>
+                            <h4 class="faq-q">Q.6 How can I place an order or enquire about leather products?</h4>
+                            <p class="faq-a">Ans. Contact us at +91 9940191813 or email admin@bnbentglobal.com. Our headquarters are located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will assist you with leather grade selection, finish specifications, volume requirements, pricing, and logistics arrangements.</p>
                         </div>
-
                     </div>
 
-                    <!-- GET IN TOUCH -->
-                    <div style="margin-top: clamp(2rem, 3vw, 2.5rem); padding: clamp(1.2rem, 1.8vw, 1.5rem); background: #F0F3F7; border-radius: 8px; border: 1px solid #D4DCE6;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: clamp(0.95rem, 1.2vw, 1.08rem); font-weight: 800; color: #1A2332; margin-bottom: clamp(0.8rem, 1.1vw, 1rem); letter-spacing: 0.2px;">Get in Touch with BNB Enterprises</h3>
-                        <p style="font-family: 'Raleway', sans-serif; font-size: clamp(0.78rem, 0.9vw, 0.83rem); font-weight: 400; line-height: 1.65; color: #5A6B7F; margin-bottom: 0.8rem;">For inquiries about our finished leather or other premium products, contact us today:</p>
-                        <div style="font-family: 'Raleway', sans-serif; font-size: clamp(0.76rem, 0.88vw, 0.81rem); font-weight: 500; line-height: 1.6; color: #5A6B7F; margin-bottom: 0.5rem;"><strong style="font-weight: 700; color: #1A2332; margin-right: 0.3rem;">Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
-                        <div style="font-family: 'Raleway', sans-serif; font-size: clamp(0.76rem, 0.88vw, 0.81rem); font-weight: 500; line-height: 1.6; color: #5A6B7F; margin-bottom: 0.5rem;"><strong style="font-weight: 700; color: #1A2332; margin-right: 0.3rem;">Phone:</strong> <a href="tel:+919940191813" style="color: #2673B8; text-decoration: none;">+91 99401 91813</a></div>
-                        <div style="font-family: 'Raleway', sans-serif; font-size: clamp(0.76rem, 0.88vw, 0.81rem); font-weight: 500; line-height: 1.6; color: #5A6B7F;"><strong style="font-weight: 700; color: #1A2332; margin-right: 0.3rem;">Email:</strong> <a href="mailto:admin@bnbentglobal.com" style="color: #2673B8; text-decoration: none;">admin@bnbentglobal.com</a></div>
+                    <div class="contact-block">
+                        <h3>Get in Touch with BNB Enterprises</h3>
+                        <p>For inquiries about our finished leather or other premium products, contact us today:</p>
+                        <div class="crow"><strong>Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
+                        <div class="crow"><strong>Phone:</strong> <a href="tel:+919940191813">+91 99401 91813</a></div>
+                        <div class="crow"><strong>Email:</strong> <a href="mailto:admin@bnbentglobal.com">admin@bnbentglobal.com</a></div>
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- Footer Component -->
         <footer id="footerComponent" role="contentinfo"></footer>
     </div>
 
     <script>
-        const performanceMetrics = { startTime: performance.now(), componentsLoaded: 0 };
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 800;
-            const elapsedTime = performance.now() - performanceMetrics.startTime;
-            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-            setTimeout(() => { document.body.classList.add("loaded"); loadComponents(); }, remainingTime);
-        });
-
-        async function loadComponents() {
-            const components = [
-                { name: "navbar-product", target: "navbarComponent" },
-                { name: "footer", target: "footerComponent" }
-            ];
-            for (const comp of components) {
-                await loadComponent(comp.name, comp.target);
-                performanceMetrics.componentsLoaded++;
-            }
-            initializePageFunctions();
-        }
-
-        async function loadComponent(name, targetId) {
-            try {
-                const htmlResp = await fetch(`${name}.html`);
-                const htmlText = await htmlResp.text();
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = htmlText;
-                const targetElement = document.getElementById(targetId);
-                if (!targetElement) return;
-                const styles = tempDiv.querySelectorAll('style');
-                styles.forEach(style => {
-                    const styleElement = document.createElement('style');
-                    styleElement.innerHTML = style.innerHTML;
-                    styleElement.setAttribute('data-component', name);
-                    document.head.appendChild(styleElement);
-                });
-                const scripts = tempDiv.querySelectorAll('script');
-                const scriptContents = Array.from(scripts).map(script => script.innerHTML);
-                scripts.forEach(script => script.remove());
-                styles.forEach(style => style.remove());
-                const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
-                fontLinks.forEach(link => link.remove());
-                targetElement.innerHTML = tempDiv.innerHTML;
-                await new Promise(resolve => setTimeout(resolve, 50));
-                scriptContents.forEach(scriptContent => {
-                    if (scriptContent.trim()) {
-                        try { const func = new Function(scriptContent); func(); } catch (e) { console.error(e); }
-                    }
-                });
-            } catch (err) { console.error(`Error loading ${name}:`, err); }
-        }
-
-        function initializePageFunctions() {
-            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const header = document.querySelector('.page-header');
-            if (header) observer.observe(header);
-
-            const galleryCards = document.querySelectorAll('.gallery-card');
-            galleryCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.06}s`;
-                observer.observe(card);
-            });
-
-            const aboutSection = document.querySelector('.about-section');
-            if (aboutSection) observer.observe(aboutSection);
-
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.08}s`;
-                observer.observe(item);
-            });
-
-            const specCards = document.querySelectorAll('.spec-card');
-            specCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.05}s`;
-                observer.observe(card);
-            });
-        }
-
-        window.addEventListener('load', function() {
-            console.log('🚀 Leather Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
-        });
+        document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
+        async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
+        async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".spec-card,.faq-item,.para").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>

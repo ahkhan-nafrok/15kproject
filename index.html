@@ -6,56 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- ── PRECONNECT: opens TCP/TLS tunnels before browser needs them ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
-  <!-- ── PREFETCH: tells browser to download component HTML in idle time ── -->
-  <!-- These start downloading immediately, so fetch() calls in JS are near-instant -->
+  <!--
+    PERF: Preload the hero video file at highest priority so the browser
+    starts fetching it in parallel with everything else — shaves seconds
+    off the perceived load time.
+    Change the href to match your actual video asset path.
+  -->
+  <link rel="preload" href="assets/bnb.webm" as="video" type="video/webm" />
+
   <link rel="prefetch" href="navbar.html"     as="fetch" crossorigin />
   <link rel="prefetch" href="hero.html"       as="fetch" crossorigin />
   <link rel="prefetch" href="about.html"      as="fetch" crossorigin />
   <link rel="prefetch" href="categories.html" as="fetch" crossorigin />
-  <link rel="prefetch" href="gallery.html"    as="fetch" crossorigin />
+  <link rel="prefetch" href="export.html"     as="fetch" crossorigin />
   <link rel="prefetch" href="contact.html"    as="fetch" crossorigin />
   <link rel="prefetch" href="footer.html"     as="fetch" crossorigin />
 
-  <!-- ── FONTS: display=swap avoids invisible text during load ── -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
   <title>BNB Enterprises - Global Trading Excellence | Premium Solutions</title>
 
   <style>
-    /* ── COLOR SYSTEM ────────────────────────────────────────────── */
     :root {
-      --primary-blue:   #2673B8;
+      --primary-blue:    #2673B8;
       --background-base: #eeeeee;
-      --surface-light:  #F0F3F7;
-      --text-primary:   #1A2332;
-      --text-body:      #5A6B7F;
-      --text-muted:     #7A8A9E;
-      --border-color:   #D4DCE6;
-      --border-light:   #E3E9F0;
-      --whatsapp-green: #25D366;
+      --surface-light:   #F0F3F7;
+      --text-primary:    #1A2332;
+      --text-body:       #5A6B7F;
+      --text-muted:      #7A8A9E;
+      --border-color:    #D4DCE6;
+      --border-light:    #E3E9F0;
+      --whatsapp-green:  #25D366;
     }
 
-    /* ── RESET ───────────────────────────────────────────────────── */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
       font-family: 'Montserrat', sans-serif;
@@ -67,43 +58,16 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── TYPOGRAPHY SCALE ────────────────────────────────────────── */
-    h1, .hero-title, .section-title {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      line-height: 1.2;
-      font-weight: 700;
-    }
-    h2, .section-subtitle {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      line-height: 1.3;
-      font-weight: 600;
-    }
-    h3, .card-title {
-      font-size: clamp(1.125rem, 2vw, 1.375rem);
-      line-height: 1.4;
-      font-weight: 600;
-    }
-    h4 {
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
-      font-weight: 600;
-    }
-    p, .body-text {
-      font-size: clamp(0.875rem, 1.2vw, 1rem);
-      line-height: 1.6;
-      font-weight: 400;
-    }
-    .small-text, .caption {
-      font-size: clamp(0.75rem, 1vw, 0.875rem);
-      line-height: 1.5;
-    }
-    .label-text {
-      font-size: clamp(0.6875rem, 0.9vw, 0.75rem);
-      letter-spacing: clamp(1.5px, 0.2vw, 2px);
-      text-transform: uppercase;
-      font-weight: 600;
-    }
+    /* ── Typography scale ─────────────────────────────────────────────── */
+    h1, .hero-title, .section-title   { font-size: clamp(1.75rem, 3.5vw, 2.5rem);  line-height: 1.2; font-weight: 700; }
+    h2, .section-subtitle             { font-size: clamp(1.5rem, 3vw, 2rem);         line-height: 1.3; font-weight: 600; }
+    h3, .card-title                   { font-size: clamp(1.125rem, 2vw, 1.375rem);   line-height: 1.4; font-weight: 600; }
+    h4                                { font-size: clamp(1rem, 1.5vw, 1.125rem);     font-weight: 600; }
+    p, .body-text                     { font-size: clamp(0.875rem, 1.2vw, 1rem);     line-height: 1.6; font-weight: 400; }
+    .small-text, .caption             { font-size: clamp(0.75rem, 1vw, 0.875rem);    line-height: 1.5; }
+    .label-text                       { font-size: clamp(0.6875rem, 0.9vw, 0.75rem); letter-spacing: clamp(1.5px, 0.2vw, 2px); text-transform: uppercase; font-weight: 600; }
 
-    /* ── PAGE LOADER ─────────────────────────────────────────────── */
+    /* ── Page loader ──────────────────────────────────────────────────── */
     .page-loader {
       position: fixed;
       inset: 0;
@@ -114,7 +78,6 @@
       background: var(--surface-light);
       z-index: 9999;
       gap: 12px;
-      /* transition only opacity/visibility — cheaper than transform */
       transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
@@ -123,7 +86,6 @@
       height: clamp(60px, 10vw, 80px);
       object-fit: contain;
       animation: loader-pulse 1.8s ease-in-out infinite;
-      /* promote to own layer only while visible */
       will-change: transform;
     }
 
@@ -149,27 +111,39 @@
       text-transform: uppercase;
     }
 
-    /* When body gets .loaded:
-       1. loader fades out
-       2. site fades in
-       3. after fade, loader is removed from paint with display:none via JS */
-    body.loaded .page-loader {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+    /*
+      PERF: A subtle progress bar gives users visual feedback that
+      something is actually loading — reduces perceived wait time.
+    */
+    .loader-progress {
+      width: clamp(80px, 15vw, 120px);
+      height: 2px;
+      background: var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px;
     }
 
-    /* ── SITE WRAPPER ─────────────────────────────────────────────── */
-    .site-wrapper {
-      opacity: 0;
-      transition: opacity 0.4s ease;
+    .loader-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-blue);
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }
 
-    body.loaded .site-wrapper {
-      opacity: 1;
+    /* Filled once video is ready */
+    .loader-progress-bar.complete {
+      width: 100%;
     }
 
-    /* ── WHATSAPP FLOAT ───────────────────────────────────────────── */
+    body.loaded .page-loader { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    /* ── Site wrapper ─────────────────────────────────────────────────── */
+    .site-wrapper { opacity: 0; transition: opacity 0.4s ease; }
+    body.loaded .site-wrapper { opacity: 1; }
+
+    /* ── WhatsApp FAB ─────────────────────────────────────────────────── */
     .whatsapp-float {
       position: fixed;
       bottom: 24px;
@@ -184,26 +158,13 @@
       box-shadow: 0 3px 15px rgba(37, 211, 102, 0.25);
       z-index: 9998;
       text-decoration: none;
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 0.25s ease;
-      will-change: transform; /* stays on GPU since it's always visible */
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
     }
 
-    .whatsapp-float:hover {
-      transform: scale(1.08) translateY(-2px);
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-    }
+    .whatsapp-float:hover  { transform: scale(1.08) translateY(-2px); box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
+    .whatsapp-float:active { transform: scale(0.96); }
+    .whatsapp-float i      { color: #fff; font-size: 26px; }
 
-    .whatsapp-float:active {
-      transform: scale(0.96);
-    }
-
-    .whatsapp-float i {
-      color: #fff;
-      font-size: 26px;
-    }
-
-    /* Pulse ring */
     .whatsapp-float::before {
       content: '';
       position: absolute;
@@ -215,37 +176,29 @@
     }
 
     @keyframes wa-pulse {
-      0%   { transform: scale(0.9); opacity: 0.7; }
+      0%   { transform: scale(0.9);  opacity: 0.7; }
       100% { transform: scale(1.35); opacity: 0;   }
     }
 
-    /* ── COMPONENT SLOTS ─────────────────────────────────────────── */
+    /* ── Component mount points ───────────────────────────────────────── */
     #navbarComponent,
     #heroComponent,
     #aboutComponent,
     #categoriesComponent,
-    #galleryComponent,
+    #exportsComponent,
     #contactComponent,
     #footerComponent {
       font-family: 'Montserrat', sans-serif;
       width: 100%;
     }
 
-    /* ── SCROLL OFFSET so fixed navbar doesn't cover section titles ── */
-    section {
-      scroll-margin-top: 80px;
-    }
+    section { scroll-margin-top: 80px; }
 
-    /* ── FOCUS STYLES ─────────────────────────────────────────────── */
-    :focus-visible {
-      outline: 2px solid var(--primary-blue);
-      outline-offset: 2px;
-    }
-    :focus:not(:focus-visible) {
-      outline: none;
-    }
+    /* ── Focus styles ─────────────────────────────────────────────────── */
+    :focus-visible             { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
+    :focus:not(:focus-visible) { outline: none; }
 
-    /* ── RESPONSIVE FONT SCALING ─────────────────────────────────── */
+    /* ── Responsive font scale ────────────────────────────────────────── */
     @media (max-width: 1400px) { html { font-size: 15px;   } }
     @media (max-width: 1200px) { html { font-size: 14.5px; } }
     @media (max-width: 991px)  { html { font-size: 14px;   }
@@ -256,64 +209,45 @@
       .whatsapp-float { width: 46px; height: 46px; bottom: 16px; right: 16px; }
       .whatsapp-float i { font-size: 22px; }
     }
-    @media (max-width: 480px)  { html { font-size: 13px;   } }
+    @media (max-width: 480px)  { html { font-size: 13px; } }
 
-    /* ── REDUCED MOTION ───────────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration:       0.01ms !important;
-        animation-iteration-count: 1     !important;
-        transition-duration:      0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       html { scroll-behavior: auto; }
     }
 
-    /* ── PRINT ────────────────────────────────────────────────────── */
-    @media print {
-      .page-loader,
-      .whatsapp-float { display: none !important; }
-    }
+    @media print { .page-loader, .whatsapp-float { display: none !important; } }
   </style>
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage">
 
-  <!-- ── PAGE LOADER ──────────────────────────────────────────────── -->
   <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-label="Loading BNB Enterprises">
     <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo" width="80" height="80" />
     <div class="loader-text"    aria-hidden="true">BNB ENTERPRISES</div>
     <div class="loader-subtext" aria-hidden="true">Global Traders</div>
+    <!-- Visual feedback that video is buffering -->
+    <div class="loader-progress" aria-hidden="true">
+      <div class="loader-progress-bar" id="loaderProgressBar"></div>
+    </div>
   </div>
 
-  <!-- ── SITE WRAPPER ──────────────────────────────────────────────── -->
   <div class="site-wrapper">
 
-    <!-- Navbar -->
     <nav id="navbarComponent" role="navigation" aria-label="Main Navigation"></nav>
 
     <main>
-      <!-- Hero -->
       <header id="heroComponent"></header>
-
-      <!-- About -->
       <section id="aboutComponent"      aria-label="About BNB Enterprises"></section>
-
-      <!-- Collections / Categories -->
       <section id="categoriesComponent" aria-label="Product Collections"></section>
-
-      <!-- Gallery -->
-      <section id="galleryComponent"    aria-label="Gallery"></section>
-
-      <!-- Contact -->
+      <section id="exportsComponent"    aria-label="Our Exports"></section>
       <section id="contactComponent"    aria-label="Contact Information"></section>
     </main>
 
-    <!-- Footer -->
     <footer id="footerComponent" role="contentinfo"></footer>
 
-  </div><!-- /.site-wrapper -->
+  </div>
 
-  <!-- ── WHATSAPP FLOAT ────────────────────────────────────────────── -->
   <a  href="https://wa.me/919876543210?text=Hello%20BNB%20Enterprises,%20I%20would%20like%20to%20inquire%20about%20your%20products."
       class="whatsapp-float"
       target="_blank"
@@ -324,46 +258,14 @@
   </a>
 
   <script>
-  /* ================================================================
-     BNB ENTERPRISES — COMPONENT LOADER  (optimised)
-     ================================================================
-     Loading strategy
-     ─────────────────
-     Phase 1 [parallel]  navbar + hero + fonts
-       → These are above-the-fold critical. We load them simultaneously
-         and ONLY show the site once all three are ready.
-
-     Phase 2 [parallel]  about + categories + gallery + contact
-       → Below the fold. Fired immediately after phase 1, no await.
-
-     Phase 3 [deferred]  footer
-       → Lowest priority. Uses requestIdleCallback (or setTimeout fallback)
-         so it never competes with the main content.
-
-     Script execution
-     ─────────────────
-     Each component's <script> tags are extracted and re-injected as
-     real <script> elements. This is the most reliable cross-browser
-     technique and correctly runs code in the global scope.
-  ================================================================ */
-
   (function () {
     'use strict';
 
-    /* ── HELPERS ──────────────────────────────────────────────────── */
-
-    /**
-     * Injects component HTML into a target element, copies styles to
-     * <head>, and executes any inline scripts via real script elements.
-     *
-     * @param {string} name     - Component filename without .html
-     * @param {string} targetId - DOM id to inject content into
-     * @returns {Promise<void>}
-     */
+    // ── Component loader ─────────────────────────────────────────────────
     async function loadComponent(name, targetId) {
       const target = document.getElementById(targetId);
       if (!target) {
-        console.warn(`[loader] Skipping "${name}" — #${targetId} not found in DOM.`);
+        console.warn(`[loader] Skipping "${name}" — #${targetId} not found.`);
         return;
       }
 
@@ -377,12 +279,10 @@
         return;
       }
 
-      /* Parse into a temporary fragment */
       const tpl = document.createElement('template');
       tpl.innerHTML = html;
       const frag = tpl.content;
 
-      /* ── 1. Move <style> tags to <head> ── */
       frag.querySelectorAll('style').forEach(style => {
         const s = document.createElement('style');
         s.setAttribute('data-component', name);
@@ -391,127 +291,117 @@
         style.remove();
       });
 
-      /* ── 2. Collect inline scripts before inserting HTML ── */
       const scriptContents = [];
       frag.querySelectorAll('script').forEach(script => {
-        if (script.textContent.trim()) {
-          scriptContents.push(script.textContent);
-        }
-        script.remove(); /* remove from fragment so they don't double-run */
+        if (script.textContent.trim()) scriptContents.push(script.textContent);
+        script.remove();
       });
 
-      /* ── 3. Remove duplicate <link> tags for fonts already in <head> ── */
       frag.querySelectorAll('link[href*="fonts.googleapis.com"]').forEach(l => l.remove());
 
-      /* ── 4. Inject the cleaned HTML ── */
       target.innerHTML = '';
       target.appendChild(frag);
 
-      /* ── 5. Execute scripts as real <script> elements ──────────────
-             Appending a script element to the DOM is synchronous and
-             runs in the global scope — the correct, reliable approach.   */
       scriptContents.forEach(code => {
         const s = document.createElement('script');
         s.setAttribute('data-component', name);
         s.textContent = code;
         document.head.appendChild(s);
-        /* We leave it in <head> so it's visible in DevTools for debugging */
       });
     }
 
-    /**
-     * After above-fold components are ready, attach global interactions.
-     * Reads live navbar height dynamically rather than a hard-coded px value.
-     */
+    // ── Smooth scroll + lazy images ───────────────────────────────────────
     function initGlobalInteractions() {
-      /* ── Smooth scroll for all same-page anchor links ── */
       document.addEventListener('click', function (e) {
         const anchor = e.target.closest('a[href^="#"]');
         if (!anchor) return;
-
         const href = anchor.getAttribute('href');
         if (!href || href === '#') return;
-
         const targetEl = document.getElementById(href.slice(1));
         if (!targetEl) return;
-
         e.preventDefault();
-
-        /* Read actual rendered navbar height at click time */
-        const navbar  = document.getElementById('navbarComponent');
-        const offset  = navbar ? navbar.getBoundingClientRect().height : 0;
-        const top     = targetEl.getBoundingClientRect().top + window.scrollY - offset - 8;
-
+        const navbar = document.getElementById('navbarComponent');
+        const offset = navbar ? navbar.getBoundingClientRect().height : 0;
+        const top    = targetEl.getBoundingClientRect().top + window.scrollY - offset - 8;
         window.scrollTo({ top, behavior: 'smooth' });
       }, { passive: false });
 
-      /* ── Lazy-load images with data-src ── */
       if ('IntersectionObserver' in window) {
         const imgObserver = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             const img = entry.target;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.removeAttribute('data-src');
-            }
+            if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); }
             obs.unobserve(img);
           });
-        }, { rootMargin: '200px' }); /* start loading 200px before viewport */
-
+        }, { rootMargin: '200px' });
         document.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
       }
     }
 
-    /** Schedule work during browser idle time; falls back to setTimeout. */
     function whenIdle(fn) {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(fn, { timeout: 2000 });
-      } else {
-        setTimeout(fn, 200);
-      }
+      'requestIdleCallback' in window
+        ? requestIdleCallback(fn, { timeout: 2000 })
+        : setTimeout(fn, 200);
     }
 
-    /* ── MAIN BOOT ─────────────────────────────────────────────────── */
+    // ── Main bootstrap ────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', async () => {
 
-      /* ── PHASE 1: Critical (above the fold) ───────────────────────
-         Load navbar, hero AND wait for fonts — all in parallel.
-         We race fonts against an 800 ms cap so a slow font CDN
-         never blocks the site from appearing.                         */
+      const progressBar = document.getElementById('loaderProgressBar');
+
+      // Animate progress bar to ~60 % while navbar + hero HTML load
+      if (progressBar) progressBar.style.width = '60%';
+
       const fontsReady = Promise.race([
         document.fonts.ready,
         new Promise(r => setTimeout(r, 800))
       ]);
 
+      // Step 1: Load navbar + hero HTML + fonts in parallel
       await Promise.all([
         loadComponent('navbar', 'navbarComponent'),
         loadComponent('hero',   'heroComponent'),
         fontsReady,
       ]);
 
-      /* Show the site — loader fades out, site fades in */
-      document.body.classList.add('loaded');
+      // Step 2: Wait for the hero VIDEO to be ready to play.
+      //
+      // hero.html dispatches 'heroVideoReady' on document once canplay
+      // fires (or after its own 6 s fallback). We race that against a
+      // hard 8 s ceiling here so the loader can never block the page
+      // indefinitely regardless of network conditions.
+      await Promise.race([
+        new Promise(resolve => {
+          document.addEventListener('heroVideoReady', resolve, { once: true });
+        }),
+        new Promise(resolve => setTimeout(resolve, 8000))
+      ]);
 
-      /* Attach global event delegation now that the navbar exists */
+      // Animate progress bar to 100 % to signal "ready"
+      if (progressBar) progressBar.classList.add('complete');
+
+      // Small pause so users can see the "complete" state before it fades
+      await new Promise(r => setTimeout(r, 250));
+
+      // Step 3: Reveal the page and remove the loader
+      document.body.classList.add('loaded');
       initGlobalInteractions();
 
-      /* Remove loader element from layout after its CSS transition ends */
-      const loader = document.getElementById('pageLoader');
-      if (loader) {
-        loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+      const loaderEl = document.getElementById('pageLoader');
+      if (loaderEl) {
+        loaderEl.addEventListener('transitionend', () => loaderEl.remove(), { once: true });
       }
 
-      /* ── PHASE 2: Important below-fold content (parallel) ─────────
-         Fire all at once — no awaiting each other.                   */
+      // Step 4: Load remaining below-fold sections (non-blocking)
       Promise.all([
         loadComponent('about',      'aboutComponent'),
         loadComponent('categories', 'categoriesComponent'),
-        loadComponent('gallery',    'galleryComponent'),
+        loadComponent('export',     'exportsComponent'),
         loadComponent('contact',    'contactComponent'),
       ]);
 
-      /* ── PHASE 3: Footer — lowest priority, runs in idle time ───── */
+      // Step 5: Footer is lowest priority — load during idle time
       whenIdle(() => loadComponent('footer', 'footerComponent'));
 
     });

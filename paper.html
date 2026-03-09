@@ -4,277 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Paper Scrap Recycling - BNB Enterprises</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
     <style>
-:root {
-  --primary-blue: #2673B8;
-  --background-base: #eeeeee;
-  --surface-light: #F0F3F7;
-  --accent-white: #F7F9FC;
-  --text-primary: #1A2332;
-  --text-body: #5A6B7F;
-  --text-muted: #7A8A9E;
-  --border-color: #D4DCE6;
-  --border-light: #E3E9F0;
-}
+:root{--blue:#2673B8;--bg:#eeeeee;--surface:#F0F3F7;--dark:#1A2332;--body:#5A6B7F;--border:#D4DCE6;--border-lt:#E3E9F0;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;touch-action:pan-y pinch-zoom;}
+.page-loader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--surface);z-index:9999;gap:10px;transition:opacity .5s,visibility .5s;}
+.loader-logo{width:clamp(50px,8vw,70px);height:clamp(50px,8vw,70px);object-fit:contain;animation:lp 2s ease-in-out infinite;}
+@keyframes lp{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.05);opacity:.85;}}
+.loader-text{font-family:'Montserrat',sans-serif;font-size:clamp(.75rem,1.2vw,.95rem);font-weight:700;letter-spacing:2px;color:var(--dark);}
+.loader-sub{font-family:'Raleway',sans-serif;font-size:clamp(.5rem,.8vw,.65rem);font-weight:500;letter-spacing:1.2px;color:var(--blue);text-transform:uppercase;}
+body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
+.site-wrapper{opacity:0;transition:opacity .5s;}body.loaded .site-wrapper{opacity:1;}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+/* HERO */
+.page-hero{background:var(--dark);padding:clamp(3rem,5vw,4.5rem) 0 clamp(2.5rem,4vw,3.5rem);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(38,115,184,.15);border-radius:50%;pointer-events:none;}
+.page-hero::after{content:'';position:absolute;bottom:-80px;left:10%;width:200px;height:200px;border:1px solid rgba(38,115,184,.1);border-radius:50%;pointer-events:none;}
+.hero-inner{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);position:relative;z-index:2;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;}
+.back-btn i{font-size:.65rem;transition:transform .3s;}
+.back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
+.back-btn:hover i{transform:translateX(-3px);}
+.hero-tag{font-family:'Raleway',sans-serif;font-size:clamp(.6rem,.75vw,.65rem);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:block;}
+.page-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:white;line-height:1.05;margin-bottom:1rem;}
+.hero-desc{font-family:'Raleway',sans-serif;font-size:clamp(.8rem,.95vw,.9rem);font-weight:500;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;}
+.title-accent{display:block;width:48px;height:3px;background:var(--blue);margin-top:1.2rem;border-radius:1px;}
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--background-base);
-    color: var(--text-body);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    touch-action: pan-y pinch-zoom;
-}
+/* CONTENT */
+.content-section{padding:clamp(2.5rem,4vw,3.5rem) 0 clamp(2rem,3vw,3rem);}
+.container{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);}
+.inner{max-width:1200px;}
+.sect-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,2vw,1.6rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);line-height:1.3;margin-bottom:clamp(.8rem,1.2vw,1rem);}
+.para{font-family:'Raleway',sans-serif;font-size:clamp(.78rem,.88vw,.82rem);font-weight:400;line-height:1.7;color:var(--body);margin-bottom:.9rem;text-align:justify;}
+.divider{width:100%;height:1px;background:var(--border);margin:clamp(1.8rem,2.5vw,2.2rem) 0;}
 
-.page-loader {
-    position: fixed; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: var(--surface-light); z-index: 9999; gap: 10px;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-.loader-logo { width: clamp(50px,8vw,70px); height: clamp(50px,8vw,70px); object-fit: contain; animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.05);opacity:0.85;} }
-.loader-text { font-family:'Montserrat',sans-serif; font-size:clamp(0.75rem,1.2vw,0.95rem); font-weight:700; letter-spacing:clamp(1.5px,0.4vw,2.5px); color:var(--text-primary); }
-.loader-subtext { font-family:'Raleway',sans-serif; font-size:clamp(0.5rem,0.8vw,0.65rem); font-weight:500; letter-spacing:clamp(0.8px,0.25vw,1.5px); color:var(--primary-blue); text-transform:uppercase; }
-body.loaded .page-loader { opacity:0; visibility:hidden; pointer-events:none; }
+/* GRADES GRID — text only, no images */
+.grades-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
+.grade-card{background:white;border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.2rem;border-left:3px solid var(--blue);transition:all .3s cubic-bezier(.4,0,.2,1);text-decoration:none;display:block;}
+.grade-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(26,35,50,.1);border-color:var(--blue);}
+.grade-badge{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.5rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:3px;background:var(--blue);color:white;margin-bottom:.6rem;}
+.grade-badge.local{background:var(--dark);}
+.grade-name{font-family:'Montserrat',sans-serif;font-size:clamp(.78rem,.9vw,.84rem);font-weight:800;color:var(--dark);line-height:1.3;margin-bottom:.3rem;}
+.grade-desc{font-family:'Raleway',sans-serif;font-size:clamp(.64rem,.74vw,.69rem);font-weight:500;color:var(--body);line-height:1.5;}
+.grade-card:hover .grade-name{color:var(--blue);}
 
-.site-wrapper { opacity:0; transition:opacity 0.5s ease; }
-body.loaded .site-wrapper { opacity:1; }
+/* TABLE */
+.table-wrap{margin:clamp(1.2rem,2vw,1.6rem) 0;overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-family:'Raleway',sans-serif;font-size:clamp(.68rem,.8vw,.74rem);}
+.data-table th{background:var(--dark);color:white;font-family:'Montserrat',sans-serif;font-size:clamp(.6rem,.73vw,.66rem);font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.7rem 1rem;text-align:left;}
+.data-table td{padding:.65rem 1rem;border-bottom:1px solid var(--border-lt);color:var(--body);font-weight:500;}
+.data-table tr:nth-child(even) td{background:var(--surface);}
+.data-table tr:hover td{background:rgba(38,115,184,.05);color:var(--dark);}
 
-.products-section { background:var(--background-base); padding:clamp(2rem,3vw,2.8rem) 0 clamp(1.5rem,2.5vw,2.5rem); min-height:100vh; }
-.container { max-width:1400px; margin:0 auto; padding:0 clamp(1rem,3vw,2rem); }
-.page-header { margin-bottom:clamp(1.5rem,2.5vw,2.5rem); }
-.breadcrumb { font-family:'Raleway',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:600; letter-spacing:0.8px; color:var(--text-muted); opacity:0.8; margin-bottom:0.7rem; text-transform:uppercase; }
-.breadcrumb a { color:var(--primary-blue); text-decoration:none; transition:opacity 0.3s ease; }
-.breadcrumb a:hover { opacity:0.7; }
+/* BULLETS */
+.block-title{font-family:'Montserrat',sans-serif;font-size:clamp(.9rem,1.1vw,1rem);font-weight:800;color:var(--dark);margin-bottom:.7rem;}
+.bullets{list-style:none;padding:0;}
+.bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
+.bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
 
-.back-button {
-    display:inline-flex; align-items:center; gap:0.5rem;
-    padding:clamp(0.55rem,0.7vw,0.65rem) clamp(0.9rem,1.3vw,1.1rem); margin-bottom:1rem;
-    background:var(--surface-light); border:1px solid var(--border-color); color:var(--text-body);
-    font-family:'Montserrat',sans-serif; font-size:clamp(0.6rem,0.75vw,0.65rem); font-weight:700;
-    letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; cursor:pointer;
-    transition:all 0.3s ease; border-radius:4px; touch-action:manipulation;
-}
-.back-button i { font-size:0.7rem; transition:transform 0.3s ease; }
-.back-button:hover { background:var(--text-primary); color:var(--accent-white); border-color:var(--text-primary); transform:translateX(-3px); }
-.back-button:hover i { transform:translateX(-3px); }
+/* FAQ */
+.faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
+.faq-head{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,1.6vw,1.3rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);margin-bottom:clamp(1.2rem,2vw,1.5rem);}
+.faq-item{margin-bottom:clamp(1.2rem,2vw,1.5rem);}
+.faq-q{font-family:'Montserrat',sans-serif;font-size:clamp(.82rem,.95vw,.88rem);font-weight:700;color:var(--dark);margin-bottom:.45rem;line-height:1.4;}
+.faq-a{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:400;line-height:1.65;color:var(--body);padding-left:.3rem;text-align:justify;}
 
-.page-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:900; letter-spacing:-1px; color:var(--text-primary); line-height:1.1; margin-bottom:clamp(0.4rem,0.8vw,0.6rem); }
+/* CONTACT */
+.contact-block{margin-top:clamp(2rem,3vw,2.5rem);padding:clamp(1.2rem,1.8vw,1.5rem);background:white;border-radius:6px;border:1px solid var(--border);border-left:3px solid var(--blue);}
+.contact-block h3{font-family:'Montserrat',sans-serif;font-size:clamp(.95rem,1.2vw,1.08rem);font-weight:800;color:var(--dark);margin-bottom:clamp(.8rem,1.1vw,1rem);}
+.contact-block p{font-family:'Raleway',sans-serif;font-size:clamp(.76rem,.88vw,.81rem);line-height:1.65;color:var(--body);margin-bottom:.8rem;}
+.crow{font-family:'Raleway',sans-serif;font-size:clamp(.74rem,.86vw,.79rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.4rem;}
+.crow strong{font-weight:700;color:var(--dark);margin-right:.3rem;}
+.crow a{color:var(--blue);text-decoration:none;}
 
-.results-bar { display:flex; justify-content:flex-start; align-items:center; padding:clamp(0.8rem,1vw,1rem) 0; border-bottom:1px solid var(--border-color); margin-bottom:clamp(1.5rem,2vw,2rem); }
-.results-count { font-family:'Raleway',sans-serif; font-size:clamp(0.7rem,0.85vw,0.75rem); font-weight:600; letter-spacing:0.2px; color:var(--text-body); opacity:0.8; }
-.results-count span { color:var(--primary-blue); font-weight:700; }
-
-.products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:clamp(1.2rem,2vw,1.5rem); margin-bottom:2.5rem; }
-@media (min-width:1200px) { .products-grid { grid-template-columns:repeat(4,1fr); max-width:1300px; } }
-
-.product-card {
-    background:white; border:1px solid var(--border-color); border-radius:6px; overflow:hidden;
-    transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; display:block; text-decoration:none; position:relative; touch-action:manipulation;
-}
-.product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--primary-blue); transform:scaleX(0); transform-origin:left; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index:10; border-radius:6px 6px 0 0; }
-.product-card:hover { transform:translateY(-6px); box-shadow:0 15px 40px rgba(26,35,50,0.12); border-color:var(--primary-blue); }
-.product-card:hover::before { transform:scaleX(1); }
-
-.product-image-container { position:relative; width:100%; padding-top:100%; overflow:hidden; background:var(--border-light); }
-.product-image { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-.product-card:hover .product-image { transform:scale(1.06); }
-
-.product-name { font-family:'Montserrat',sans-serif; font-size:clamp(0.8rem,0.95vw,0.9rem); font-weight:800; letter-spacing:0.2px; color:var(--text-primary); text-align:center; padding:clamp(0.9rem,1.2vw,1.1rem); line-height:1.3; transition:color 0.3s ease; }
-.product-card:hover .product-name { color:var(--primary-blue); }
-
-/* GRADE BADGE on card */
-.grade-badge {
-    position: absolute;
-    top: 0.7rem; right: 0.7rem;
-    background: var(--primary-blue);
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.55rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 0.3rem 0.65rem;
-    border-radius: 3px;
-    z-index: 5;
-}
-
-.about-section { background:white; padding:clamp(2rem,3vw,2.8rem) 0; border-top:1px solid var(--border-color); }
-.about-content { max-width:1200px; margin:0 auto; }
-.about-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); line-height:1.3; margin-bottom:clamp(0.8rem,1.2vw,1rem); }
-.about-text { font-family:'Raleway',sans-serif; font-size:clamp(0.75rem,0.85vw,0.8rem); font-weight:400; line-height:1.65; color:var(--text-body); margin-bottom:0.8rem; text-align:justify; }
-.benefits-section { margin-top:clamp(1.2rem,2vw,1.6rem); }
-.benefits-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.9rem,1.1vw,1rem); font-weight:800; color:var(--text-primary); margin-bottom:0.7rem; }
-.benefits-list { list-style:none; padding-left:0; }
-.benefits-list li { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:500; line-height:1.6; color:var(--text-body); margin-bottom:0.45rem; padding-left:1.2rem; position:relative; }
-.benefits-list li::before { content:'•'; color:var(--primary-blue); font-weight:900; font-size:1.1rem; position:absolute; left:0; top:-2px; }
-
-/* BALE SPECS TABLE */
-.specs-table-wrap { margin: clamp(1.2rem,2vw,1.6rem) 0; overflow-x: auto; }
-.specs-table { width:100%; border-collapse:collapse; font-family:'Raleway',sans-serif; font-size:clamp(0.7rem,0.82vw,0.76rem); }
-.specs-table th { background:var(--text-primary); color:white; font-family:'Montserrat',sans-serif; font-size:clamp(0.62rem,0.75vw,0.68rem); font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:0.7rem 1rem; text-align:left; }
-.specs-table td { padding:0.65rem 1rem; border-bottom:1px solid var(--border-light); color:var(--text-body); font-weight:500; }
-.specs-table tr:nth-child(even) td { background:var(--surface-light); }
-.specs-table tr:hover td { background:rgba(38,115,184,0.05); color:var(--text-primary); }
-
-.faq-section { margin-top:clamp(2rem,3vw,2.5rem); }
-.faq-title { font-family:'Montserrat',sans-serif; font-size:clamp(1.1rem,1.6vw,1.3rem); font-weight:800; letter-spacing:-0.2px; color:var(--text-primary); margin-bottom:clamp(1.2rem,2vw,1.5rem); }
-.faq-item { margin-bottom:clamp(1.2rem,2vw,1.5rem); }
-.faq-question { font-family:'Montserrat',sans-serif; font-size:clamp(0.82rem,0.95vw,0.88rem); font-weight:700; color:var(--text-primary); margin-bottom:0.45rem; line-height:1.4; }
-.faq-answer { font-family:'Raleway',sans-serif; font-size:clamp(0.72rem,0.82vw,0.77rem); font-weight:400; line-height:1.6; color:var(--text-body); padding-left:0.3rem; text-align:justify; }
-
-@media (max-width:1199px) { .products-grid { grid-template-columns:repeat(3,1fr); } }
-@media (max-width:991px) { .products-grid { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:576px) { .products-grid { grid-template-columns:1fr; gap:1.2rem; } .product-image-container { padding-top:95%; } }
-
-@keyframes fadeInUp { from{opacity:0;transform:translateY(25px);} to{opacity:1;transform:translateY(0);} }
-.animate-on-scroll { opacity:0; animation:fadeInUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
-#footerComponent { font-family:'Montserrat',sans-serif; width:100%; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
+@media(max-width:767px){.grades-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:440px){.grades-grid{grid-template-columns:1fr;}}
+#footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
     </style>
 </head>
 <body>
-    <div class="page-loader" role="status" aria-live="polite" aria-label="Loading">
+    <div class="page-loader" role="status" aria-live="polite">
         <img src="assets/bnb.png" alt="BNB Enterprises Logo" class="loader-logo">
         <div class="loader-text">BNB ENTERPRISES</div>
-        <div class="loader-subtext">Loading...</div>
+        <div class="loader-sub">Loading...</div>
     </div>
 
     <div id="navbarComponent"></div>
 
     <div class="site-wrapper">
-        <section class="products-section">
-            <div class="container">
-                <div class="page-header">
-                    <div class="breadcrumb">
-                        <a href="index.html">Home</a> / <a href="#collections">Collections</a> / <span>Paper Scrap Recycling</span>
-                    </div>
-                    <button class="back-button" onclick="window.history.back()">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
-                    <h1 class="page-title">Paper Scrap Recycling</h1>
-                    <div class="results-bar">
-                        <div class="results-count">Showing <span>9</span> paper scrap grade collections</div>
-                    </div>
-                </div>
 
-                <div class="products-grid" id="productsGrid">
-
-                    <a href="Paper/kraft-paper.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/kraft-paper.webp" alt="Kraft Paper Scrap" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">Kraft Paper Scrap</h3>
-                    </a>
-
-                    <a href="Paper/occ.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/occ.webp" alt="OCC Old Corrugated Containers" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">OCC — Old Corrugated Containers</h3>
-                    </a>
-
-                    <a href="Paper/white-record-ledger.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/white-record-ledger.webp" alt="White Record White Ledger" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">White Record / White Ledger</h3>
-                    </a>
-
-                    <a href="Paper/mixed-paper.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/mixed-paper.webp" alt="Mixed Paper Scrap" class="product-image">
-                            <span class="grade-badge">Local</span>
-                        </div>
-                        <h3 class="product-name">Mixed Paper</h3>
-                    </a>
-
-                    <a href="Paper/sop.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/sop.webp" alt="SOP Sorted Office Paper" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">SOP — Sorted Office Paper</h3>
-                    </a>
-
-                    <a href="Paper/onp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/onp.webp" alt="ONP Old Newspapers" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">ONP — Old Newspapers</h3>
-                    </a>
-
-                    <a href="Paper/omp.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/omp.webp" alt="OMP Old Magazines" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">OMP — Old Magazines</h3>
-                    </a>
-
-                    <a href="Paper/cbs.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/cbs.webp" alt="CBS Coated Book Stock" class="product-image">
-                            <span class="grade-badge">Import</span>
-                        </div>
-                        <h3 class="product-name">CBS — Coated Book Stock</h3>
-                    </a>
-
-                    <a href="Paper/printed-book-scrap.html" class="product-card">
-                        <div class="product-image-container">
-                            <img src="Paper/paper-grades/printed-book-scrap.webp" alt="Printed Book Scrap" class="product-image">
-                            <span class="grade-badge">Local</span>
-                        </div>
-                        <h3 class="product-name">Printed Book Scrap</h3>
-                    </a>
-
-                </div>
+        <div class="page-hero">
+            <div class="hero-inner">
+                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                <span class="hero-tag">Global Exports — Paper Recycling</span>
+                <h1 class="page-title">Paper Scrap Recycling</h1>
+                <p class="hero-desc">Import, local sourcing, and bale supply of paper scrap grades — OCC, SOP, ONP, OMP, CBS, Kraft, and more — for recycling units and paper mills.</p>
+                <span class="title-accent"></span>
             </div>
-        </section>
+        </div>
 
-        <!-- ABOUT SECTION -->
-        <section class="about-section">
+        <section class="content-section">
             <div class="container">
-                <div class="about-content">
-                    <h2 class="about-title">Paper Scrap Import, Processing & Bale Supply by BNB Enterprises</h2>
+                <div class="inner">
 
-                    <p class="about-text">
-                        BNB Enterprises is engaged in the import, local sourcing, and processing of paper scrap for the recycling industry. As part of a diversified global trading group with three decades of family business heritage, we bring the same rigour for quality, consistency, and reliable supply to our paper recycling operations as we do across all our trading verticals. We import paper bales from international markets and source paper scrap locally, supplying well-prepared, correctly graded bales to recycling units and paper mills across India and beyond.
-                    </p>
+                    <h2 class="sect-title">Paper Scrap Import, Processing &amp; Bale Supply by BNB Enterprises</h2>
+                    <p class="para">BNB Enterprises is engaged in the import, local sourcing, and processing of paper scrap for the recycling industry. As part of a diversified global trading group with three decades of family business heritage, we bring the same rigour for quality, consistency, and reliable supply to our paper recycling operations as we do across all our trading verticals. We import paper bales from international markets and source paper scrap locally, supplying well-prepared, correctly graded bales to recycling units and paper mills across India and beyond.</p>
+                    <p class="para">Our focus is on proper grading, consistent quality, and reliable bale preparation to meet the exacting requirements of the recycling industry and paper manufacturing sector. From internationally graded import categories including OCC, SOP, ONP, OMP, and CBS to locally sourced mixed paper and printed book scrap, we handle a comprehensive range of paper scrap grades. Each grade is handled with strict attention to sorting, cleanliness, moisture content, and bale uniformity.</p>
+                    <p class="para">All material is checked, sorted, and compressed into standard bales at our processing facility, with bale weights ranging from 1 ton to 1.75 tons — suitable for efficient transport, warehousing, and direct input into recycling and mill operations.</p>
 
-                    <p class="about-text">
-                        Our focus is on proper grading, consistent quality, and reliable bale preparation to meet the exacting requirements of the recycling industry and paper manufacturing sector. From internationally graded import categories including OCC, SOP, ONP, OMP, and CBS to locally sourced mixed paper and printed book scrap, we handle a comprehensive range of paper scrap grades. Each grade is handled with strict attention to sorting, cleanliness, moisture content, and bale uniformity to ensure that recycling units and paper mills receive material that is immediately ready for processing.
-                    </p>
+                    <div class="divider"></div>
 
-                    <p class="about-text">
-                        All material is checked, sorted, and compressed into standard bales at our processing facility, with bale weights ranging from 1 ton to 1.75 tons — suitable for efficient transport, warehousing, and direct input into recycling and mill operations. By supplying consistent, clean paper scrap bales, BNB Enterprises supports both cost-effective paper manufacturing and the broader goal of environmental sustainability and circular resource use.
-                    </p>
+                    <!-- GRADES — text only, no images -->
+                    <div class="grades-grid">
+                        <a href="Paper/kraft-paper.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">Kraft Paper Scrap</div>
+                            <div class="grade-desc">Packaging board and kraft paper manufacturing</div>
+                        </a>
+                        <a href="Paper/occ.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">OCC — Old Corrugated Containers</div>
+                            <div class="grade-desc">Corrugated board and containerboard production</div>
+                        </a>
+                        <a href="Paper/white-record-ledger.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">White Record / White Ledger</div>
+                            <div class="grade-desc">Premium white paper and tissue paper manufacturing</div>
+                        </a>
+                        <a href="Paper/mixed-paper.html" class="grade-card">
+                            <span class="grade-badge local">Local</span>
+                            <div class="grade-name">Mixed Paper</div>
+                            <div class="grade-desc">Newsprint, packaging, and general board</div>
+                        </a>
+                        <a href="Paper/sop.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">SOP — Sorted Office Paper</div>
+                            <div class="grade-desc">High-quality white paper manufacturing</div>
+                        </a>
+                        <a href="Paper/onp.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">ONP — Old Newspapers</div>
+                            <div class="grade-desc">Newsprint and packaging material production</div>
+                        </a>
+                        <a href="Paper/omp.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">OMP — Old Magazines</div>
+                            <div class="grade-desc">Coated paper and magazine paper production</div>
+                        </a>
+                        <a href="Paper/cbs.html" class="grade-card">
+                            <span class="grade-badge">Import</span>
+                            <div class="grade-name">CBS — Coated Book Stock</div>
+                            <div class="grade-desc">Coated paper board and premium paper production</div>
+                        </a>
+                        <a href="Paper/printed-book-scrap.html" class="grade-card">
+                            <span class="grade-badge local">Local</span>
+                            <div class="grade-name">Printed Book Scrap</div>
+                            <div class="grade-desc">Recycled fiber and general paper manufacturing</div>
+                        </a>
+                    </div>
 
-                    <!-- GRADES TABLE -->
-                    <div class="specs-table-wrap">
-                        <table class="specs-table">
-                            <thead>
-                                <tr>
-                                    <th>Grade</th>
-                                    <th>Full Name</th>
-                                    <th>Source</th>
-                                    <th>Primary Use</th>
-                                </tr>
-                            </thead>
+                    <div class="divider"></div>
+
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead><tr><th>Grade</th><th>Full Name</th><th>Source</th><th>Primary Use</th></tr></thead>
                             <tbody>
                                 <tr><td>Kraft</td><td>Kraft Paper Scrap</td><td>Import</td><td>Packaging board, kraft paper manufacturing</td></tr>
                                 <tr><td>OCC</td><td>Old Corrugated Containers</td><td>Import</td><td>Corrugated board, containerboard production</td></tr>
@@ -289,81 +188,60 @@ body.loaded .site-wrapper { opacity:1; }
                         </table>
                     </div>
 
-                    <div class="benefits-section">
-                        <h3 class="benefits-title">Why Choose BNB Enterprises for Paper Scrap Supply</h3>
-                        <ul class="benefits-list">
-                            <li>Wide range of internationally recognized paper scrap grades: OCC, SOP, ONP, OMP, CBS, Kraft, and more</li>
-                            <li>Both imported and locally sourced paper scrap processed and supplied from a single reliable partner</li>
-                            <li>Proper segregation and grading of all paper types ensuring mill-ready, specification-compliant material</li>
-                            <li>Clean and compact baling with uniform bale weights of 1.0 – 1.75 tons per bale</li>
-                            <li>Rigorous sorting process removing contaminants, non-paper materials, and off-grade material</li>
-                            <li>Suitable moisture content and cleanliness standards maintained across all grades</li>
-                            <li>Reliable supply volumes for recycling units and paper mills with consistent batch quality</li>
-                            <li>Competitive pricing backed by established international import networks and local sourcing relationships</li>
-                            <li>Supports circular economy and sustainable paper manufacturing goals</li>
-                            <li>Experienced trading team with decades of global commodity sourcing expertise</li>
-                        </ul>
-                    </div>
+                    <div class="divider"></div>
 
-                    <div class="faq-section">
-                        <h3 class="faq-title">Frequently Asked Questions About Paper Scrap Recycling</h3>
+                    <h3 class="block-title">Why Choose BNB Enterprises for Paper Scrap Supply</h3>
+                    <ul class="bullets">
+                        <li>Wide range of internationally recognized paper scrap grades: OCC, SOP, ONP, OMP, CBS, Kraft, and more</li>
+                        <li>Both imported and locally sourced paper scrap processed and supplied from a single reliable partner</li>
+                        <li>Proper segregation and grading of all paper types ensuring mill-ready, specification-compliant material</li>
+                        <li>Clean and compact baling with uniform bale weights of 1.0 – 1.75 tons per bale</li>
+                        <li>Rigorous sorting process removing contaminants, non-paper materials, and off-grade material</li>
+                        <li>Suitable moisture content and cleanliness standards maintained across all grades</li>
+                        <li>Reliable supply volumes for recycling units and paper mills with consistent batch quality</li>
+                        <li>Competitive pricing backed by established international import networks and local sourcing relationships</li>
+                        <li>Supports circular economy and sustainable paper manufacturing goals</li>
+                        <li>Experienced trading team with decades of global commodity sourcing expertise</li>
+                    </ul>
 
+                    <div class="faq-wrap">
+                        <h3 class="faq-head">Frequently Asked Questions About Paper Scrap Recycling</h3>
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.1 What paper scrap grades does BNB Enterprises handle?</h4>
-                            <p class="faq-answer">
-                                Ans. BNB Enterprises handles a comprehensive range of paper scrap grades including Kraft Paper Scrap, OCC (Old Corrugated Containers), White Record/White Ledger, Mixed Paper, SOP (Sorted Office Paper), ONP (Old Newspapers), OMP (Old Magazines), CBS (Coated Book Stock), and Printed Book Scrap. We both import internationally graded paper bales and source paper scrap locally, offering recycling units and paper mills a single, reliable source for multiple grade requirements.
-                            </p>
+                            <h4 class="faq-q">Q.1 What paper scrap grades does BNB Enterprises handle?</h4>
+                            <p class="faq-a">Ans. BNB Enterprises handles a comprehensive range of paper scrap grades including Kraft Paper Scrap, OCC (Old Corrugated Containers), White Record/White Ledger, Mixed Paper, SOP (Sorted Office Paper), ONP (Old Newspapers), OMP (Old Magazines), CBS (Coated Book Stock), and Printed Book Scrap. We both import internationally graded paper bales and source paper scrap locally, offering recycling units and paper mills a single, reliable source for multiple grade requirements.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.2 What bale specifications does BNB Enterprises produce?</h4>
-                            <p class="faq-answer">
-                                Ans. Our paper bales are produced with standard bale weights ranging from 1.0 to 1.75 tons per bale, suitable for efficient handling, transport, and direct input to recycling facilities and paper mills. Our bale preparation process focuses on proper segregation of paper grades, clean and compact baling using industrial baling equipment, uniform bale weights within each batch, and easy handling for transport and recycling plants. All material is checked, sorted, and carefully handled to ensure it meets recycling and mill specifications before baling.
-                            </p>
+                            <h4 class="faq-q">Q.2 What bale specifications does BNB Enterprises produce?</h4>
+                            <p class="faq-a">Ans. Our paper bales are produced with standard bale weights ranging from 1.0 to 1.75 tons per bale, suitable for efficient handling, transport, and direct input to recycling facilities and paper mills. Our bale preparation process focuses on proper segregation of paper grades, clean and compact baling using industrial baling equipment, uniform bale weights within each batch, and easy handling for transport and recycling plants.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.3 Does BNB Enterprises import paper scrap or source it locally?</h4>
-                            <p class="faq-answer">
-                                Ans. BNB Enterprises does both. We import paper scrap bales from international markets, covering internationally recognized grades such as OCC, SOP, ONP, OMP, CBS, Kraft, and White Ledger. In addition, we also source paper scrap locally — including mixed paper and printed book scrap — and process it at our facility. All material, whether imported or locally sourced, undergoes the same rigorous sorting, grading, cleaning, and baling process before supply to recycling units and paper mills.
-                            </p>
+                            <h4 class="faq-q">Q.3 Does BNB Enterprises import paper scrap or source it locally?</h4>
+                            <p class="faq-a">Ans. BNB Enterprises does both. We import paper scrap bales from international markets, covering internationally recognized grades such as OCC, SOP, ONP, OMP, CBS, Kraft, and White Ledger. In addition, we also source paper scrap locally — including mixed paper and printed book scrap — and process it at our facility. All material, whether imported or locally sourced, undergoes the same rigorous sorting, grading, cleaning, and baling process before supply.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.4 Which customers does BNB Enterprises supply paper scrap bales to?</h4>
-                            <p class="faq-answer">
-                                Ans. Our paper scrap bales are supplied to recycling units and paper mills where they are used as raw material for manufacturing new paper and packaging products. Our supply is suitable for a wide range of paper manufacturing applications including newsprint, corrugated board, packaging board, white writing paper, coated paper, and tissue paper — depending on the grade supplied. We are equipped to support both domestic paper mills and international buyers requiring well-prepared, graded paper scrap bales.
-                            </p>
+                            <h4 class="faq-q">Q.4 Which customers does BNB Enterprises supply paper scrap bales to?</h4>
+                            <p class="faq-a">Ans. Our paper scrap bales are supplied to recycling units and paper mills where they are used as raw material for manufacturing new paper and packaging products. Our supply is suitable for a wide range of paper manufacturing applications including newsprint, corrugated board, packaging board, white writing paper, coated paper, and tissue paper — depending on the grade supplied.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.5 How does BNB Enterprises ensure the quality of paper scrap grades?</h4>
-                            <p class="faq-answer">
-                                Ans. Quality assurance at BNB Enterprises starts with careful selection of source material, followed by systematic sorting to remove contaminants, non-paper materials, and off-grade content. Each grade is segregated strictly and verified for purity before baling. Moisture content is monitored and maintained within acceptable limits for each grade. Bale weights are checked for uniformity, and finished bales are inspected before dispatch to ensure they meet recycling and mill specifications. Our decades of commodity trading experience means we understand what recycling units and paper mills require from their raw material.
-                            </p>
+                            <h4 class="faq-q">Q.5 How does BNB Enterprises ensure the quality of paper scrap grades?</h4>
+                            <p class="faq-a">Ans. Quality assurance at BNB Enterprises starts with careful selection of source material, followed by systematic sorting to remove contaminants, non-paper materials, and off-grade content. Each grade is segregated strictly and verified for purity before baling. Moisture content is monitored and maintained within acceptable limits for each grade. Bale weights are checked for uniformity, and finished bales are inspected before dispatch to ensure they meet recycling and mill specifications.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.6 How does paper scrap recycling support environmental sustainability?</h4>
-                            <p class="faq-answer">
-                                Ans. Paper scrap recycling is a cornerstone of the circular economy. By collecting, processing, and supplying paper waste back to paper mills as raw material, we reduce the need for virgin wood pulp, lower energy consumption in paper production, and divert paper waste from landfills. BNB Enterprises is proud to be part of this sustainability chain. Our well-prepared bales of high-quality paper scrap support cost-effective production for paper mills while contributing to environmental conservation and resource efficiency goals.
-                            </p>
+                            <h4 class="faq-q">Q.6 How does paper scrap recycling support environmental sustainability?</h4>
+                            <p class="faq-a">Ans. Paper scrap recycling is a cornerstone of the circular economy. By collecting, processing, and supplying paper waste back to paper mills as raw material, we reduce the need for virgin wood pulp, lower energy consumption in paper production, and divert paper waste from landfills. BNB Enterprises is proud to be part of this sustainability chain. Our well-prepared bales of high-quality paper scrap support cost-effective production for paper mills while contributing to environmental conservation and resource efficiency goals.</p>
                         </div>
-
                         <div class="faq-item">
-                            <h4 class="faq-question">Q.7 How can I place an order or enquire about paper scrap supply?</h4>
-                            <p class="faq-answer">
-                                Ans. Contact BNB Enterprises at +91 9940191813 or email admin@bnbentglobal.com. Our office is located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will discuss your grade requirements, volume needs, bale specifications, and pricing. We are committed to becoming your long-term, reliable paper scrap supply partner.
-                            </p>
+                            <h4 class="faq-q">Q.7 How can I place an order or enquire about paper scrap supply?</h4>
+                            <p class="faq-a">Ans. Contact BNB Enterprises at +91 9940191813 or email admin@bnbentglobal.com. Our office is located at #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India. Our team will discuss your grade requirements, volume needs, bale specifications, and pricing.</p>
                         </div>
                     </div>
 
-                    <div style="margin-top:clamp(2rem,3vw,2.5rem); padding:clamp(1.2rem,1.8vw,1.5rem); background:#F0F3F7; border-radius:8px; border:1px solid #D4DCE6;">
-                        <h3 style="font-family:'Montserrat',sans-serif; font-size:clamp(0.95rem,1.2vw,1.08rem); font-weight:800; color:#1A2332; margin-bottom:clamp(0.8rem,1.1vw,1rem);">Get in Touch with BNB Enterprises</h3>
-                        <p style="font-family:'Raleway',sans-serif; font-size:clamp(0.78rem,0.9vw,0.83rem); font-weight:400; line-height:1.65; color:#5A6B7F; margin-bottom:0.8rem;">For inquiries about our paper scrap grades or recycling supply partnerships, contact us today:</p>
-                        <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
-                        <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F; margin-bottom:0.5rem;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Phone:</strong> <a href="tel:+919940191813" style="color:#2673B8; text-decoration:none;">+91 99401 91813</a></div>
-                        <div style="font-family:'Raleway',sans-serif; font-size:clamp(0.76rem,0.88vw,0.81rem); font-weight:500; line-height:1.6; color:#5A6B7F;"><strong style="font-weight:700; color:#1A2332; margin-right:0.3rem;">Email:</strong> <a href="mailto:admin@bnbentglobal.com" style="color:#2673B8; text-decoration:none;">admin@bnbentglobal.com</a></div>
+                    <div class="contact-block">
+                        <h3>Get in Touch with BNB Enterprises</h3>
+                        <p>For inquiries about our paper scrap grades or recycling supply partnerships, contact us today:</p>
+                        <div class="crow"><strong>Address:</strong> #75 Abdul Kalam Road, Nagalkeni, Chromepet, Chennai, Tamil Nadu 600075, India</div>
+                        <div class="crow"><strong>Phone:</strong> <a href="tel:+919940191813">+91 99401 91813</a></div>
+                        <div class="crow"><strong>Email:</strong> <a href="mailto:admin@bnbentglobal.com">admin@bnbentglobal.com</a></div>
                     </div>
 
                 </div>
@@ -374,51 +252,10 @@ body.loaded .site-wrapper { opacity:1; }
     </div>
 
     <script>
-        const performanceMetrics = { startTime: performance.now(), componentsLoaded: 0 };
-        document.addEventListener("DOMContentLoaded", () => {
-            const minLoadTime = 800;
-            const elapsedTime = performance.now() - performanceMetrics.startTime;
-            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-            setTimeout(() => { document.body.classList.add("loaded"); loadComponents(); }, remainingTime);
-        });
-        async function loadComponents() {
-            const components = [
-                { name: "navbar-product", target: "navbarComponent" },
-                { name: "footer", target: "footerComponent" }
-            ];
-            for (const comp of components) { await loadComponent(comp.name, comp.target); performanceMetrics.componentsLoaded++; }
-            initializePageFunctions();
-        }
-        async function loadComponent(name, targetId) {
-            try {
-                const htmlResp = await fetch(`${name}.html`);
-                const htmlText = await htmlResp.text();
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = htmlText;
-                const targetElement = document.getElementById(targetId);
-                if (!targetElement) return;
-                const styles = tempDiv.querySelectorAll('style');
-                styles.forEach(style => { const s = document.createElement('style'); s.innerHTML = style.innerHTML; s.setAttribute('data-component', name); document.head.appendChild(s); });
-                const scripts = tempDiv.querySelectorAll('script');
-                const scriptContents = Array.from(scripts).map(s => s.innerHTML);
-                scripts.forEach(s => s.remove()); styles.forEach(s => s.remove());
-                tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]').forEach(l => l.remove());
-                targetElement.innerHTML = tempDiv.innerHTML;
-                await new Promise(resolve => setTimeout(resolve, 50));
-                scriptContents.forEach(sc => { if (sc.trim()) { try { new Function(sc)(); } catch(e) { console.error(e); } } });
-            } catch(err) { console.error(`Error loading ${name}:`, err); }
-        }
-        function initializePageFunctions() {
-            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animate-on-scroll'); observer.unobserve(entry.target); } });
-            }, observerOptions);
-            const header = document.querySelector('.page-header'); if (header) observer.observe(header);
-            document.querySelectorAll('.product-card').forEach((card, i) => { card.style.animationDelay = `${i * 0.06}s`; observer.observe(card); });
-            const aboutSection = document.querySelector('.about-section'); if (aboutSection) observer.observe(aboutSection);
-            document.querySelectorAll('.faq-item').forEach((item, i) => { item.style.animationDelay = `${i * 0.08}s`; observer.observe(item); });
-        }
-        window.addEventListener('load', function() { console.log('🚀 Paper Page loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms'); });
+        document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
+        async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
+        async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".grade-card,.faq-item,.para").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>

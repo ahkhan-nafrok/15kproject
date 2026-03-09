@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Exports - BNB Enterprises</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+:root {
+    --primary-blue: #2673B8;
+    --pure-black: #000000;
+    --pure-white: #F2F4F7;
+    --off-white: #EDF0F4;
+    --text-dark: #0A0A0A;
+    --light-gray: #E8EBF0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ── SECTION ──────────────────────────────────────────────────── */
+.exports-section {
+    padding: 5rem 0;
+    background: var(--off-white);
+}
+
+/* ── CENTERED HEADER ──────────────────────────────────────────── */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 2rem;
+}
+
+.section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--pure-black);
+    line-height: 1.05;
+}
+
+.section-title span {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 100%; height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title.title-animated span::after { transform: scaleX(1); }
+
+.title-bar {
+    display: block;
+    width: 48px; height: 3px;
+    background: var(--primary-blue);
+    margin: 0.9rem auto 0;
+    border-radius: 1px;
+}
+
+/* centered description */
+.section-desc {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    opacity: 0.6;
+    max-width: 520px;
+    line-height: 1.7;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* ── CARDS GRID ───────────────────────────────────────────────── */
+.cards-grid {
+    max-width: 1400px;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* ── EXPORT CARD ──────────────────────────────────────────────── */
+.export-card {
+    background: var(--pure-white);
+    border: 1px solid var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(32px);
+}
+
+/* top accent bar */
+.export-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.export-card:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(38, 115, 184, 0.16);
+}
+
+.export-card:hover::before { transform: scaleX(1); }
+
+/* ── CARD IMAGE ───────────────────────────────────────────────── */
+.card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: var(--light-gray);
+    flex-shrink: 0;
+}
+
+.card-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.export-card:hover .card-img-wrap img { transform: scale(1.07); }
+
+/* subtle blue tint on hover */
+.card-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(38, 115, 184, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.export-card:hover .card-img-wrap::after { opacity: 1; }
+
+/* ── CARD BODY ────────────────────────────────────────────────── */
+.card-body {
+    padding: 1.5rem 1.6rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    flex: 1;
+}
+
+.card-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: var(--pure-black);
+    transition: color 0.3s ease;
+    line-height: 1.2;
+}
+
+.export-card:hover .card-name { color: var(--primary-blue); }
+
+.card-sub {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.export-card:hover .card-sub { opacity: 0.75; }
+
+.card-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.card-explore i { font-size: 0.75rem; transition: transform 0.3s ease; }
+.export-card:hover .card-explore { opacity: 1; transform: translateY(0); }
+.export-card:hover .card-explore i { transform: translateX(4px); }
+
+/* ── VISIBLE STATE ────────────────────────────────────────────── */
+.export-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.55s ease,
+        transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+    .exports-section { padding: 3.5rem 0; }
+    .section-header { padding: 0 1.2rem; }
+    .cards-grid { padding: 0 1.2rem; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
+    .card-img-wrap { height: 130px; }
+    .card-body { padding: 1rem 1.1rem 1.3rem; }
+    .card-name { font-size: 0.88rem; }
+}
+
+@media (max-width: 380px) {
+    .cards-grid { grid-template-columns: 1fr; }
+}
+    </style>
+</head>
+<body>
+
+    <section class="exports-section" id="exports">
+
+        <div class="section-header">
+            <div class="section-label">Global Exports</div>
+            <h2 class="section-title" id="exportsTitle">What We <span>Export</span></h2>
+            <span class="title-bar"></span>
+            <p class="section-desc">
+                Premium commodities sourced, quality-checked, and delivered worldwide — building lasting trade relationships.
+            </p>
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- Agriculture -->
+            <div class="export-card" data-url="Agriculture.html" role="button" tabindex="0" aria-label="Agriculture Commodities">
+                <div class="card-img-wrap">
+                    <img src="assets/Agro-products/chilli.webp" alt="Agriculture Commodities">
+                </div>
+                <div class="card-body">
+                    <div class="card-name">Agriculture Commodities</div>
+                    <div class="card-sub">Grains · Pulses · Spices</div>
+                    <span class="card-explore">Explore <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- Leather -->
+            <div class="export-card" data-url="leather.html" role="button" tabindex="0" aria-label="Leather">
+                <div class="card-img-wrap">
+                    <img src="assets/leather/BNB-leather-export-2.webp" alt="Leather">
+                </div>
+                <div class="card-body">
+                    <div class="card-name">Leather</div>
+                    <div class="card-sub">Hides · Finished · Processed</div>
+                    <span class="card-explore">Explore <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- Paper -->
+            <div class="export-card" data-url="paper.html" role="button" tabindex="0" aria-label="Paper">
+                <div class="card-img-wrap">
+                    <img src="assets/Paper/paper-vabbe.webp" alt="Paper">
+                </div>
+                <div class="card-body">
+                    <div class="card-name">Paper</div>
+                    <div class="card-sub">Kraft · Newsprint · Specialty</div>
+                    <span class="card-explore">Explore <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- Aquaculture -->
+            <div class="export-card" data-url="aquaculture.html" role="button" tabindex="0" aria-label="Aquaculture">
+                <div class="card-img-wrap">
+                    <img src="assets/aquaculture/bnb-export-shrimps3.webp" alt="Aquaculture">
+                </div>
+                <div class="card-body">
+                    <div class="card-name">Aquaculture</div>
+                    <div class="card-sub">Shrimp · Fish · Seafood</div>
+                    <span class="card-explore">Explore <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function initializeExportsComponent() {
+            const title = document.getElementById('exportsTitle');
+            if (title) {
+                const obs = new IntersectionObserver(([e]) => {
+                    if (e.isIntersecting) { title.classList.add('title-animated'); obs.disconnect(); }
+                }, { threshold: 0.5 });
+                obs.observe(title);
+            }
+
+            const cards = document.querySelectorAll('.export-card');
+            if (!cards.length) return;
+
+            const cardObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const idx = [...cards].indexOf(entry.target);
+                        setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+                        cardObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+            cards.forEach(card => {
+                cardObs.observe(card);
+                card.addEventListener('click', function () {
+                    const url = this.dataset.url;
+                    if (url) setTimeout(() => { window.location.href = url; }, 150);
+                });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeExportsComponent);
+        } else {
+            setTimeout(initializeExportsComponent, 50);
+        }
+
+        window.initializeExports = initializeExportsComponent;
+    </script>
+</body>
+</html>

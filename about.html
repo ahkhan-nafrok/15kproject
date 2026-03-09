@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - BNB Enterprises</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
 :root {
     --primary-blue: #2673B8;
@@ -20,11 +20,7 @@
     --whatsapp-green: #25D366;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -33,7 +29,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Compact Top Bar */
+/* ── MARQUEE BAR ──────────────────────────────────────────────── */
 .top-bar {
     background: var(--pure-black);
     padding: 0.6rem 0;
@@ -58,11 +54,11 @@ body {
 }
 
 @keyframes scroll {
-    0% { transform: translateX(0); }
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Compact Quote Bar */
+/* ── QUOTE BAR ────────────────────────────────────────────────── */
 .quote-bar {
     background: var(--pure-white);
     border-bottom: 1px solid var(--light-gray);
@@ -83,10 +79,7 @@ body {
     gap: 2rem;
 }
 
-.quote-text {
-    display: flex;
-    flex-direction: column;
-}
+.quote-text { display: flex; flex-direction: column; }
 
 .quote-title {
     font-family: 'Montserrat', sans-serif;
@@ -106,11 +99,7 @@ body {
     color: var(--primary-blue);
 }
 
-.quote-buttons {
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-}
+.quote-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
 .quote-btn {
     font-family: 'Raleway', sans-serif;
@@ -128,44 +117,24 @@ body {
     gap: 0.5rem;
 }
 
-.whatsapp-btn {
-    background: var(--whatsapp-green);
-    color: var(--pure-white);
-}
+.whatsapp-btn { background: var(--whatsapp-green); color: var(--pure-white); }
+.whatsapp-btn:hover { background: #1fb855; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
+.call-btn { background: var(--primary-blue); color: var(--pure-white); }
+.call-btn:hover { background: #1d5a94; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(38,115,184,0.3); }
 
-.whatsapp-btn:hover {
-    background: #1fb855;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-.call-btn {
-    background: var(--primary-blue);
-    color: var(--pure-white);
-}
-
-.call-btn:hover {
-    background: #1d5a94;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(38, 115, 184, 0.3);
-}
-
-/* Compact Hero Section */
-.hero-section {
+/* ── ABOUT SECTION ────────────────────────────────────────────── */
+.about-section {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: start;
 }
 
-.content-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
+/* ── CONTENT SIDE ─────────────────────────────────────────────── */
+.content-side { display: flex; flex-direction: column; }
 
 .label {
     font-family: 'Raleway', sans-serif;
@@ -179,130 +148,130 @@ body {
 
 .main-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
     color: var(--pure-black);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1.05;
+    margin-bottom: 1.8rem;
 }
+
+.main-title span { color: var(--primary-blue); }
 
 .intro-text {
     font-family: 'Raleway', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.2px;
     color: var(--text-dark);
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
     opacity: 0.9;
-}
-
-.description-block {
-    margin-bottom: 2rem;
 }
 
 .description-text {
     font-family: 'Raleway', sans-serif;
     font-size: 0.875rem;
     font-weight: 400;
-    letter-spacing: 0.2px;
     color: var(--text-dark);
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-    opacity: 0.85;
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
 }
 
-.highlight {
-    color: var(--primary-blue);
-    font-weight: 600;
+.highlight { color: var(--primary-blue); font-weight: 700; }
+
+.section-divider {
+    width: 48px; height: 3px;
+    background: var(--primary-blue);
+    margin: 1.5rem 0;
 }
 
-/* Compact Stats Timeline */
-.stats-timeline {
-    margin-top: 1.5rem;
+/* ── VALUES GRID  (3-column, 6 items) ─────────────────────────── */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin-top: 2rem;
 }
 
-.stat-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
+.value-item {
+    background: var(--pure-white);
+    border: 1px solid var(--light-gray);
+    border-left: 3px solid var(--primary-blue);
+    padding: 1.1rem 1.3rem;
+    transition: all 0.3s ease;
     position: relative;
-    padding-left: 0;
+    overflow: hidden;
 }
 
-.stat-row::before {
+/* subtle shimmer on hover */
+.value-item::after {
     content: '';
     position: absolute;
-    left: 20px;
-    top: 40px;
-    width: 2px;
-    height: calc(100% + 1.5rem);
-    background: var(--light-gray);
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(38,115,184,0.04), transparent);
+    transition: left 0.5s ease;
 }
 
-.stat-row:last-child::before {
-    display: none;
+.value-item:hover::after { left: 140%; }
+
+.value-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(38,115,184,0.1);
+    border-left-color: var(--primary-blue);
 }
 
-.stat-icon {
-    width: 42px;
-    height: 42px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    display: flex;
+/* special highlight on the 2 new process cards */
+.value-item.process-card {
+    border-left-color: var(--primary-blue);
+    background: var(--pure-white);
+}
+
+.value-item.process-card .value-icon {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    margin-right: 1.2rem;
-    position: relative;
-    z-index: 2;
-    transition: transform 0.3s ease;
+    width: 28px; height: 28px;
+    background: rgba(38,115,184,0.08);
+    border-radius: 50%;
+    margin-bottom: 0.55rem;
 }
 
-.stat-row:hover .stat-icon {
-    transform: scale(1.1);
+.value-item.process-card .value-icon svg {
+    width: 14px; height: 14px;
+    stroke: var(--primary-blue);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.stat-number-circle {
+.value-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 900;
-    color: var(--pure-white);
-}
-
-.stat-content {
-    flex: 1;
-}
-
-.stat-value {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    color: var(--pure-black);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-}
-
-.stat-label-text {
-    font-family: 'Raleway', sans-serif;
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: var(--pure-black);
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
-    color: var(--text-dark);
-    opacity: 0.6;
 }
 
-/* Image Side */
-.image-side {
-    position: relative;
+.value-desc {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    opacity: 0.65;
+    line-height: 1.5;
 }
+
+/* ── IMAGE SIDE ───────────────────────────────────────────────── */
+.image-side { position: relative; }
 
 .image-container {
     position: sticky;
-    top: 90px;
+    top: 140px;
     background: var(--pure-white);
     border: 1px solid var(--light-gray);
     overflow: hidden;
@@ -310,24 +279,20 @@ body {
 }
 
 .hero-image {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
     max-height: 500px;
     object-fit: cover;
     display: block;
     transition: transform 0.6s ease;
 }
 
-.image-container:hover .hero-image {
-    transform: scale(1.05);
-}
+.image-container:hover .hero-image { transform: scale(1.04); }
 
 .floating-badge {
     position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
+    bottom: 1.5rem; left: 1.5rem;
     background: var(--pure-white);
-    padding: 1.5rem 2rem;
+    padding: 1.4rem 1.8rem;
     border: 1px solid var(--light-gray);
     z-index: 10;
 }
@@ -339,7 +304,7 @@ body {
     letter-spacing: -1.5px;
     color: var(--primary-blue);
     line-height: 1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .badge-text {
@@ -352,372 +317,48 @@ body {
     opacity: 0.7;
 }
 
-/* Enhanced Product Cards Section */
-.cards-section {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-label {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--primary-blue);
-    margin-bottom: 0.8rem;
-}
-
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    color: var(--pure-black);
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-}
-
-.cards-card {
-    background: var(--pure-white);
-    border: 1px solid var(--light-gray);
-    padding: 3rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.cards-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--primary-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cards-card::after {
-    content: '';
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 24px;
-    height: 24px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cards-card:hover::before {
-    transform: scaleX(1);
-}
-
-.cards-card:hover::after {
-    opacity: 0.1;
-    transform: scale(15);
-}
-
-.cards-card:hover {
-    border-color: var(--primary-blue);
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(38, 115, 184, 0.15);
-}
-
-.cards-icon {
-    width: 72px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    z-index: 2;
-}
-
-.cards-icon svg {
-    width: 100%;
-    height: 100%;
-    stroke: var(--primary-blue);
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cards-card:hover .cards-icon {
-    transform: scale(1.15) translateY(-5px);
-}
-
-.cards-card:hover .cards-icon svg {
-    stroke: var(--primary-blue);
-    filter: drop-shadow(0 4px 8px rgba(38, 115, 184, 0.3));
-}
-
-.cards-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--primary-blue);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
-}
-
-.cards-card:hover .cards-name {
-    transform: translateY(-2px);
-    letter-spacing: 1px;
-}
-
-.card-arrow {
-    position: absolute;
-    bottom: 1.2rem;
-    right: 1.2rem;
-    width: 20px;
-    height: 20px;
-    opacity: 0;
-    transform: translate(-10px, 10px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 3;
-}
-
-.card-arrow svg {
-    width: 100%;
-    height: 100%;
-    stroke: var(--primary-blue);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.cards-card:hover .card-arrow {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
-/* Fade in animation */
+/* ── ANIMATIONS ───────────────────────────────────────────────── */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.cards-card.animate {
-    animation: fadeInUp 0.6s ease forwards;
-}
+.animate-up { animation: fadeInUp 0.65s ease forwards; }
 
-.stat-row.animate {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-    .hero-section {
-        gap: 2.5rem;
-    }
-    
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 991px) {
-    .hero-section {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 2.5rem 2rem;
-    }
-
-    .quote-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.2rem;
-    }
-
-    .quote-buttons {
-        width: 100%;
-    }
-
-    .quote-btn {
-        flex: 1;
-        justify-content: center;
-    }
-
-    .image-container {
-        position: relative;
-        top: 0;
-    }
-
-    .hero-image {
-        max-height: 450px;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem;
-    }
-    
-    .cards-card {
-        padding: 2.5rem 1.5rem;
-    }
+    .about-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
+    .image-container { position: relative; top: 0; }
+    .quote-container { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+    .quote-buttons { width: 100%; }
+    .quote-btn { flex: 1; justify-content: center; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 2rem 1.5rem;
-    }
-    
-    .intro-text {
-        font-size: 0.9rem;
-    }
-
-    .stat-icon {
-        width: 38px;
-        height: 38px;
-    }
-
-    .stat-value {
-        font-size: 1.5rem;
-    }
-
-    .quote-title {
-        font-size: 1rem;
-    }
-
-    .hero-image {
-        max-height: 400px;
-    }
-    
-    .cards-icon {
-        width: 64px;
-        height: 64px;
-    }
+    .hero-image { max-height: 380px; }
 }
 
 @media (max-width: 576px) {
-    .hero-section {
-        padding: 2rem 1.2rem;
-    }
-
-    .intro-text {
-        font-size: 0.875rem;
-    }
-
-    .description-text {
-        font-size: 0.8rem;
-    }
-
-    .stat-icon {
-        width: 36px;
-        height: 36px;
-        margin-right: 1rem;
-    }
-
-    .stat-number-circle {
-        font-size: 0.85rem;
-    }
-
-    .stat-value {
-        font-size: 1.4rem;
-    }
-
-    .stat-label-text {
-        font-size: 0.7rem;
-    }
-
-    .floating-badge {
-        padding: 1.2rem 1.5rem;
-        bottom: 1rem;
-        left: 1rem;
-    }
-
-    .badge-number {
-        font-size: 2rem;
-    }
-
-    .badge-text {
-        font-size: 0.6rem;
-    }
-
-    .marquee-item {
-        padding: 0 2rem;
-        font-size: 0.7rem;
-    }
-
-    .quote-container {
-        padding: 0 1.2rem;
-    }
-
-    .quote-buttons {
-        flex-direction: column;
-        gap: 0.7rem;
-    }
-
-    .quote-btn {
-        width: 100%;
-        padding: 0.8rem 1.5rem;
-    }
-
-    .hero-image {
-        max-height: 350px;
-    }
-
-    .cards-section {
-        padding: 3rem 1.2rem;
-    }
-    
-    .cards-grid {
-        gap: 1rem;
-    }
-    
-    .cards-card {
-        padding: 2rem 1rem;
-    }
-    
-    .cards-icon {
-        width: 56px;
-        height: 56px;
-    }
-    
-    .cards-name {
-        font-size: 1rem;
-    }
+    .about-section { padding: 2rem 1.2rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .quote-container { padding: 0 1.2rem; }
+    .quote-buttons { flex-direction: column; }
+    .quote-btn { width: 100%; }
+    .hero-image { max-height: 300px; }
+    .floating-badge { padding: 1rem 1.2rem; bottom: 0.8rem; left: 0.8rem; }
+    .badge-number { font-size: 2rem; }
+    .marquee-item { padding: 0 2rem; font-size: 0.7rem; }
 }
     </style>
 </head>
 <body>
+
+    <!-- ── MARQUEE BAR ──────────────────────────────────────────── -->
     <div class="top-bar">
         <div class="marquee">
             <span class="marquee-item">Premium Quality</span>
@@ -733,21 +374,22 @@ body {
         </div>
     </div>
 
+    <!-- ── QUOTE BAR ────────────────────────────────────────────── -->
     <div class="quote-bar">
         <div class="quote-container">
             <div class="quote-text">
-                <div class="quote-title">Ask Quote</div>
-                <div class="quote-subtitle">Free Quotation</div>
+                <div class="quote-title">Get a Free Quote</div>
+                <div class="quote-subtitle">No Commitment Required</div>
             </div>
             <div class="quote-buttons">
                 <a href="https://wa.me/YOUR_PHONE_NUMBER" class="quote-btn whatsapp-btn" target="_blank">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
                     </svg>
                     WhatsApp
                 </a>
                 <a href="tel:YOUR_PHONE_NUMBER" class="quote-btn call-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" fill="currentColor"/>
                     </svg>
                     Call Us
@@ -756,339 +398,123 @@ body {
         </div>
     </div>
 
-    <section class="hero-section">
+    <!-- ── ABOUT SECTION ─────────────────────────────────────────── -->
+    <section class="about-section">
+
+        <!-- LEFT -->
         <div class="content-side">
-            <div class="label">About Us</div>
-            
-            <h1 class="main-title">BNB<br>Enterprises</h1>
-            
+            <div class="label">Who We Are</div>
+
+            <h1 class="main-title">BNB<br><span>Enterprises</span></h1>
+
             <p class="intro-text">
-                A beacon of <span class="highlight">excellence</span> in the global trading landscape, delivering premium solutions across diverse industries.
+                A beacon of <span class="highlight">excellence</span> in the global trading landscape — delivering premium marble, granite, and allied solutions across diverse industries.
             </p>
 
-            <div class="description-block">
-                <p class="description-text">
-                    Founded on principles of quality, reliability, and innovation, we connect quality manufacturers with discerning clients worldwide through strategic operations and robust supply chain networks.
-                </p>
-                <p class="description-text">
-                    From boutique enterprises to large-scale corporations, our client-centric approach and commitment to excellence have earned us recognition as industry leaders.
-                </p>
-            </div>
+            <div class="section-divider"></div>
 
-            <div class="stats-timeline">
-                <div class="stat-row">
-                    <div class="stat-icon">
-                        <span class="stat-number-circle">01</span>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">25+</div>
-                        <div class="stat-label-text">Years Experience</div>
-                    </div>
+            <p class="description-text">
+                Founded on principles of quality, reliability, and innovation, we connect premium stone manufacturers with discerning clients worldwide through strategic operations and robust supply chain networks.
+            </p>
+            <p class="description-text">
+                From boutique enterprises to large-scale corporations, our client-centric approach and commitment to excellence have earned us recognition as <span class="highlight">industry leaders</span> in stone trading and export.
+            </p>
+
+            <!-- ── VALUES GRID: 3×2 ────────────────────────────── -->
+            <div class="values-grid">
+
+                <div class="value-item">
+                    <div class="value-title">Quality First</div>
+                    <div class="value-desc">Every slab inspected to international standards before dispatch.</div>
                 </div>
 
-                <div class="stat-row">
-                    <div class="stat-icon">
-                        <span class="stat-number-circle">02</span>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">500+</div>
-                        <div class="stat-label-text">Projects Completed</div>
-                    </div>
+                <div class="value-item">
+                    <div class="value-title">Reliability</div>
+                    <div class="value-desc">Consistent delivery schedules and transparent communication.</div>
                 </div>
 
-                <div class="stat-row">
-                    <div class="stat-icon">
-                        <span class="stat-number-circle">03</span>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">50+</div>
-                        <div class="stat-label-text">Global Partners</div>
-                    </div>
+                <div class="value-item">
+                    <div class="value-title">Global Reach</div>
+                    <div class="value-desc">Trusted partners across 50+ countries worldwide.</div>
                 </div>
 
-                <div class="stat-row">
-                    <div class="stat-icon">
-                        <span class="stat-number-circle">04</span>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label-text">Client Satisfaction</div>
-                    </div>
+                <div class="value-item">
+                    <div class="value-title">Innovation</div>
+                    <div class="value-desc">Modern processes and continuous improvement in every workflow.</div>
                 </div>
+
+                <!-- NEW: Block Cutting -->
+                <div class="value-item process-card">
+                    <div class="value-icon">
+                        <!-- saw / cut icon -->
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="0.5"/>
+                            <rect x="14" y="3" width="7" height="7" rx="0.5"/>
+                            <rect x="3" y="14" width="7" height="7" rx="0.5"/>
+                            <path d="M14 17.5h7M17.5 14v7"/>
+                        </svg>
+                    </div>
+                    <div class="value-title">We Cut Blocks</div>
+                    <div class="value-desc">Raw quarry blocks precision-cut to exact slab dimensions on site.</div>
+                </div>
+
+                <!-- NEW: Polish & Export -->
+                <div class="value-item process-card">
+                    <div class="value-icon">
+                        <!-- sparkle / polish icon -->
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+                            <path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/>
+                        </svg>
+                    </div>
+                    <div class="value-title">Polish &amp; Export</div>
+                    <div class="value-desc">Mirror-finish polishing done in-house before global export.</div>
+                </div>
+
             </div>
         </div>
 
+        <!-- RIGHT: image -->
         <div class="image-side">
             <div class="image-container">
-                <img src="assets/current.png" alt="BNB Enterprises" class="hero-image">
+                <img src="assets/current.webp" alt="BNB Enterprises — Marble & Granite" class="hero-image">
                 <div class="floating-badge">
-                    <div class="badge-number">20+</div>
+                    <div class="badge-number">25+</div>
                     <div class="badge-text">Years of Excellence</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="cards-section">
-        <div class="section-header">
-            <div class="section-label">Our Exports</div>
-            <h2 class="section-title">What We Export</h2>
-        </div>
-        
-        <div class="cards-grid">
-            <!-- Agriculture Commodities Card -->
-            <div class="cards-card" data-product="agriculture" data-url="Agriculture.html">
-                <div class="cards-icon">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Wheat stalks -->
-                        <path d="M20 48 L20 20"/>
-                        <path d="M32 48 L32 16"/>
-                        <path d="M44 48 L44 18"/>
-                        
-                        <!-- Left wheat grains -->
-                        <ellipse cx="17" cy="22" rx="3" ry="4"/>
-                        <ellipse cx="17" cy="27" rx="3" ry="4"/>
-                        <ellipse cx="17" cy="32" rx="3" ry="4"/>
-                        <ellipse cx="17" cy="37" rx="3" ry="4"/>
-                        
-                        <ellipse cx="23" cy="22" rx="3" ry="4"/>
-                        <ellipse cx="23" cy="27" rx="3" ry="4"/>
-                        <ellipse cx="23" cy="32" rx="3" ry="4"/>
-                        <ellipse cx="23" cy="37" rx="3" ry="4"/>
-                        
-                        <!-- Middle wheat grains -->
-                        <ellipse cx="29" cy="18" rx="3" ry="4"/>
-                        <ellipse cx="29" cy="23" rx="3" ry="4"/>
-                        <ellipse cx="29" cy="28" rx="3" ry="4"/>
-                        <ellipse cx="29" cy="33" rx="3" ry="4"/>
-                        <ellipse cx="29" cy="38" rx="3" ry="4"/>
-                        
-                        <ellipse cx="35" cy="18" rx="3" ry="4"/>
-                        <ellipse cx="35" cy="23" rx="3" ry="4"/>
-                        <ellipse cx="35" cy="28" rx="3" ry="4"/>
-                        <ellipse cx="35" cy="33" rx="3" ry="4"/>
-                        <ellipse cx="35" cy="38" rx="3" ry="4"/>
-                        
-                        <!-- Right wheat grains -->
-                        <ellipse cx="41" cy="20" rx="3" ry="4"/>
-                        <ellipse cx="41" cy="25" rx="3" ry="4"/>
-                        <ellipse cx="41" cy="30" rx="3" ry="4"/>
-                        <ellipse cx="41" cy="35" rx="3" ry="4"/>
-                        <ellipse cx="41" cy="40" rx="3" ry="4"/>
-                        
-                        <ellipse cx="47" cy="20" rx="3" ry="4"/>
-                        <ellipse cx="47" cy="25" rx="3" ry="4"/>
-                        <ellipse cx="47" cy="30" rx="3" ry="4"/>
-                        <ellipse cx="47" cy="35" rx="3" ry="4"/>
-                        <ellipse cx="47" cy="40" rx="3" ry="4"/>
-                    </svg>
-                </div>
-                <div class="cards-name">Agriculture Commodities</div>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Leather Card -->
-            <div class="cards-card" data-product="leather" data-url="leather.html">
-                <div class="cards-icon">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Leather hide shape -->
-                        <path d="M32 10 C20 10, 12 16, 12 24 C12 28, 10 32, 10 36 C10 44, 16 52, 24 54 C28 55, 32 56, 36 55 C40 54, 44 52, 46 48 C48 44, 52 40, 54 36 C56 32, 54 28, 54 24 C54 16, 44 10, 32 10 Z"/>
-                        
-                        <!-- Texture lines for leather -->
-                        <path d="M18 22 Q20 24, 22 22"/>
-                        <path d="M24 26 Q26 28, 28 26"/>
-                        <path d="M30 24 Q32 26, 34 24"/>
-                        <path d="M38 28 Q40 30, 42 28"/>
-                        <path d="M20 32 Q22 34, 24 32"/>
-                        <path d="M28 36 Q30 38, 32 36"/>
-                        <path d="M36 34 Q38 36, 40 34"/>
-                        <path d="M26 42 Q28 44, 30 42"/>
-                        <path d="M34 40 Q36 42, 38 40"/>
-                        
-                        <!-- Stitching pattern -->
-                        <circle cx="16" cy="26" r="1.5" fill="currentColor"/>
-                        <circle cx="22" cy="30" r="1.5" fill="currentColor"/>
-                        <circle cx="28" cy="32" r="1.5" fill="currentColor"/>
-                        <circle cx="36" cy="32" r="1.5" fill="currentColor"/>
-                        <circle cx="42" cy="34" r="1.5" fill="currentColor"/>
-                        <circle cx="48" cy="38" r="1.5" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="cards-name">Leather</div>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Paper Card -->
-            <div class="cards-card" data-product="paper" data-url="paper.html">
-                <div class="cards-icon">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Paper roll -->
-                        <ellipse cx="32" cy="18" rx="18" ry="6"/>
-                        <rect x="14" y="18" width="36" height="28"/>
-                        <ellipse cx="32" cy="46" rx="18" ry="6"/>
-                        
-                        <!-- Paper texture lines -->
-                        <line x1="14" y1="24" x2="50" y2="24" opacity="0.3"/>
-                        <line x1="14" y1="28" x2="50" y2="28" opacity="0.3"/>
-                        <line x1="14" y1="32" x2="50" y2="32" opacity="0.3"/>
-                        <line x1="14" y1="36" x2="50" y2="36" opacity="0.3"/>
-                        <line x1="14" y1="40" x2="50" y2="40" opacity="0.3"/>
-                        
-                        <!-- Spiral on roll -->
-                        <path d="M20 18 Q22 16, 24 18" fill="none" opacity="0.4"/>
-                        <path d="M26 18 Q28 16, 30 18" fill="none" opacity="0.4"/>
-                        <path d="M32 18 Q34 16, 36 18" fill="none" opacity="0.4"/>
-                        <path d="M38 18 Q40 16, 42 18" fill="none" opacity="0.4"/>
-                    </svg>
-                </div>
-                <div class="cards-name">Paper</div>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Aquaculture Card -->
-            <div class="cards-card" data-product="aquaculture" data-url="aquaculture.html">
-                <div class="cards-icon">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Shrimp body -->
-                        <path d="M48 32 C48 32, 42 28, 36 28 C30 28, 24 30, 20 32 C16 34, 12 36, 10 38"/>
-                        
-                        <!-- Shrimp segments -->
-                        <path d="M44 30 C44 30, 42 34, 40 36"/>
-                        <path d="M38 29 C38 29, 36 33, 34 35"/>
-                        <path d="M32 29 C32 29, 30 33, 28 35"/>
-                        <path d="M26 30 C26 30, 24 34, 22 36"/>
-                        <path d="M20 32 C20 32, 18 36, 16 38"/>
-                        
-                        <!-- Shrimp head/rostrum -->
-                        <path d="M48 32 L54 28"/>
-                        <path d="M48 32 L54 36"/>
-                        
-                        <!-- Shrimp antennae -->
-                        <path d="M50 30 Q56 24, 58 20"/>
-                        <path d="M50 34 Q56 40, 58 44"/>
-                        
-                        <!-- Shrimp legs -->
-                        <path d="M42 34 L42 40"/>
-                        <path d="M36 34 L36 40"/>
-                        <path d="M30 34 L30 40"/>
-                        <path d="M24 35 L24 41"/>
-                        <path d="M18 36 L18 42"/>
-                        
-                        <!-- Shrimp tail fan -->
-                        <path d="M10 38 L6 36"/>
-                        <path d="M10 38 L6 40"/>
-                        <path d="M10 38 L8 42"/>
-                        <path d="M10 38 L8 34"/>
-                        
-                        <!-- Eye -->
-                        <circle cx="48" cy="32" r="2" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="cards-name">Aquaculture</div>
-                <div class="card-arrow">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
     </section>
 
     <script>
-        // ========== INITIALIZATION FUNCTION ==========
         function initializeAboutComponent() {
-            console.log('🎨 Initializing About Component...');
-            
-            // Initialize stat rows
-            const statRows = document.querySelectorAll('.stat-row');
-            if (statRows.length > 0) {
-                const statObserver = new IntersectionObserver((entries) => {
-                    entries.forEach((entry, index) => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                entry.target.classList.add('animate');
-                            }, index * 100);
-                            statObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.2 });
+            const items = document.querySelectorAll('.value-item');
+            if (!items.length) return;
 
-                statRows.forEach(row => statObserver.observe(row));
-                console.log('✅ Stat rows initialized:', statRows.length);
-            }
-
-            // Initialize product cards with navigation
-            const cardsCards = document.querySelectorAll('.cards-card');
-            if (cardsCards.length > 0) {
-                const cardsObserver = new IntersectionObserver((entries) => {
-                    entries.forEach((entry, index) => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                entry.target.classList.add('animate');
-                            }, index * 100);
-                            cardsObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { 
-                    threshold: 0.2,
-                    rootMargin: '0px 0px -50px 0px'
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => entry.target.classList.add('animate-up'), i * 70);
+                        observer.unobserve(entry.target);
+                    }
                 });
+            }, { threshold: 0.12 });
 
-                cardsCards.forEach(card => {
-                    cardsObserver.observe(card);
-                    
-                    // Add click handler with navigation
-                    card.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const product = this.dataset.product;
-                        const url = this.dataset.url;
-                        
-                        console.log(`🔗 Navigating to: ${product} → ${url}`);
-                        
-                        // Add a slight delay for the animation to complete
-                        setTimeout(() => {
-                            window.location.href = url;
-                        }, 200);
-                    });
-                    
-                    // Add hover cursor effect
-                    card.style.cursor = 'pointer';
-                });
-
-                console.log('✅ Product cards initialized with navigation:', cardsCards.length);
-            }
-
-            console.log('✅ About Component fully initialized');
+            items.forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
         }
 
-        // ========== SMART INITIALIZATION ==========
-        // This ensures the component works both standalone and when loaded dynamically
         if (document.readyState === 'loading') {
-            // Document still loading - wait for DOMContentLoaded
             document.addEventListener('DOMContentLoaded', initializeAboutComponent);
         } else {
-            // Document already loaded - initialize immediately
-            // Use setTimeout to ensure DOM is fully ready
             setTimeout(initializeAboutComponent, 50);
         }
 
-        // ========== EXPOSE GLOBAL FUNCTION FOR INDEX.HTML ==========
-        // Your index.html looks for this function
         window.initializeAbout = initializeAboutComponent;
-        
-        console.log('📄 About.html script loaded and ready');
     </script>
 </body>
 </html>

@@ -21,11 +21,7 @@
     --whatsapp-green: #25D366;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -34,7 +30,6 @@ body {
     overflow-x: hidden;
 }
 
-/* COMPACT CATEGORIES SECTION */
 .categories-section {
     background: var(--off-white);
     padding: 3rem 0;
@@ -46,8 +41,11 @@ body {
     padding: 0 2.5rem;
 }
 
-/* COMPACT HEADER */
+/* ── FIXED CENTERED HEADER ─────────────────────────────────── */
 .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 2.5rem;
 }
@@ -59,7 +57,7 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--primary-blue);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .section-title {
@@ -71,14 +69,24 @@ body {
     line-height: 1.1;
 }
 
-/* CATEGORIES GRID - 3 COLUMNS */
+/* thin blue accent bar under the title */
+.section-title-bar {
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--primary-blue);
+    margin: 0.9rem auto 0;
+    border-radius: 1px;
+}
+
+/* ── GRID ──────────────────────────────────────────────────── */
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.3rem;
 }
 
-/* CARD WRAPPER */
+/* ── CARD ──────────────────────────────────────────────────── */
 .category-card {
     position: relative;
     height: 400px;
@@ -86,16 +94,13 @@ body {
     text-decoration: none;
     display: block;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: inset 0 0 0 1px rgba(38, 115, 184, 0);
     cursor: pointer;
 }
 
 .category-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 3px;
     background: var(--primary-blue);
     transform: scaleX(0);
@@ -106,65 +111,42 @@ body {
 
 .category-card:hover {
     transform: translateY(-6px);
-    box-shadow: 
-        0 25px 70px rgba(0, 0, 0, 0.18),
-        inset 0 0 0 1px rgba(38, 115, 184, 0.3);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(38,115,184,0.3);
 }
 
-.category-card:hover::before {
-    transform: scaleX(1);
-}
+.category-card:hover::before { transform: scaleX(1); }
 
 .category-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at top left,
-        rgba(38, 115, 184, 0.25) 0%,
-        rgba(38, 115, 184, 0.12) 25%,
-        transparent 50%
-    );
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at top left, rgba(38,115,184,0.25) 0%, rgba(38,115,184,0.12) 25%, transparent 50%);
     opacity: 0;
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 2;
 }
 
-.category-card:hover::after {
-    opacity: 1;
-}
+.category-card:hover::after { opacity: 1; }
 
 .category-corner-accent {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(
-        circle at top right,
-        rgba(38, 115, 184, 0.15) 0%,
-        transparent 70%
-    );
+    top: 0; right: 0;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle at top right, rgba(38,115,184,0.15) 0%, transparent 70%);
     opacity: 0.6;
     z-index: 1;
     transition: opacity 0.5s ease;
 }
 
-.category-card:hover .category-corner-accent {
-    opacity: 1;
-}
+.category-card:hover .category-corner-accent { opacity: 1; }
 
-/* IMAGE LAYER */
+/* ── IMAGE LAYER ──────────────────────────────────────────── */
 .category-image-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
 }
 
@@ -175,37 +157,21 @@ body {
 }
 
 .category-image {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.category-card:hover .category-image {
-    transform: scale(1.05);
-}
+.category-card:hover .category-image { transform: scale(1.05); }
 
-/* GRADIENT OVERLAY */
+/* ── OVERLAY ──────────────────────────────────────────────── */
 .category-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     height: 40%;
-    background: 
-        linear-gradient(
-            to right,
-            rgba(38, 115, 184, 0.08) 0%,
-            transparent 20%,
-            transparent 80%,
-            rgba(38, 115, 184, 0.08) 100%
-        ),
-        linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.95) 0%,
-            rgba(0, 0, 0, 0.7) 40%,
-            rgba(0, 0, 0, 0) 100%
-        );
+    background:
+        linear-gradient(to right, rgba(38,115,184,0.08) 0%, transparent 20%, transparent 80%, rgba(38,115,184,0.08) 100%),
+        linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -215,26 +181,12 @@ body {
 
 .category-card:hover .category-overlay {
     height: 45%;
-    background: 
-        linear-gradient(
-            to right,
-            rgba(38, 115, 184, 0.15) 0%,
-            transparent 15%,
-            transparent 85%,
-            rgba(38, 115, 184, 0.15) 100%
-        ),
-        linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.98) 0%,
-            rgba(0, 0, 0, 0.75) 50%,
-            rgba(0, 0, 0, 0) 100%
-        );
+    background:
+        linear-gradient(to right, rgba(38,115,184,0.15) 0%, transparent 15%, transparent 85%, rgba(38,115,184,0.15) 100%),
+        linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0) 100%);
 }
 
-.category-content {
-    position: relative;
-    z-index: 5;
-}
+.category-content { position: relative; z-index: 5; }
 
 .category-title {
     font-family: 'Montserrat', sans-serif;
@@ -257,8 +209,7 @@ body {
     font-family: 'Raleway', sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.2px;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255,255,255,0.95);
     line-height: 1.5;
     margin-bottom: 1rem;
     max-width: 90%;
@@ -282,22 +233,14 @@ body {
     transform: translateX(5px);
 }
 
-.category-cta i {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-}
+.category-cta i { font-size: 0.8rem; transition: transform 0.3s ease; }
+.category-card:hover .category-cta i { transform: translateX(5px); }
 
-.category-card:hover .category-cta i {
-    transform: translateX(5px);
-}
-
-/* SELECTION OVERLAY */
+/* ── SELECTION PANEL ──────────────────────────────────────── */
 .selection-panel {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: var(--pure-white);
     display: flex;
     flex-direction: column;
@@ -352,10 +295,8 @@ body {
 .selection-btn::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
+    left: 0; top: 0;
+    width: 4px; height: 100%;
     background: var(--primary-blue);
     transform: scaleY(0);
     transform-origin: bottom;
@@ -366,12 +307,10 @@ body {
     background: var(--pure-white);
     border-color: var(--primary-blue);
     transform: translateX(8px);
-    box-shadow: 0 8px 30px rgba(38, 115, 184, 0.15);
+    box-shadow: 0 8px 30px rgba(38,115,184,0.15);
 }
 
-.selection-btn:hover::before {
-    transform: scaleY(1);
-}
+.selection-btn:hover::before { transform: scaleY(1); }
 
 .selection-btn-text {
     font-family: 'Montserrat', sans-serif;
@@ -383,9 +322,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.selection-btn:hover .selection-btn-text {
-    color: var(--primary-blue);
-}
+.selection-btn:hover .selection-btn-text { color: var(--primary-blue); }
 
 .selection-btn-icon {
     font-size: 1rem;
@@ -393,15 +330,12 @@ body {
     transition: transform 0.3s ease;
 }
 
-.selection-btn:hover .selection-btn-icon {
-    transform: translateX(5px);
-}
+.selection-btn:hover .selection-btn-icon { transform: translateX(5px); }
 
-/* BACK BUTTON */
+/* ── BACK BUTTON ──────────────────────────────────────────── */
 .back-btn {
     position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
+    top: 1.5rem; left: 1.5rem;
     background: none;
     border: none;
     display: flex;
@@ -425,194 +359,83 @@ body {
     transition-delay: 0.3s;
 }
 
-.back-btn:hover {
-    transform: translateX(-5px);
+.back-btn:hover { transform: translateX(-5px); }
+.back-btn i { font-size: 0.85rem; }
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.back-btn i {
-    font-size: 0.85rem;
-}
+.animate-on-scroll { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards; }
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 1200px) {
-    .container {
-        padding: 0 2rem;
-    }
-
-    .category-card {
-        height: 380px;
-    }
-
-    .categories-grid {
-        gap: 1.2rem;
-    }
+    .container { padding: 0 2rem; }
+    .category-card { height: 380px; }
+    .categories-grid { gap: 1.2rem; }
 }
 
 @media (max-width: 991px) {
-    .categories-section {
-        padding: 2.5rem 0;
-    }
-
-    .section-header {
-        margin-bottom: 2rem;
-    }
-
-    .categories-grid {
-        grid-template-columns: 1fr;
-        gap: 1.3rem;
-    }
-
-    .category-card {
-        height: 380px;
-    }
-
-    .category-title {
-        font-size: 1.4rem;
-    }
-
-    .selection-panel {
-        padding: 2.2rem 1.8rem;
-    }
+    .categories-section { padding: 2.5rem 0; }
+    .section-header { margin-bottom: 2rem; }
+    .categories-grid { grid-template-columns: 1fr; gap: 1.3rem; }
+    .category-card { height: 380px; }
+    .category-title { font-size: 1.4rem; }
+    .selection-panel { padding: 2.2rem 1.8rem; }
 }
 
 @media (max-width: 768px) {
-    .categories-section {
-        padding: 2.5rem 0;
-    }
-
-    .category-card {
-        height: 360px;
-    }
-
-    .category-overlay {
-        padding: 1.5rem;
-    }
-
-    .category-title {
-        font-size: 1.3rem;
-    }
-
-    .category-description {
-        font-size: 0.85rem;
-    }
-
-    .selection-btn {
-        padding: 1.2rem 1.5rem;
-    }
-
-    .selection-btn-text {
-        font-size: 1rem;
-    }
+    .categories-section { padding: 2.5rem 0; }
+    .category-card { height: 360px; }
+    .category-overlay { padding: 1.5rem; }
+    .category-title { font-size: 1.3rem; }
+    .category-description { font-size: 0.85rem; }
+    .selection-btn { padding: 1.2rem 1.5rem; }
+    .selection-btn-text { font-size: 1rem; }
 }
 
 @media (max-width: 576px) {
-    .container {
-        padding: 0 1.2rem;
-    }
-
-    .section-label {
-        font-size: 0.6rem;
-        letter-spacing: 1.5px;
-    }
-
-    .categories-grid {
-        gap: 1.1rem;
-    }
-
-    .category-card {
-        height: 340px;
-    }
-
-    .category-overlay {
-        padding: 1.3rem;
-        height: 45%;
-    }
-
-    .category-title {
-        font-size: 1.2rem;
-    }
-
-    .category-description {
-        font-size: 0.8rem;
-        margin-bottom: 0.9rem;
-    }
-
-    .category-cta {
-        font-size: 0.65rem;
-        letter-spacing: 1.2px;
-    }
-
-    .selection-panel {
-        padding: 1.8rem 1.3rem;
-    }
-
-    .selection-panel-title {
-        font-size: 0.85rem;
-        margin-bottom: 1.8rem;
-    }
-
-    .selection-options {
-        gap: 0.9rem;
-    }
-
-    .selection-btn {
-        padding: 1.1rem 1.3rem;
-    }
-
-    .selection-btn-text {
-        font-size: 0.95rem;
-    }
-
-    .selection-btn-icon {
-        font-size: 0.95rem;
-    }
-
-    .back-btn {
-        top: 1.3rem;
-        left: 1.3rem;
-        font-size: 0.65rem;
-    }
-}
-
-/* ANIMATIONS */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    .container { padding: 0 1.2rem; }
+    .section-label { font-size: 0.6rem; letter-spacing: 1.5px; }
+    .categories-grid { gap: 1.1rem; }
+    .category-card { height: 340px; }
+    .category-overlay { padding: 1.3rem; height: 45%; }
+    .category-title { font-size: 1.2rem; }
+    .category-description { font-size: 0.8rem; margin-bottom: 0.9rem; }
+    .category-cta { font-size: 0.65rem; letter-spacing: 1.2px; }
+    .selection-panel { padding: 1.8rem 1.3rem; }
+    .selection-panel-title { font-size: 0.85rem; margin-bottom: 1.8rem; }
+    .selection-options { gap: 0.9rem; }
+    .selection-btn { padding: 1.1rem 1.3rem; }
+    .selection-btn-text { font-size: 0.95rem; }
+    .back-btn { top: 1.3rem; left: 1.3rem; font-size: 0.65rem; }
 }
     </style>
 </head>
 <body>
     <section class="categories-section" id="collections">
         <div class="container">
+
+            <!-- ── CENTERED HEADER ─────────────────────────────── -->
             <div class="section-header">
                 <p class="section-label">Our Collections</p>
                 <h2 class="section-title">Categories</h2>
+                <span class="section-title-bar"></span>
             </div>
 
             <div class="categories-grid">
+
                 <!-- GRANITES -->
                 <div class="category-card" data-category="granites">
                     <div class="category-corner-accent"></div>
-                    
                     <div class="category-image-layer">
                         <img src="assets/granites.webp" alt="Granites Collection" class="category-image">
                         <div class="category-overlay">
                             <div class="category-content">
                                 <h3 class="category-title">Granites</h3>
-                                <p class="category-description">
-                                    Premium solutions for homes and living spaces.
-                                </p>
+                                <p class="category-description">Premium solutions for homes and living spaces.</p>
                                 <span class="category-cta">
                                     Select Region
                                     <i class="fas fa-arrow-right"></i>
@@ -620,7 +443,6 @@ body {
                             </div>
                         </div>
                     </div>
-
                     <div class="selection-panel">
                         <button class="back-btn">
                             <i class="fas fa-arrow-left"></i>
@@ -648,9 +470,7 @@ body {
                         <div class="category-overlay">
                             <div class="category-content">
                                 <h3 class="category-title">Marbles</h3>
-                                <p class="category-description">
-                                    Large-scale projects for businesses and enterprises.
-                                </p>
+                                <p class="category-description">Large-scale projects for businesses and enterprises.</p>
                                 <span class="category-cta">
                                     Explore
                                     <i class="fas fa-arrow-right"></i>
@@ -668,9 +488,7 @@ body {
                         <div class="category-overlay">
                             <div class="category-content">
                                 <h3 class="category-title">LimeStones</h3>
-                                <p class="category-description">
-                                    Bespoke designs tailored to your unique vision.
-                                </p>
+                                <p class="category-description">Bespoke designs tailored to your unique vision.</p>
                                 <span class="category-cta">
                                     Explore
                                     <i class="fas fa-arrow-right"></i>
@@ -679,18 +497,14 @@ body {
                         </div>
                     </div>
                 </a>
+
             </div>
         </div>
     </section>
 
     <script>
         window.initializeCategories = function() {
-            console.log('🔧 Initializing categories component...');
-
-            const observerOptions = {
-                threshold: 0.15,
-                rootMargin: '0px 0px -80px 0px'
-            };
+            const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' };
 
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
@@ -711,7 +525,6 @@ body {
             });
 
             const granitesCard = document.querySelector('#collections .category-card[data-category="granites"]');
-            
             if (granitesCard) {
                 granitesCard.addEventListener('click', function(e) {
                     if (!e.target.closest('.back-btn') && !e.target.closest('.selection-btn')) {
@@ -719,7 +532,6 @@ body {
                         granitesCard.classList.add('show-selection');
                     }
                 });
-
                 const backBtn = granitesCard.querySelector('.back-btn');
                 if (backBtn) {
                     backBtn.addEventListener('click', function(e) {
@@ -729,20 +541,12 @@ body {
                     });
                 }
             }
-
-            console.log('✅ Minimalist Categories initialized');
         };
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(function() {
-                    window.initializeCategories();
-                }, 100);
-            });
+            document.addEventListener('DOMContentLoaded', () => setTimeout(window.initializeCategories, 100));
         } else {
-            setTimeout(function() {
-                window.initializeCategories();
-            }, 100);
+            setTimeout(window.initializeCategories, 100);
         }
     </script>
 </body>
