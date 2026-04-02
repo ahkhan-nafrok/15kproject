@@ -20,21 +20,135 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--body);
 body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .site-wrapper{opacity:0;transition:opacity .5s;}body.loaded .site-wrapper{opacity:1;}
 
-/* HERO */
-.page-hero{background:var(--dark);padding:clamp(3rem,5vw,4.5rem) 0 clamp(2.5rem,4vw,3.5rem);position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(38,115,184,.15);border-radius:50%;pointer-events:none;}
-.page-hero::after{content:'';position:absolute;bottom:-80px;left:10%;width:200px;height:200px;border:1px solid rgba(38,115,184,.1);border-radius:50%;pointer-events:none;}
-.hero-inner{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);position:relative;z-index:2;}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;}
+/* ── HERO ─────────────────────────────────────────────── */
+.page-hero{
+    position:relative;
+    overflow:hidden;
+    padding:clamp(4rem,8vw,6.5rem) 0 clamp(3rem,5vw,4.5rem);
+    background:var(--dark);
+}
+
+/* Real image background */
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('assets/aquaculture/bnb-export-shrimps1.webp');
+    background-size:cover;
+    background-position:center 40%;
+    background-repeat:no-repeat;
+    transform:scale(1.04);
+    transition:transform 8s ease;
+    will-change:transform;
+}
+body.loaded .hero-bg{transform:scale(1);}
+
+/* FIX 1 — Overlay: heavier so every text element reads cleanly */
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(
+    to bottom,
+    rgba(26,35,50,0.55) 0%,
+    rgba(26,35,50,0.75) 50%,
+    rgba(26,35,50,0.95) 100%
+);
+}
+
+/* Decorative circles — kept from original, on top of overlay */
+.hero-deco-a{
+    position:absolute;top:-60px;right:-60px;
+    width:320px;height:320px;
+    border:1px solid rgba(38,115,184,.18);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+.hero-deco-b{
+    position:absolute;bottom:-80px;left:10%;
+    width:200px;height:200px;
+    border:1px solid rgba(38,115,184,.12);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+
+/* Thin blue accent line at very top */
+.hero-line{
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--blue) 40%,transparent);
+    z-index:2;
+}
+
+.hero-inner{
+    max-width:1400px;margin:0 auto;
+    padding:0 clamp(1rem,3vw,2rem);
+    position:relative;z-index:3;
+}
+
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:clamp(1.5rem,3vw,2.2rem);padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;backdrop-filter:blur(4px);}
 .back-btn i{font-size:.65rem;transition:transform .3s;}
 .back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
 .back-btn:hover i{transform:translateX(-3px);}
-.hero-tag{font-family:'Raleway',sans-serif;font-size:clamp(.6rem,.75vw,.65rem);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:block;}
-.page-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:white;line-height:1.05;margin-bottom:1rem;}
-.hero-desc{font-family:'Raleway',sans-serif;font-size:clamp(.8rem,.95vw,.9rem);font-weight:500;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;}
-.title-accent{display:block;width:48px;height:3px;background:var(--blue);margin-top:1.2rem;border-radius:1px;}
 
-/* CONTENT */
+/* FIX 2 — Tag: white instead of blue (blue vanishes on dark image) */
+.hero-tag{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.58rem,.72vw,.63rem);
+    font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.72);
+    margin-bottom:.65rem;
+    display:flex;align-items:center;gap:.6rem;
+}
+.hero-tag::before{
+    content:'';display:inline-block;
+    width:20px;height:1.5px;
+    background:var(--blue);
+    flex-shrink:0;
+}
+
+.page-title{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(2rem,5vw,3.4rem);
+    font-weight:900;
+    letter-spacing:-2px;
+    color:white;
+    line-height:1.02;
+    margin-bottom:.9rem;
+    text-shadow:0 2px 32px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.3);
+}
+
+/* FIX 3 — Desc: slightly brighter so it's readable */
+.hero-desc{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.78rem,.92vw,.86rem);
+    font-weight:500;
+    color:rgba(255,255,255,.68);
+    max-width:520px;
+    line-height:1.65;
+    margin-bottom:clamp(1.2rem,2vw,1.8rem);
+}
+
+/* FIX 4 — Pills: darker bg + brighter border + white text so they're visible */
+.hero-pills{
+    display:flex;flex-wrap:wrap;gap:.5rem;
+    margin-top:clamp(1rem,1.8vw,1.4rem);
+}
+.hero-pill{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(.52rem,.64vw,.58rem);
+    font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+    padding:.38rem .85rem;
+    background:rgba(26,35,50,.6);
+    border:1px solid rgba(255,255,255,.25);
+    color:rgba(255,255,255,.9);
+    border-radius:2px;
+    backdrop-filter:blur(8px);
+    white-space:nowrap;
+}
+.hero-pill span{color:var(--blue);margin-right:.3rem;font-size:.45rem;vertical-align:middle;}
+
+.title-accent{display:block;width:42px;height:3px;background:var(--blue);margin-top:1.1rem;border-radius:1px;}
+
+/* ── CONTENT ─────────────────────────────────────────── */
 .content-section{padding:clamp(2.5rem,4vw,3.5rem) 0 clamp(2rem,3vw,3rem);}
 .container{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);}
 .inner{max-width:1200px;}
@@ -61,7 +175,80 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
 .bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
 
-/* FAQ */
+/* ── IMAGE GALLERY ───────────────────────────────────── */
+.gallery-section{margin:clamp(1.8rem,2.8vw,2.5rem) 0;}
+
+.gallery-label{
+    display:flex;align-items:center;gap:.8rem;
+    margin-bottom:clamp(1rem,1.6vw,1.2rem);
+}
+.gallery-label h3{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(.9rem,1.1vw,1rem);
+    font-weight:800;color:var(--dark);
+    letter-spacing:-.1px;
+}
+.gallery-label::after{
+    content:'';flex:1;height:1px;
+    background:var(--border);
+}
+
+.gallery-grid{
+    display:grid;
+    gap:clamp(.5rem,.8vw,.75rem);
+    grid-template-columns:repeat(5,1fr);
+}
+
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:5px;
+    background:var(--dark);
+    aspect-ratio:3/2;
+    cursor:pointer;
+}
+
+.gallery-item:first-child{
+    grid-column:span 2;
+    aspect-ratio:16/9;
+}
+
+.gallery-item img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .55s cubic-bezier(.4,0,.2,1),filter .55s ease;
+    filter:brightness(.92) saturate(1.05);
+}
+
+.gallery-item:hover img{
+    transform:scale(1.06);
+    filter:brightness(1) saturate(1.1);
+}
+
+.gallery-item::after{
+    content:'';
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:40%;
+    background:linear-gradient(to top,rgba(26,35,50,.45),transparent);
+    pointer-events:none;
+    transition:opacity .3s;
+}
+.gallery-item:hover::after{opacity:.5;}
+
+.gallery-item::before{
+    content:'';
+    position:absolute;inset:0;
+    border:2px solid transparent;
+    border-radius:5px;
+    transition:border-color .3s;
+    z-index:2;
+    pointer-events:none;
+}
+.gallery-item:hover::before{border-color:rgba(38,115,184,.5);}
+
+/* ── FAQ ─────────────────────────────────────────────── */
 .faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
 .faq-head{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,1.6vw,1.3rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);margin-bottom:clamp(1.2rem,2vw,1.5rem);}
 .faq-item{margin-bottom:clamp(1.2rem,2vw,1.5rem);}
@@ -76,10 +263,29 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .crow strong{font-weight:700;color:var(--dark);margin-right:.3rem;}
 .crow a{color:var(--blue);text-decoration:none;}
 
+/* ── ANIMATIONS ──────────────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
-@media(max-width:991px){.steps-grid{grid-template-columns:repeat(2,1fr);}.spec-grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:576px){.spec-grid{grid-template-columns:repeat(2,1fr);}.steps-grid{grid-template-columns:1fr;}}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:1024px){
+    .gallery-grid{grid-template-columns:repeat(3,1fr);}
+    .gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9;}
+}
+@media(max-width:640px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.45rem;}
+    .gallery-item:first-child{grid-column:span 2;aspect-ratio:16/7;}
+    .gallery-item{aspect-ratio:4/3;}
+}
+@media(max-width:991px){
+    .steps-grid{grid-template-columns:repeat(2,1fr);}
+    .spec-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:576px){
+    .spec-grid{grid-template-columns:repeat(2,1fr);}
+    .steps-grid{grid-template-columns:1fr;}
+}
+
 #footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
     </style>
 </head>
@@ -94,15 +300,34 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
     <div class="site-wrapper">
 
+        <!-- ═══════════════════════ HERO ═══════════════════════ -->
         <div class="page-hero">
+            <div class="hero-bg" role="presentation"></div>
+            <div class="hero-overlay" role="presentation"></div>
+            <div class="hero-deco-a" role="presentation"></div>
+            <div class="hero-deco-b" role="presentation"></div>
+            <div class="hero-line" role="presentation"></div>
+
             <div class="hero-inner">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                <a class="back-btn" onclick="window.history.back()" href="#"><i class="fas fa-arrow-left"></i> Back</a>
+
                 <span class="hero-tag">Global Exports — Aquaculture</span>
-                <h1 class="page-title">Shrimp Aquaculture &amp; Export</h1>
+
+                <h1 class="page-title">Shrimp Aquaculture<br>&amp; Export</h1>
+
                 <p class="hero-desc">Premium export-grade shrimp farmed in West Godavari, Andhra Pradesh — supplied fresh and frozen to UAE retail markets and restaurants.</p>
+
+                <div class="hero-pills">
+                    <div class="hero-pill"><span>&#9679;</span>West Godavari, AP</div>
+                    <div class="hero-pill"><span>&#9679;</span>2-Year Frozen Shelf Life</div>
+                    <div class="hero-pill"><span>&#9679;</span>UAE Export Ready</div>
+                    <div class="hero-pill"><span>&#9679;</span>HOSO &amp; HLSO</div>
+                </div>
+
                 <span class="title-accent"></span>
             </div>
         </div>
+        <!-- ════════════════════ END HERO ══════════════════════ -->
 
         <section class="content-section">
             <div class="container">
@@ -115,7 +340,6 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
                     <div class="divider"></div>
 
-                    <!-- SIZE GRADES — text cards, no images -->
                     <h3 class="block-title" style="margin-bottom:1rem;">Available Size Grades</h3>
                     <div class="spec-grid">
                         <div class="spec-card"><h4>20 / 30 Count</h4><p>Large premium shrimp. 20–30 pieces per kg. Top-grade retail and high-end restaurant supply.</p></div>
@@ -152,6 +376,35 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
                         <li>Fresh supply options for nearby domestic markets in addition to processed export</li>
                         <li>Strict quality checks at every stage ensuring consistent, reliable, export-standard shrimp</li>
                     </ul>
+
+                    <div class="divider"></div>
+
+                    <!-- ══════════════ IMAGE GALLERY ══════════════ -->
+                    <div class="gallery-section">
+                        <div class="gallery-label">
+                            <h3>Our Aquaculture &amp; Export Operations</h3>
+                        </div>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="assets/aquaculture/bnb-export-shrimps2.webp" alt="BNB Enterprises shrimp aquaculture farm West Godavari" loading="lazy" decoding="async">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/aquaculture/bnb-export-shrimps3.webp" alt="Premium export-grade shrimp harvest" loading="lazy" decoding="async">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/aquaculture/bnb-export-shrimps4.webp" alt="Shrimp size grading and processing" loading="lazy" decoding="async">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/aquaculture/bnb-export-shrimps5.webp" alt="Shrimp packing and export preparation" loading="lazy" decoding="async">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="assets/aquaculture/bnb-export-shrimps6.webp" alt="Frozen shrimp export UAE market supply" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ══════════════ END GALLERY ════════════════ -->
+
+                    <div class="divider"></div>
 
                     <div class="faq-wrap">
                         <h3 class="faq-head">Frequently Asked Questions About Shrimp Aquaculture &amp; Export</h3>
@@ -204,7 +457,7 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
         document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
         async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
         async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
-        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".spec-card,.step,.faq-item,.para").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".spec-card,.step,.faq-item,.para,.gallery-item").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>
