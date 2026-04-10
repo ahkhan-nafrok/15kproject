@@ -20,21 +20,117 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--body);
 body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .site-wrapper{opacity:0;transition:opacity .5s;}body.loaded .site-wrapper{opacity:1;}
 
-/* HERO */
-.page-hero{background:var(--dark);padding:clamp(3rem,5vw,4.5rem) 0 clamp(2.5rem,4vw,3.5rem);position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(38,115,184,.15);border-radius:50%;pointer-events:none;}
-.page-hero::after{content:'';position:absolute;bottom:-80px;left:10%;width:200px;height:200px;border:1px solid rgba(38,115,184,.1);border-radius:50%;pointer-events:none;}
-.hero-inner{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);position:relative;z-index:2;}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;}
+/* ── HERO ─────────────────────────────────────────────── */
+.page-hero{
+    position:relative;
+    overflow:hidden;
+    padding:clamp(4rem,8vw,6.5rem) 0 clamp(3rem,5vw,4.5rem);
+    background:var(--dark);
+}
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('assets/leather/BNB-leather-export-5.webp');
+    background-size:cover;
+    background-position:center 40%;
+    background-repeat:no-repeat;
+    transform:scale(1.04);
+    transition:transform 8s ease;
+    will-change:transform;
+}
+body.loaded .hero-bg{transform:scale(1);}
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(26,35,50,0.55) 0%,
+        rgba(26,35,50,0.75) 50%,
+        rgba(26,35,50,0.95) 100%
+    );
+}
+.hero-deco-a{
+    position:absolute;top:-60px;right:-60px;
+    width:320px;height:320px;
+    border:1px solid rgba(38,115,184,.18);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+.hero-deco-b{
+    position:absolute;bottom:-80px;left:10%;
+    width:200px;height:200px;
+    border:1px solid rgba(38,115,184,.12);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+.hero-line{
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--blue) 40%,transparent);
+    z-index:2;
+}
+.hero-inner{
+    max-width:1400px;margin:0 auto;
+    padding:0 clamp(1rem,3vw,2rem);
+    position:relative;z-index:3;
+}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:clamp(1.5rem,3vw,2.2rem);padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;backdrop-filter:blur(4px);}
 .back-btn i{font-size:.65rem;transition:transform .3s;}
 .back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
 .back-btn:hover i{transform:translateX(-3px);}
-.hero-tag{font-family:'Raleway',sans-serif;font-size:clamp(.6rem,.75vw,.65rem);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:block;}
-.page-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:white;line-height:1.05;margin-bottom:1rem;}
-.hero-desc{font-family:'Raleway',sans-serif;font-size:clamp(.8rem,.95vw,.9rem);font-weight:500;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;}
-.title-accent{display:block;width:48px;height:3px;background:var(--blue);margin-top:1.2rem;border-radius:1px;}
+.hero-tag{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.58rem,.72vw,.63rem);
+    font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.72);
+    margin-bottom:.65rem;
+    display:flex;align-items:center;gap:.6rem;
+}
+.hero-tag::before{
+    content:'';display:inline-block;
+    width:20px;height:1.5px;
+    background:var(--blue);
+    flex-shrink:0;
+}
+.page-title{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(2rem,5vw,3.4rem);
+    font-weight:900;
+    letter-spacing:-2px;
+    color:white;
+    line-height:1.02;
+    margin-bottom:.9rem;
+    text-shadow:0 2px 32px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.3);
+}
+.hero-desc{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.78rem,.92vw,.86rem);
+    font-weight:500;
+    color:rgba(255,255,255,.68);
+    max-width:520px;
+    line-height:1.65;
+    margin-bottom:clamp(1.2rem,2vw,1.8rem);
+}
+.hero-pills{
+    display:flex;flex-wrap:wrap;gap:.5rem;
+    margin-top:clamp(1rem,1.8vw,1.4rem);
+}
+.hero-pill{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(.52rem,.64vw,.58rem);
+    font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+    padding:.38rem .85rem;
+    background:rgba(26,35,50,.6);
+    border:1px solid rgba(255,255,255,.25);
+    color:rgba(255,255,255,.9);
+    border-radius:2px;
+    backdrop-filter:blur(8px);
+    white-space:nowrap;
+}
+.hero-pill span{color:var(--blue);margin-right:.3rem;font-size:.45rem;vertical-align:middle;}
+.title-accent{display:block;width:42px;height:3px;background:var(--blue);margin-top:1.1rem;border-radius:1px;}
 
-/* CONTENT */
+/* ── CONTENT ─────────────────────────────────────────── */
 .content-section{padding:clamp(2.5rem,4vw,3.5rem) 0 clamp(2rem,3vw,3rem);}
 .container{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);}
 .inner{max-width:1200px;}
@@ -42,17 +138,76 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .para{font-family:'Raleway',sans-serif;font-size:clamp(.78rem,.88vw,.82rem);font-weight:400;line-height:1.7;color:var(--body);margin-bottom:.9rem;text-align:justify;}
 .divider{width:100%;height:1px;background:var(--border);margin:clamp(1.8rem,2.5vw,2.2rem) 0;}
 
-/* SPEC GRID */
-.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
-.spec-card{background:white;border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;border-left:3px solid var(--blue);}
-.spec-card h4{font-family:'Montserrat',sans-serif;font-size:clamp(.68rem,.82vw,.73rem);font-weight:800;color:var(--dark);letter-spacing:.3px;margin-bottom:.3rem;text-transform:uppercase;}
-.spec-card p{font-family:'Raleway',sans-serif;font-size:clamp(.66rem,.76vw,.71rem);font-weight:500;color:var(--body);line-height:1.5;}
-
 /* BULLETS */
 .block-title{font-family:'Montserrat',sans-serif;font-size:clamp(.9rem,1.1vw,1rem);font-weight:800;color:var(--dark);margin-bottom:.7rem;}
 .bullets{list-style:none;padding:0;}
 .bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
 .bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
+
+/* ── CONTENT + IMAGE BLENDED LAYOUT ─────────────────── */
+.cm-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(1.2rem,2.5vw,2rem);
+    align-items:center;
+    margin-bottom:clamp(1.5rem,2.5vw,2rem);
+}
+.cm-row.flip .cm-img  { order:-1; }
+.cm-row.flip .cm-text { order: 1; }
+.cm-text{display:flex;flex-direction:column;justify-content:center;}
+.cm-text .para:last-child{margin-bottom:0;}
+.cm-img{
+    position:relative;
+    overflow:hidden;
+    border-radius:7px;
+    background:var(--dark);
+    aspect-ratio:4/3;
+    flex-shrink:0;
+}
+.cm-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .55s cubic-bezier(.4,0,.2,1),filter .55s ease;
+    filter:brightness(.93) saturate(1.05);
+}
+.cm-img:hover img{transform:scale(1.04);filter:brightness(1) saturate(1.1);}
+.cm-img::before{
+    content:'';
+    position:absolute;inset:0;
+    border:2px solid transparent;
+    border-radius:7px;
+    transition:border-color .3s;
+    z-index:2;pointer-events:none;
+}
+.cm-img:hover::before{border-color:rgba(38,115,184,.45);}
+.cm-img::after{
+    content:'';
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:35%;
+    background:linear-gradient(to top,rgba(26,35,50,.35),transparent);
+    pointer-events:none;
+}
+/* Dual stacked images */
+.cm-img-duo{display:flex;flex-direction:column;gap:clamp(.5rem,.8vw,.7rem);}
+.cm-img-duo .cm-img{aspect-ratio:16/9;}
+
+/* ── MOBILE ─────────────────────────────────────────── */
+@media(max-width:768px){
+    .cm-row{grid-template-columns:1fr;gap:clamp(.9rem,2vw,1.2rem);}
+    .cm-row .cm-text { order:0; }
+    .cm-row .cm-img  { order:1; }
+    .cm-row.flip .cm-img  { order:1; }
+    .cm-row.flip .cm-text { order:0; }
+    .cm-img{aspect-ratio:16/9;width:100%;}
+    .cm-img-duo{flex-direction:row;}
+    .cm-img-duo .cm-img{aspect-ratio:4/3;flex:1;}
+}
+@media(max-width:480px){
+    .cm-img-duo{flex-direction:column;}
+    .cm-img-duo .cm-img{aspect-ratio:16/9;}
+}
 
 /* FAQ */
 .faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
@@ -71,8 +226,6 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
-@media(max-width:991px){.spec-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:576px){.spec-grid{grid-template-columns:1fr;}}
 #footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
     </style>
 </head>
@@ -87,34 +240,71 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
     <div class="site-wrapper">
 
+        <!-- ═══════════════════════ HERO ═══════════════════════ -->
         <div class="page-hero">
+            <div class="hero-bg" role="presentation"></div>
+            <div class="hero-overlay" role="presentation"></div>
+            <div class="hero-deco-a" role="presentation"></div>
+            <div class="hero-deco-b" role="presentation"></div>
+            <div class="hero-line" role="presentation"></div>
+
             <div class="hero-inner">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                <a class="back-btn" onclick="window.history.back()" href="#"><i class="fas fa-arrow-left"></i> Back</a>
+
                 <span class="hero-tag">Global Exports — Leather</span>
-                <h1 class="page-title">Premium Finished Leather</h1>
+
+                <h1 class="page-title">Premium Finished<br>Leather</h1>
+
                 <p class="hero-desc">Finished goat and sheep leather skins — nubuck, glaze, and mild finishes — exported to China, Vietnam, and global markets.</p>
+
+                <div class="hero-pills">
+                    <div class="hero-pill"><span>&#9679;</span>Goat &amp; Sheep Skins</div>
+                    <div class="hero-pill"><span>&#9679;</span>Nubuck · Glaze · Mild</div>
+                    <div class="hero-pill"><span>&#9679;</span>China &amp; Vietnam</div>
+                    <div class="hero-pill"><span>&#9679;</span>Export Ready</div>
+                </div>
+
                 <span class="title-accent"></span>
             </div>
         </div>
+        <!-- ════════════════════ END HERO ══════════════════════ -->
 
         <section class="content-section">
             <div class="container">
                 <div class="inner">
 
                     <h2 class="sect-title">Premium Finished Leather Exports by BNB Enterprises</h2>
-                    <p class="para">BNB Enterprises is an India-based leather export company specializing in finished goat and sheep leather skins for the global market. Rooted in a thirty-year-old family-owned trading business, we bring decades of sourcing expertise and industry knowledge to every export shipment. We source high-quality wet blue leather from trusted, carefully vetted suppliers across India and process it into premium finished leather skins at our production facility — delivering consistent quality, reliable supply, and competitive pricing to manufacturers in China, Vietnam, and other international markets.</p>
-                    <p class="para">Our finished leather skins are used by leading manufacturers worldwide to produce footwear, bags, garments, upholstery, and a wide range of premium leather goods. Our production process combines skilled craftsmanship with modern stainless steel drum processing technology, ensuring uniform treatment, superior chemical penetration, and consistent batch-to-batch results. Whether you require nubuck, glaze, or mild finishes, our team works closely with each customer to match the leather specification to the end product requirements.</p>
-                    <p class="para">Every batch leaving our facility undergoes strict quality checks covering thickness and substance control, softness and hand feel, surface finish and appearance, tensile strength and durability, and complete color uniformity. Our leather skins are supplied ready for direct use in manufacturing, eliminating the need for additional processing at your end.</p>
 
-                    <div class="divider"></div>
+                    <!-- ── Row 1: Para 1 left · export-2 right ────────────── -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <p class="para">BNB Enterprises is an India-based leather export company specializing in finished goat and sheep leather skins for the global market. Rooted in a thirty-year-old family-owned trading business, we bring decades of sourcing expertise and industry knowledge to every export shipment. We source high-quality wet blue leather from trusted, carefully vetted suppliers across India and process it into premium finished leather skins at our production facility — delivering consistent quality, reliable supply, and competitive pricing to manufacturers in China, Vietnam, and other international markets.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/leather/BNB-leather-export-2.webp" alt="BNB Enterprises premium finished leather export" loading="lazy" decoding="async">
+                        </div>
+                    </div>
 
-                    <div class="spec-grid">
-                        <div class="spec-card"><h4>Thickness Control</h4><p>Precise substance control ensuring uniform thickness across every batch for consistent manufacturing results.</p></div>
-                        <div class="spec-card"><h4>Softness &amp; Hand Feel</h4><p>Carefully controlled processing for optimal softness, pliability, and premium hand feel matching end-use requirements.</p></div>
-                        <div class="spec-card"><h4>Surface Finish</h4><p>Nubuck, glaze, and mild finish options crafted with skilled workmanship and modern machinery.</p></div>
-                        <div class="spec-card"><h4>Color Uniformity</h4><p>Strict color consistency checks across every skin in each batch, ensuring uniformity for seamless production lines.</p></div>
-                        <div class="spec-card"><h4>Strength &amp; Durability</h4><p>Tensile strength and durability tested to meet global standards for footwear, bags, garments, and upholstery.</p></div>
-                        <div class="spec-card"><h4>Export Readiness</h4><p>Fully finished, ready-to-use skins packed and prepared to meet international shipping and customs requirements.</p></div>
+                    <!-- ── Row 2: export-4 left (flip) · Para 2 right ─────── -->
+                    <div class="cm-row flip">
+                        <div class="cm-text">
+                            <p class="para">Our finished leather skins are used by leading manufacturers worldwide to produce footwear, bags, garments, upholstery, and a wide range of premium leather goods. Our production process combines skilled craftsmanship with modern stainless steel drum processing technology, ensuring uniform treatment, superior chemical penetration, and consistent batch-to-batch results. Whether you require nubuck, glaze, or mild finishes, our team works closely with each customer to match the leather specification to the end product requirements.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/leather/BNB-leather-export-4.webp" alt="Leather processing stainless steel drum technology" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+
+                    <!-- ── Row 3: Para 3 left · export-5 + export-6 duo right -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <p class="para">Every batch leaving our facility undergoes strict quality checks covering thickness and substance control, softness and hand feel, surface finish and appearance, tensile strength and durability, and complete color uniformity. Our leather skins are supplied ready for direct use in manufacturing, eliminating the need for additional processing at your end.</p>
+                        </div>
+                        <div class="cm-img-duo">
+                            <div class="cm-img">
+                                <img src="assets/leather/BNB-leather-export-6.webp" alt="Leather skins packed for export" loading="lazy" decoding="async">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="divider"></div>
@@ -180,7 +370,7 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
         document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
         async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
         async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
-        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".spec-card,.faq-item,.para").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".cm-img,.cm-row,.faq-item,.para,.bullets").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>

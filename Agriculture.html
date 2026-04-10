@@ -20,44 +20,123 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--body);
 body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .site-wrapper{opacity:0;transition:opacity .5s;}body.loaded .site-wrapper{opacity:1;}
 
-/* HERO */
-.page-hero{background:var(--dark);padding:clamp(3rem,5vw,4.5rem) 0 clamp(2.5rem,4vw,3.5rem);position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(38,115,184,.15);border-radius:50%;pointer-events:none;}
-.page-hero::after{content:'';position:absolute;bottom:-80px;left:10%;width:200px;height:200px;border:1px solid rgba(38,115,184,.1);border-radius:50%;pointer-events:none;}
-.hero-inner{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);position:relative;z-index:2;}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;}
+/* ── HERO ─────────────────────────────────────────────── */
+.page-hero{
+    position:relative;
+    overflow:hidden;
+    padding:clamp(4rem,8vw,6.5rem) 0 clamp(3rem,5vw,4.5rem);
+    background:var(--dark);
+}
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background-image:url('assets/Agro-products/bg.jpeg');
+    background-size:cover;
+    background-position:center 40%;
+    background-repeat:no-repeat;
+    transform:scale(1.04);
+    transition:transform 8s ease;
+    will-change:transform;
+}
+body.loaded .hero-bg{transform:scale(1);}
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(26,35,50,0.55) 0%,
+        rgba(26,35,50,0.75) 50%,
+        rgba(26,35,50,0.95) 100%
+    );
+}
+.hero-deco-a{
+    position:absolute;top:-60px;right:-60px;
+    width:320px;height:320px;
+    border:1px solid rgba(38,115,184,.18);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+.hero-deco-b{
+    position:absolute;bottom:-80px;left:10%;
+    width:200px;height:200px;
+    border:1px solid rgba(38,115,184,.12);
+    border-radius:50%;pointer-events:none;z-index:1;
+}
+.hero-line{
+    position:absolute;
+    top:0;left:0;right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--blue) 40%,transparent);
+    z-index:2;
+}
+.hero-inner{
+    max-width:1400px;margin:0 auto;
+    padding:0 clamp(1rem,3vw,2rem);
+    position:relative;z-index:3;
+}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:clamp(1.5rem,3vw,2.2rem);padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;backdrop-filter:blur(4px);}
 .back-btn i{font-size:.65rem;transition:transform .3s;}
 .back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
 .back-btn:hover i{transform:translateX(-3px);}
-.hero-tag{font-family:'Raleway',sans-serif;font-size:clamp(.6rem,.75vw,.65rem);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:block;}
-.page-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;color:white;line-height:1.05;margin-bottom:1rem;}
-.hero-desc{font-family:'Raleway',sans-serif;font-size:clamp(.8rem,.95vw,.9rem);font-weight:500;color:rgba(255,255,255,.5);max-width:560px;line-height:1.65;}
-.title-accent{display:block;width:48px;height:3px;background:var(--blue);margin-top:1.2rem;border-radius:1px;}
+.hero-tag{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.58rem,.72vw,.63rem);
+    font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.72);
+    margin-bottom:.65rem;
+    display:flex;align-items:center;gap:.6rem;
+}
+.hero-tag::before{
+    content:'';display:inline-block;
+    width:20px;height:1.5px;
+    background:var(--blue);
+    flex-shrink:0;
+}
+.page-title{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(2rem,5vw,3.4rem);
+    font-weight:900;
+    letter-spacing:-2px;
+    color:white;
+    line-height:1.02;
+    margin-bottom:.9rem;
+    text-shadow:0 2px 32px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.3);
+}
+.hero-desc{
+    font-family:'Raleway',sans-serif;
+    font-size:clamp(.78rem,.92vw,.86rem);
+    font-weight:500;
+    color:rgba(255,255,255,.68);
+    max-width:520px;
+    line-height:1.65;
+    margin-bottom:clamp(1.2rem,2vw,1.8rem);
+}
+.hero-pills{
+    display:flex;flex-wrap:wrap;gap:.5rem;
+    margin-top:clamp(1rem,1.8vw,1.4rem);
+}
+.hero-pill{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(.52rem,.64vw,.58rem);
+    font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+    padding:.38rem .85rem;
+    background:rgba(26,35,50,.6);
+    border:1px solid rgba(255,255,255,.25);
+    color:rgba(255,255,255,.9);
+    border-radius:2px;
+    backdrop-filter:blur(8px);
+    white-space:nowrap;
+}
+.hero-pill span{color:var(--blue);margin-right:.3rem;font-size:.45rem;vertical-align:middle;}
+.title-accent{display:block;width:42px;height:3px;background:var(--blue);margin-top:1.1rem;border-radius:1px;}
 
-/* CONTENT */
+/* ── CONTENT ─────────────────────────────────────────── */
 .content-section{padding:clamp(2.5rem,4vw,3.5rem) 0 clamp(2rem,3vw,3rem);}
 .container{max-width:1400px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem);}
 .inner{max-width:1200px;}
 .sect-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,2vw,1.6rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);line-height:1.3;margin-bottom:clamp(.8rem,1.2vw,1rem);}
 .para{font-family:'Raleway',sans-serif;font-size:clamp(.78rem,.88vw,.82rem);font-weight:400;line-height:1.7;color:var(--body);margin-bottom:.9rem;text-align:justify;}
 .divider{width:100%;height:1px;background:var(--border);margin:clamp(1.8rem,2.5vw,2.2rem) 0;}
-
-/* PRODUCTS — text only */
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
-.prod-card{background:white;border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.2rem;border-left:3px solid var(--blue);transition:all .3s cubic-bezier(.4,0,.2,1);text-decoration:none;display:block;}
-.prod-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(26,35,50,.1);border-color:var(--blue);}
-.prod-badge{display:inline-block;font-family:'Montserrat',sans-serif;font-size:.5rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:3px;background:var(--red);color:white;margin-bottom:.6rem;}
-.prod-badge.onion{background:var(--purple);}
-.prod-name{font-family:'Montserrat',sans-serif;font-size:clamp(.78rem,.9vw,.84rem);font-weight:800;color:var(--dark);line-height:1.3;margin-bottom:.3rem;}
-.prod-sub{font-family:'Raleway',sans-serif;font-size:clamp(.64rem,.74vw,.69rem);font-weight:500;color:var(--body);line-height:1.5;}
-.prod-card:hover .prod-name{color:var(--blue);}
-
-/* PROCESS STEPS */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
-.step{background:white;border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;border-left:3px solid var(--blue);}
-.step-num{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,1.8vw,1.5rem);font-weight:900;color:var(--blue);opacity:.15;line-height:1;margin-bottom:.3rem;}
-.step-title{font-family:'Montserrat',sans-serif;font-size:clamp(.68rem,.8vw,.73rem);font-weight:800;color:var(--dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem;}
-.step-desc{font-family:'Raleway',sans-serif;font-size:clamp(.64rem,.74vw,.69rem);font-weight:500;color:var(--body);line-height:1.5;}
 
 /* SUB HEADING */
 .sub-title{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.4vw,1.2rem);font-weight:800;color:var(--dark);margin:clamp(1.5rem,2vw,2rem) 0 .7rem;letter-spacing:-.2px;}
@@ -77,6 +156,73 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 .bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
 .bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
 
+/* ── CONTENT + IMAGE BLENDED LAYOUT ─────────────────── */
+.cm-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(1.2rem,2.5vw,2rem);
+    align-items:center;
+    margin-bottom:clamp(1.5rem,2.5vw,2rem);
+}
+.cm-row.flip .cm-img  { order:-1; }
+.cm-row.flip .cm-text { order: 1; }
+.cm-text{display:flex;flex-direction:column;justify-content:center;}
+.cm-text .para:last-child{margin-bottom:0;}
+.cm-text .sub-title:first-child{margin-top:0;}
+.cm-img{
+    position:relative;
+    overflow:hidden;
+    border-radius:7px;
+    background:var(--dark);
+    aspect-ratio:4/3;
+    flex-shrink:0;
+}
+.cm-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .55s cubic-bezier(.4,0,.2,1),filter .55s ease;
+    filter:brightness(.93) saturate(1.05);
+}
+.cm-img:hover img{transform:scale(1.04);filter:brightness(1) saturate(1.1);}
+.cm-img::before{
+    content:'';
+    position:absolute;inset:0;
+    border:2px solid transparent;
+    border-radius:7px;
+    transition:border-color .3s;
+    z-index:2;pointer-events:none;
+}
+.cm-img:hover::before{border-color:rgba(38,115,184,.45);}
+.cm-img::after{
+    content:'';
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:35%;
+    background:linear-gradient(to top,rgba(26,35,50,.35),transparent);
+    pointer-events:none;
+}
+/* Dual stacked images */
+.cm-img-duo{display:flex;flex-direction:column;gap:clamp(.5rem,.8vw,.7rem);}
+.cm-img-duo .cm-img{aspect-ratio:16/9;}
+
+/* ── MOBILE ─────────────────────────────────────────── */
+@media(max-width:768px){
+    .cm-row{grid-template-columns:1fr;gap:clamp(.9rem,2vw,1.2rem);}
+    .cm-row .cm-text{order:0;}
+    .cm-row .cm-img {order:1;}
+    .cm-row.flip .cm-img {order:1;}
+    .cm-row.flip .cm-text{order:0;}
+    .cm-img{aspect-ratio:16/9;width:100%;}
+    .cm-img-duo{flex-direction:row;}
+    .cm-img-duo .cm-img{aspect-ratio:4/3;flex:1;}
+    .two-col{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+    .cm-img-duo{flex-direction:column;}
+    .cm-img-duo .cm-img{aspect-ratio:16/9;}
+}
+
 /* FAQ */
 .faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
 .faq-head{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,1.6vw,1.3rem);font-weight:800;letter-spacing:-.2px;color:var(--dark);margin-bottom:clamp(1.2rem,2vw,1.5rem);}
@@ -95,9 +241,7 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
-@media(max-width:991px){.steps-grid{grid-template-columns:repeat(2,1fr);}.two-col{grid-template-columns:1fr;}}
-@media(max-width:767px){.products-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:480px){.steps-grid{grid-template-columns:1fr;}.products-grid{grid-template-columns:1fr;}}
+
 #footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
     </style>
 </head>
@@ -112,75 +256,92 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
     <div class="site-wrapper">
 
+        <!-- ═══════════════════════ HERO ═══════════════════════ -->
         <div class="page-hero">
+            <div class="hero-bg" role="presentation"></div>
+            <div class="hero-overlay" role="presentation"></div>
+            <div class="hero-deco-a" role="presentation"></div>
+            <div class="hero-deco-b" role="presentation"></div>
+            <div class="hero-line" role="presentation"></div>
+
             <div class="hero-inner">
-                <button class="back-btn" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                <a class="back-btn" onclick="window.history.back()" href="#"><i class="fas fa-arrow-left"></i> Back</a>
+
                 <span class="hero-tag">Global Exports — Agriculture</span>
-                <h1 class="page-title">Spices &amp; Agricultural Exports</h1>
+
+                <h1 class="page-title">Spices &amp; Agricultural<br>Exports</h1>
+
                 <p class="hero-desc">Premium Indian red chillies from Guntur and export-grade onions from Nashik &amp; Madhya Pradesh, supplied to Malaysia, Sri Lanka, and global markets.</p>
+
+                <div class="hero-pills">
+                    <div class="hero-pill"><span>&#9679;</span>Guntur, Andhra Pradesh</div>
+                    <div class="hero-pill"><span>&#9679;</span>Nashik &amp; MP Onions</div>
+                    <div class="hero-pill"><span>&#9679;</span>Malaysia &amp; Sri Lanka</div>
+                    <div class="hero-pill"><span>&#9679;</span>Byadgi · Teja · 334</div>
+                </div>
+
                 <span class="title-accent"></span>
             </div>
         </div>
+        <!-- ════════════════════ END HERO ══════════════════════ -->
 
         <section class="content-section">
             <div class="container">
                 <div class="inner">
 
                     <h2 class="sect-title">Premium Indian Spices &amp; Agricultural Commodity Exports by BNB Enterprises</h2>
-                    <p class="para">BNB Enterprises is actively engaged in the export of agricultural commodities from India, supplying quality produce to international markets with a strong focus on grading, consistency, and reliable shipments. As part of a diversified trading group with three decades of family business heritage and established global trade relationships, we bring the same commitment to quality and reliability that defines all our operations to our agricultural commodity exports. Our key export products include red chillies and onions, sourced from well-known, established producing regions and packed as per buyer requirements for international markets.</p>
-                    <p class="para">We currently serve markets including Malaysia and Sri Lanka, and are actively expanding into new destinations backed by our established international trading network. Our agricultural commodity operations encompass careful sourcing from primary producing regions, rigorous quality inspection and grading, appropriate packing for export transport, and timely dispatch to meet market schedules and buyer requirements.</p>
 
-                    <div class="divider"></div>
+                    <!-- ── Row 1: Para 1 left · image right ──────────────── -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <p class="para">BNB Enterprises is actively engaged in the export of agricultural commodities from India, supplying quality produce to international markets with a strong focus on grading, consistency, and reliable shipments. As part of a diversified trading group with three decades of family business heritage and established global trade relationships, we bring the same commitment to quality and reliability that defines all our operations to our agricultural commodity exports. Our key export products include red chillies and onions, sourced from well-known, established producing regions and packed as per buyer requirements for international markets.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/Agro-products/chilli1.jpeg" alt="BNB Enterprises red chilli export operations" loading="lazy" decoding="async">
+                        </div>
+                    </div>
 
-                    <!-- PRODUCTS — text only, no images -->
-                    <div class="products-grid">
-                        <a href="Spices/byadgi-chilli.html" class="prod-card">
-                            <span class="prod-badge">Chilli</span>
-                            <div class="prod-name">Byadgi (Bayadgi) Red Chilli</div>
-                            <div class="prod-sub">Deep red colour · Moderate heat · Paprika &amp; colour extraction</div>
-                        </a>
-                        <a href="Spices/teja-chilli.html" class="prod-card">
-                            <span class="prod-badge">Chilli</span>
-                            <div class="prod-name">Teja Red Chilli</div>
-                            <div class="prod-sub">Very high pungency · Spice processing &amp; hot sauce manufacturing</div>
-                        </a>
-                        <a href="Spices/334-chilli.html" class="prod-card">
-                            <span class="prod-badge">Chilli</span>
-                            <div class="prod-name">334 Red Chilli</div>
-                            <div class="prod-sub">Balanced heat &amp; colour · General spice blending &amp; food processing</div>
-                        </a>
-                        <a href="Spices/nashik-onion.html" class="prod-card">
-                            <span class="prod-badge onion">Onion</span>
-                            <div class="prod-name">Nashik Onion — Maharashtra</div>
-                            <div class="prod-sub">Excellent shelf life · Uniform colour · Export-grade consistency</div>
-                        </a>
-                        <a href="Spices/mp-onion.html" class="prod-card">
-                            <span class="prod-badge onion">Onion</span>
-                            <div class="prod-name">Onion — Madhya Pradesh</div>
-                            <div class="prod-sub">Export-grade quality · Strong keeping characteristics</div>
-                        </a>
+                    <!-- ── Row 2: image left · Para 2 right (flip) ────────── -->
+                    <div class="cm-row flip">
+                        <div class="cm-text">
+                            <p class="para">We currently serve markets including Malaysia and Sri Lanka, and are actively expanding into new destinations backed by our established international trading network. Our agricultural commodity operations encompass careful sourcing from primary producing regions, rigorous quality inspection and grading, appropriate packing for export transport, and timely dispatch to meet market schedules and buyer requirements.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/Agro-products/onion1.jpeg" alt="Agricultural commodity export packing and dispatch" loading="lazy" decoding="async">
+                        </div>
                     </div>
 
                     <div class="divider"></div>
 
-                    <div class="steps-grid">
-                        <div class="step"><div class="step-num">01</div><div class="step-title">Regional Sourcing</div><div class="step-desc">Red chillies sourced from Guntur's established farms and mandis. Onions sourced from Nashik and Madhya Pradesh.</div></div>
-                        <div class="step"><div class="step-num">02</div><div class="step-title">Quality Inspection</div><div class="step-desc">Rigorous visual inspection removing damaged, diseased, or substandard product before processing.</div></div>
-                        <div class="step"><div class="step-num">03</div><div class="step-title">Cleaning &amp; Sorting</div><div class="step-desc">Thorough cleaning and sorting of chillies to remove debris. Onions sorted to remove off-grade stock.</div></div>
-                        <div class="step"><div class="step-num">04</div><div class="step-title">Grading</div><div class="step-desc">Chillies graded by variety. Onions size-graded — small, medium, large — per buyer specification.</div></div>
-                        <div class="step"><div class="step-num">05</div><div class="step-title">Moisture Control</div><div class="step-desc">Moisture content of red chillies tested and controlled to meet international export standards.</div></div>
-                        <div class="step"><div class="step-num">06</div><div class="step-title">Packing &amp; Dispatch</div><div class="step-desc">Packed as per buyer specification — gunny bags, mesh bags, jute bags, or cartons — with timely dispatch.</div></div>
+                    <!-- ── Row 3: Red chilli content left · image right ───── -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <h3 class="sub-title">Red Chilli Exports — <span>Guntur, Andhra Pradesh</span></h3>
+                            <p class="para">Our red chillies are sourced from Guntur, Andhra Pradesh — a region internationally recognized as one of the world's premier chilli production zones. Guntur chillies are known globally for their vibrant colour, intense heat, and distinctive flavour profiles, making them highly sought after by food processors, spice manufacturers, and culinary supply chains worldwide. We supply multiple popular and internationally traded varieties — Byadgi (Bayadgi), Teja, and 334 — based on customer preference, heat level requirement, and end-use application.</p>
+                            <p class="para">Byadgi chillies are prized for their deep red colour and moderate heat level, making them the preferred variety for colour extraction, paprika production, and premium food colouring applications. Teja chillies are known for their very high pungency and heat content, widely used in spice processing and hot sauce manufacturing. The 334 variety offers a balanced profile suitable for general spice blending and food processing.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/Agro-products/WhatsApp Image 2026-03-02 at 14.22.32.jpeg" alt="Guntur red chillies Byadgi Teja 334 varieties" loading="lazy" decoding="async">
+                        </div>
                     </div>
 
-                    <div class="divider"></div>
+                    <!-- ── Row 4: image left (duo) · Onion content right ──── -->
+                    <div class="cm-row flip">
+                        <div class="cm-text">
+                            <h3 class="sub-title">Onion Exports — <span>Nashik &amp; Madhya Pradesh</span></h3>
+                            <p class="para">BNB Enterprises exports onions sourced primarily from Nashik, Maharashtra — India's most prominent and internationally recognized onion growing region — as well as from Madhya Pradesh. Nashik onions are known worldwide for their consistent quality, excellent shelf life, uniform colour, and keeping properties that make them ideal for export markets. All onions are carefully graded by size and quality before dispatch to ensure uniformity and better shelf life.</p>
+                        </div>
+                        <div class="cm-img-duo">
+                            <div class="cm-img">
+                                <img src="assets/Agro-products/onion3.jpeg" alt="Nashik onion export grading" loading="lazy" decoding="async">
+                            </div>
+                            <div class="cm-img">
+                                <img src="assets/Agro-products/what.jpeg" alt="Madhya Pradesh onion export operations" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
 
-                    <h3 class="sub-title">Red Chilli Exports — <span>Guntur, Andhra Pradesh</span></h3>
-                    <p class="para">Our red chillies are sourced from Guntur, Andhra Pradesh — a region internationally recognized as one of the world's premier chilli production zones. Guntur chillies are known globally for their vibrant colour, intense heat, and distinctive flavour profiles, making them highly sought after by food processors, spice manufacturers, and culinary supply chains worldwide. We supply multiple popular and internationally traded varieties — Byadgi (Bayadgi), Teja, and 334 — based on customer preference, heat level requirement, and end-use application.</p>
-                    <p class="para">Byadgi chillies are prized for their deep red colour and moderate heat level, making them the preferred variety for colour extraction, paprika production, and premium food colouring applications. Teja chillies are known for their very high pungency and heat content, widely used in spice processing and hot sauce manufacturing. The 334 variety offers a balanced profile suitable for general spice blending and food processing.</p>
-
-                    <h3 class="sub-title">Onion Exports — <span>Nashik &amp; Madhya Pradesh</span></h3>
-                    <p class="para">BNB Enterprises exports onions sourced primarily from Nashik, Maharashtra — India's most prominent and internationally recognized onion growing region — as well as from Madhya Pradesh. Nashik onions are known worldwide for their consistent quality, excellent shelf life, uniform colour, and keeping properties that make them ideal for export markets. All onions are carefully graded by size and quality before dispatch to ensure uniformity and better shelf life.</p>
-
+                    <!-- ── TWO COL INFO BLOCKS (unchanged) ───────────────── -->
                     <div class="two-col">
                         <div class="info-block">
                             <h4>Red Chilli — Our Process</h4>
@@ -208,19 +369,27 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
 
                     <div class="divider"></div>
 
-                    <h3 class="block-title">Why Choose BNB Enterprises for Spices &amp; Agricultural Commodity Exports</h3>
-                    <ul class="bullets">
-                        <li>Sourced from India's premier producing regions: Guntur for chillies, Nashik &amp; MP for onions</li>
-                        <li>Multiple red chilli varieties: Byadgi (Bayadgi), Teja, and 334 based on customer requirement</li>
-                        <li>Rigorous cleaning, sorting, and grading ensuring uniform quality in every shipment</li>
-                        <li>Moisture content and quality standards maintained for export-grade produce</li>
-                        <li>Onion size grading — small, medium, large — customized to buyer specifications</li>
-                        <li>Active export markets in Malaysia and Sri Lanka with expansion-ready capacity</li>
-                        <li>Flexible packing options: mesh bags, jute bags, carton packing as per buyer needs</li>
-                        <li>Reliable supply volumes with timely dispatch meeting market schedules</li>
-                        <li>Backed by decades of global commodity trading experience and established international network</li>
-                        <li>Competitive export pricing with full trade documentation and customs compliance support</li>
-                    </ul>
+                    <!-- ── Row 5: Bullets left · image right ─────────────── -->
+                    <div class="cm-row" style="align-items:flex-start;">
+                        <div class="cm-text">
+                            <h3 class="block-title">Why Choose BNB Enterprises for Spices &amp; Agricultural Commodity Exports</h3>
+                            <ul class="bullets">
+                                <li>Sourced from India's premier producing regions: Guntur for chillies, Nashik &amp; MP for onions</li>
+                                <li>Multiple red chilli varieties: Byadgi (Bayadgi), Teja, and 334 based on customer requirement</li>
+                                <li>Rigorous cleaning, sorting, and grading ensuring uniform quality in every shipment</li>
+                                <li>Moisture content and quality standards maintained for export-grade produce</li>
+                                <li>Onion size grading — small, medium, large — customized to buyer specifications</li>
+                                <li>Active export markets in Malaysia and Sri Lanka with expansion-ready capacity</li>
+                                <li>Flexible packing options: mesh bags, jute bags, carton packing as per buyer needs</li>
+                                <li>Reliable supply volumes with timely dispatch meeting market schedules</li>
+                                <li>Backed by decades of global commodity trading experience and established international network</li>
+                                <li>Competitive export pricing with full trade documentation and customs compliance support</li>
+                            </ul>
+                        </div>
+                        <div class="cm-img" style="aspect-ratio:3/4;">
+                            <img src="assets/spices/bnb-spices7.webp" alt="BNB Enterprises spice and agricultural export supply" loading="lazy" decoding="async">
+                        </div>
+                    </div>
 
                     <div class="faq-wrap">
                         <h3 class="faq-head">Frequently Asked Questions About Spices &amp; Agricultural Exports</h3>
@@ -277,7 +446,7 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
         document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
         async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
         async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
-        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".prod-card,.step,.faq-item,.para").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".cm-img,.cm-row,.faq-item,.para,.info-block").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>

@@ -27,8 +27,6 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
     padding:clamp(4rem,8vw,6.5rem) 0 clamp(3rem,5vw,4.5rem);
     background:var(--dark);
 }
-
-/* Real image background */
 .hero-bg{
     position:absolute;
     inset:0;
@@ -41,8 +39,6 @@ body.loaded .page-loader{opacity:0;visibility:hidden;pointer-events:none;}
     will-change:transform;
 }
 body.loaded .hero-bg{transform:scale(1);}
-
-/* FIX 1 — Overlay: heavier so every text element reads cleanly */
 .hero-overlay{
     position:absolute;
     inset:0;
@@ -53,8 +49,6 @@ body.loaded .hero-bg{transform:scale(1);}
     rgba(26,35,50,0.95) 100%
 );
 }
-
-/* Decorative circles — kept from original, on top of overlay */
 .hero-deco-a{
     position:absolute;top:-60px;right:-60px;
     width:320px;height:320px;
@@ -67,8 +61,6 @@ body.loaded .hero-bg{transform:scale(1);}
     border:1px solid rgba(38,115,184,.12);
     border-radius:50%;pointer-events:none;z-index:1;
 }
-
-/* Thin blue accent line at very top */
 .hero-line{
     position:absolute;
     top:0;left:0;right:0;
@@ -76,19 +68,15 @@ body.loaded .hero-bg{transform:scale(1);}
     background:linear-gradient(90deg,transparent,var(--blue) 40%,transparent);
     z-index:2;
 }
-
 .hero-inner{
     max-width:1400px;margin:0 auto;
     padding:0 clamp(1rem,3vw,2rem);
     position:relative;z-index:3;
 }
-
 .back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:clamp(1.5rem,3vw,2.2rem);padding:.55rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.78);font-family:'Montserrat',sans-serif;font-size:clamp(.58rem,.72vw,.63rem);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:3px;text-decoration:none;backdrop-filter:blur(4px);}
 .back-btn i{font-size:.65rem;transition:transform .3s;}
 .back-btn:hover{background:var(--blue);border-color:var(--blue);color:white;transform:translateX(-3px);}
 .back-btn:hover i{transform:translateX(-3px);}
-
-/* FIX 2 — Tag: white instead of blue (blue vanishes on dark image) */
 .hero-tag{
     font-family:'Raleway',sans-serif;
     font-size:clamp(.58rem,.72vw,.63rem);
@@ -104,7 +92,6 @@ body.loaded .hero-bg{transform:scale(1);}
     background:var(--blue);
     flex-shrink:0;
 }
-
 .page-title{
     font-family:'Montserrat',sans-serif;
     font-size:clamp(2rem,5vw,3.4rem);
@@ -115,8 +102,6 @@ body.loaded .hero-bg{transform:scale(1);}
     margin-bottom:.9rem;
     text-shadow:0 2px 32px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.3);
 }
-
-/* FIX 3 — Desc: slightly brighter so it's readable */
 .hero-desc{
     font-family:'Raleway',sans-serif;
     font-size:clamp(.78rem,.92vw,.86rem);
@@ -126,8 +111,6 @@ body.loaded .hero-bg{transform:scale(1);}
     line-height:1.65;
     margin-bottom:clamp(1.2rem,2vw,1.8rem);
 }
-
-/* FIX 4 — Pills: darker bg + brighter border + white text so they're visible */
 .hero-pills{
     display:flex;flex-wrap:wrap;gap:.5rem;
     margin-top:clamp(1rem,1.8vw,1.4rem);
@@ -145,7 +128,6 @@ body.loaded .hero-bg{transform:scale(1);}
     white-space:nowrap;
 }
 .hero-pill span{color:var(--blue);margin-right:.3rem;font-size:.45rem;vertical-align:middle;}
-
 .title-accent{display:block;width:42px;height:3px;background:var(--blue);margin-top:1.1rem;border-radius:1px;}
 
 /* ── CONTENT ─────────────────────────────────────────── */
@@ -156,97 +138,133 @@ body.loaded .hero-bg{transform:scale(1);}
 .para{font-family:'Raleway',sans-serif;font-size:clamp(.78rem,.88vw,.82rem);font-weight:400;line-height:1.7;color:var(--body);margin-bottom:.9rem;text-align:justify;}
 .divider{width:100%;height:1px;background:var(--border);margin:clamp(1.8rem,2.5vw,2.2rem) 0;}
 
-/* SPEC / GRADE CARDS */
-.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
-.spec-card{background:white;border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;border-left:3px solid var(--blue);}
-.spec-card h4{font-family:'Montserrat',sans-serif;font-size:clamp(.68rem,.82vw,.73rem);font-weight:800;color:var(--dark);letter-spacing:.3px;margin-bottom:.3rem;text-transform:uppercase;}
-.spec-card p{font-family:'Raleway',sans-serif;font-size:clamp(.66rem,.76vw,.71rem);font-weight:500;color:var(--body);line-height:1.5;}
-
-/* PROCESS STEPS */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin:clamp(1.2rem,2vw,1.6rem) 0;}
-.step{background:white;border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;border-left:3px solid var(--blue);}
-.step-num{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,1.8vw,1.5rem);font-weight:900;color:var(--blue);opacity:.15;line-height:1;margin-bottom:.3rem;}
-.step-title{font-family:'Montserrat',sans-serif;font-size:clamp(.68rem,.8vw,.73rem);font-weight:800;color:var(--dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem;}
-.step-desc{font-family:'Raleway',sans-serif;font-size:clamp(.64rem,.74vw,.69rem);font-weight:500;color:var(--body);line-height:1.5;}
-
 /* BULLETS */
 .block-title{font-family:'Montserrat',sans-serif;font-size:clamp(.9rem,1.1vw,1rem);font-weight:800;color:var(--dark);margin-bottom:.7rem;}
 .bullets{list-style:none;padding:0;}
 .bullets li{font-family:'Raleway',sans-serif;font-size:clamp(.72rem,.82vw,.77rem);font-weight:500;line-height:1.6;color:var(--body);margin-bottom:.45rem;padding-left:1.2rem;position:relative;}
 .bullets li::before{content:'•';color:var(--blue);font-weight:900;font-size:1.1rem;position:absolute;left:0;top:-2px;}
 
-/* ── IMAGE GALLERY ───────────────────────────────────── */
-.gallery-section{margin:clamp(1.8rem,2.8vw,2.5rem) 0;}
+/* ── CONTENT + IMAGE BLENDED LAYOUT ─────────────────── */
 
-.gallery-label{
-    display:flex;align-items:center;gap:.8rem;
-    margin-bottom:clamp(1rem,1.6vw,1.2rem);
-}
-.gallery-label h3{
-    font-family:'Montserrat',sans-serif;
-    font-size:clamp(.9rem,1.1vw,1rem);
-    font-weight:800;color:var(--dark);
-    letter-spacing:-.1px;
-}
-.gallery-label::after{
-    content:'';flex:1;height:1px;
-    background:var(--border);
+/*
+  Desktop: text on one side, image on the other — alternating
+  Mobile:  text block first, then full-width image below — stacked
+*/
+
+.cm-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.2rem, 2.5vw, 2rem);
+    align-items: center;
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.gallery-grid{
-    display:grid;
-    gap:clamp(.5rem,.8vw,.75rem);
-    grid-template-columns:repeat(5,1fr);
+/* Flip: image left, text right */
+.cm-row.flip .cm-img  { order: -1; }
+.cm-row.flip .cm-text { order:  1; }
+
+.cm-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.gallery-item{
-    position:relative;
-    overflow:hidden;
-    border-radius:5px;
-    background:var(--dark);
-    aspect-ratio:3/2;
-    cursor:pointer;
+/* Remove bottom margin on last para inside cm-text so spacing is tidy */
+.cm-text .para:last-child { margin-bottom: 0; }
+
+.cm-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 7px;
+    background: var(--dark);
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
 }
 
-.gallery-item:first-child{
-    grid-column:span 2;
-    aspect-ratio:16/9;
+.cm-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .55s cubic-bezier(.4,0,.2,1), filter .55s ease;
+    filter: brightness(.93) saturate(1.05);
+}
+.cm-img:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1.1);
 }
 
-.gallery-item img{
-    width:100%;height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .55s cubic-bezier(.4,0,.2,1),filter .55s ease;
-    filter:brightness(.92) saturate(1.05);
+/* Subtle blue accent border on hover */
+.cm-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    transition: border-color .3s;
+    z-index: 2;
+    pointer-events: none;
+}
+.cm-img:hover::before { border-color: rgba(38,115,184,.45); }
+
+/* Bottom gradient for depth */
+.cm-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top, rgba(26,35,50,.35), transparent);
+    pointer-events: none;
 }
 
-.gallery-item:hover img{
-    transform:scale(1.06);
-    filter:brightness(1) saturate(1.1);
+/* Dual-image column variant — two stacked images side by side content */
+.cm-img-duo {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5rem, .8vw, .7rem);
 }
 
-.gallery-item::after{
-    content:'';
-    position:absolute;
-    bottom:0;left:0;right:0;
-    height:40%;
-    background:linear-gradient(to top,rgba(26,35,50,.45),transparent);
-    pointer-events:none;
-    transition:opacity .3s;
+.cm-img-duo .cm-img {
+    aspect-ratio: 16 / 9;
 }
-.gallery-item:hover::after{opacity:.5;}
 
-.gallery-item::before{
-    content:'';
-    position:absolute;inset:0;
-    border:2px solid transparent;
-    border-radius:5px;
-    transition:border-color .3s;
-    z-index:2;
-    pointer-events:none;
+/* ── MOBILE ─────────────────────────────────────────────
+   Stack: text on top, image below. Always same order.     */
+@media (max-width: 768px) {
+    .cm-row {
+        grid-template-columns: 1fr;
+        gap: clamp(.9rem, 2vw, 1.2rem);
+    }
+
+    /* Reset flip so text is always first on mobile */
+    .cm-row.flip .cm-img  { order: 1; }
+    .cm-row.flip .cm-text { order: 0; }
+
+    /* Always: text = 0 (first), img = 1 (second) */
+    .cm-row .cm-text { order: 0; }
+    .cm-row .cm-img  { order: 1; }
+
+    .cm-img {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+
+    .cm-img-duo {
+        flex-direction: row;
+    }
+
+    .cm-img-duo .cm-img {
+        aspect-ratio: 4 / 3;
+        flex: 1;
+    }
 }
-.gallery-item:hover::before{border-color:rgba(38,115,184,.5);}
+
+@media (max-width: 480px) {
+    .cm-img-duo {
+        flex-direction: column;
+    }
+    .cm-img-duo .cm-img {
+        aspect-ratio: 16 / 9;
+    }
+}
 
 /* ── FAQ ─────────────────────────────────────────────── */
 .faq-wrap{margin-top:clamp(2rem,3vw,2.5rem);}
@@ -268,22 +286,11 @@ body.loaded .hero-bg{transform:scale(1);}
 .anim{opacity:0;animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;}
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
-@media(max-width:1024px){
-    .gallery-grid{grid-template-columns:repeat(3,1fr);}
-    .gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9;}
-}
-@media(max-width:640px){
-    .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.45rem;}
-    .gallery-item:first-child{grid-column:span 2;aspect-ratio:16/7;}
-    .gallery-item{aspect-ratio:4/3;}
-}
 @media(max-width:991px){
-    .steps-grid{grid-template-columns:repeat(2,1fr);}
     .spec-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media(max-width:576px){
     .spec-grid{grid-template-columns:repeat(2,1fr);}
-    .steps-grid{grid-template-columns:1fr;}
 }
 
 #footerComponent{font-family:'Montserrat',sans-serif;width:100%;}
@@ -334,75 +341,69 @@ body.loaded .hero-bg{transform:scale(1);}
                 <div class="inner">
 
                     <h2 class="sect-title">Premium Shrimp Aquaculture &amp; Export from West Godavari, Andhra Pradesh</h2>
-                    <p class="para">BNB Enterprises is engaged in shrimp aquaculture and export from the West Godavari district of Andhra Pradesh — one of India's most productive and recognized shrimp farming regions. We supply high-quality shrimp to both domestic and international markets, with exports currently serving the United Arab Emirates for retail markets and restaurant supply. Our shrimp are either processed for frozen export — with a shelf life of 2 years — or supplied fresh to nearby markets, depending on customer requirements and market destination.</p>
-                    <p class="para">Our focus throughout the farming and export process is on healthy aquaculture practices, strict hygiene standards, proper size grading, and reliable supply. We operate controlled aquaculture pond systems with powerful aeration infrastructure, maintaining continuous oxygen levels across all ponds with around-the-clock power supply. This ensures optimal dissolved oxygen levels, superior shrimp growth and survival rates, reduced biological stress on shrimp, and consistently healthier and stronger harvests ready for export-grade quality standards.</p>
-                    <p class="para">Our operations cover the complete shrimp production cycle — from farming under controlled aquaculture conditions with continuous aeration and monitoring, through careful harvesting and hygienic handling, to professional processing and packing for frozen exports or fresh dispatch to nearby markets. Strict quality checks are applied at every stage of the chain to ensure that every shipment meets the standards expected by international buyers and food service customers.</p>
 
-                    <div class="divider"></div>
+                    <!-- ── BLENDED CONTENT + IMAGES ───────────────────────── -->
 
-                    <h3 class="block-title" style="margin-bottom:1rem;">Available Size Grades</h3>
-                    <div class="spec-grid">
-                        <div class="spec-card"><h4>20 / 30 Count</h4><p>Large premium shrimp. 20–30 pieces per kg. Top-grade retail and high-end restaurant supply.</p></div>
-                        <div class="spec-card"><h4>30 / 40 Count</h4><p>30–40 pieces per kg. Ideal for mid-range retail and foodservice distribution chains.</p></div>
-                        <div class="spec-card"><h4>40 / 50 Count</h4><p>40–50 pieces per kg. Widely used in restaurant supply and catering operations.</p></div>
-                        <div class="spec-card"><h4>50 / 60 Count</h4><p>50–60 pieces per kg. Smaller grade suitable for processed products and food manufacturing.</p></div>
-                        <div class="spec-card"><h4>HOSO</h4><p>Head On Shell On. Full shrimp form for markets preferring natural presentation.</p></div>
-                        <div class="spec-card"><h4>HLSO</h4><p>Headless Shell On. Cleaned and export-ready for broad retail and foodservice markets.</p></div>
-                    </div>
-
-                    <div class="divider"></div>
-
-                    <div class="steps-grid">
-                        <div class="step"><div class="step-num">01</div><div class="step-title">Controlled Farming</div><div class="step-desc">Shrimp raised in controlled aquaculture ponds in West Godavari with continuous monitoring throughout the growth cycle.</div></div>
-                        <div class="step"><div class="step-num">02</div><div class="step-title">Aeration Systems</div><div class="step-desc">Powerful aerators and 24/7 power supply maintain optimal dissolved oxygen levels for healthy, active shrimp growth.</div></div>
-                        <div class="step"><div class="step-num">03</div><div class="step-title">Careful Harvesting</div><div class="step-desc">Shrimp harvested carefully to minimize stress and physical damage, maintaining full quality and appearance integrity.</div></div>
-                        <div class="step"><div class="step-num">04</div><div class="step-title">Hygienic Processing</div><div class="step-desc">Processed under strict food safety protocols delivering 2-year shelf life for frozen export products.</div></div>
-                        <div class="step"><div class="step-num">05</div><div class="step-title">Size Grading</div><div class="step-desc">Sorted by count per kilogram — 20/30, 30/40, 40/50, 50/60 — meeting exact buyer specifications.</div></div>
-                        <div class="step"><div class="step-num">06</div><div class="step-title">Quality Checks</div><div class="step-desc">Strict quality inspection at every stage ensuring only export-grade shrimp reach the final packing and dispatch stage.</div></div>
-                    </div>
-
-                    <div class="divider"></div>
-
-                    <h3 class="block-title">Why Choose BNB Enterprises for Shrimp Aquaculture &amp; Export</h3>
-                    <ul class="bullets">
-                        <li>Sourced from West Godavari, Andhra Pradesh — India's premier shrimp aquaculture region</li>
-                        <li>Modern controlled pond systems with powerful aerators and 24/7 power for optimal oxygen levels</li>
-                        <li>Healthy farming practices minimizing biological stress for stronger, export-quality shrimp</li>
-                        <li>Complete farm-to-market operations: farming, aeration, harvesting, processing, grading, and packing</li>
-                        <li>Hygienic processing facility delivering 2-year shelf life for frozen export products</li>
-                        <li>Size grading by count per kilogram — 20/30, 30/40, 40/50, 50/60 and custom sizes</li>
-                        <li>HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms available</li>
-                        <li>Export supply to UAE markets — retail and restaurant — with reliable volumes</li>
-                        <li>Fresh supply options for nearby domestic markets in addition to processed export</li>
-                        <li>Strict quality checks at every stage ensuring consistent, reliable, export-standard shrimp</li>
-                    </ul>
-
-                    <div class="divider"></div>
-
-                    <!-- ══════════════ IMAGE GALLERY ══════════════ -->
-                    <div class="gallery-section">
-                        <div class="gallery-label">
-                            <h3>Our Aquaculture &amp; Export Operations</h3>
+                    <!-- Row 1: Text left, image right -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <p class="para">BNB Enterprises is engaged in shrimp aquaculture and export from the West Godavari district of Andhra Pradesh — one of India's most productive and recognized shrimp farming regions. We supply high-quality shrimp to both domestic and international markets, with exports currently serving the United Arab Emirates for retail markets and restaurant supply. Our shrimp are either processed for frozen export — with a shelf life of 2 years — or supplied fresh to nearby markets, depending on customer requirements and market destination.</p>
                         </div>
-                        <div class="gallery-grid">
-                            <div class="gallery-item">
-                                <img src="assets/aquaculture/bnb-export-shrimps2.webp" alt="BNB Enterprises shrimp aquaculture farm West Godavari" loading="lazy" decoding="async">
-                            </div>
-                            <div class="gallery-item">
-                                <img src="assets/aquaculture/bnb-export-shrimps3.webp" alt="Premium export-grade shrimp harvest" loading="lazy" decoding="async">
-                            </div>
-                            <div class="gallery-item">
+                        <div class="cm-img">
+                            <img src="assets/aquaculture/bnb-export-shrimps2.webp" alt="BNB Enterprises shrimp aquaculture farm West Godavari" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Image left, text right (flip) -->
+                    <div class="cm-row flip">
+                        <div class="cm-text">
+                            <p class="para">Our focus throughout the farming and export process is on healthy aquaculture practices, strict hygiene standards, proper size grading, and reliable supply. We operate controlled aquaculture pond systems with powerful aeration infrastructure, maintaining continuous oxygen levels across all ponds with around-the-clock power supply. This ensures optimal dissolved oxygen levels, superior shrimp growth and survival rates, reduced biological stress on shrimp, and consistently healthier and stronger harvests ready for export-grade quality standards.</p>
+                        </div>
+                        <div class="cm-img">
+                            <img src="assets/aquaculture/bnb-export-shrimps3.webp" alt="Premium export-grade shrimp harvest" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Text left, dual stacked images right -->
+                    <div class="cm-row">
+                        <div class="cm-text">
+                            <p class="para">Our operations cover the complete shrimp production cycle — from farming under controlled aquaculture conditions with continuous aeration and monitoring, through careful harvesting and hygienic handling, to professional processing and packing for frozen exports or fresh dispatch to nearby markets. Strict quality checks are applied at every stage of the chain to ensure that every shipment meets the standards expected by international buyers and food service customers.</p>
+                        </div>
+                        <div class="cm-img-duo">
+                            <div class="cm-img">
                                 <img src="assets/aquaculture/bnb-export-shrimps4.webp" alt="Shrimp size grading and processing" loading="lazy" decoding="async">
                             </div>
-                            <div class="gallery-item">
+                            <div class="cm-img">
                                 <img src="assets/aquaculture/bnb-export-shrimps5.webp" alt="Shrimp packing and export preparation" loading="lazy" decoding="async">
-                            </div>
-                            <div class="gallery-item">
-                                <img src="assets/aquaculture/bnb-export-shrimps6.webp" alt="Frozen shrimp export UAE market supply" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
-                    <!-- ══════════════ END GALLERY ════════════════ -->
+
+                    <!-- ── END BLENDED CONTENT ────────────────────────────── -->
+
+                    <div class="divider"></div>
+
+                    <!-- Row 4: bullets text left, image right -->
+                    <div class="cm-row" style="align-items:flex-start;">
+                        <div class="cm-text">
+                            <h3 class="block-title">Why Choose BNB Enterprises for Shrimp Aquaculture &amp; Export</h3>
+                            <ul class="bullets">
+                                <li>Sourced from West Godavari, Andhra Pradesh — India's premier shrimp aquaculture region</li>
+                                <li>Modern controlled pond systems with powerful aerators and 24/7 power for optimal oxygen levels</li>
+                                <li>Healthy farming practices minimizing biological stress for stronger, export-quality shrimp</li>
+                                <li>Complete farm-to-market operations: farming, aeration, harvesting, processing, grading, and packing</li>
+                                <li>Hygienic processing facility delivering 2-year shelf life for frozen export products</li>
+                                <li>Size grading by count per kilogram — 20/30, 30/40, 40/50, 50/60 and custom sizes</li>
+                                <li>HOSO (Head On Shell On) and HLSO (Headless Shell On) product forms available</li>
+                                <li>Export supply to UAE markets — retail and restaurant — with reliable volumes</li>
+                                <li>Fresh supply options for nearby domestic markets in addition to processed export</li>
+                                <li>Strict quality checks at every stage ensuring consistent, reliable, export-standard shrimp</li>
+                            </ul>
+                        </div>
+                        <div class="cm-img" style="aspect-ratio:3/4;">
+                            <img src="assets/aquaculture/bnb-export-shrimps6.webp" alt="Frozen shrimp export UAE market supply" loading="lazy" decoding="async">
+                        </div>
+                    </div>
 
                     <div class="divider"></div>
 
@@ -457,7 +458,7 @@ body.loaded .hero-bg{transform:scale(1);}
         document.addEventListener("DOMContentLoaded",()=>{const t=performance.now();setTimeout(()=>{document.body.classList.add("loaded");boot();},Math.max(0,800-t));});
         async function boot(){for(const c of [{n:"navbar-product",t:"navbarComponent"},{n:"footer",t:"footerComponent"}])await load(c.n,c.t);anim();}
         async function load(name,id){try{const h=await(await fetch(`${name}.html`)).text(),tmp=document.createElement("div");tmp.innerHTML=h;const el=document.getElementById(id);if(!el)return;tmp.querySelectorAll("style").forEach(s=>{const n=document.createElement("style");n.innerHTML=s.innerHTML;n.setAttribute("data-component",name);document.head.appendChild(n);});const sc=Array.from(tmp.querySelectorAll("script")).map(s=>s.innerHTML);tmp.querySelectorAll("script,style,link[href*='fonts.googleapis.com']").forEach(e=>e.remove());el.innerHTML=tmp.innerHTML;await new Promise(r=>setTimeout(r,50));sc.forEach(s=>{if(s.trim())try{new Function(s)();}catch(e){console.error(e);}});}catch(e){console.error(e);}}
-        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".spec-card,.step,.faq-item,.para,.gallery-item").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
+        function anim(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("anim");o.unobserve(x.target);}});},{threshold:.1,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".cm-img,.cm-row,.faq-item,.para,.bullets").forEach((el,i)=>{el.style.animationDelay=`${i*.04}s`;o.observe(el);});}
     </script>
 </body>
 </html>
