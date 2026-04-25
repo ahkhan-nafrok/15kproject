@@ -1,0 +1,24 @@
+# robots.txt — BNB Enterprises
+# https://bnbentglobal.com/
+
+# Allow all search engine crawlers full access
+User-agent: *
+Allow: /
+
+# Block partial/component HTML files (JS-injected partials, not real pages)
+Disallow: /navbar.html
+Disallow: /navbar-product.html
+Disallow: /hero.html
+Disallow: /about.html
+Disallow: /categories.html
+Disallow: /export.html
+Disallow: /contact.html
+Disallow: /footer.html
+
+# Block raw image/video asset folders (not useful as crawlable pages)
+Disallow: /assets/
+Disallow: /Marble/Marbles/
+Disallow: /Granites/Assets/
+
+# Sitemap location
+Sitemap: https://bnbentglobal.com/sitemap.xml
